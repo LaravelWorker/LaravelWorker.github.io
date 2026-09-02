@@ -60,7 +60,8 @@
     "PHP", "Laravel", "Symfony", "Node.js", "TypeScript", "JavaScript",
     "Vue.js", "React", "PostgreSQL", "MySQL", "MongoDB", "Redis",
     "Docker", "Linux", "REST API", "Биллинг", "Платёжные интеграции",
-    "Криптобиржевые API", "RBAC", "Telegram Bot API", "Telegram Mini Apps"
+    "Криптобиржевые API", "RBAC", "Telegram Bot API", "Telegram Mini Apps",
+    "MAX API", "Рекуррентные платежи", "54-ФЗ", "TF-IDF"
   ],
   "knowsLanguage": [
     { "@type": "Language", "name": "Русский" },
@@ -192,6 +193,14 @@ section{padding:52px 0;border-top:1px solid var(--line)}
 }
 @media(max-width:640px){.srow{grid-template-columns:1fr;gap:9px}}
 
+.job p{margin:0 0 12px;font-size:15.5px;color:var(--ink-soft);max-width:68ch}
+.job .team{margin-top:13px;font-family:var(--mono);font-size:11.5px;color:var(--muted)}
+.job .anchor{
+  display:inline-block;margin-top:10px;font-family:var(--mono);font-size:12.5px;
+  text-decoration:none;border-bottom:1px solid var(--line);
+}
+.job .anchor:hover{border-color:var(--accent)}
+
 /* ============ КЕЙСЫ ============ */
 .cases{border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
 .case{
@@ -281,7 +290,7 @@ footer{padding:34px 0 56px;font-family:var(--mono);font-size:11.5px;color:var(--
 </header>
 
 <section>
-  <div class="head"><h2>Что я закрываю</h2><span class="tag">четыре направления</span></div>
+  <div class="head"><h2>Что я закрываю</h2><span class="tag">пять направлений</span></div>
   <div class="ledger">
     <div class="item">
       <span class="idx">01</span>
@@ -419,35 +428,46 @@ footer{padding:34px 0 56px;font-family:var(--mono);font-size:11.5px;color:var(--
   </div>
 </section>
 
-<section>
-  <div class="head"><h2>Опыт</h2><span class="tag">6 лет 5 месяцев</span></div>
+<section id="experience">
+  <div class="head"><h2>Опыт</h2><span class="tag" id="years-total">6 лет 5 месяцев</span></div>
   <div class="ledger">
+
     <div class="job">
-      <div class="when">Январь 2022 —<br>настоящее время<br><br>4 года 8 месяцев</div>
+      <div class="when">Январь 2022 —<br>настоящее время<br><br><span id="years-ip">4 года 8 месяцев</span></div>
       <div>
         <h3>Контрактная разработка · ИП</h3>
+        <div class="case-role">Backend-разработчик · полный цикл, от модели данных до продакшена</div>
+        <p>Сервисы, где ошибка стоит денег: приём платежей и подписки, интеграции с биржами и платёжными провайдерами, обработка больших объёмов данных, телеметрия оборудования. Работал и в одиночку от постановки до запуска, и в команде — как единственный backend-разработчик рядом с лидом, фронтендом и тестировщиком.</p>
         <ul>
-          <li>Архитектура веб-сервисов и API «под ключ»: от модели данных до продакшена.</li>
-          <li>Биллинг, финансовые лимиты, распределение средств, проведение платежей.</li>
-          <li>Авторизация, роли и права доступа (RBAC), сложная фильтрация и обработка данных.</li>
-          <li>Интеграции с внешними API, включая криптобиржи.</li>
-          <li>Telegram-боты и Mini Apps.</li>
-          <li>Ревью кода и работа с legacy.</li>
-          <li>Администрирование Linux-серверов, Docker, деплой и мониторинг.</li>
+          <li>Проектирование архитектуры и модели данных с нуля; REST / JSON API для фронтенда и внешних потребителей.</li>
+          <li>Платежи и подписки: рекуррентные списания, идемпотентная обработка вебхуков, фискализация по 54-ФЗ, разграничение доступа к платному контенту.</li>
+          <li>Интеграции с внешними API: платёжные провайдеры, криптобиржи, поисковые системы, API оборудования — с учётом лимитов частоты, повторов и отказов внешнего сервиса.</li>
+          <li>Фоновая обработка: очереди, длительные задачи со статусом выполнения, кеширование и дедупликация запросов, двухуровневое хранение метрик.</li>
+          <li>Авторизация, роли и права доступа (RBAC), сложная фильтрация и агрегация данных.</li>
+          <li>Telegram-боты и Mini Apps, боты для MAX, интеграция языковых моделей в продукт.</li>
+          <li>Работа с legacy: разбор чужого кода, восстановление и расширение функционала, ревью кода.</li>
+          <li>Инфраструктура: Linux, Docker, Nginx, Cloudflare, деплой и мониторинг.</li>
         </ul>
+        <a class="anchor" href="#cases">↑ Три проекта этого периода разобраны в кейсах</a>
       </div>
     </div>
+
     <div class="job">
       <div class="when">Январь 2020 —<br>Сентябрь 2021<br><br>1 год 9 месяцев</div>
       <div>
         <h3>Ilink · разработчик</h3>
+        <div class="case-role">Backend-разработчик в команде из 8 человек · наставник четырёх junior-разработчиков</div>
+        <p>Аутсорс-разработка программного обеспечения по государственным заказам. Детали проектов не раскрываются по NDA.</p>
         <ul>
-          <li>Разработка на TypeScript, Node.js и Laravel в команде.</li>
-          <li>Серверная и клиентская части веб-приложений, тестирование.</li>
-          <li>Код-ревью и наставничество junior-разработчиков.</li>
+          <li>Отвечал за серверную часть веб-приложений на TypeScript, Node.js и Laravel, закрывал и клиентские задачи.</li>
+          <li>Наставничество над четырьмя junior-разработчиками: разбор задач и решений, код-ревью, помощь при затруднениях.</li>
+          <li>Тестирование и приёмка функционала под требования заказчика.</li>
+          <li>Регламентированная среда госзаказа: фиксированные требования, формальная приёмка, повышенные требования к качеству и срокам.</li>
         </ul>
+        <div class="team">Состав команды: тимлид · два фронтенд-разработчика · я · четыре junior-разработчика</div>
       </div>
     </div>
+
   </div>
 </section>
 
@@ -556,10 +576,33 @@ footer{padding:34px 0 56px;font-family:var(--mono);font-size:11.5px;color:var(--
   }
 
   /* --- счётчик стажа --- */
+  function monthsSince(y,m){
+    var n=new Date();
+    return (n.getFullYear()-y)*12 + (n.getMonth()-m);
+  }
+  function plural(n,forms){
+    var a=Math.abs(n)%100, b=a%10;
+    if(a>10&&a<20) return forms[2];
+    if(b>1&&b<5) return forms[1];
+    if(b===1) return forms[0];
+    return forms[2];
+  }
+  function longFmt(m){
+    var y=Math.floor(m/12), r=m%12, out=y+' '+plural(y,['год','года','лет']);
+    if(r) out+=' '+r+' '+plural(r,['месяц','месяца','месяцев']);
+    return out;
+  }
+  var totalM=monthsSince(2020,0), ipM=monthsSince(2022,0);
+  var elTotal=document.getElementById('years-total');
+  if(elTotal) elTotal.textContent=longFmt(totalM);
+  var elIp=document.getElementById('years-ip');
+  if(elIp) elIp.textContent=longFmt(ipM);
+
   var el=document.getElementById('years');
-  if(!el||slow) return;
-  var target=77, cur=0;
+  if(!el) return;
   function fmt(m){ return Math.floor(m/12)+' лет '+(m%12)+' мес'; }
+  if(slow){ el.textContent=fmt(totalM); return; }
+  var target=totalM, cur=0;
   el.textContent=fmt(0);
   var t=setInterval(function(){
     cur+=2;

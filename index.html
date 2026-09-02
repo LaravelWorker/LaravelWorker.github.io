@@ -192,6 +192,42 @@ section{padding:52px 0;border-top:1px solid var(--line)}
 }
 @media(max-width:640px){.srow{grid-template-columns:1fr;gap:9px}}
 
+/* ============ КЕЙСЫ ============ */
+.cases{border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+.case{
+  padding:24px 14px;border-bottom:1px solid var(--line);background:var(--surface);
+  backdrop-filter:blur(4px);-webkit-backdrop-filter:blur(4px);
+}
+.case:last-child{border-bottom:0}
+.case:hover{border-color:var(--accent)}
+.case-top{display:flex;align-items:baseline;gap:12px;flex-wrap:wrap}
+.case-top .idx{font-family:var(--mono);font-size:12px;font-weight:700;color:var(--accent)}
+.case-top h3{font-size:17px}
+.case-top .site{
+  font-family:var(--mono);font-size:12px;color:var(--muted);
+  text-decoration:none;border-bottom:1px solid var(--line);
+}
+.case-top .site:hover{color:var(--accent);border-color:var(--accent)}
+.case-role{
+  font-family:var(--mono);font-size:11.5px;letter-spacing:.08em;
+  color:var(--muted);margin:8px 0 14px;
+}
+.crow{display:grid;grid-template-columns:120px 1fr;gap:18px;padding:10px 0;border-top:1px solid var(--line)}
+.crow dt{
+  font-family:var(--mono);font-size:11px;letter-spacing:.12em;
+  text-transform:uppercase;color:var(--muted);margin:0;padding-top:3px;
+}
+.crow dd{margin:0;font-size:15.5px;color:var(--ink-soft)}
+.crow dd strong{color:var(--ink);font-weight:600}
+@media(max-width:640px){.crow{grid-template-columns:1fr;gap:4px}}
+.figs{display:flex;flex-wrap:wrap;gap:26px;margin-top:16px;padding-top:15px;border-top:1px solid var(--line)}
+.fig b{display:block;font-family:var(--mono);font-size:19px;font-weight:800;color:var(--accent);line-height:1.25}
+.fig span{
+  font-family:var(--mono);font-size:10.5px;letter-spacing:.09em;
+  text-transform:uppercase;color:var(--muted);
+}
+.case .kit{margin-top:14px;font-family:var(--mono);font-size:11.5px;color:var(--muted)}
+
 /* ============ ИТОГО ============ */
 .total{
   border-top:1px solid var(--line);border-bottom:1px solid var(--line);
@@ -287,6 +323,99 @@ footer{padding:34px 0 56px;font-family:var(--mono);font-size:11.5px;color:var(--
         <div class="kit">OpenAI API · Anthropic API · очереди · стриминг</div>
       </div>
     </div>
+  </div>
+</section>
+
+<section id="cases">
+  <div class="head"><h2>Кейсы</h2><span class="tag">три проекта целиком</span></div>
+  <div class="cases">
+
+    <article class="case">
+      <div class="case-top">
+        <span class="idx">01</span>
+        <h3>Платформа подписок для инвестиционного советника</h3>
+        <a class="site" href="https://antifragile-trading.ru/" target="_blank" rel="noopener noreferrer">antifragile-trading.ru</a>
+      </div>
+      <div class="case-role">Единственный разработчик · полный цикл · 1,5–2 месяца до продакшена</div>
+      <dl>
+        <div class="crow">
+          <dt>Задача</dt>
+          <dd>У заказчика — независимого инвестиционного советника из реестра ЦБ РФ — продажа клубных подписок и приём оплат велись вручную. Требовалось автоматизировать продажу и продление подписок, регулярные списания и доставку аналитики клиентам — с соблюдением 54-ФЗ.</dd>
+        </div>
+        <div class="crow">
+          <dt>Что сделал</dt>
+          <dd>Экосистема из трёх частей на общем бэкенде: <strong>админ-панель, Telegram-бот и бот для MAX</strong>. Две платёжные интеграции с рекуррентными списаниями и обработкой вебхуков. Идемпотентность по external_id провайдера — двойные списания и дубли подписок исключены на уровне модели. Фискализация по 54-ФЗ, полный жизненный цикл подписки и разграничение доступа к платному контенту.</dd>
+        </div>
+        <div class="crow">
+          <dt>Результат</dt>
+          <dd>Заказчик больше не участвует в приёме платежей — продажа и продление подписок идут без ручных операций. Бот для MAX добавлен, когда часть аудитории ушла из Telegram: канал доставки не потеряли.</dd>
+        </div>
+      </dl>
+      <div class="figs">
+        <div class="fig"><b>~6 000</b><span>подписчиков</span></div>
+        <div class="fig"><b>~3 млн ₽</b><span>оборот в месяц</span></div>
+        <div class="fig"><b>2</b><span>платёжных провайдера</span></div>
+      </div>
+      <div class="kit">PHP · Laravel · PostgreSQL · Vue 3 · Telegram Bot API · MAX API · CloudPayments · Rocketr</div>
+    </article>
+
+    <article class="case">
+      <div class="case-top">
+        <span class="idx">02</span>
+        <h3>Мониторинг парка майнингового оборудования</h3>
+      </div>
+      <div class="case-role">Разработчик · полный цикл</div>
+      <dl>
+        <div class="crow">
+          <dt>Задача</dt>
+          <dd>Оборудование распределено по разным сервисам и пулам. Простой отдельной машины замечали случайно — были случаи, когда устройство не работало неделями. Требовалось видеть состояние всего парка и узнавать о сбое сразу.</dd>
+        </div>
+        <div class="crow">
+          <dt>Что сделал</dt>
+          <dd>Сбор телеметрии по API нескольких сервисов и пулов — <strong>до 10 000 устройств с опросом раз в минуту</strong>. Двухуровневое хранение: оперативные метрики в Redis, суточные агрегаты в PostgreSQL — минутный опрос парка такого размера не раздувает базу. Контроль uptime, температуры и просадок производительности с настраиваемыми порогами, уведомления в Telegram и на email.</dd>
+        </div>
+        <div class="crow">
+          <dt>Результат</dt>
+          <dd>Простой машины виден через 3 минуты вместо недель. По каждому устройству — история метрик за весь период наблюдения.</dd>
+        </div>
+      </dl>
+      <div class="figs">
+        <div class="fig"><b>10 000</b><span>устройств под мониторингом</span></div>
+        <div class="fig"><b>1 мин</b><span>интервал опроса</span></div>
+        <div class="fig"><b>3 мин</b><span>до алерта вместо недель</span></div>
+      </div>
+      <div class="kit">PHP · Laravel · Redis · PostgreSQL · Vue 3 · Telegram Bot API</div>
+    </article>
+
+    <article class="case">
+      <div class="case-top">
+        <span class="idx">03</span>
+        <h3>SEO-платформа «Титло»</h3>
+        <a class="site" href="https://titlo.ru/" target="_blank" rel="noopener noreferrer">titlo.ru</a>
+      </div>
+      <div class="case-role">Один из двух разработчиков · свои модули вёл самостоятельно — от постановки до продакшена</div>
+      <dl>
+        <div class="crow">
+          <dt>Задача</dt>
+          <dd>Расширить платформу инструментами текстового и конкурентного анализа. Аналоги у конкурентных сервисов существовали, но заметно уступали по возможностям.</dd>
+        </div>
+        <div class="crow">
+          <dt>Что сделал</dt>
+          <dd>Три инструмента с нуля: <strong>анализ релевантности, анализ текста, анализ конкурентов</strong>. Сбор поисковой выдачи через API Яндекса и Google — до 30 конкурентов на запрос, пакетная обработка списков ключевых фраз. Собственная реализация TF-IDF: облака словосочетаний страницы и конкурентов, плотность фраз, зональное сравнение и готовые рекомендации. Тяжёлые расчёты — в фоновых очередях, со статусом и процентом выполнения в реальном времени; результаты сжимаются при записи в базу и распаковываются на отдаче.</dd>
+        </div>
+        <div class="crow">
+          <dt>Результат</dt>
+          <dd>Полный анализ по запросу занимает 1–5 минут. Инструменты работают в продакшене по сей день и входят в основной функционал платформы.</dd>
+        </div>
+      </dl>
+      <div class="figs">
+        <div class="fig"><b>3</b><span>инструмента с нуля</span></div>
+        <div class="fig"><b>30</b><span>конкурентов на запрос</span></div>
+        <div class="fig"><b>1–5 мин</b><span>полный анализ</span></div>
+      </div>
+      <div class="kit">PHP · Laravel · очереди · API Яндекс / Google · jQuery</div>
+    </article>
+
   </div>
 </section>
 

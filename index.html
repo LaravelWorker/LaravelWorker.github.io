@@ -61,15 +61,16 @@
     "Vue.js", "React", "PostgreSQL", "MySQL", "MongoDB", "Redis",
     "Docker", "Linux", "REST API", "Биллинг", "Платёжные интеграции",
     "Криптобиржевые API", "RBAC", "Telegram Bot API", "Telegram Mini Apps",
-    "MAX API", "Рекуррентные платежи", "54-ФЗ", "TF-IDF"
+    "MAX API", "Рекуррентные платежи", "54-ФЗ", "TF-IDF",
+    "PHPUnit", "Pest", "Jest", "Vitest", "Автотесты"
   ],
   "knowsLanguage": [
     { "@type": "Language", "name": "Русский" },
     { "@type": "Language", "name": "English" }
   ],
   "sameAs": [
-    "https://github.com/LaravelWorker",
-    "https://t.me/uzver_ge"
+    "https://t.me/uzver_ge",
+    "https://gymassist.space/"
   ],
   "seeks": {
     "@type": "Demand",
@@ -244,6 +245,19 @@ section{padding:52px 0;border-top:1px solid var(--line)}
 }
 .case .kit{margin-top:14px;font-family:var(--mono);font-size:11.5px;color:var(--muted)}
 
+/* ============ СКРИНШОТЫ ============ */
+.shots{display:grid;gap:12px;margin-top:18px}
+.shot{display:block;text-decoration:none;border:1px solid var(--line);background:rgba(2,10,6,.5)}
+.shot img{display:block;width:100%;height:auto}
+.shot .cap{
+  display:block;padding:8px 11px;border-top:1px solid var(--line);
+  font-family:var(--mono);font-size:11px;letter-spacing:.04em;color:var(--muted);
+}
+.shot:hover{border-color:var(--accent)}
+.shot:hover .cap{color:var(--accent)}
+.shot-row{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+@media(max-width:560px){.shot-row{grid-template-columns:1fr}}
+
 /* ============ ИТОГО ============ */
 .total{
   border-top:1px solid var(--line);border-bottom:1px solid var(--line);
@@ -262,6 +276,75 @@ footer{padding:34px 0 56px;font-family:var(--mono);font-size:11.5px;color:var(--
   *{animation:none!important;transition:none!important}
   html{scroll-behavior:auto}
 }
+
+/* ============ ПЕЧАТЬ И PDF ============ */
+.printhead{display:none}
+@media print{
+  @page{size:A4;margin:13mm 12mm}
+  html{scroll-behavior:auto}
+  #rain{display:none!important}
+  body{background:#fff!important;color:#15211a!important;font-size:9.3pt;line-height:1.37}
+  .wrap{max-width:none;margin:0;padding:0}
+  a{color:#15211a!important;text-decoration:none}
+
+  .printhead{
+    display:block;font-family:var(--mono);font-size:8.5pt;letter-spacing:.04em;
+    color:#5c6b62;border-bottom:1px solid #cfd6d1;padding-bottom:5pt;margin-bottom:11pt;
+  }
+  .cta-row,.shot-row,.job .anchor{display:none!important}
+
+  h1{font-size:22pt;text-shadow:none!important;color:#15211a!important;margin-bottom:4pt}
+  h2{font-size:13pt;color:#15211a!important}
+  h3{font-size:10.5pt;color:#15211a!important}
+  .role{font-size:9.8pt;color:#1d6b45!important;margin-bottom:9pt}
+  .stamp{border-color:#1d6b45!important;color:#1d6b45!important;margin-bottom:9pt;padding:1.5pt 5pt}
+
+  section{padding:9pt 0;border-top:1px solid #cfd6d1!important}
+  .sheet{padding:0 0 6pt}
+  .head{margin-bottom:7pt}
+  .pitch{font-size:9.3pt;max-width:none;margin-bottom:7pt}
+  .meta{margin-bottom:9pt}
+  .mrow{grid-template-columns:112px 1fr auto}
+  .job ul{margin-top:5pt}
+  .job li{margin-bottom:2pt}
+  .item p,.item .kit{margin-top:3pt}
+
+  .meta,.ledger,.stack,.cases{border-color:#cfd6d1!important}
+  .item,.job,.srow,.case{
+    background:#fff!important;border-color:#e2e7e3!important;
+    backdrop-filter:none!important;-webkit-backdrop-filter:none!important;
+    padding:8pt 0;
+  }
+  .case,.job{break-inside:avoid;page-break-inside:avoid}
+  .srow{padding:5pt 0}
+  .total{
+    background:#fff!important;border-color:#cfd6d1!important;padding:12pt 0;
+    backdrop-filter:none!important;-webkit-backdrop-filter:none!important;break-inside:avoid;
+  }
+  .mrow{padding:4pt 0}
+  .crow{border-top-color:#e2e7e3!important;padding:4pt 0;grid-template-columns:92px 1fr;gap:12pt}
+  .figs{border-top-color:#e2e7e3!important;gap:14pt;margin-top:6pt;padding-top:6pt}
+  .fig b{font-size:13pt}
+
+  .tag,.kit,.when,.case-role,.crow dt,.mrow dt,.srow .k,.team,.contacts span,footer{color:#6b7a71!important}
+  .pitch,.item p,.job li,.job p,.crow dd,.total p,.mrow dd{color:#28352e!important}
+  .pitch strong,.crow dd strong{color:#15211a!important}
+  .idx,.num,.fig b,.case-top .idx{color:#1d6b45!important}
+  .chip{background:#f1f4f2!important;border-color:#dde3df!important;color:#28352e!important}
+  .case-top .site{color:#6b7a71!important;border-bottom:0!important}
+  .contacts{font-size:10pt}
+  .contacts a{border-bottom:0!important}
+
+  .shots{margin-top:9pt}
+  .shot{border-color:#dde3df!important;background:#fff!important;break-inside:avoid}
+  .shot .cap{border-top-color:#dde3df!important;color:#6b7a71!important;font-size:8pt;padding:4pt 6pt}
+  .shot.lg{max-width:122mm;margin:0 auto}
+  .shot.lg img{width:100%;max-height:none}
+  .dl-row{display:none!important}
+
+  h2,h3{break-after:avoid;page-break-after:avoid}
+  footer{padding:9pt 0 0;border-top:1px solid #cfd6d1}
+}
 </style>
 </head>
 <body>
@@ -273,6 +356,8 @@ footer{padding:34px 0 56px;font-family:var(--mono);font-size:11.5px;color:var(--
 </div>
 
 <div class="wrap">
+
+<div class="printhead">komiagin.dev · Telegram @uzver_ge · myworkermailbox2022@gmail.com · Тбилиси, UTC+4</div>
 
 <header class="sheet">
   <div class="stamp tag">Доступен для найма</div>
@@ -294,12 +379,11 @@ footer{padding:34px 0 56px;font-family:var(--mono);font-size:11.5px;color:var(--
   <div class="cta-row">
     <a class="btn solid" href="https://t.me/uzver_ge" target="_blank" rel="noopener noreferrer">Написать в Telegram</a>
     <a class="btn dl" href="/Komiagin_Nikolay_CV.pdf" download><span class="ar">↓</span>Резюме · PDF</a>
-    <a class="btn ghost" href="https://github.com/LaravelWorker" target="_blank" rel="noopener noreferrer">GitHub</a>
   </div>
 </header>
 
 <section>
-  <div class="head"><h2>Что я закрываю</h2><span class="tag">пять направлений</span></div>
+  <div class="head"><h2>Что я закрываю</h2><span class="tag">шесть направлений</span></div>
   <div class="ledger">
     <div class="item">
       <span class="idx">01</span>
@@ -335,6 +419,14 @@ footer{padding:34px 0 56px;font-family:var(--mono);font-size:11.5px;color:var(--
     </div>
     <div class="item">
       <span class="idx">05</span>
+      <div>
+        <h3>Тесты и приёмка</h3>
+        <p>Логику, где ошибка стоит денег — расчёты, списания, обработку ответов внешних API, — закрываю автотестами: PHPUnit и Pest на бэкенде, Jest или Vitest в Node-части. Перед релизом прогоняю сценарии руками: автотест ловит регрессию, ручная приёмка — то, чего не было в задаче.</p>
+        <div class="kit">PHPUnit · Pest · Jest / Vitest · ручная приёмка</div>
+      </div>
+    </div>
+    <div class="item">
+      <span class="idx">06</span>
       <div>
         <h3>Интеграция LLM в продукт</h3>
         <p>Подключаю языковые модели как обычный внешний сервис: потоковые ответы, обработка таймаутов и отказов, повторы, ограничение расходов, кеширование одинаковых запросов. Стоимость запроса считаю до того, как она станет строкой в счёте.</p>
@@ -391,7 +483,7 @@ footer{padding:34px 0 56px;font-family:var(--mono);font-size:11.5px;color:var(--
         </div>
         <div class="crow">
           <dt>Что сделал</dt>
-          <dd>Спроектировал и реализовал всю серверную архитектуру: <strong>интеграция с торговым API Bybit и REST API для фронтенда</strong>. Автоматическое выставление stop-loss и take-profit при достижении заданной цены. Слой рыночных данных: котировки поставлял отдельный Python-сервис через Redis, на своей стороне — дедупликация запросов с кешированием ответов, чтобы не обращаться наружу повторно за уже полученными данными. Отдельно — API для построения графиков во фронтенде.</dd>
+          <dd>Спроектировал и реализовал всю серверную архитектуру: <strong>интеграция с торговым API Bybit и REST API для фронтенда</strong>. Автоматическое выставление stop-loss и take-profit при достижении заданной цены. Слой рыночных данных: котировки поставлял отдельный Python-сервис через Redis, на своей стороне — дедупликация запросов с кешированием ответов, чтобы не обращаться наружу повторно за уже полученными данными. Отдельно — API для построения графиков во фронтенде. Торговую логику закрывал автотестами, перед выкаткой прогонял сценарии руками.</dd>
         </div>
         <div class="crow">
           <dt>Результат</dt>
@@ -495,6 +587,22 @@ footer{padding:34px 0 56px;font-family:var(--mono);font-size:11.5px;color:var(--
         <div class="fig"><b>2</b><span>платформы: веб и Mini App</span></div>
         <div class="fig"><b>1</b><span>разработчик — я</span></div>
       </div>
+      <div class="shots">
+        <a class="shot lg" href="/img/gymassist-stats.webp" target="_blank" rel="noopener noreferrer">
+          <img src="/img/gymassist-stats.webp" width="1240" height="887" loading="lazy" decoding="async" alt="Экран статистики GymAssist: карта нагрузки по мышцам на анатомической схеме, счётчики подходов и тоннажа, список самых нагруженных мышц за 30 дней">
+          <span class="cap">Карта нагрузки — тело раскрашено по объёму за выбранный период</span>
+        </a>
+        <div class="shot-row">
+          <a class="shot sm" href="/img/gymassist-landing.webp" target="_blank" rel="noopener noreferrer">
+            <img src="/img/gymassist-landing.webp" width="1240" height="612" loading="lazy" decoding="async" alt="Главная страница GymAssist с интерактивной демо-схемой нагрузки">
+            <span class="cap">Главная с живой демо-схемой</span>
+          </a>
+          <a class="shot sm" href="/img/gymassist-history.webp" target="_blank" rel="noopener noreferrer">
+            <img src="/img/gymassist-history.webp" width="1240" height="883" loading="lazy" decoding="async" alt="История тренировок GymAssist: список тренировок с числом упражнений, подходов и тоннажем">
+            <span class="cap">История тренировок с тоннажем</span>
+          </a>
+        </div>
+      </div>
     </article>
   </div>
 </section>
@@ -516,6 +624,7 @@ footer{padding:34px 0 56px;font-family:var(--mono);font-size:11.5px;color:var(--
           <li>Фоновая обработка: очереди, длительные задачи со статусом выполнения, кеширование и дедупликация запросов, двухуровневое хранение метрик.</li>
           <li>Авторизация, роли и права доступа (RBAC), сложная фильтрация и агрегация данных.</li>
           <li>Telegram-боты и Mini Apps, боты для MAX, интеграция языковых моделей в продукт.</li>
+          <li>Тесты: PHPUnit и Pest на бэкенде, Jest / Vitest в Node-части; логика платежей и расчётов уходит в продакшен с автотестами, перед релизом — ручной прогон сценариев.</li>
           <li>Работа с legacy: разбор чужого кода, восстановление и расширение функционала, ревью кода.</li>
           <li>Инфраструктура: Linux, Docker, Nginx, Cloudflare, деплой и мониторинг.</li>
         </ul>
@@ -557,6 +666,10 @@ footer{padding:34px 0 56px;font-family:var(--mono);font-size:11.5px;color:var(--
       <span class="chip">Vue 2 / 3</span><span class="chip">React</span><span class="chip">JavaScript</span>
       <span class="chip">HTML5</span><span class="chip">CSS3</span>
     </div></div>
+    <div class="srow"><span class="k">Тестирование</span><div class="chips">
+      <span class="chip">PHPUnit</span><span class="chip">Pest</span>
+      <span class="chip">Jest</span><span class="chip">Vitest</span>
+    </div></div>
     <div class="srow"><span class="k">Инфраструктура</span><div class="chips">
       <span class="chip">Docker</span><span class="chip">Linux / Ubuntu</span><span class="chip">Nginx</span>
       <span class="chip">Cloudflare</span><span class="chip">Git</span>
@@ -576,8 +689,7 @@ footer{padding:34px 0 56px;font-family:var(--mono);font-size:11.5px;color:var(--
   <div class="contacts">
     <div><span>Telegram</span><a href="https://t.me/uzver_ge" target="_blank" rel="noopener noreferrer">@uzver_ge</a></div>
     <div><span>Почта</span><a href="mailto:myworkermailbox2022@gmail.com">myworkermailbox2022@gmail.com</a></div>
-    <div><span>GitHub</span><a href="https://github.com/LaravelWorker" target="_blank" rel="noopener noreferrer">github.com/LaravelWorker</a></div>
-    <div><span>Резюме</span><a href="/Komiagin_Nikolay_CV.pdf" download>скачать PDF</a></div>
+    <div class="dl-row"><span>Резюме</span><a href="/Komiagin_Nikolay_CV.pdf" download>скачать PDF</a></div>
     <div><span>Локация</span>Тбилиси, Грузия · UTC+4</div>
   </div>
 </div>

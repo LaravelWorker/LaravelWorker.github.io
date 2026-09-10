@@ -152,6 +152,12 @@ section{padding:52px 0;border-top:1px solid var(--line)}
 .btn.solid{background:var(--accent);color:var(--accent-ink)}
 .btn.solid:hover{opacity:.85}
 .btn.ghost:hover{background:rgba(0,255,106,.1)}
+.btn.dl{
+  background:rgba(0,255,106,.11);
+  box-shadow:inset 0 0 0 1px rgba(0,255,106,.3),0 0 20px rgba(0,255,106,.2);
+}
+.btn.dl:hover{background:rgba(0,255,106,.2)}
+.btn.dl .ar{margin-right:8px;font-weight:800}
 
 /* ============ БЛОКИ ============ */
 .ledger{border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
@@ -217,6 +223,7 @@ section{padding:52px 0;border-top:1px solid var(--line)}
   text-decoration:none;border-bottom:1px solid var(--line);
 }
 .case-top .site:hover{color:var(--accent);border-color:var(--accent)}
+.case-top .site.dead{border-bottom:0;opacity:.85}
 .case-role{
   font-family:var(--mono);font-size:11.5px;letter-spacing:.08em;
   color:var(--muted);margin:8px 0 14px;
@@ -268,15 +275,16 @@ footer{padding:34px 0 56px;font-family:var(--mono);font-size:11.5px;color:var(--
 <div class="wrap">
 
 <header class="sheet">
-  <div class="stamp tag">Доступен для найма · 2026</div>
+  <div class="stamp tag">Доступен для найма</div>
   <h1>Комягин<br>Николай</h1>
   <div class="role">Fullstack-разработчик · платежи, биллинг, интеграции</div>
 
   <dl class="meta">
-    <div class="mrow"><dt>Опыт</dt><dd>Коммерческая разработка с января 2020</dd><span class="num" id="years">6 лет 5 мес</span></div>
+    <div class="mrow"><dt>Опыт</dt><dd>Коммерческая разработка с сентября 2020</dd><span class="num" id="years">6 лет 1 месяц</span></div>
     <div class="mrow"><dt>Специализация</dt><dd>Биллинг, платежи, финансовые лимиты, распределение средств, управление контентом</dd><span class="num">FullStack</span></div>
     <div class="mrow"><dt>Основной стек</dt><dd>PHP / Laravel, Node.js, TypeScript, Vue 2/3, React</dd><span class="num">SOLID, DRY</span></div>
-    <div class="mrow"><dt>Локация</dt><dd>Грузия</dd><span class="num"></span></div>
+    <div class="mrow"><dt>Локация</dt><dd>Тбилиси, Грузия · удалённо</dd><span class="num">UTC+4</span></div>
+    <div class="mrow"><dt>Языки</dt><dd>Русский — родной · английский — A2, читаю техническую документацию</dd><span class="num">RU / EN</span></div>
     <div class="mrow"><dt>Оформление</dt><dd>В штат или по договору услуг — на выбор работодателя</dd><span class="num">Открыт</span></div>
   </dl>
 
@@ -285,6 +293,7 @@ footer{padding:34px 0 56px;font-family:var(--mono);font-size:11.5px;color:var(--
 
   <div class="cta-row">
     <a class="btn solid" href="https://t.me/uzver_ge" target="_blank" rel="noopener noreferrer">Написать в Telegram</a>
+    <a class="btn dl" href="/Komiagin_Nikolay_CV.pdf" download><span class="ar">↓</span>Резюме · PDF</a>
     <a class="btn ghost" href="https://github.com/LaravelWorker" target="_blank" rel="noopener noreferrer">GitHub</a>
   </div>
 </header>
@@ -336,7 +345,7 @@ footer{padding:34px 0 56px;font-family:var(--mono);font-size:11.5px;color:var(--
 </section>
 
 <section id="cases">
-  <div class="head"><h2>Кейсы</h2><span class="tag">три проекта целиком</span></div>
+  <div class="head"><h2>Кейсы</h2><span class="tag">четыре проекта</span></div>
   <div class="cases">
 
     <article class="case">
@@ -371,9 +380,38 @@ footer{padding:34px 0 56px;font-family:var(--mono);font-size:11.5px;color:var(--
     <article class="case">
       <div class="case-top">
         <span class="idx">02</span>
+        <h3>Бэкенд сервиса автоматизации фьючерсной торговли</h3>
+        <span class="site dead">tradingforce.io · проект закрыт</span>
+      </div>
+      <div class="case-role">Единственный backend-разработчик в команде из четырёх · проектирование архитектуры вместе с лидом</div>
+      <dl>
+        <div class="crow">
+          <dt>Задача</dt>
+          <dd>Автоматизировать фьючерсную торговлю на бирже Bybit: три отдельных бота под разные категории пользователей и веб-кабинет с графиками.</dd>
+        </div>
+        <div class="crow">
+          <dt>Что сделал</dt>
+          <dd>Спроектировал и реализовал всю серверную архитектуру: <strong>интеграция с торговым API Bybit и REST API для фронтенда</strong>. Автоматическое выставление stop-loss и take-profit при достижении заданной цены. Слой рыночных данных: котировки поставлял отдельный Python-сервис через Redis, на своей стороне — дедупликация запросов с кешированием ответов, чтобы не обращаться наружу повторно за уже полученными данными. Отдельно — API для построения графиков во фронтенде.</dd>
+        </div>
+        <div class="crow">
+          <dt>Результат</dt>
+          <dd>Проект закрыт — продукт не нашёл своего места на рынке. Серверная часть была собрана целиком и работала: боты, автоматика стопов и тейков, рыночные данные, API кабинета.</dd>
+        </div>
+      </dl>
+      <div class="figs">
+        <div class="fig"><b>3</b><span>торговых бота</span></div>
+        <div class="fig"><b>4</b><span>человека в команде</span></div>
+        <div class="fig"><b>1</b><span>backend-разработчик — я</span></div>
+      </div>
+      <div class="kit">Node.js · TypeScript · Python · Redis · PostgreSQL · Bybit API</div>
+    </article>
+
+    <article class="case">
+      <div class="case-top">
+        <span class="idx">03</span>
         <h3>Мониторинг парка майнингового оборудования</h3>
       </div>
-      <div class="case-role">Разработчик · полный цикл</div>
+      <div class="case-role">Разработчик · полный цикл · заказчик под NDA</div>
       <dl>
         <div class="crow">
           <dt>Задача</dt>
@@ -398,7 +436,7 @@ footer{padding:34px 0 56px;font-family:var(--mono);font-size:11.5px;color:var(--
 
     <article class="case">
       <div class="case-top">
-        <span class="idx">03</span>
+        <span class="idx">04</span>
         <h3>SEO-платформа «Титло»</h3>
         <a class="site" href="https://titlo.ru/" target="_blank" rel="noopener noreferrer">titlo.ru</a>
       </div>
@@ -428,15 +466,48 @@ footer{padding:34px 0 56px;font-family:var(--mono);font-size:11.5px;color:var(--
   </div>
 </section>
 
+<section id="products">
+  <div class="head"><h2>Свои продукты</h2><span class="tag">делаю сам, от идеи до сервера</span></div>
+  <div class="cases">
+    <article class="case">
+      <div class="case-top">
+        <span class="idx">01</span>
+        <h3>GymAssist — дневник силовых тренировок</h3>
+        <a class="site" href="https://gymassist.space/" target="_blank" rel="noopener noreferrer">gymassist.space</a>
+      </div>
+      <div class="case-role">Собственный продукт · в продакшене · разработка, инфраструктура и продвижение — на мне</div>
+      <dl>
+        <div class="crow">
+          <dt>Что это</dt>
+          <dd>Онлайн-дневник силовых тренировок. Быстрая запись подходов прямо в зале, <strong>нагрузка по сорока мышцам на анатомической схеме</strong>, контроль восстановления между тренировками, замеры тела отдельно по сторонам, готовые программы с автоматической прогрессией и режим тренера — ведение подопечных и их программ.</dd>
+        </div>
+        <div class="crow">
+          <dt>Где работает</dt>
+          <dd>В браузере и как Telegram Mini App — чтобы вести тренировку с телефона, не выходя из мессенджера.</dd>
+        </div>
+        <div class="crow">
+          <dt>Статус</dt>
+          <dd>В продакшене, открыт для пользователей. Сейчас занимаюсь SEO и привлечением трафика.</dd>
+        </div>
+      </dl>
+      <div class="figs">
+        <div class="fig"><b>40</b><span>мышц на схеме нагрузки</span></div>
+        <div class="fig"><b>2</b><span>платформы: веб и Mini App</span></div>
+        <div class="fig"><b>1</b><span>разработчик — я</span></div>
+      </div>
+    </article>
+  </div>
+</section>
+
 <section id="experience">
-  <div class="head"><h2>Опыт</h2><span class="tag" id="years-total">6 лет 5 месяцев</span></div>
+  <div class="head"><h2>Опыт</h2><span class="tag" id="years-total">6 лет 1 месяц</span></div>
   <div class="ledger">
 
     <div class="job">
-      <div class="when">Январь 2022 —<br>настоящее время<br><br><span id="years-ip">4 года 8 месяцев</span></div>
+      <div class="when">Июнь 2022 —<br>настоящее время<br><br><span id="years-ip">4 года 4 месяца</span></div>
       <div>
         <h3>Контрактная разработка · ИП</h3>
-        <div class="case-role">Backend-разработчик · полный цикл, от модели данных до продакшена</div>
+        <div class="case-role">Fullstack-разработчик · полный цикл, от модели данных до продакшена</div>
         <p>Сервисы, где ошибка стоит денег: приём платежей и подписки, интеграции с биржами и платёжными провайдерами, обработка больших объёмов данных, телеметрия оборудования. Работал и в одиночку от постановки до запуска, и в команде — как единственный backend-разработчик рядом с лидом, фронтендом и тестировщиком.</p>
         <ul>
           <li>Проектирование архитектуры и модели данных с нуля; REST / JSON API для фронтенда и внешних потребителей.</li>
@@ -448,15 +519,15 @@ footer{padding:34px 0 56px;font-family:var(--mono);font-size:11.5px;color:var(--
           <li>Работа с legacy: разбор чужого кода, восстановление и расширение функционала, ревью кода.</li>
           <li>Инфраструктура: Linux, Docker, Nginx, Cloudflare, деплой и мониторинг.</li>
         </ul>
-        <a class="anchor" href="#cases">↑ Три проекта этого периода разобраны в кейсах</a>
+        <a class="anchor" href="#cases">↑ Четыре проекта этого периода разобраны в кейсах</a>
       </div>
     </div>
 
     <div class="job">
-      <div class="when">Январь 2020 —<br>Сентябрь 2021<br><br>1 год 9 месяцев</div>
+      <div class="when">Сентябрь 2020 —<br>Июнь 2022<br><br>1 год 10 месяцев</div>
       <div>
-        <h3>Ilink · разработчик</h3>
-        <div class="case-role">Backend-разработчик в команде из 8 человек · наставник четырёх junior-разработчиков</div>
+        <h3>ilink · Томск</h3>
+        <div class="case-role">Backend-разработчик (PHP/Laravel, Node.js) · команда из 8 человек · наставник четырёх junior-разработчиков</div>
         <p>Аутсорс-разработка программного обеспечения по государственным заказам. Детали проектов не раскрываются по NDA.</p>
         <ul>
           <li>Отвечал за серверную часть веб-приложений на TypeScript, Node.js и Laravel, закрывал и клиентские задачи.</li>
@@ -506,6 +577,7 @@ footer{padding:34px 0 56px;font-family:var(--mono);font-size:11.5px;color:var(--
     <div><span>Telegram</span><a href="https://t.me/uzver_ge" target="_blank" rel="noopener noreferrer">@uzver_ge</a></div>
     <div><span>Почта</span><a href="mailto:myworkermailbox2022@gmail.com">myworkermailbox2022@gmail.com</a></div>
     <div><span>GitHub</span><a href="https://github.com/LaravelWorker" target="_blank" rel="noopener noreferrer">github.com/LaravelWorker</a></div>
+    <div><span>Резюме</span><a href="/Komiagin_Nikolay_CV.pdf" download>скачать PDF</a></div>
     <div><span>Локация</span>Тбилиси, Грузия · UTC+4</div>
   </div>
 </div>
@@ -578,7 +650,7 @@ footer{padding:34px 0 56px;font-family:var(--mono);font-size:11.5px;color:var(--
   /* --- счётчик стажа --- */
   function monthsSince(y,m){
     var n=new Date();
-    return (n.getFullYear()-y)*12 + (n.getMonth()-m);
+    return (n.getFullYear()-y)*12 + (n.getMonth()-m) + 1;
   }
   function plural(n,forms){
     var a=Math.abs(n)%100, b=a%10;
@@ -592,7 +664,7 @@ footer{padding:34px 0 56px;font-family:var(--mono);font-size:11.5px;color:var(--
     if(r) out+=' '+r+' '+plural(r,['месяц','месяца','месяцев']);
     return out;
   }
-  var totalM=monthsSince(2020,0), ipM=monthsSince(2022,0);
+  var totalM=monthsSince(2020,8), ipM=monthsSince(2022,5);
   var elTotal=document.getElementById('years-total');
   if(elTotal) elTotal.textContent=longFmt(totalM);
   var elIp=document.getElementById('years-ip');
@@ -600,7 +672,7 @@ footer{padding:34px 0 56px;font-family:var(--mono);font-size:11.5px;color:var(--
 
   var el=document.getElementById('years');
   if(!el) return;
-  function fmt(m){ return Math.floor(m/12)+' лет '+(m%12)+' мес'; }
+  var fmt=longFmt;
   if(slow){ el.textContent=fmt(totalM); return; }
   var target=totalM, cur=0;
   el.textContent=fmt(0);

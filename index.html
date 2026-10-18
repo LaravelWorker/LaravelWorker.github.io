@@ -59,9 +59,11 @@
   "knowsAbout": [
     "PHP", "Laravel", "Symfony", "Node.js", "TypeScript", "JavaScript",
     "Vue.js", "React", "PostgreSQL", "MySQL", "MongoDB", "Redis",
-    "Docker", "Linux", "REST API", "Биллинг", "Платёжные интеграции",
+    "Docker", "Linux", "Nginx", "Cloudflare", "Git", "REST API",
+    "Биллинг", "Платёжные интеграции",
     "Криптобиржевые API", "RBAC", "Telegram Bot API", "Telegram Mini Apps",
     "MAX API", "Рекуррентные платежи", "54-ФЗ", "TF-IDF",
+    "Интеграция LLM", "OpenAI API", "Anthropic API",
     "PHPUnit", "Pest", "Jest", "Vitest", "Автотесты",
     "Moodle", "Разработка плагинов Moodle", "Преподавание веб-разработки"
   ],
@@ -330,7 +332,7 @@ footer{padding:34px 0 56px;font-family:var(--mono);font-size:11.5px;color:var(--
   .tag,.kit,.when,.case-role,.crow dt,.mrow dt,.srow .k,.team,.contacts span,footer{color:#6b7a71!important}
   .pitch,.item p,.job li,.job p,.crow dd,.total p,.mrow dd{color:#28352e!important}
   .pitch strong,.crow dd strong{color:#15211a!important}
-  .idx,.num,.fig b,.case-top .idx{color:#1d6b45!important}
+  .idx,.mrow .num,.fig b,.case-top .idx{color:#1d6b45!important}
   .chip{background:#f1f4f2!important;border-color:#dde3df!important;color:#28352e!important}
   .case-top .site{color:#6b7a71!important;border-bottom:0!important}
   .contacts{font-size:10pt}
@@ -366,12 +368,12 @@ footer{padding:34px 0 56px;font-family:var(--mono);font-size:11.5px;color:var(--
   <div class="role">Fullstack-разработчик · платежи, биллинг, интеграции</div>
 
   <dl class="meta">
-    <div class="mrow"><dt>Опыт</dt><dd>Коммерческая разработка с сентября 2020</dd><span class="num" id="years">6 лет 1 месяц</span></div>
-    <div class="mrow"><dt>Специализация</dt><dd>Биллинг, платежи, финансовые лимиты, распределение средств, управление контентом</dd><span class="num">FullStack</span></div>
-    <div class="mrow"><dt>Основной стек</dt><dd>PHP / Laravel, Node.js, TypeScript, Vue 2/3, React</dd><span class="num">SOLID, DRY</span></div>
-    <div class="mrow"><dt>Локация</dt><dd>Тбилиси, Грузия · удалённо</dd><span class="num">UTC+4</span></div>
-    <div class="mrow"><dt>Языки</dt><dd>Русский — родной · английский — A2, читаю техническую документацию</dd><span class="num">RU / EN</span></div>
-    <div class="mrow"><dt>Оформление</dt><dd>В штат или по договору услуг — на выбор работодателя</dd><span class="num">Открыт</span></div>
+    <div class="mrow"><dt>Опыт</dt><dd>Коммерческая разработка с сентября 2020</dd><dd class="num" id="years">6 лет 1 месяц</dd></div>
+    <div class="mrow"><dt>Специализация</dt><dd>Биллинг, платежи, финансовые лимиты, распределение средств, управление контентом</dd><dd class="num">FullStack</dd></div>
+    <div class="mrow"><dt>Основной стек</dt><dd>PHP / Laravel, Node.js, TypeScript, Vue 2/3, React</dd><dd class="num">SOLID, DRY</dd></div>
+    <div class="mrow"><dt>Локация</dt><dd>Тбилиси, Грузия · удалённо</dd><dd class="num">UTC+4</dd></div>
+    <div class="mrow"><dt>Языки</dt><dd>Русский — родной · английский — A2, читаю техническую документацию</dd><dd class="num">RU / EN</dd></div>
+    <div class="mrow"><dt>Оформление</dt><dd>В штат или по договору услуг — на выбор работодателя</dd><dd class="num">Открыт</dd></div>
   </dl>
 
   <p class="pitch">Шесть лет пишу серверную часть для сервисов, где ошибка стоит денег: <strong>биллинг, платёжные интеграции, лимиты и распределение средств, разграничение прав доступа.</strong> Беру задачу целиком — от схемы базы и REST API до деплоя, мониторинга и настройки сервера.</p>
@@ -654,7 +656,7 @@ footer{padding:34px 0 56px;font-family:var(--mono);font-size:11.5px;color:var(--
       <div>
         <h3>Учебный центр для детей · Томск</h3>
         <div class="case-role">Преподаватель веб-разработки · группы школьников · обучение на Moodle</div>
-        <p>До профильного образования и первой работы в коммерческой разработке вёл курс веб-разработки для школьников: HTML, CSS, JavaScript и основы работы с сервером. Занятия и домашние задания шли через Moodle — и под неё же я писал плагины на PHP, когда штатных возможностей платформы не хватало.</p>
+        <p>До диплома и первой работы в коммерческой разработке вёл курс веб-разработки для школьников: HTML, CSS, JavaScript и основы работы с сервером. Занятия и домашние задания шли через Moodle — и под неё же я писал плагины на PHP, когда штатных возможностей платформы не хватало.</p>
         <ul>
           <li>Вёл группы по 10–12 человек: программа курса, материалы, разбор домашних работ, итоговые проекты учеников.</li>
           <li><strong>Плагин проверки вёрстки (тип сдачи задания).</strong> Ученик отправлял HTML и CSS прямо в задание, плагин рендерил превью, сверял результат с эталонным макетом и прогонял валидатор разметки. Ребёнок сразу видел конкретный разбор — «картинка без alt», «незакрытый тег», «блок уехал вправо», — а не ждал следующего занятия. Типовые ошибки уходили ещё до того, как работа попадала ко мне.</li>
@@ -745,6 +747,11 @@ footer{padding:34px 0 56px;font-family:var(--mono);font-size:11.5px;color:var(--
     rraf=requestAnimationFrame(rframe);
     if(ts-last<45) return;
     last=ts;
+    rdraw();
+  }
+
+  /* один кадр дождя; в режиме reduced-motion рисуется только он, без цикла */
+  function rdraw(){
     var w=window.innerWidth, h=window.innerHeight, rows=h/FS;
     rctx.fillStyle='rgba(2,6,4,0.085)';
     rctx.fillRect(0,0,w,h);
@@ -767,12 +774,12 @@ footer{padding:34px 0 56px;font-family:var(--mono);font-size:11.5px;color:var(--
 
   if(rctx){
     rseed();
-    if(slow){ rframe(1e9); }
+    if(slow){ rdraw(); }
     else{ rraf=requestAnimationFrame(rframe); }
     var rz;
     window.addEventListener('resize',function(){
       clearTimeout(rz);
-      rz=setTimeout(rseed,180);
+      rz=setTimeout(function(){ rseed(); if(slow) rdraw(); },180);
     });
   }
 

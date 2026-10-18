@@ -1,0 +1,298 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<title>Разработка мобильных приложений на заказ — Николай Комягин</title>
+<meta name="description" content="Мобильные приложения для iOS и Android: кроссплатформенно на React Native, нативно на Swift и Kotlin, PWA. Бэкенд, API, оплата и админ-панель — в одних руках.">
+<link rel="canonical" href="https://komiagin.dev/mobilnye-prilozheniya/">
+<meta name="robots" content="index, follow, max-image-preview:large">
+<meta name="theme-color" content="#020604">
+
+<meta property="og:type" content="website">
+<meta property="og:locale" content="ru_RU">
+<meta property="og:site_name" content="komiagin.dev">
+<meta property="og:url" content="https://komiagin.dev/mobilnye-prilozheniya/">
+<meta property="og:title" content="Разработка мобильных приложений">
+<meta property="og:description" content="Мобильные приложения для iOS и Android: кроссплатформенно на React Native, нативно на Swift и Kotlin, PWA. Бэкенд, API, оплата и админ-панель — в одних руках.">
+<meta property="og:image" content="https://komiagin.dev/og.png">
+<meta name="twitter:card" content="summary_large_image">
+
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'><rect width='64' height='64' fill='%23020604'/><text x='32' y='47' font-family='monospace' font-size='46' font-weight='bold' fill='%2300FF6A' text-anchor='middle'>K</text></svg>">
+<link rel="apple-touch-icon" href="/icon-512.png">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700;800&family=Manrope:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/assets/site.css">
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Service",
+      "name": "Разработка мобильных приложений",
+      "serviceType": "Разработка мобильных приложений для iOS и Android",
+      "url": "https://komiagin.dev/mobilnye-prilozheniya/",
+      "description": "Мобильные приложения для iOS и Android: кроссплатформенно на React Native, нативно на Swift и Kotlin, PWA. Бэкенд, API, оплата и админ-панель — в одних руках.",
+      "areaServed": {
+        "@type": "Country",
+        "name": "Россия"
+      },
+      "provider": {
+        "@type": "Person",
+        "name": "Николай Комягин",
+        "url": "https://komiagin.dev/"
+      }
+    },
+    {
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "Главная",
+          "item": "https://komiagin.dev/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "name": "Услуги и технологии",
+          "item": "https://komiagin.dev/uslugi/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 3,
+          "name": "Мобильные приложения",
+          "item": "https://komiagin.dev/mobilnye-prilozheniya/"
+        }
+      ]
+    },
+    {
+      "@type": "FAQPage",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "Сколько стоит разработка мобильного приложения?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Зависит от числа экранов, платформ и интеграций и от того, нужен ли бэкенд. После созвона присылаю оценку по этапам. Часто разумно начать с MVP на React Native или PWA."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "React Native или нативная разработка?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "React Native — когда нужны обе платформы и важны сроки и бюджет. Нативно на Swift и Kotlin — когда важны производительность, работа с камерой и датчиками или сложная графика."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Публикуете приложение в App Store и Google Play?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Да: готовлю сборки и прохожу модерацию. Аккаунты разработчика в сторах оформляются на заказчика, чтобы приложение принадлежало ему."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Можно ли обойтись без приложения в сторах?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Часто да. PWA ставится на экран телефона из браузера, а Telegram Mini App открывается внутри мессенджера. Для внутренних инструментов и сервисов с аудиторией в Telegram это быстрее и дешевле."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Бэкенд тоже делаете?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Да: API на Laravel, Node.js или Python, база, авторизация, оплата и админ-панель."
+          }
+        }
+      ]
+    }
+  ]
+}
+</script>
+</head>
+<body>
+
+<div id="rain" aria-hidden="true">
+  <canvas id="rainc"></canvas>
+  <div class="scrim"></div>
+  <div class="scan"></div>
+</div>
+
+<div class="wrap">
+
+<!-- nav -->
+<nav class="topnav" aria-label="Разделы сайта">
+  <a class="brand" href="/">komiagin.dev</a>
+  <a href="/uslugi/" aria-current="page">Услуги и технологии</a>
+  <a href="/#cases">Кейсы</a>
+  <a href="/blog/">Статьи</a>
+</nav>
+<!-- /nav -->
+<header class="sheet">
+  <div class="crumbs"><a href="/">Главная</a> / <a href="/uslugi/">Услуги и технологии</a> / Мобильные приложения</div>
+  <div class="stamp tag">Услуга</div>
+  <h1>Разработка мобильных приложений</h1>
+  <div class="role">iOS и Android · React Native · Swift / Kotlin · PWA</div>
+  <p class="pitch">Делаю мобильные приложения <strong>кроссплатформенно на React Native, нативно на Swift и Kotlin или как PWA</strong> — в зависимости от задачи и бюджета. Бэкенд, API, оплату и админ-панель пишу сам, поэтому приложение и сервер развиваются вместе.</p>
+  <p class="pitch">До старта помогаю выбрать формат. Иногда задачу дешевле закрыть PWA или Telegram Mini App, чем выпускать приложение в сторы.</p>
+  <div class="cta-row">
+    <a class="btn solid" href="https://t.me/uzver_ge" target="_blank" rel="noopener noreferrer">Обсудить задачу в Telegram</a>
+    <a class="btn ghost" href="#format">Какой формат выбрать</a>
+  </div>
+</header>
+<section id="format">
+  <div class="head"><h2>Какой формат выбрать</h2><span class="tag">четыре варианта</span></div>
+  <div class="tbl">
+    <table>
+      <thead><tr><th>Формат</th><th>Что это</th><th>Когда подходит</th></tr></thead>
+      <tbody>
+        <tr><td>React Native</td><td>Одно приложение на JavaScript и TypeScript для iOS и Android</td><td>Нужны обе платформы, бюджет ограничен, интерфейс без тяжёлой графики</td></tr>
+        <tr><td>Нативно: Swift и Kotlin</td><td>Отдельное приложение под каждую платформу</td><td>Важны производительность, работа с камерой, датчиками и фоновые задачи</td></tr>
+        <tr><td>PWA</td><td>Веб-приложение, которое ставится на экран телефона и работает офлайн</td><td>Внутренние инструменты, кабинеты, быстрый запуск без сторов</td></tr>
+        <tr><td>Telegram Mini App</td><td>Веб-приложение внутри Telegram</td><td>Аудитория уже в Telegram, нужен вход без регистрации</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <p class="tbl-note">Подробно про выбор между кроссплатформой и нативом — в статье «React Native или Flutter».</p>
+  <a class="more" href="/blog/react-native-ili-flutter/">Статья: React Native или Flutter →</a>
+</section>
+<section>
+  <div class="head"><h2>Что входит в разработку</h2><span class="tag">под ключ</span></div>
+  <div class="ledger">
+    <div class="item">
+      <span class="idx">01</span>
+      <div>
+        <h3>Приложение</h3>
+        <p>Экраны по макету, навигация, работа офлайн там, где она нужна, push-уведомления.</p>
+        <div class="kit">React Native · Swift · Kotlin</div>
+      </div>
+    </div>
+    <div class="item">
+      <span class="idx">02</span>
+      <div>
+        <h3>Бэкенд и API</h3>
+        <p>Сервер, база, авторизация, файлы, уведомления. Приложение и API проектирую вместе.</p>
+        <div class="kit">Laravel · Node.js · Python</div>
+        <a class="more" href="/laravel/">Бэкенд на Laravel →</a>
+      </div>
+    </div>
+    <div class="item">
+      <span class="idx">03</span>
+      <div>
+        <h3>Оплата</h3>
+        <p>Покупки в приложении или платёжный провайдер — по правилам App Store и Google Play для вашего продукта. Чеки по 54-ФЗ.</p>
+        <div class="kit">покупки в приложении · провайдеры · 54-ФЗ</div>
+        <a class="more" href="/platezhi/">Интеграция платёжных систем →</a>
+      </div>
+    </div>
+    <div class="item">
+      <span class="idx">04</span>
+      <div>
+        <h3>Админ-панель</h3>
+        <p>Контент, пользователи, заказы и рассылки — без участия разработчика.</p>
+        <div class="kit">Vue · React</div>
+      </div>
+    </div>
+    <div class="item">
+      <span class="idx">05</span>
+      <div>
+        <h3>Публикация и сопровождение</h3>
+        <p>Подготовка сборок и прохождение модерации в сторах, обновления под новые версии iOS и Android, исправления.</p>
+        <div class="kit">App Store · Google Play</div>
+      </div>
+    </div>
+  </div>
+</section>
+<section>
+  <div class="head"><h2>Типовые решения</h2><span class="tag">как это может выглядеть</span></div>
+  <article class="example">
+    <div class="ex-top"><span class="ex-label">Типовое решение</span><h3>Приложение записи для сети студий</h3></div>
+    <div class="ex-note">Пример задачи и архитектуры, а не проект из портфолио</div>
+    <dl>
+      <div class="crow"><dt>Задача</dt><dd>Сеть студий принимает записи по телефону и в мессенджерах, клиенты забывают о визитах.</dd></div>
+      <div class="crow"><dt>Как собрать</dt><dd>Приложение на React Native для iOS и Android: расписание, запись, предоплата через платёжного провайдера, push-напоминания. API на Laravel, админка расписания и мастеров на Vue.</dd></div>
+      <div class="crow"><dt>Что получит заказчик</dt><dd>Запись без звонков, меньше неявок, расписание всех студий в одной системе.</dd></div>
+    </dl>
+    <div class="kit">React Native · TypeScript · Laravel · PostgreSQL · Vue</div>
+  </article>
+  <article class="example">
+    <div class="ex-top"><span class="ex-label">Типовое решение</span><h3>PWA для выездных сотрудников</h3></div>
+    <div class="ex-note">Пример задачи и архитектуры, а не проект из портфолио</div>
+    <dl>
+      <div class="crow"><dt>Задача</dt><dd>Курьеры или мастера получают задания в мессенджере и отчитываются фотографиями в чат.</dd></div>
+      <div class="crow"><dt>Как собрать</dt><dd>PWA ставится на экран телефона и работает без сети: список заданий, фотоотчёт, отметка о выполнении. Данные синхронизируются, когда появляется связь. Диспетчер видит статусы в веб-кабинете.</dd></div>
+      <div class="crow"><dt>Что получит заказчик</dt><dd>Отчёты в одном месте, без публикации в сторах и без обучения сотрудников.</dd></div>
+    </dl>
+    <div class="kit">PWA · React · Node.js · PostgreSQL</div>
+  </article>
+</section>
+<section>
+  <div class="head"><h2>Свой продукт без отдельного приложения</h2><span class="tag">веб и Mini App</span></div>
+  <div class="cases">
+    <article class="case">
+      <div class="case-top"><span class="idx">01</span><h3>GymAssist — дневник силовых тренировок</h3><a class="site" href="https://gymassist.space/" target="_blank" rel="noopener noreferrer">gymassist.space</a></div>
+      <div class="case-role">Собственный продукт · в продакшене · веб и Telegram Mini App</div>
+      <p class="sub">Запись подходов в зале, нагрузка по сорока мышцам на анатомической схеме, программы с автоматической прогрессией и режим тренера. Работает в браузере и как Telegram Mini App: тренировку ведут с телефона без установки отдельного приложения.</p>
+      <div class="figs">
+        <div class="fig"><b>40</b><span>мышц на схеме</span></div>
+        <div class="fig"><b>2</b><span>платформы: веб и Mini App</span></div>
+      </div>
+    </article>
+  </div>
+</section>
+<section>
+  <div class="head"><h2>Сроки и стоимость</h2><span class="tag">по задаче</span></div>
+  <p class="sub">Цена зависит от числа экранов, платформ и интеграций и от того, нужен ли бэкенд. После созвона присылаю оценку по этапам. Часто разумно начать с MVP на React Native или PWA и расширять приложение по результатам.</p>
+</section>
+<section>
+  <div class="head"><h2>Частые вопросы</h2><span class="tag">про мобильные приложения</span></div>
+  <div class="faq">
+    <details><summary>Сколько стоит разработка мобильного приложения?</summary>
+      <p>Зависит от числа экранов, платформ и интеграций и от того, нужен ли бэкенд. После созвона присылаю оценку по этапам. Часто разумно начать с MVP на React Native или PWA.</p></details>
+    <details><summary>React Native или нативная разработка?</summary>
+      <p>React Native — когда нужны обе платформы и важны сроки и бюджет. Нативно на Swift и Kotlin — когда важны производительность, работа с камерой и датчиками или сложная графика.</p></details>
+    <details><summary>Публикуете приложение в App Store и Google Play?</summary>
+      <p>Да: готовлю сборки и прохожу модерацию. Аккаунты разработчика в сторах оформляются на заказчика, чтобы приложение принадлежало ему.</p></details>
+    <details><summary>Можно ли обойтись без приложения в сторах?</summary>
+      <p>Часто да. PWA ставится на экран телефона из браузера, а Telegram Mini App открывается внутри мессенджера. Для внутренних инструментов и сервисов с аудиторией в Telegram это быстрее и дешевле.</p></details>
+    <details><summary>Бэкенд тоже делаете?</summary>
+      <p>Да: API на Laravel, Node.js или Python, база, авторизация, оплата и админ-панель.</p></details>
+  </div>
+</section>
+
+<div class="total">
+  <h2>Обсудим приложение</h2>
+  <p>Опишите в Telegram, для кого приложение и что в нём должно быть. Помогу выбрать формат и отвечу, что войдёт в первую версию.</p>
+  <div class="contacts">
+    <div><span>Telegram</span><a href="https://t.me/uzver_ge" target="_blank" rel="noopener noreferrer">@uzver_ge</a></div>
+    <div><span>Почта</span><a href="mailto:myworkermailbox2022@gmail.com">myworkermailbox2022@gmail.com</a></div>
+    <div><span>Резюме</span><a href="/">опыт и стек</a></div>
+  </div>
+</div>
+
+<footer>
+  <!-- footmap -->
+  <nav class="footmap" aria-label="Карта сайта">
+    <div><b>Услуги</b><a href="/telegram-mini-app/">Telegram-боты и Mini Apps</a><a href="/boty-max/">Боты для MAX</a><a href="/oplata-v-bote/">Оплата в боте</a><a href="/platezhi/">Интеграция платёжных систем</a></div>
+    <div><b>Технологии</b><a href="/laravel/">PHP и Laravel</a><a href="/nodejs/">Node.js и TypeScript</a><a href="/react-nextjs/">React и Next.js</a><a href="/vue/">Vue</a><a href="/python/">Python</a><a href="/mobilnye-prilozheniya/" aria-current="page">Мобильные приложения</a></div>
+    <div><b>Кейсы</b><a href="/cases/podpiski/">Платформа подписок</a><a href="/cases/monitoring/">Мониторинг майнеров</a><a href="/#cases">Все кейсы</a></div>
+    <div><b>Статьи</b><a href="/blog/go-ili-python/">Go или Python</a><a href="/blog/react-ili-vue/">React или Vue</a><a href="/blog/php-ili-python/">PHP или Python</a><a href="/blog/react-native-ili-flutter/">React Native или Flutter</a></div>
+  </nav>
+  <!-- /footmap -->
+  <div class="wrap">Комягин Николай · Fullstack-разработчик · веб, мобильные приложения, боты, платежи</div>
+</footer>
+
+</div>
+
+<script src="/assets/site.js"></script>
+</body>
+</html>

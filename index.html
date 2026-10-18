@@ -94,12 +94,14 @@
 
 <div class="wrap">
 
+<!-- nav -->
 <nav class="topnav" aria-label="Разделы сайта">
   <a class="brand" href="/" aria-current="page">komiagin.dev</a>
-  <a href="/boty-max/">Боты для MAX</a>
-  <a href="/oplata-v-bote/">Оплата в боте</a>
-  <a href="/cases/podpiski/">Кейс: подписки</a>
+  <a href="/uslugi/">Услуги и технологии</a>
+  <a href="/#cases">Кейсы</a>
+  <a href="/blog/">Статьи</a>
 </nav>
+<!-- /nav -->
 
 <div class="printhead">komiagin.dev · Telegram @uzver_ge · myworkermailbox2022@gmail.com · Тбилиси, UTC+4</div>
 
@@ -109,7 +111,7 @@
   <div class="role">Fullstack-разработчик · платежи, биллинг, интеграции</div>
 
   <dl class="meta">
-    <div class="mrow"><dt>Опыт</dt><dd>Коммерческая разработка с сентября 2020</dd><dd class="num" id="years">6 лет 1 месяц</dd></div>
+    <div class="mrow"><dt>Опыт</dt><dd>Коммерческая разработка с сентября 2020</dd><dd class="num" id="years">6 лет 2 месяца</dd></div>
     <div class="mrow"><dt>Специализация</dt><dd>Биллинг, платежи, финансовые лимиты, распределение средств, управление контентом</dd><dd class="num">FullStack</dd></div>
     <div class="mrow"><dt>Основной стек</dt><dd>PHP / Laravel, Node.js, TypeScript, Vue 2/3, React</dd><dd class="num">SOLID, DRY</dd></div>
     <div class="mrow"><dt>Локация</dt><dd>Тбилиси, Грузия · удалённо</dd><dd class="num">UTC+4</dd></div>
@@ -135,6 +137,7 @@
         <h3>Биллинг и движение средств</h3>
         <p>Расчёт и списание, финансовые лимиты, распределение средств между участниками, история операций. Проектирую так, чтобы баланс сходился и операцию можно было объяснить постфактум.</p>
         <div class="kit">Laravel · PostgreSQL · очереди · идемпотентность</div>
+        <a class="more" href="/platezhi/">Интеграция платёжных систем →</a>
         <a class="more" href="/oplata-v-bote/">Приём оплаты и подписки в боте →</a>
       </div>
     </div>
@@ -152,6 +155,7 @@
         <h3>Боты Telegram и MAX, Mini Apps</h3>
         <p>Полный цикл: бот, веб-приложение внутри мессенджера, авторизация через initData, платежи и админка. Боты для Telegram и MAX могут работать на одном бэкенде с общими подписками. Подходит там, где нужен продукт без отдельного мобильного приложения.</p>
         <div class="kit">Node.js · TypeScript · Vue / React · MAX API</div>
+        <a class="more" href="/telegram-mini-app/">Telegram-боты и Mini Apps →</a>
         <a class="more" href="/boty-max/">Боты для MAX →</a>
       </div>
     </div>
@@ -271,6 +275,7 @@
         <div class="fig"><b>3 мин</b><span>до алерта вместо недель</span></div>
       </div>
       <div class="kit">PHP · Laravel · Redis · PostgreSQL · Vue 3 · Telegram Bot API</div>
+      <a class="more" href="/cases/monitoring/">Подробный разбор кейса →</a>
     </article>
 
     <article class="case">
@@ -355,11 +360,11 @@
 </section>
 
 <section id="experience">
-  <div class="head"><h2>Опыт</h2><span class="tag" id="years-total">6 лет 1 месяц</span></div>
+  <div class="head"><h2>Опыт</h2><span class="tag" id="years-total">6 лет 2 месяца</span></div>
   <div class="ledger">
 
     <div class="job">
-      <div class="when">Июнь 2022 —<br>настоящее время<br><br><span id="years-ip">4 года 4 месяца</span></div>
+      <div class="when">Июнь 2022 —<br>настоящее время<br><br><span id="years-ip">4 года 5 месяцев</span></div>
       <div>
         <h3>Контрактная разработка · ИП</h3>
         <div class="case-role">Fullstack-разработчик · полный цикл, от модели данных до продакшена</div>
@@ -443,6 +448,7 @@
       <span class="chip">Telegram Bot API</span><span class="chip">Mini Apps</span>
     </div></div>
   </div>
+  <div class="related"><a class="more" href="/laravel/">PHP и Laravel →</a><a class="more" href="/nodejs/">Node.js и TypeScript →</a><a class="more" href="/react-nextjs/">React и Next.js →</a><a class="more" href="/vue/">Vue →</a><a class="more" href="/python/">Python →</a><a class="more" href="/mobilnye-prilozheniya/">Мобильные приложения →</a></div>
 </section>
 
 <div class="total">
@@ -458,8 +464,15 @@
 </div>
 
 <footer>
-  <div class="footlinks topnav" style="padding:0 0 14px"><a href="/boty-max/">Боты для MAX</a><a href="/oplata-v-bote/">Оплата в боте</a><a href="/cases/podpiski/">Кейс: платформа подписок</a></div>
-  <div class="wrap" style="padding:0">Комягин Николай · Fullstack-разработчик · Томский техникум информационных технологий, 2021</div>
+  <!-- footmap -->
+  <nav class="footmap" aria-label="Карта сайта">
+    <div><b>Услуги</b><a href="/telegram-mini-app/">Telegram-боты и Mini Apps</a><a href="/boty-max/">Боты для MAX</a><a href="/oplata-v-bote/">Оплата в боте</a><a href="/platezhi/">Интеграция платёжных систем</a></div>
+    <div><b>Технологии</b><a href="/laravel/">PHP и Laravel</a><a href="/nodejs/">Node.js и TypeScript</a><a href="/react-nextjs/">React и Next.js</a><a href="/vue/">Vue</a><a href="/python/">Python</a><a href="/mobilnye-prilozheniya/">Мобильные приложения</a></div>
+    <div><b>Кейсы</b><a href="/cases/podpiski/">Платформа подписок</a><a href="/cases/monitoring/">Мониторинг майнеров</a><a href="/#cases">Все кейсы</a></div>
+    <div><b>Статьи</b><a href="/blog/go-ili-python/">Go или Python</a><a href="/blog/react-ili-vue/">React или Vue</a><a href="/blog/php-ili-python/">PHP или Python</a><a href="/blog/react-native-ili-flutter/">React Native или Flutter</a></div>
+  </nav>
+  <!-- /footmap -->
+  <div class="wrap">Комягин Николай · Fullstack-разработчик · Томский техникум информационных технологий, 2021</div>
 </footer>
 
 </div>

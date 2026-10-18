@@ -78,12 +78,14 @@
 
 <div class="wrap">
 
+<!-- nav -->
 <nav class="topnav" aria-label="Разделы сайта">
   <a class="brand" href="/">komiagin.dev</a>
-  <a href="/boty-max/" aria-current="page">Боты для MAX</a>
-  <a href="/oplata-v-bote/">Оплата в боте</a>
-  <a href="/cases/podpiski/">Кейс: подписки</a>
+  <a href="/uslugi/" aria-current="page">Услуги и технологии</a>
+  <a href="/#cases">Кейсы</a>
+  <a href="/blog/">Статьи</a>
 </nav>
+<!-- /nav -->
 
 <header class="sheet">
   <div class="crumbs"><a href="/">Главная</a> / Боты для MAX</div>
@@ -132,6 +134,7 @@
         <h3>Второй канал рядом с Telegram</h3>
         <p>Бот для MAX подключается к существующему бэкенду. Логика и данные общие, отличается только слой работы с API мессенджера. Аудиторию, которая ушла из Telegram, не нужно заводить в новую систему.</p>
         <div class="kit">общий бэкенд · одна база · одна админка</div>
+        <a class="more" href="/telegram-mini-app/">Telegram-боты и Mini Apps →</a>
       </div>
     </div>
     <div class="item">
@@ -192,15 +195,28 @@
         <h3>Платформа подписок для инвестиционного советника</h3>
       </div>
       <div class="case-role">Единственный разработчик · Telegram-бот, бот для MAX и админ-панель на общем бэкенде</div>
-      <p class="sub" style="font-size:15.5px">Продажа клубных подписок шла вручную. Теперь подписки продаются и продлеваются автоматически через две платёжные интеграции с рекуррентными списаниями, чеки формируются по 54-ФЗ, доступ к аналитике выдаётся и снимается сам.</p>
+      <p class="sub">Продажа клубных подписок шла вручную. Теперь подписки продаются и продлеваются автоматически через две платёжные интеграции с рекуррентными списаниями, чеки формируются по 54-ФЗ, доступ к аналитике выдаётся и снимается сам.</p>
       <div class="figs">
-        <div class="fig"><b>~6 000</b><span>подписчиков</span></div>
-        <div class="fig"><b>~3 млн ₽</b><span>оборот в месяц</span></div>
+        <div class="fig"><b>~6&nbsp;000</b><span>подписчиков</span></div>
+        <div class="fig"><b>~3&nbsp;млн ₽</b><span>оборот в месяц</span></div>
         <div class="fig"><b>2</b><span>мессенджера: Telegram и MAX</span></div>
       </div>
       <a class="more" href="/cases/podpiski/">Подробный разбор кейса →</a>
     </article>
   </div>
+</section>
+<section>
+  <div class="head"><h2>Типовое решение</h2><span class="tag">как это может выглядеть</span></div>
+  <article class="example">
+    <div class="ex-top"><span class="ex-label">Типовое решение</span><h3>Бот записи для салона в MAX</h3></div>
+    <div class="ex-note">Пример задачи и архитектуры, а не проект из портфолио</div>
+    <dl>
+      <div class="crow"><dt>Задача</dt><dd>Салон принимает записи по телефону и в мессенджерах, мастера путаются в расписании, клиенты забывают о визитах.</dd></div>
+      <div class="crow"><dt>Как собрать</dt><dd>Бот в MAX показывает свободные окна мастеров, записывает и присылает напоминание накануне. Предоплата — ссылкой платёжного провайдера, подтверждение приходит вебхуком. Расписание и мастера — в админке. Тот же бэкенд можно подключить к Telegram.</dd></div>
+      <div class="crow"><dt>Что получит заказчик</dt><dd>Запись без звонков, меньше неявок, расписание всех мастеров в одном месте.</dd></div>
+    </dl>
+    <div class="kit">MAX API · Laravel или Node.js · PostgreSQL · платёжный провайдер</div>
+  </article>
 </section>
 
 <section>
@@ -232,8 +248,15 @@
 </div>
 
 <footer>
-  <div class="footlinks topnav" style="padding:0 0 14px"><a href="/">Резюме</a><a href="/oplata-v-bote/">Оплата в боте</a><a href="/cases/podpiski/">Кейс: платформа подписок</a></div>
-  <div class="wrap" style="padding:0">Комягин Николай · Fullstack-разработчик · боты Telegram и MAX, платежи, интеграции</div>
+  <!-- footmap -->
+  <nav class="footmap" aria-label="Карта сайта">
+    <div><b>Услуги</b><a href="/telegram-mini-app/">Telegram-боты и Mini Apps</a><a href="/boty-max/" aria-current="page">Боты для MAX</a><a href="/oplata-v-bote/">Оплата в боте</a><a href="/platezhi/">Интеграция платёжных систем</a></div>
+    <div><b>Технологии</b><a href="/laravel/">PHP и Laravel</a><a href="/nodejs/">Node.js и TypeScript</a><a href="/react-nextjs/">React и Next.js</a><a href="/vue/">Vue</a><a href="/python/">Python</a><a href="/mobilnye-prilozheniya/">Мобильные приложения</a></div>
+    <div><b>Кейсы</b><a href="/cases/podpiski/">Платформа подписок</a><a href="/cases/monitoring/">Мониторинг майнеров</a><a href="/#cases">Все кейсы</a></div>
+    <div><b>Статьи</b><a href="/blog/go-ili-python/">Go или Python</a><a href="/blog/react-ili-vue/">React или Vue</a><a href="/blog/php-ili-python/">PHP или Python</a><a href="/blog/react-native-ili-flutter/">React Native или Flutter</a></div>
+  </nav>
+  <!-- /footmap -->
+  <div class="wrap">Комягин Николай · Fullstack-разработчик · боты Telegram и MAX, платежи, интеграции</div>
 </footer>
 
 </div>

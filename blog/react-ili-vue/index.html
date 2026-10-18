@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<title>React или Vue: что выбрать для проекта — Николай Комягин</title>
+<meta name="description" content="React или Vue: сравнение по порогу входа, экосистеме, скорости, типовым задачам и найму. Отдельно про Next.js и Nuxt и о том, когда выбирать каждый фреймворк.">
+<link rel="canonical" href="https://komiagin.dev/blog/react-ili-vue/">
+<meta name="robots" content="index, follow, max-image-preview:large">
+<meta name="theme-color" content="#020604">
+
+<meta property="og:type" content="article">
+<meta property="og:locale" content="ru_RU">
+<meta property="og:site_name" content="komiagin.dev">
+<meta property="og:url" content="https://komiagin.dev/blog/react-ili-vue/">
+<meta property="og:title" content="React или Vue: что выбрать для проекта">
+<meta property="og:description" content="Сравнение React и Vue по пяти критериям, разбор пары Next.js и Nuxt и простые правила выбора для бизнес-проекта.">
+<meta property="og:image" content="https://komiagin.dev/og.png">
+<meta name="twitter:card" content="summary_large_image">
+
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'><rect width='64' height='64' fill='%23020604'/><text x='32' y='47' font-family='monospace' font-size='46' font-weight='bold' fill='%2300FF6A' text-anchor='middle'>K</text></svg>">
+<link rel="apple-touch-icon" href="/icon-512.png">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700;800&family=Manrope:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/assets/site.css">
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Article",
+      "headline": "React или Vue: что выбрать для проекта",
+      "url": "https://komiagin.dev/blog/react-ili-vue/",
+      "datePublished": "2026-10-18",
+      "inLanguage": "ru",
+      "image": "https://komiagin.dev/og.png",
+      "author": { "@type": "Person", "name": "Николай Комягин", "url": "https://komiagin.dev/" }
+    },
+    {
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        { "@type": "ListItem", "position": 1, "name": "Главная", "item": "https://komiagin.dev/" },
+        { "@type": "ListItem", "position": 2, "name": "Статьи", "item": "https://komiagin.dev/blog/" },
+        { "@type": "ListItem", "position": 3, "name": "React или Vue", "item": "https://komiagin.dev/blog/react-ili-vue/" }
+      ]
+    },
+    {
+      "@type": "FAQPage",
+      "mainEntity": [
+        { "@type": "Question", "name": "Что проще выучить: React или Vue?",
+          "acceptedAnswer": { "@type": "Answer", "text": "Vue проще на старте: шаблоны похожи на HTML, реактивность работает без ручной настройки. В React сразу нужно разобраться с JSX и хуками. Опытный разработчик осваивает второй фреймворк быстро, потому что основные идеи у них общие." } },
+        { "@type": "Question", "name": "Что быстрее работает: React или Vue?",
+          "acceptedAnswer": { "@type": "Answer", "text": "В типовом бизнес-приложении пользователь разницы не заметит. Скорость сильнее зависит от размера бандла, ответов API и лишних перерисовок. Если важны первая загрузка и SEO, нужен серверный рендеринг через Next.js или Nuxt." } },
+        { "@type": "Question", "name": "Next.js или Nuxt: что выбрать?",
+          "acceptedAnswer": { "@type": "Answer", "text": "Тот, который построен на фреймворке вашей команды. Next.js работает с React, Nuxt работает с Vue. Оба умеют серверный рендеринг, статическую генерацию страниц и маршрутизацию по файлам." } },
+        { "@type": "Question", "name": "Можно ли перевести проект с Vue на React или обратно?",
+          "acceptedAnswer": { "@type": "Answer", "text": "Можно, но это почти всегда переписывание интерфейса. Обычно новые экраны делают на новом фреймворке, а старые переводят по частям. Без веской причины, например проблем с наймом или планов на мобильное приложение, смена фреймворка редко окупается." } },
+        { "@type": "Question", "name": "На чём лучше сделать админ-панель?",
+          "acceptedAnswer": { "@type": "Answer", "text": "Подойдут оба. На Vue админку часто собирают быстрее за счёт шаблонов и готовых UI-китов. Если остальной фронтенд компании написан на React, админку разумно делать на нём же." } }
+      ]
+    }
+  ]
+}
+</script>
+</head>
+<body>
+
+<div id="rain" aria-hidden="true">
+  <canvas id="rainc"></canvas>
+  <div class="scrim"></div>
+  <div class="scan"></div>
+</div>
+
+<div class="wrap">
+
+<!-- nav -->
+<nav class="topnav" aria-label="Разделы сайта">
+  <a class="brand" href="/">komiagin.dev</a>
+  <a href="/uslugi/">Услуги и технологии</a>
+  <a href="/#cases">Кейсы</a>
+  <a href="/blog/" aria-current="page">Статьи</a>
+</nav>
+<!-- /nav -->
+
+<header class="sheet">
+  <div class="crumbs"><a href="/">Главная</a> / <a href="/blog/">Статьи</a> / React или Vue</div>
+  <div class="stamp tag">Статья</div>
+  <h1>React или Vue: что выбрать для проекта</h1>
+  <div class="role">Статья · <time datetime="2026-10-18">18&nbsp;октября 2026</time> · Николай Комягин</div>
+  <p class="pitch">React и Vue решают одну задачу: собирают интерфейс из компонентов и сами обновляют его, когда меняются данные. Для обычного веб-проекта подойдут оба, поэтому выбор чаще зависит от команды, найма и окружения проекта. Я пишу на обоих и ниже сравниваю их по пяти критериям, а <strong>отдельно разбираю пару Next.js и Nuxt.</strong></p>
+</header>
+
+<section>
+  <div class="head"><h2>Сравнение по критериям</h2><span class="tag">коротко</span></div>
+  <div class="tbl">
+    <table>
+      <thead><tr><th>Критерий</th><th>React</th><th>Vue</th></tr></thead>
+      <tbody>
+        <tr><td>Порог входа</td><td>JSX и хуки. Нужно уверенно знать JavaScript: замыкания, неизменяемые данные, правила хуков.</td><td>Шаблоны похожи на HTML, реактивность работает сама. Первые экраны получаются быстрее.</td></tr>
+        <tr><td>Экосистема</td><td>Самая широкая: на любую задачу есть несколько библиотек. Роутинг и состояние команда выбирает сама.</td><td>Меньше, зато базовые задачи закрыты официальными пакетами: Vue Router, Pinia, Vite.</td></tr>
+        <tr><td>Производительность и UX</td><td>Быстрый, но лишние перерисовки нужно контролировать. Серверный рендеринг даёт Next.js.</td><td>Быстрый, реактивность сама отслеживает зависимости. Серверный рендеринг даёт Nuxt.</td></tr>
+        <tr><td>Типовые задачи</td><td>Крупные SPA, продукты с мобильным приложением на React Native, сайты на Next.js.</td><td>Админ-панели и кабинеты, встраивание в готовый сайт на Laravel или Django, сайты на Nuxt.</td></tr>
+        <tr><td>Найм и поддержка</td><td>Кандидатов больше. Проекты сильнее отличаются друг от друга набором библиотек.</td><td>Кандидатов меньше. Проекты устроены похоже, в чужом коде разобраться проще.</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <p class="tbl-note">Оба проекта открытые и распространяются по лицензии MIT. Оба хорошо работают с TypeScript, и оба можно собирать через Vite.</p>
+</section>
+
+<section>
+  <div class="head"><h2>Порог входа</h2><span class="tag">кто быстрее начнёт</span></div>
+  <p class="sub">Vue проще на старте. Компонент лежит в одном файле с расширением .vue: сверху шаблон, ниже скрипт и стили. Шаблон похож на обычный HTML с директивами v-if, v-for и v-model. Верстальщик или бэкенд-разработчик читает такой код почти без подготовки.</p>
+  <p class="sub">Реактивность во Vue работает сама. Вы меняете значение, и интерфейс обновляется. Для простого состояния хватает ref и computed, для общего между экранами есть Pinia.</p>
+  <p class="sub">В React разметку пишут на JSX прямо внутри JavaScript. Когда привыкнешь, это удобно, но требует уверенного знания языка. Нужно понимать замыкания, не мутировать состояние и соблюдать правила хуков. Типичные ошибки новичков: лишние перерисовки, устаревшие значения внутри useEffect и запросы, которые уходят по кругу.</p>
+  <p class="sub">Для опытного фронтендера разница в пороге невелика. Компоненты, свойства, состояние и жизненный цикл есть в обоих фреймворках, меняется в основном синтаксис.</p>
+</section>
+
+<section>
+  <div class="head"><h2>Экосистема</h2><span class="tag">библиотеки и инструменты</span></div>
+  <p class="sub">React развивает Meta. Сам React отвечает только за интерфейс, а маршрутизацию, работу с данными и формами берут из сторонних библиотек. Выбор большой, и для сложных интерфейсов это плюс. Минус в том, что два React-проекта могут быть устроены совсем по-разному.</p>
+  <p class="sub">Vue развивает независимая команда во главе с автором фреймворка Эваном Ю. Базовые задачи закрыты официальными пакетами: маршрутизация в Vue Router, состояние в Pinia. Сборщик Vite тоже создал Эван Ю, сейчас его используют и с React. Сторонних библиотек у Vue меньше, но для типового проекта их хватает.</p>
+  <div class="stack">
+    <div class="srow"><span class="k">React</span><div class="chips"><span class="chip">Next.js</span><span class="chip">React Router</span><span class="chip">Redux Toolkit</span><span class="chip">Zustand</span><span class="chip">TanStack Query</span><span class="chip">React Hook Form</span><span class="chip">MUI</span><span class="chip">Ant Design</span><span class="chip">React Native</span></div></div>
+    <div class="srow"><span class="k">Vue</span><div class="chips"><span class="chip">Nuxt</span><span class="chip">Vue Router</span><span class="chip">Pinia</span><span class="chip">VueUse</span><span class="chip">TanStack Query</span><span class="chip">Vuetify</span><span class="chip">Element Plus</span><span class="chip">PrimeVue</span><span class="chip">Quasar</span></div></div>
+    <div class="srow"><span class="k">Общее</span><div class="chips"><span class="chip">TypeScript</span><span class="chip">Vite</span><span class="chip">Vitest</span><span class="chip">Storybook</span><span class="chip">ESLint</span></div></div>
+  </div>
+  <p class="sub">В мобильной разработке у React заметное преимущество. React Native позволяет писать приложения для iOS и Android на тех же принципах. У Vue аналога такого масштаба нет, и мобильное приложение на нём обычно собирают как веб-приложение в нативной оболочке, например через Capacitor.</p>
+  <a class="more" href="/blog/react-native-ili-flutter/">React Native или Flutter →</a>
+</section>
+
+<section>
+  <div class="head"><h2>Производительность и UX</h2><span class="tag">скорость и отзывчивость</span></div>
+  <p class="sub">Оба фреймворка используют виртуальный DOM и быстро обновляют интерфейс. В типовом проекте скорость упирается в другое: тяжёлый бандл, медленный API, большие картинки и лишние запросы.</p>
+  <p class="sub">Разница в том, как фреймворк решает, что перерисовать. Vue запоминает, какие данные использует каждый компонент, и обновляет только те компоненты, которые от них зависят. В React при изменении состояния компонент перерисовывается вместе с дочерними. Лишнюю работу отсекают через memo, useMemo и useCallback или поручают компилятору React, который расставляет мемоизацию сам.</p>
+  <p class="sub">Для пользователя важнее всего первая загрузка. Одностраничное приложение показывает пустой экран, пока не скачается и не выполнится JavaScript. Если страница должна открываться быстро и попадать в поиск, нужен серверный рендеринг. Для React это Next.js, для Vue это Nuxt.</p>
+</section>
+
+<section>
+  <div class="head"><h2>Типовые задачи</h2><span class="tag">где что встречается</span></div>
+  <p class="sub">React часто выбирают для больших продуктов с большой командой: под него проще найти людей и готовые библиотеки для сложных таблиц, редакторов и графиков. Второй частый случай: компании нужны сайт и мобильное приложение, и она хочет одну команду на TypeScript.</p>
+  <p class="sub">Vue хорошо встраивается в готовый сайт. Его можно подключить к одной странице, которую рендерит Laravel или Django, и постепенно переводить интерфейс на компоненты. Ещё Vue часто берут для админ-панелей и личных кабинетов. Например, админ-панель в моём кейсе платформы подписок написана на Vue&nbsp;3.</p>
+  <p class="sub">В экосистеме Laravel поддерживаются оба фреймворка: Inertia.js работает и с Vue, и с React. Поэтому бэкенд на Laravel сам по себе выбор не решает.</p>
+  <a class="more" href="/cases/podpiski/">Кейс: платформа подписок →</a>
+</section>
+
+<section>
+  <div class="head"><h2>Найм и стоимость поддержки</h2><span class="tag">команда и сопровождение</span></div>
+  <p class="sub">React встречается в вакансиях чаще, поэтому разработчика на него найти проще. У Vue кандидатов меньше. Зато проект на Vue легче передать новому человеку: официальные пакеты делают проекты похожими друг на друга.</p>
+  <p class="sub">Стоимость поддержки во многом зависит от числа зависимостей. В React-проекте их обычно больше, и каждую нужно обновлять отдельно. Иногда автор забрасывает библиотеку, и её приходится менять. Во Vue базовый набор официальный и обновляется согласованно.</p>
+  <p class="sub">Крупные переходы бывают у обоих. Vue&nbsp;2 перестал получать обновления в конце 2023&nbsp;года, и старые проекты пришлось переводить на Vue&nbsp;3, где часть прежнего API убрали. В React переход на хуки прошёл мягче: классовые компоненты продолжают работать.</p>
+  <p class="sub">Главное для поддержки на любом фреймворке одно: код должен быть понятен следующему разработчику. Этого добиваются договорённостями в команде, типами и тестами.</p>
+</section>
+
+<section>
+  <div class="head"><h2>Next.js или Nuxt</h2><span class="tag">серверный рендеринг</span></div>
+  <p class="sub">Next.js и Nuxt построены поверх React и Vue. Они добавляют то, чего нет в базовой библиотеке: маршрутизацию по файлам, серверный рендеринг, статическую генерацию страниц и серверные обработчики API. Оба подходят для сайтов, которым важны скорость первой загрузки и SEO.</p>
+  <p class="sub">Next.js развивает компания Vercel. В App Router есть серверные компоненты React: часть компонентов выполняется только на сервере и не попадает в бандл браузера. Статические страницы можно пересобирать в фоне через заданное время. Проще всего Next.js разворачивать на Vercel, но он работает и на своём сервере под Node.js или в Docker. Документация React сама советует начинать новый проект с фреймворка, и Next.js есть в этом списке.</p>
+  <p class="sub">Nuxt построен на Vue, Vite и серверном движке Nitro. Он сам импортирует компоненты и композаблы, поэтому служебного кода в файлах меньше. Серверные обработчики лежат в папке server. Собранное приложение запускают на Node.js, в serverless-окружении или на edge-платформах. Возможности расширяют модулями для изображений, контента, переводов и других задач. Сам я на Nuxt не писал, поэтому этот абзац опирается на документацию. С Next.js я работаю.</p>
+  <p class="sub">Правило выбора простое: Next.js или Nuxt выбирают вслед за React или Vue. Если команда пишет на Vue, ей логично взять Nuxt. Если на React, то Next.js.</p>
+</section>
+
+<section>
+  <div class="head"><h2>Когда выбирать React</h2><span class="tag">четыре случая</span></div>
+  <div class="ledger">
+    <div class="item"><span class="idx">01</span><div><h3>Нужны сайт и мобильное приложение</h3><p>Одна команда на TypeScript пишет веб на React и приложение на React Native. Общими остаются типы, API-клиент и часть логики.</p></div></div>
+    <div class="item"><span class="idx">02</span><div><h3>Большой продукт и большая команда</h3><p>Людей проще нанимать, а для сложных интерфейсов больше готовых библиотек: таблицы, редакторы, графики.</p></div></div>
+    <div class="item"><span class="idx">03</span><div><h3>Сайт с SEO и сложной логикой</h3><p>Next.js закрывает серверный рендеринг, статику и серверные обработчики в одном проекте.</p></div></div>
+    <div class="item"><span class="idx">04</span><div><h3>Команда уже знает React</h3><p>Переучивать людей ради другого фреймворка обычно дороже, чем выигрыш от смены.</p></div></div>
+  </div>
+</section>
+
+<section>
+  <div class="head"><h2>Когда выбирать Vue</h2><span class="tag">четыре случая</span></div>
+  <div class="ledger">
+    <div class="item"><span class="idx">01</span><div><h3>Интерфейс внутри готового сайта</h3><p>Vue подключают к страницам на Laravel или Django и переводят интерфейс по частям, без переписывания проекта целиком.</p></div></div>
+    <div class="item"><span class="idx">02</span><div><h3>Админ-панель или личный кабинет</h3><p>Формы, таблицы и фильтры на шаблонах Vue пишутся быстро, а готовые UI-киты закрывают типовые экраны.</p></div></div>
+    <div class="item"><span class="idx">03</span><div><h3>Небольшая команда со смешанным опытом</h3><p>Шаблоны понятны бэкендерам и верстальщикам. Официальные пакеты снимают споры о выборе библиотек.</p></div></div>
+    <div class="item"><span class="idx">04</span><div><h3>Команда уже знает Vue</h3><p>Довод тот же, что и для React: опыт команды важнее разницы между фреймворками.</p></div></div>
+  </div>
+</section>
+
+<section>
+  <div class="head"><h2>Вывод</h2><span class="tag">итог</span></div>
+  <p class="sub">Для большинства веб-проектов подойдут и React, и Vue. Если кроме сайта нужен мобильный клиент или вы собираете большую команду, берите React. Если интерфейс встраивается в готовый бэкенд или команда небольшая, берите Vue. Для сайтов с SEO выбирайте Next.js или Nuxt по тому же принципу. Хуже всего менять фреймворк посреди проекта без веской причины.</p>
+</section>
+
+<section>
+  <div class="head"><h2>Частые вопросы</h2><span class="tag">про React и Vue</span></div>
+  <div class="faq">
+    <details><summary>Что проще выучить: React или Vue?</summary>
+      <p>Vue проще на старте: шаблоны похожи на HTML, реактивность работает без ручной настройки. В React сразу нужно разобраться с JSX и хуками. Опытный разработчик осваивает второй фреймворк быстро, потому что основные идеи у них общие.</p></details>
+    <details><summary>Что быстрее работает: React или Vue?</summary>
+      <p>В типовом бизнес-приложении пользователь разницы не заметит. Скорость сильнее зависит от размера бандла, ответов API и лишних перерисовок. Если важны первая загрузка и SEO, нужен серверный рендеринг через Next.js или Nuxt.</p></details>
+    <details><summary>Next.js или Nuxt: что выбрать?</summary>
+      <p>Тот, который построен на фреймворке вашей команды. Next.js работает с React, Nuxt работает с Vue. Оба умеют серверный рендеринг, статическую генерацию страниц и маршрутизацию по файлам.</p></details>
+    <details><summary>Можно ли перевести проект с Vue на React или обратно?</summary>
+      <p>Можно, но это почти всегда переписывание интерфейса. Обычно новые экраны делают на новом фреймворке, а старые переводят по частям. Без веской причины, например проблем с наймом или планов на мобильное приложение, смена фреймворка редко окупается.</p></details>
+    <details><summary>На чём лучше сделать админ-панель?</summary>
+      <p>Подойдут оба. На Vue админку часто собирают быстрее за счёт шаблонов и готовых UI-китов. Если остальной фронтенд компании написан на React, админку разумно делать на нём же.</p></details>
+  </div>
+</section>
+
+<div class="total">
+  <h2>Обсудим ваш проект</h2>
+  <p>Напишите в Telegram, что вы делаете и какая команда уже есть. Подскажу, на чём собрать интерфейс, и оценю первую версию.</p>
+  <div class="contacts">
+    <div><span>Telegram</span><a href="https://t.me/uzver_ge" target="_blank" rel="noopener noreferrer">@uzver_ge</a></div>
+    <div><span>React</span><a href="/react-nextjs/">разработка на React и Next.js</a></div>
+    <div><span>Vue</span><a href="/vue/">разработка на Vue</a></div>
+  </div>
+</div>
+
+<footer>
+<!-- footmap -->
+  <nav class="footmap" aria-label="Карта сайта">
+    <div><b>Услуги</b><a href="/telegram-mini-app/">Telegram-боты и Mini Apps</a><a href="/boty-max/">Боты для MAX</a><a href="/oplata-v-bote/">Оплата в боте</a><a href="/platezhi/">Интеграция платёжных систем</a></div>
+    <div><b>Технологии</b><a href="/laravel/">PHP и Laravel</a><a href="/nodejs/">Node.js и TypeScript</a><a href="/react-nextjs/">React и Next.js</a><a href="/vue/">Vue</a><a href="/python/">Python</a><a href="/mobilnye-prilozheniya/">Мобильные приложения</a></div>
+    <div><b>Кейсы</b><a href="/cases/podpiski/">Платформа подписок</a><a href="/cases/monitoring/">Мониторинг майнеров</a><a href="/#cases">Все кейсы</a></div>
+    <div><b>Статьи</b><a href="/blog/go-ili-python/">Go или Python</a><a href="/blog/react-ili-vue/" aria-current="page">React или Vue</a><a href="/blog/php-ili-python/">PHP или Python</a><a href="/blog/react-native-ili-flutter/">React Native или Flutter</a></div>
+  </nav>
+  <!-- /footmap -->
+  <div class="wrap">Комягин Николай · Fullstack-разработчик · боты Telegram и MAX, платежи, интеграции</div>
+</footer>
+
+</div>
+
+<script src="/assets/site.js"></script>
+</body>
+</html>

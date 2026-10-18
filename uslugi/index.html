@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<title>Разработка веб-приложений и сервисов — Николай Комягин</title>
+<meta name="description" content="Разработка веб-приложений, мобильных приложений и ботов: Laravel, Node.js, React и Next.js, Vue, Python, React Native. Платежи, интеграции, админ-панели.">
+<link rel="canonical" href="https://komiagin.dev/uslugi/">
+<meta name="robots" content="index, follow, max-image-preview:large">
+<meta name="theme-color" content="#020604">
+
+<meta property="og:type" content="website">
+<meta property="og:locale" content="ru_RU">
+<meta property="og:site_name" content="komiagin.dev">
+<meta property="og:url" content="https://komiagin.dev/uslugi/">
+<meta property="og:title" content="Разработка веб-приложений и сервисов">
+<meta property="og:description" content="Разработка веб-приложений, мобильных приложений и ботов: Laravel, Node.js, React и Next.js, Vue, Python, React Native. Платежи, интеграции, админ-панели.">
+<meta property="og:image" content="https://komiagin.dev/og.png">
+<meta name="twitter:card" content="summary_large_image">
+
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'><rect width='64' height='64' fill='%23020604'/><text x='32' y='47' font-family='monospace' font-size='46' font-weight='bold' fill='%2300FF6A' text-anchor='middle'>K</text></svg>">
+<link rel="apple-touch-icon" href="/icon-512.png">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700;800&family=Manrope:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/assets/site.css">
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "CollectionPage",
+      "name": "Разработка веб-приложений и сервисов",
+      "url": "https://komiagin.dev/uslugi/",
+      "description": "Разработка веб-приложений, мобильных приложений и ботов: Laravel, Node.js, React и Next.js, Vue, Python, React Native. Платежи, интеграции, админ-панели.",
+      "mainEntity": {
+        "@type": "ItemList",
+        "itemListElement": [
+          {
+            "@type": "ListItem",
+            "position": 1,
+            "url": "https://komiagin.dev/telegram-mini-app/",
+            "name": "Telegram-боты и Mini Apps"
+          },
+          {
+            "@type": "ListItem",
+            "position": 2,
+            "url": "https://komiagin.dev/boty-max/",
+            "name": "Боты для MAX"
+          },
+          {
+            "@type": "ListItem",
+            "position": 3,
+            "url": "https://komiagin.dev/oplata-v-bote/",
+            "name": "Оплата и подписки в боте"
+          },
+          {
+            "@type": "ListItem",
+            "position": 4,
+            "url": "https://komiagin.dev/platezhi/",
+            "name": "Интеграция платёжных систем"
+          },
+          {
+            "@type": "ListItem",
+            "position": 5,
+            "url": "https://komiagin.dev/mobilnye-prilozheniya/",
+            "name": "Мобильные приложения"
+          },
+          {
+            "@type": "ListItem",
+            "position": 6,
+            "url": "https://komiagin.dev/laravel/",
+            "name": "PHP и Laravel"
+          },
+          {
+            "@type": "ListItem",
+            "position": 7,
+            "url": "https://komiagin.dev/nodejs/",
+            "name": "Node.js и TypeScript"
+          },
+          {
+            "@type": "ListItem",
+            "position": 8,
+            "url": "https://komiagin.dev/react-nextjs/",
+            "name": "React и Next.js"
+          },
+          {
+            "@type": "ListItem",
+            "position": 9,
+            "url": "https://komiagin.dev/vue/",
+            "name": "Vue"
+          },
+          {
+            "@type": "ListItem",
+            "position": 10,
+            "url": "https://komiagin.dev/python/",
+            "name": "Python"
+          }
+        ]
+      }
+    },
+    {
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "Главная",
+          "item": "https://komiagin.dev/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "name": "Услуги и технологии",
+          "item": "https://komiagin.dev/uslugi/"
+        }
+      ]
+    }
+  ]
+}
+</script>
+</head>
+<body>
+
+<div id="rain" aria-hidden="true">
+  <canvas id="rainc"></canvas>
+  <div class="scrim"></div>
+  <div class="scan"></div>
+</div>
+
+<div class="wrap">
+
+<!-- nav -->
+<nav class="topnav" aria-label="Разделы сайта">
+  <a class="brand" href="/">komiagin.dev</a>
+  <a href="/uslugi/" aria-current="page">Услуги и технологии</a>
+  <a href="/#cases">Кейсы</a>
+  <a href="/blog/">Статьи</a>
+</nav>
+<!-- /nav -->
+<header class="sheet">
+  <div class="crumbs"><a href="/">Главная</a> / Услуги и технологии</div>
+  <h1>Разработка веб-приложений и сервисов</h1>
+  <div class="role">Услуги · технологии · кейсы</div>
+  <p class="pitch">Делаю веб-сервисы, мобильные приложения и ботов под ключ: <strong>от схемы базы и API до интерфейса, оплаты, деплоя и сопровождения.</strong> Ниже — услуги и технологии, у каждой своя страница с примерами и ответами на частые вопросы.</p>
+  <div class="cta-row">
+    <a class="btn solid" href="https://t.me/uzver_ge" target="_blank" rel="noopener noreferrer">Обсудить задачу в Telegram</a>
+  </div>
+</header>
+<section>
+  <div class="head"><h2>Услуги</h2><span class="tag">что делаю</span></div>
+  <div class="cards">
+    <a class="card" href="/telegram-mini-app/"><h3>Telegram-боты и Mini Apps</h3><p>Боты, которые продают, принимают оплату и присылают уведомления, и веб-приложения внутри Telegram.</p><div class="kit">боты · Mini Apps · админка</div></a>
+    <a class="card" href="/boty-max/"><h3>Боты для MAX</h3><p>Чат-боты для мессенджера MAX на общем бэкенде с Telegram: подписки, оплата, доступ к контенту.</p><div class="kit">MAX API · подписки</div></a>
+    <a class="card" href="/oplata-v-bote/"><h3>Оплата и подписки в боте</h3><p>Автопродление, платный доступ к каналу, чеки по 54-ФЗ и защита от двойных списаний.</p><div class="kit">рекуррентные платежи · 54-ФЗ</div></a>
+    <a class="card" href="/platezhi/"><h3>Интеграция платёжных систем</h3><p>Приём платежей на сайте и в приложении, рекуррентные списания, вебхуки, фискализация.</p><div class="kit">провайдеры · вебхуки · 54-ФЗ</div></a>
+    <a class="card" href="/mobilnye-prilozheniya/"><h3>Мобильные приложения</h3><p>iOS и Android на React Native, нативно на Swift и Kotlin или как PWA.</p><div class="kit">React Native · Swift · Kotlin · PWA</div></a>
+  </div>
+</section>
+<section>
+  <div class="head"><h2>Технологии</h2><span class="tag">на чём делаю</span></div>
+  <div class="cards">
+    <a class="card" href="/laravel/"><h3>PHP и Laravel</h3><p>Веб-сервисы, API, биллинг, очереди, доработка legacy.</p><div class="kit">PHP · Laravel · Symfony</div></a>
+    <a class="card" href="/nodejs/"><h3>Node.js и TypeScript</h3><p>Бэкенд, интеграции с биржами и платёжными API, боты.</p><div class="kit">Node.js · TypeScript</div></a>
+    <a class="card" href="/react-nextjs/"><h3>React и Next.js</h3><p>SEO-сайты и каталоги, кабинеты, админки, Mini Apps.</p><div class="kit">React · Next.js</div></a>
+    <a class="card" href="/vue/"><h3>Vue</h3><p>Админ-панели, дашборды, личные кабинеты.</p><div class="kit">Vue 2 · Vue 3</div></a>
+    <a class="card" href="/python/"><h3>Python</h3><p>FastAPI, Django, боты на aiogram, парсинг и автоматизация.</p><div class="kit">FastAPI · Django · aiogram</div></a>
+  </div>
+</section>
+<section>
+  <div class="head"><h2>Кейсы</h2><span class="tag">в продакшене</span></div>
+  <div class="cards">
+    <a class="card" href="/cases/podpiski/"><h3>Платформа подписок</h3><p>Telegram-бот, бот для MAX и админка, две платёжные интеграции, ~6&nbsp;000 подписчиков.</p><div class="kit">Laravel · Vue 3 · платежи</div></a>
+    <a class="card" href="/cases/monitoring/"><h3>Мониторинг 10&nbsp;000 майнеров</h3><p>Опрос раз в минуту, двухуровневое хранение метрик, алерты в Telegram через 3&nbsp;минуты.</p><div class="kit">Laravel · Redis · PostgreSQL</div></a>
+  </div>
+</section>
+<section>
+  <div class="head"><h2>Статьи</h2><span class="tag">как выбрать стек</span></div>
+  <div class="cards">
+    <a class="card" href="/blog/go-ili-python/"><h3>Go или Python</h3><p>Что выбрать для бэкенда: скорость, экосистема, найм.</p><div class="kit">сравнение</div></a>
+    <a class="card" href="/blog/react-ili-vue/"><h3>React или Vue</h3><p>Что выбрать для интерфейса проекта и кто будет его поддерживать.</p><div class="kit">сравнение</div></a>
+    <a class="card" href="/blog/php-ili-python/"><h3>PHP или Python</h3><p>Какой язык выбрать для веб-разработки, Laravel или Django.</p><div class="kit">сравнение</div></a>
+    <a class="card" href="/blog/react-native-ili-flutter/"><h3>React Native или Flutter</h3><p>Кроссплатформа, натив или PWA для мобильного приложения.</p><div class="kit">сравнение</div></a>
+  </div>
+</section>
+
+<div class="total">
+  <h2>Не нашли свою задачу?</h2>
+  <p>Напишите в Telegram, что нужно сделать. Отвечу, как это собрать и на каком стеке.</p>
+  <div class="contacts">
+    <div><span>Telegram</span><a href="https://t.me/uzver_ge" target="_blank" rel="noopener noreferrer">@uzver_ge</a></div>
+    <div><span>Почта</span><a href="mailto:myworkermailbox2022@gmail.com">myworkermailbox2022@gmail.com</a></div>
+    <div><span>Резюме</span><a href="/">опыт и стек</a></div>
+  </div>
+</div>
+
+<footer>
+  <!-- footmap -->
+  <nav class="footmap" aria-label="Карта сайта">
+    <div><b>Услуги</b><a href="/telegram-mini-app/">Telegram-боты и Mini Apps</a><a href="/boty-max/">Боты для MAX</a><a href="/oplata-v-bote/">Оплата в боте</a><a href="/platezhi/">Интеграция платёжных систем</a></div>
+    <div><b>Технологии</b><a href="/laravel/">PHP и Laravel</a><a href="/nodejs/">Node.js и TypeScript</a><a href="/react-nextjs/">React и Next.js</a><a href="/vue/">Vue</a><a href="/python/">Python</a><a href="/mobilnye-prilozheniya/">Мобильные приложения</a></div>
+    <div><b>Кейсы</b><a href="/cases/podpiski/">Платформа подписок</a><a href="/cases/monitoring/">Мониторинг майнеров</a><a href="/#cases">Все кейсы</a></div>
+    <div><b>Статьи</b><a href="/blog/go-ili-python/">Go или Python</a><a href="/blog/react-ili-vue/">React или Vue</a><a href="/blog/php-ili-python/">PHP или Python</a><a href="/blog/react-native-ili-flutter/">React Native или Flutter</a></div>
+  </nav>
+  <!-- /footmap -->
+  <div class="wrap">Комягин Николай · Fullstack-разработчик · веб, мобильные приложения, боты, платежи</div>
+</footer>
+
+</div>
+
+<script src="/assets/site.js"></script>
+</body>
+</html>

@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<title>Разработка на React и Next.js — Николай Комягин</title>
+<meta name="description" content="Сайты и веб-приложения на React и Next.js: каталоги и лендинги с серверным рендерингом для SEO, личные кабинеты, админ-панели, Telegram Mini Apps. Бэкенд и API — тоже мои.">
+<link rel="canonical" href="https://komiagin.dev/react-nextjs/">
+<meta name="robots" content="index, follow, max-image-preview:large">
+<meta name="theme-color" content="#020604">
+
+<meta property="og:type" content="website">
+<meta property="og:locale" content="ru_RU">
+<meta property="og:site_name" content="komiagin.dev">
+<meta property="og:url" content="https://komiagin.dev/react-nextjs/">
+<meta property="og:title" content="Разработка на React и Next.js">
+<meta property="og:description" content="Сайты и веб-приложения на React и Next.js: каталоги и лендинги с серверным рендерингом для SEO, личные кабинеты, админ-панели, Telegram Mini Apps. Бэкенд и API — тоже мои.">
+<meta property="og:image" content="https://komiagin.dev/og.png">
+<meta name="twitter:card" content="summary_large_image">
+
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'><rect width='64' height='64' fill='%23020604'/><text x='32' y='47' font-family='monospace' font-size='46' font-weight='bold' fill='%2300FF6A' text-anchor='middle'>K</text></svg>">
+<link rel="apple-touch-icon" href="/icon-512.png">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700;800&family=Manrope:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/assets/site.css">
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Service",
+      "name": "Разработка на React и Next.js",
+      "serviceType": "Frontend и fullstack-разработка на React и Next.js",
+      "url": "https://komiagin.dev/react-nextjs/",
+      "description": "Сайты и веб-приложения на React и Next.js: каталоги и лендинги с серверным рендерингом для SEO, личные кабинеты, админ-панели, Telegram Mini Apps. Бэкенд и API — тоже мои.",
+      "areaServed": {
+        "@type": "Country",
+        "name": "Россия"
+      },
+      "provider": {
+        "@type": "Person",
+        "name": "Николай Комягин",
+        "url": "https://komiagin.dev/"
+      }
+    },
+    {
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "Главная",
+          "item": "https://komiagin.dev/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "name": "Услуги и технологии",
+          "item": "https://komiagin.dev/uslugi/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 3,
+          "name": "React и Next.js",
+          "item": "https://komiagin.dev/react-nextjs/"
+        }
+      ]
+    },
+    {
+      "@type": "FAQPage",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "Когда нужен Next.js, а когда хватит React?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Next.js — когда страницы должны индексироваться и быстро открываться с первого захода: сайт, каталог, блог. React SPA — для кабинетов и админок за логином, где индексация не нужна."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Next.js или Nuxt?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Это похожие решения на разных библиотеках: Next.js построен на React, Nuxt — на Vue. Выбирать стоит по тому, на чём команда будет поддерживать проект. Сам делаю такие проекты на Next.js."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Бэкенд тоже делаете?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Да: API на Laravel, Node.js или Python, оплата, уведомления и админ-панель. Фронтенд и сервер проектирую вместе."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Сколько стоит сайт на Next.js?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Цена зависит от объёма, числа интеграций и того, есть ли уже бэкенд или дизайн. После короткого созвона присылаю оценку по этапам."
+          }
+        }
+      ]
+    }
+  ]
+}
+</script>
+</head>
+<body>
+
+<div id="rain" aria-hidden="true">
+  <canvas id="rainc"></canvas>
+  <div class="scrim"></div>
+  <div class="scan"></div>
+</div>
+
+<div class="wrap">
+
+<!-- nav -->
+<nav class="topnav" aria-label="Разделы сайта">
+  <a class="brand" href="/">komiagin.dev</a>
+  <a href="/uslugi/" aria-current="page">Услуги и технологии</a>
+  <a href="/#cases">Кейсы</a>
+  <a href="/blog/">Статьи</a>
+</nav>
+<!-- /nav -->
+<header class="sheet">
+  <div class="crumbs"><a href="/">Главная</a> / <a href="/uslugi/">Услуги и технологии</a> / React и Next.js</div>
+  <div class="stamp tag">Технология</div>
+  <h1>Разработка на React и Next.js</h1>
+  <div class="role">React · Next.js · TypeScript · fullstack</div>
+  <p class="pitch">Делаю интерфейсы на React и сайты на Next.js: <strong>каталоги и лендинги, которые должны находиться в поиске, личные кабинеты, админ-панели и Telegram Mini Apps.</strong></p>
+  <p class="pitch">Бэкенд и API под интерфейс тоже пишу сам — на Laravel, Node.js или Python. Фронтенд и сервер не спорят о формате данных, а правки не ходят между двумя подрядчиками.</p>
+  <div class="cta-row">
+    <a class="btn solid" href="https://t.me/uzver_ge" target="_blank" rel="noopener noreferrer">Обсудить задачу в Telegram</a>
+    <a class="btn ghost" href="#examples">Типовые решения</a>
+  </div>
+</header>
+<section>
+  <div class="head"><h2>Что делаю на React и Next.js</h2><span class="tag">пять направлений</span></div>
+  <div class="ledger">
+    <div class="item">
+      <span class="idx">01</span>
+      <div>
+        <h3>SEO-сайты и каталоги на Next.js</h3>
+        <p>Серверный рендеринг и статическая генерация страниц, метаданные, sitemap, быстрые первые загрузки. Страницы категорий и товаров открываются сразу и индексируются поисковиками.</p>
+        <div class="kit">Next.js · SSR / SSG · SEO</div>
+      </div>
+    </div>
+    <div class="item">
+      <span class="idx">02</span>
+      <div>
+        <h3>Личные кабинеты и SPA</h3>
+        <p>Интерфейсы за логином: заказы, оплаты, документы, настройки. Состояние, формы и таблицы, которые не тормозят на больших списках.</p>
+        <div class="kit">React · TypeScript</div>
+      </div>
+    </div>
+    <div class="item">
+      <span class="idx">03</span>
+      <div>
+        <h3>Админ-панели</h3>
+        <p>Рабочие места для команды: поиск, фильтры, роли и права, выгрузки.</p>
+        <div class="kit">React · роли и права</div>
+      </div>
+    </div>
+    <div class="item">
+      <span class="idx">04</span>
+      <div>
+        <h3>Telegram Mini Apps</h3>
+        <p>Веб-приложение на React, которое открывается внутри Telegram: вход без регистрации через initData, цвета темы Telegram, работа и в обычном браузере.</p>
+        <div class="kit">React · initData</div>
+        <a class="more" href="/telegram-mini-app/">Telegram-боты и Mini Apps →</a>
+      </div>
+    </div>
+    <div class="item">
+      <span class="idx">05</span>
+      <div>
+        <h3>Интеграция с бэкендом</h3>
+        <p>Интерфейс и API проектирую вместе: Laravel, Node.js или Python на сервере, оплата и уведомления — в той же системе.</p>
+        <div class="kit">Laravel · Node.js · Python</div>
+      </div>
+    </div>
+  </div>
+</section>
+<section>
+  <div class="head"><h2>Next.js или React SPA</h2><span class="tag">что выбрать</span></div>
+  <div class="tbl">
+    <table>
+      <thead><tr><th>Формат</th><th>Когда подходит</th><th>Зачем</th></tr></thead>
+      <tbody>
+        <tr><td>Next.js</td><td>Сайт, каталог, лендинг, блог — страницы должны находиться в поиске</td><td>Серверный рендеринг и статическая генерация: поисковик и пользователь сразу получают готовый HTML</td></tr>
+        <tr><td>React SPA</td><td>Личный кабинет, админка, внутренний сервис за логином</td><td>Индексация не нужна, важна скорость работы интерфейса после входа</td></tr>
+        <tr><td>Next.js + API</td><td>Продукт с публичной частью и кабинетом</td><td>Публичные страницы рендерятся на сервере, кабинет работает как приложение</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <p class="tbl-note">Подробнее о выборе между React и Vue — в статье «React или Vue».</p>
+  <a class="more" href="/blog/react-ili-vue/">Статья: React или Vue →</a>
+</section>
+<section id="examples">
+  <div class="head"><h2>Типовые решения</h2><span class="tag">как это может выглядеть</span></div>
+  <article class="example">
+    <div class="ex-top"><span class="ex-label">Типовое решение</span><h3>Каталог товаров на Next.js с онлайн-оплатой</h3></div>
+    <div class="ex-note">Пример задачи и архитектуры, а не проект из портфолио</div>
+    <dl>
+      <div class="crow"><dt>Задача</dt><dd>Магазину нужен каталог на несколько тысяч товаров, который находится в поиске по названиям и категориям и принимает оплату.</dd></div>
+      <div class="crow"><dt>Как собрать</dt><dd>Страницы категорий и товаров генерируются заранее и обновляются по расписанию, фильтры работают на клиенте. Оплата через платёжного провайдера, чеки по 54-ФЗ, заказы и остатки — в API на Laravel или Node.js.</dd></div>
+      <div class="crow"><dt>Что получит заказчик</dt><dd>Быстрые страницы, которые индексируются, и заказ, который сам доходит до склада и бухгалтерии.</dd></div>
+    </dl>
+    <div class="kit">Next.js · React · TypeScript · Laravel или Node.js · PostgreSQL</div>
+  </article>
+  <article class="example">
+    <div class="ex-top"><span class="ex-label">Типовое решение</span><h3>Личный кабинет клиента сервисной компании</h3></div>
+    <div class="ex-note">Пример задачи и архитектуры, а не проект из портфолио</div>
+    <dl>
+      <div class="crow"><dt>Задача</dt><dd>Клиенты звонят менеджеру, чтобы узнать статус заявки и получить документы.</dd></div>
+      <div class="crow"><dt>Как собрать</dt><dd>SPA на React: заявки и их статусы, документы, счета и онлайн-оплата. Уведомления о смене статуса в Telegram или на почту. API и роли на сервере.</dd></div>
+      <div class="crow"><dt>Что получит заказчик</dt><dd>Меньше звонков и писем, документы и оплата — в одном месте.</dd></div>
+    </dl>
+    <div class="kit">React · TypeScript · REST API · Telegram Bot API</div>
+  </article>
+</section>
+<section>
+  <div class="head"><h2>Стек</h2><span class="tag">чем работаю</span></div>
+  <div class="stack">
+    <div class="srow"><span class="k">Frontend</span><div class="chips"><span class="chip">React</span><span class="chip">Next.js</span><span class="chip">TypeScript</span><span class="chip">JavaScript</span></div></div>
+    <div class="srow"><span class="k">Вёрстка</span><div class="chips"><span class="chip">HTML5</span><span class="chip">CSS3</span><span class="chip">адаптивность</span></div></div>
+    <div class="srow"><span class="k">Backend</span><div class="chips"><span class="chip">Node.js</span><span class="chip">Laravel</span><span class="chip">Python</span></div></div>
+    <div class="srow"><span class="k">Тесты</span><div class="chips"><span class="chip">Jest</span><span class="chip">Vitest</span></div></div>
+  </div>
+</section>
+<section>
+  <div class="head"><h2>Сроки и стоимость</h2><span class="tag">по задаче</span></div>
+  <p class="sub">Цена зависит от объёма, числа интеграций и того, есть ли уже бэкенд или дизайн. После короткого созвона присылаю оценку по этапам.</p>
+</section>
+<section>
+  <div class="head"><h2>Частые вопросы</h2><span class="tag">про React и Next.js</span></div>
+  <div class="faq">
+    <details><summary>Когда нужен Next.js, а когда хватит React?</summary>
+      <p>Next.js — когда страницы должны индексироваться и быстро открываться с первого захода: сайт, каталог, блог. React SPA — для кабинетов и админок за логином, где индексация не нужна.</p></details>
+    <details><summary>Next.js или Nuxt?</summary>
+      <p>Это похожие решения на разных библиотеках: Next.js построен на React, Nuxt — на Vue. Выбирать стоит по тому, на чём команда будет поддерживать проект. Сам делаю такие проекты на Next.js.</p></details>
+    <details><summary>Бэкенд тоже делаете?</summary>
+      <p>Да: API на Laravel, Node.js или Python, оплата, уведомления и админ-панель. Фронтенд и сервер проектирую вместе.</p></details>
+    <details><summary>Сколько стоит сайт на Next.js?</summary>
+      <p>Цена зависит от объёма, числа интеграций и того, есть ли уже бэкенд или дизайн. После короткого созвона присылаю оценку по этапам.</p></details>
+  </div>
+</section>
+
+<div class="total">
+  <h2>Обсудим проект на React или Next.js</h2>
+  <p>Опишите в Telegram, что нужно: сайт для поиска, кабинет или админка. Отвечу, какой формат подойдёт и что войдёт в первую версию.</p>
+  <div class="contacts">
+    <div><span>Telegram</span><a href="https://t.me/uzver_ge" target="_blank" rel="noopener noreferrer">@uzver_ge</a></div>
+    <div><span>Почта</span><a href="mailto:myworkermailbox2022@gmail.com">myworkermailbox2022@gmail.com</a></div>
+    <div><span>Резюме</span><a href="/">опыт и стек</a></div>
+  </div>
+</div>
+
+<footer>
+  <!-- footmap -->
+  <nav class="footmap" aria-label="Карта сайта">
+    <div><b>Услуги</b><a href="/telegram-mini-app/">Telegram-боты и Mini Apps</a><a href="/boty-max/">Боты для MAX</a><a href="/oplata-v-bote/">Оплата в боте</a><a href="/platezhi/">Интеграция платёжных систем</a></div>
+    <div><b>Технологии</b><a href="/laravel/">PHP и Laravel</a><a href="/nodejs/">Node.js и TypeScript</a><a href="/react-nextjs/" aria-current="page">React и Next.js</a><a href="/vue/">Vue</a><a href="/python/">Python</a><a href="/mobilnye-prilozheniya/">Мобильные приложения</a></div>
+    <div><b>Кейсы</b><a href="/cases/podpiski/">Платформа подписок</a><a href="/cases/monitoring/">Мониторинг майнеров</a><a href="/#cases">Все кейсы</a></div>
+    <div><b>Статьи</b><a href="/blog/go-ili-python/">Go или Python</a><a href="/blog/react-ili-vue/">React или Vue</a><a href="/blog/php-ili-python/">PHP или Python</a><a href="/blog/react-native-ili-flutter/">React Native или Flutter</a></div>
+  </nav>
+  <!-- /footmap -->
+  <div class="wrap">Комягин Николай · Fullstack-разработчик · веб, мобильные приложения, боты, платежи</div>
+</footer>
+
+</div>
+
+<script src="/assets/site.js"></script>
+</body>
+</html>

@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<title>Разработка на Vue.js: админ-панели и кабинеты — Николай Комягин</title>
+<meta name="description" content="Интерфейсы на Vue 2 и Vue 3: админ-панели, личные кабинеты, дашборды с метриками и Telegram Mini Apps. Админки на Vue 3 работают в продакшене в двух проектах из кейсов.">
+<link rel="canonical" href="https://komiagin.dev/vue/">
+<meta name="robots" content="index, follow, max-image-preview:large">
+<meta name="theme-color" content="#020604">
+
+<meta property="og:type" content="website">
+<meta property="og:locale" content="ru_RU">
+<meta property="og:site_name" content="komiagin.dev">
+<meta property="og:url" content="https://komiagin.dev/vue/">
+<meta property="og:title" content="Разработка на Vue">
+<meta property="og:description" content="Интерфейсы на Vue 2 и Vue 3: админ-панели, личные кабинеты, дашборды с метриками и Telegram Mini Apps. Админки на Vue 3 работают в продакшене в двух проектах из кейсов.">
+<meta property="og:image" content="https://komiagin.dev/og.png">
+<meta name="twitter:card" content="summary_large_image">
+
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'><rect width='64' height='64' fill='%23020604'/><text x='32' y='47' font-family='monospace' font-size='46' font-weight='bold' fill='%2300FF6A' text-anchor='middle'>K</text></svg>">
+<link rel="apple-touch-icon" href="/icon-512.png">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700;800&family=Manrope:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/assets/site.css">
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Service",
+      "name": "Разработка на Vue",
+      "serviceType": "Frontend-разработка на Vue.js",
+      "url": "https://komiagin.dev/vue/",
+      "description": "Интерфейсы на Vue 2 и Vue 3: админ-панели, личные кабинеты, дашборды с метриками и Telegram Mini Apps. Админки на Vue 3 работают в продакшене в двух проектах из кейсов.",
+      "areaServed": {
+        "@type": "Country",
+        "name": "Россия"
+      },
+      "provider": {
+        "@type": "Person",
+        "name": "Николай Комягин",
+        "url": "https://komiagin.dev/"
+      }
+    },
+    {
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "Главная",
+          "item": "https://komiagin.dev/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "name": "Услуги и технологии",
+          "item": "https://komiagin.dev/uslugi/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 3,
+          "name": "Vue",
+          "item": "https://komiagin.dev/vue/"
+        }
+      ]
+    },
+    {
+      "@type": "FAQPage",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "Vue 2 или Vue 3 для нового проекта?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Vue 3. Поддержка Vue 2 официально закончилась в конце 2023 года, новые библиотеки ориентируются на Vue 3."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Vue или React?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Обе библиотеки подходят для кабинетов и админок, работаю с обеими. Выбор чаще зависит от команды и существующего кода, чем от возможностей. Подробно — в статье «React или Vue»."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Бэкенд под интерфейс тоже сделаете?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Да: API на Laravel или Node.js, роли и права, оплата и уведомления."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Сколько стоит админ-панель на Vue?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Цена зависит от объёма, числа интеграций и того, есть ли уже бэкенд или дизайн. После короткого созвона присылаю оценку по этапам."
+          }
+        }
+      ]
+    }
+  ]
+}
+</script>
+</head>
+<body>
+
+<div id="rain" aria-hidden="true">
+  <canvas id="rainc"></canvas>
+  <div class="scrim"></div>
+  <div class="scan"></div>
+</div>
+
+<div class="wrap">
+
+<!-- nav -->
+<nav class="topnav" aria-label="Разделы сайта">
+  <a class="brand" href="/">komiagin.dev</a>
+  <a href="/uslugi/" aria-current="page">Услуги и технологии</a>
+  <a href="/#cases">Кейсы</a>
+  <a href="/blog/">Статьи</a>
+</nav>
+<!-- /nav -->
+<header class="sheet">
+  <div class="crumbs"><a href="/">Главная</a> / <a href="/uslugi/">Услуги и технологии</a> / Vue</div>
+  <div class="stamp tag">Технология</div>
+  <h1>Разработка на Vue</h1>
+  <div class="role">Vue 2 / Vue 3 · админ-панели · кабинеты · дашборды</div>
+  <p class="pitch">Делаю интерфейсы на Vue: <strong>админ-панели, личные кабинеты, дашборды с метриками и Telegram Mini Apps.</strong> Работаю и с Vue 2, и с Vue 3: поддерживаю существующие проекты и пишу новые.</p>
+  <p class="pitch">Vue 3 стоит в двух проектах из кейсов: интерфейс мониторинга парка до 10&nbsp;000 устройств и админ-панель платформы подписок.</p>
+  <div class="cta-row">
+    <a class="btn solid" href="https://t.me/uzver_ge" target="_blank" rel="noopener noreferrer">Обсудить задачу в Telegram</a>
+    <a class="btn ghost" href="/cases/monitoring/">Кейс: интерфейс мониторинга</a>
+  </div>
+</header>
+<section>
+  <div class="head"><h2>Что делаю на Vue</h2><span class="tag">пять направлений</span></div>
+  <div class="ledger">
+    <div class="item">
+      <span class="idx">01</span>
+      <div>
+        <h3>Админ-панели</h3>
+        <p>Пользователи, заказы, подписки и платежи в одном месте. Поиск, фильтры, роли и права, выгрузки.</p>
+        <div class="kit">Vue 3 · роли и права</div>
+      </div>
+    </div>
+    <div class="item">
+      <span class="idx">02</span>
+      <div>
+        <h3>Дашборды и мониторинг</h3>
+        <p>Метрики и история по каждому объекту, пороги и статусы, которые видно с одного взгляда.</p>
+        <div class="kit">Vue 3 · графики · метрики</div>
+        <a class="more" href="/cases/monitoring/">Кейс: мониторинг 10&nbsp;000 устройств →</a>
+      </div>
+    </div>
+    <div class="item">
+      <span class="idx">03</span>
+      <div>
+        <h3>Личные кабинеты</h3>
+        <p>Кабинет клиента: заявки, документы, оплаты, уведомления.</p>
+        <div class="kit">Vue · REST API</div>
+      </div>
+    </div>
+    <div class="item">
+      <span class="idx">04</span>
+      <div>
+        <h3>Telegram Mini Apps</h3>
+        <p>Веб-приложение на Vue внутри Telegram: вход через initData, цвета темы Telegram, работа и в браузере.</p>
+        <div class="kit">Vue · initData</div>
+        <a class="more" href="/telegram-mini-app/">Telegram-боты и Mini Apps →</a>
+      </div>
+    </div>
+    <div class="item">
+      <span class="idx">05</span>
+      <div>
+        <h3>Поддержка проектов на Vue 2</h3>
+        <p>Доработки и исправления в существующих проектах, разбор чужого кода, план переезда на Vue 3, когда он оправдан.</p>
+        <div class="kit">Vue 2 · Vue 3</div>
+      </div>
+    </div>
+  </div>
+</section>
+<section>
+  <div class="head"><h2>Реальные проекты на Vue</h2><span class="tag">в продакшене</span></div>
+  <div class="cases">
+    <article class="case">
+      <div class="case-top"><span class="idx">01</span><h3>Мониторинг парка майнингового оборудования</h3></div>
+      <div class="case-role">Разработчик · полный цикл · заказчик под NDA</div>
+      <p class="sub">Телеметрия по API нескольких сервисов и пулов — до 10&nbsp;000 устройств с опросом раз в минуту. Оперативные метрики в Redis, суточные агрегаты в PostgreSQL, алерты в Telegram и на почту. Простой машины виден через 3&nbsp;минуты вместо недель.</p>
+      <div class="figs">
+        <div class="fig"><b>10&nbsp;000</b><span>устройств</span></div>
+        <div class="fig"><b>1&nbsp;мин</b><span>интервал опроса</span></div>
+        <div class="fig"><b>3&nbsp;мин</b><span>до алерта</span></div>
+      </div>
+      <div class="kit">PHP · Laravel · Redis · PostgreSQL · Vue 3 · Telegram Bot API</div>
+      <a class="more" href="/cases/monitoring/">Подробный разбор кейса →</a>
+    </article>
+    <article class="case">
+      <div class="case-top"><span class="idx">02</span><h3>Платформа подписок для инвестиционного советника</h3></div>
+      <div class="case-role">Единственный разработчик · Telegram-бот, бот для MAX и админ-панель</div>
+      <p class="sub">Продажа и продление клубных подписок без ручных операций: две платёжные интеграции с рекуррентными списаниями, идемпотентная обработка вебхуков, чеки по 54-ФЗ. Админ-панель на Vue 3.</p>
+      <div class="figs">
+        <div class="fig"><b>~6&nbsp;000</b><span>подписчиков</span></div>
+        <div class="fig"><b>~3&nbsp;млн ₽</b><span>оборот в месяц</span></div>
+      </div>
+      <div class="kit">PHP · Laravel · PostgreSQL · Vue 3 · Telegram Bot API · MAX API</div>
+      <a class="more" href="/cases/podpiski/">Подробный разбор кейса →</a>
+    </article>
+  </div>
+</section>
+<section>
+  <div class="head"><h2>Типовое решение</h2><span class="tag">как это может выглядеть</span></div>
+  <article class="example">
+    <div class="ex-top"><span class="ex-label">Типовое решение</span><h3>Лёгкая CRM для отдела продаж</h3></div>
+    <div class="ex-note">Пример задачи и архитектуры, а не проект из портфолио</div>
+    <dl>
+      <div class="crow"><dt>Задача</dt><dd>Заявки приходят с сайта, из мессенджеров и по телефону, менеджеры ведут их в таблицах и теряют.</dd></div>
+      <div class="crow"><dt>Как собрать</dt><dd>Интерфейс на Vue 3: воронка заявок, карточка клиента, задачи и напоминания. Заявки с сайта и из Telegram-бота падают автоматически, на сервере — API на Laravel с ролями для менеджеров и руководителя.</dd></div>
+      <div class="crow"><dt>Что получит заказчик</dt><dd>Все заявки в одном месте, у каждой есть ответственный и следующий шаг, руководитель видит воронку.</dd></div>
+    </dl>
+    <div class="kit">Vue 3 · TypeScript · Laravel · PostgreSQL · Telegram Bot API</div>
+  </article>
+</section>
+<section>
+  <div class="head"><h2>Стек</h2><span class="tag">чем работаю</span></div>
+  <div class="stack">
+    <div class="srow"><span class="k">Frontend</span><div class="chips"><span class="chip">Vue 2</span><span class="chip">Vue 3</span><span class="chip">JavaScript</span><span class="chip">TypeScript</span></div></div>
+    <div class="srow"><span class="k">Вёрстка</span><div class="chips"><span class="chip">HTML5</span><span class="chip">CSS3</span></div></div>
+    <div class="srow"><span class="k">Backend</span><div class="chips"><span class="chip">Laravel</span><span class="chip">Node.js</span></div></div>
+  </div>
+</section>
+<section>
+  <div class="head"><h2>Сроки и стоимость</h2><span class="tag">по задаче</span></div>
+  <p class="sub">Цена зависит от объёма, числа интеграций и того, есть ли уже бэкенд или дизайн. После короткого созвона присылаю оценку по этапам.</p>
+</section>
+<section>
+  <div class="head"><h2>Частые вопросы</h2><span class="tag">про Vue</span></div>
+  <div class="faq">
+    <details><summary>Vue 2 или Vue 3 для нового проекта?</summary>
+      <p>Vue 3. Поддержка Vue 2 официально закончилась в конце 2023 года, новые библиотеки ориентируются на Vue 3.</p></details>
+    <details><summary>Vue или React?</summary>
+      <p>Обе библиотеки подходят для кабинетов и админок, работаю с обеими. Выбор чаще зависит от команды и существующего кода, чем от возможностей. Подробно — в статье «React или Vue».</p></details>
+    <details><summary>Бэкенд под интерфейс тоже сделаете?</summary>
+      <p>Да: API на Laravel или Node.js, роли и права, оплата и уведомления.</p></details>
+    <details><summary>Сколько стоит админ-панель на Vue?</summary>
+      <p>Цена зависит от объёма, числа интеграций и того, есть ли уже бэкенд или дизайн. После короткого созвона присылаю оценку по этапам.</p></details>
+  </div>
+</section>
+
+<div class="total">
+  <h2>Обсудим интерфейс на Vue</h2>
+  <p>Опишите в Telegram, для кого интерфейс и какие данные в нём будут. Отвечу, что войдёт в первую версию.</p>
+  <div class="contacts">
+    <div><span>Telegram</span><a href="https://t.me/uzver_ge" target="_blank" rel="noopener noreferrer">@uzver_ge</a></div>
+    <div><span>Почта</span><a href="mailto:myworkermailbox2022@gmail.com">myworkermailbox2022@gmail.com</a></div>
+    <div><span>Резюме</span><a href="/">опыт и стек</a></div>
+  </div>
+</div>
+
+<footer>
+  <!-- footmap -->
+  <nav class="footmap" aria-label="Карта сайта">
+    <div><b>Услуги</b><a href="/telegram-mini-app/">Telegram-боты и Mini Apps</a><a href="/boty-max/">Боты для MAX</a><a href="/oplata-v-bote/">Оплата в боте</a><a href="/platezhi/">Интеграция платёжных систем</a></div>
+    <div><b>Технологии</b><a href="/laravel/">PHP и Laravel</a><a href="/nodejs/">Node.js и TypeScript</a><a href="/react-nextjs/">React и Next.js</a><a href="/vue/" aria-current="page">Vue</a><a href="/python/">Python</a><a href="/mobilnye-prilozheniya/">Мобильные приложения</a></div>
+    <div><b>Кейсы</b><a href="/cases/podpiski/">Платформа подписок</a><a href="/cases/monitoring/">Мониторинг майнеров</a><a href="/#cases">Все кейсы</a></div>
+    <div><b>Статьи</b><a href="/blog/go-ili-python/">Go или Python</a><a href="/blog/react-ili-vue/">React или Vue</a><a href="/blog/php-ili-python/">PHP или Python</a><a href="/blog/react-native-ili-flutter/">React Native или Flutter</a></div>
+  </nav>
+  <!-- /footmap -->
+  <div class="wrap">Комягин Николай · Fullstack-разработчик · веб, мобильные приложения, боты, платежи</div>
+</footer>
+
+</div>
+
+<script src="/assets/site.js"></script>
+</body>
+</html>

@@ -78,12 +78,14 @@
 
 <div class="wrap">
 
+<!-- nav -->
 <nav class="topnav" aria-label="Разделы сайта">
   <a class="brand" href="/">komiagin.dev</a>
-  <a href="/boty-max/">Боты для MAX</a>
-  <a href="/oplata-v-bote/" aria-current="page">Оплата в боте</a>
-  <a href="/cases/podpiski/">Кейс: подписки</a>
+  <a href="/uslugi/" aria-current="page">Услуги и технологии</a>
+  <a href="/#cases">Кейсы</a>
+  <a href="/blog/">Статьи</a>
 </nav>
+<!-- /nav -->
 
 <header class="sheet">
   <div class="crumbs"><a href="/">Главная</a> / Оплата в боте</div>
@@ -91,7 +93,7 @@
   <h1>Приём оплаты и подписки в боте</h1>
   <div class="role">Telegram и MAX · рекуррентные списания · чеки по 54-ФЗ</div>
   <p class="pitch">Подключаю оплату к ботам Telegram и MAX: <strong>подписки с автопродлением, платный доступ к каналу или контенту, разовые платежи.</strong> Деньги, чеки и доступ сходятся без ручных операций, а каждую операцию можно объяснить постфактум.</p>
-  <p class="pitch">Опыт из продакшена: платформа подписок на ~6 000 подписчиков с оборотом около 3 млн ₽ в месяц. Заказчик больше не участвует в приёме платежей.</p>
+  <p class="pitch">Опыт из продакшена: платформа подписок на ~6&nbsp;000 подписчиков с оборотом около 3&nbsp;млн ₽ в месяц. Заказчик больше не участвует в приёме платежей.</p>
   <div class="cta-row">
     <a class="btn solid" href="https://t.me/uzver_ge" target="_blank" rel="noopener noreferrer">Обсудить задачу в Telegram</a>
     <a class="btn ghost" href="/cases/podpiski/">Как это устроено в кейсе</a>
@@ -168,6 +170,20 @@
   <div class="flow" aria-label="Как проходит оплата">
     <span>бот выдаёт ссылку</span><b>→</b><span>покупатель платит</span><b>→</b><span>провайдер шлёт вебхук</span><b>→</b><span>сервер проверяет и пишет платёж</span><b>→</b><span>бот открывает доступ</span>
   </div>
+  <a class="more" href="/platezhi/">Приём платежей на сайте и в сервисе →</a>
+</section>
+<section>
+  <div class="head"><h2>Типовое решение</h2><span class="tag">как это может выглядеть</span></div>
+  <article class="example">
+    <div class="ex-top"><span class="ex-label">Типовое решение</span><h3>Бот продажи онлайн-курса в Telegram и MAX</h3></div>
+    <div class="ex-note">Пример задачи и архитектуры, а не проект из портфолио</div>
+    <dl>
+      <div class="crow"><dt>Задача</dt><dd>Автор курса продаёт доступ к закрытому каналу с уроками и вручную проверяет переводы.</dd></div>
+      <div class="crow"><dt>Как собрать</dt><dd>В Telegram доступ к курсу продаётся через встроенные платежи за Stars — так требуют правила Telegram для цифровых товаров. В MAX — ссылкой платёжного провайдера с подтверждением вебхуком. После оплаты бот выдаёт приглашение в канал, по окончании доступа снимает его. Все покупки — в одной админке.</dd></div>
+      <div class="crow"><dt>Что получит заказчик</dt><dd>Продажи идут без ручной проверки, а доступ выдаётся и снимается сам в обоих мессенджерах.</dd></div>
+    </dl>
+    <div class="kit">Telegram Bot API · Stars · MAX API · платёжный провайдер</div>
+  </article>
 </section>
 
 <section>
@@ -216,8 +232,15 @@
 </div>
 
 <footer>
-  <div class="footlinks topnav" style="padding:0 0 14px"><a href="/">Резюме</a><a href="/boty-max/">Боты для MAX</a><a href="/cases/podpiski/">Кейс: платформа подписок</a></div>
-  <div class="wrap" style="padding:0">Комягин Николай · Fullstack-разработчик · боты Telegram и MAX, платежи, интеграции</div>
+  <!-- footmap -->
+  <nav class="footmap" aria-label="Карта сайта">
+    <div><b>Услуги</b><a href="/telegram-mini-app/">Telegram-боты и Mini Apps</a><a href="/boty-max/">Боты для MAX</a><a href="/oplata-v-bote/" aria-current="page">Оплата в боте</a><a href="/platezhi/">Интеграция платёжных систем</a></div>
+    <div><b>Технологии</b><a href="/laravel/">PHP и Laravel</a><a href="/nodejs/">Node.js и TypeScript</a><a href="/react-nextjs/">React и Next.js</a><a href="/vue/">Vue</a><a href="/python/">Python</a><a href="/mobilnye-prilozheniya/">Мобильные приложения</a></div>
+    <div><b>Кейсы</b><a href="/cases/podpiski/">Платформа подписок</a><a href="/cases/monitoring/">Мониторинг майнеров</a><a href="/#cases">Все кейсы</a></div>
+    <div><b>Статьи</b><a href="/blog/go-ili-python/">Go или Python</a><a href="/blog/react-ili-vue/">React или Vue</a><a href="/blog/php-ili-python/">PHP или Python</a><a href="/blog/react-native-ili-flutter/">React Native или Flutter</a></div>
+  </nav>
+  <!-- /footmap -->
+  <div class="wrap">Комягин Николай · Fullstack-разработчик · боты Telegram и MAX, платежи, интеграции</div>
 </footer>
 
 </div>

@@ -198,9 +198,12 @@ footer{padding:34px 0 56px;font-family:var(--mono);font-size:11.5px;color:var(--
 .crumbs{font-family:var(--mono);font-size:11.5px;color:var(--muted);margin-bottom:22px}
 .crumbs a{color:var(--muted);text-decoration:none;border-bottom:1px solid var(--line)}
 .crumbs a:hover{color:var(--accent);border-color:var(--accent)}
-.more{display:inline-block;margin-top:10px;font-family:var(--mono);font-size:12.5px;text-decoration:none;border-bottom:1px solid var(--line)}
+.footlinks{padding:0 0 14px}
+footer .wrap{padding:0}
+.more{display:inline-block;margin:10px 20px 0 0;font-family:var(--mono);font-size:12.5px;text-decoration:none;border-bottom:1px solid var(--line)}
 .more:hover{border-color:var(--accent)}
 .sub{font-size:17px;color:var(--ink-soft);max-width:62ch}
+.case .sub{font-size:15.5px}
 
 .faq{border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
 .faq details{border-bottom:1px solid var(--line);background:var(--surface);padding:0 14px;
@@ -226,7 +229,42 @@ footer{padding:34px 0 56px;font-family:var(--mono);font-size:11.5px;color:var(--
 .flow{display:flex;flex-wrap:wrap;align-items:center;gap:8px;font-family:var(--mono);font-size:12.5px;margin-top:14px}
 .flow span{border:1px solid var(--line);background:rgba(0,255,106,.07);padding:6px 10px;border-radius:2px;color:var(--ink-soft)}
 .flow b{color:var(--accent);font-weight:700}
+/* на телефоне схема идёт столбиком, стрелки смотрят вниз */
+@media(max-width:560px){
+  .flow{flex-direction:column;align-items:flex-start;gap:4px}
+  .flow b{transform:rotate(90deg);margin-left:12px}
+}
 .related{display:flex;flex-wrap:wrap;gap:12px;margin-top:4px}
+code{font-family:var(--mono);font-size:.88em;background:rgba(0,255,106,.08);border:1px solid var(--line);border-radius:2px;padding:1px 5px;color:var(--ink);overflow-wrap:anywhere}
+
+/* «Типовое решение» — пример задачи и архитектуры, явно помеченный как пример, а не проект из портфолио */
+.example{border:1px dashed var(--line);background:var(--surface);padding:22px 16px;margin-top:14px;
+  backdrop-filter:blur(4px);-webkit-backdrop-filter:blur(4px)}
+.example:first-child{margin-top:0}
+.example .ex-top{display:flex;align-items:baseline;gap:12px;flex-wrap:wrap}
+.example .ex-label{font-family:var(--mono);font-size:10.5px;letter-spacing:.12em;text-transform:uppercase;
+  color:var(--accent);border:1px solid var(--accent);border-radius:2px;padding:2px 7px}
+.example h3{font-size:17px}
+.example .ex-note{font-family:var(--mono);font-size:11.5px;color:var(--muted);margin:8px 0 12px}
+.example .kit{margin-top:14px;font-family:var(--mono);font-size:11.5px;color:var(--muted)}
+
+/* карта сайта в подвале */
+.footmap{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:18px 24px;padding:0 0 26px;margin-bottom:22px;border-bottom:1px solid var(--line)}
+.footmap div{display:flex;flex-direction:column;gap:7px;min-width:0}
+.footmap b{font-weight:700;color:var(--ink-soft);text-transform:uppercase;letter-spacing:.1em;font-size:10.5px;margin-bottom:2px}
+.footmap a{color:var(--muted);text-decoration:none;font-size:12px;letter-spacing:.02em}
+.footmap a:hover,.footmap a[aria-current="page"]{color:var(--accent)}
+@media(max-width:720px){.footmap{grid-template-columns:repeat(2,minmax(0,1fr))}}
+
+/* сетка карточек на хабах */
+.cards{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}
+.card{display:block;text-decoration:none;border:1px solid var(--line);background:var(--surface);padding:18px 16px;
+  backdrop-filter:blur(4px);-webkit-backdrop-filter:blur(4px)}
+.card:hover{border-color:var(--accent)}
+.card h3{color:var(--ink)}
+.card p{margin:6px 0 0;font-size:14.5px;color:var(--ink-soft)}
+.card .kit{margin-top:9px;font-family:var(--mono);font-size:11.5px;color:var(--muted)}
+@media(max-width:640px){.cards{grid-template-columns:1fr}}
 
 @media(prefers-reduced-motion:reduce){
   *{animation:none!important;transition:none!important}
@@ -247,7 +285,7 @@ footer{padding:34px 0 56px;font-family:var(--mono);font-size:11.5px;color:var(--
     display:block;font-family:var(--mono);font-size:8.5pt;letter-spacing:.04em;
     color:#5c6b62;border-bottom:1px solid #cfd6d1;padding-bottom:5pt;margin-bottom:11pt;
   }
-  .cta-row,.shot-row,.job .anchor,.topnav,.crumbs,.more,.footlinks{display:none!important}
+  .cta-row,.shot-row,.job .anchor,.topnav,.crumbs,.more,.footlinks,.footmap{display:none!important}
 
   h1{font-size:22pt;text-shadow:none!important;color:#15211a!important;margin-bottom:4pt}
   h2{font-size:13pt;color:#15211a!important}

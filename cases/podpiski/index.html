@@ -62,12 +62,14 @@
 
 <div class="wrap">
 
+<!-- nav -->
 <nav class="topnav" aria-label="Разделы сайта">
   <a class="brand" href="/">komiagin.dev</a>
-  <a href="/boty-max/">Боты для MAX</a>
-  <a href="/oplata-v-bote/">Оплата в боте</a>
-  <a href="/cases/podpiski/" aria-current="page">Кейс: подписки</a>
+  <a href="/uslugi/">Услуги и технологии</a>
+  <a href="/#cases" aria-current="page">Кейсы</a>
+  <a href="/blog/">Статьи</a>
 </nav>
+<!-- /nav -->
 
 <header class="sheet">
   <div class="crumbs"><a href="/">Главная</a> / <a href="/#cases">Кейсы</a> / Платформа подписок</div>
@@ -78,11 +80,11 @@
   <dl class="meta">
     <div class="mrow"><dt>Проект</dt><dd><a href="https://antifragile-trading.ru/" target="_blank" rel="noopener noreferrer">antifragile-trading.ru</a></dd><dd class="num">в продакшене</dd></div>
     <div class="mrow"><dt>Роль</dt><dd>Единственный разработчик, полный цикл: от модели данных до деплоя</dd><dd class="num">1 разработчик</dd></div>
-    <div class="mrow"><dt>Срок</dt><dd>От старта до продакшена</dd><dd class="num">1,5–2 мес.</dd></div>
+    <div class="mrow"><dt>Срок</dt><dd>От старта до продакшена</dd><dd class="num">1,5–2&nbsp;мес.</dd></div>
   </dl>
   <div class="figs">
-    <div class="fig"><b>~6 000</b><span>подписчиков</span></div>
-    <div class="fig"><b>~3 млн ₽</b><span>оборот в месяц</span></div>
+    <div class="fig"><b>~6&nbsp;000</b><span>подписчиков</span></div>
+    <div class="fig"><b>~3&nbsp;млн ₽</b><span>оборот в месяц</span></div>
     <div class="fig"><b>2</b><span>платёжных провайдера</span></div>
     <div class="fig"><b>2</b><span>мессенджера: Telegram и MAX</span></div>
   </div>
@@ -102,6 +104,7 @@
         <h3>Telegram-бот</h3>
         <p>Продаёт и продлевает подписку, принимает оплату через провайдера, доставляет аналитику подписчикам.</p>
         <div class="kit">Telegram Bot API</div>
+        <a class="more" href="/telegram-mini-app/">Разработка Telegram-ботов →</a>
       </div>
     </div>
     <div class="item">
@@ -164,6 +167,7 @@
     <span>бот выдаёт ссылку</span><b>→</b><span>подписчик платит</span><b>→</b><span>провайдер шлёт вебхук</span><b>→</b><span>бэкенд пишет платёж и чек</span><b>→</b><span>доступ в Telegram или MAX</span>
   </div>
   <a class="more" href="/oplata-v-bote/">Подключение оплаты и подписок в боте →</a>
+  <a class="more" href="/platezhi/">Интеграция платёжных систем →</a>
 </section>
 
 <section>
@@ -192,8 +196,15 @@
 </div>
 
 <footer>
-  <div class="footlinks topnav" style="padding:0 0 14px"><a href="/">Резюме</a><a href="/boty-max/">Боты для MAX</a><a href="/oplata-v-bote/">Оплата в боте</a></div>
-  <div class="wrap" style="padding:0">Комягин Николай · Fullstack-разработчик · боты Telegram и MAX, платежи, интеграции</div>
+  <!-- footmap -->
+  <nav class="footmap" aria-label="Карта сайта">
+    <div><b>Услуги</b><a href="/telegram-mini-app/">Telegram-боты и Mini Apps</a><a href="/boty-max/">Боты для MAX</a><a href="/oplata-v-bote/">Оплата в боте</a><a href="/platezhi/">Интеграция платёжных систем</a></div>
+    <div><b>Технологии</b><a href="/laravel/">PHP и Laravel</a><a href="/nodejs/">Node.js и TypeScript</a><a href="/react-nextjs/">React и Next.js</a><a href="/vue/">Vue</a><a href="/python/">Python</a><a href="/mobilnye-prilozheniya/">Мобильные приложения</a></div>
+    <div><b>Кейсы</b><a href="/cases/podpiski/" aria-current="page">Платформа подписок</a><a href="/cases/monitoring/">Мониторинг майнеров</a><a href="/#cases">Все кейсы</a></div>
+    <div><b>Статьи</b><a href="/blog/go-ili-python/">Go или Python</a><a href="/blog/react-ili-vue/">React или Vue</a><a href="/blog/php-ili-python/">PHP или Python</a><a href="/blog/react-native-ili-flutter/">React Native или Flutter</a></div>
+  </nav>
+  <!-- /footmap -->
+  <div class="wrap">Комягин Николай · Fullstack-разработчик · боты Telegram и MAX, платежи, интеграции</div>
 </footer>
 
 </div>

@@ -1,0 +1,314 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<title>Разработка Telegram-ботов и Mini Apps на заказ — Николай Комягин</title>
+<meta name="description" content="Telegram-бот на заказ под ключ: продажа подписок и приём оплаты, уведомления, Mini App внутри Telegram с входом без регистрации, админ-панель. Кейсы: свой продукт GymAssist в Telegram Mini App и алерты по парку из 10 000 устройств.">
+<link rel="canonical" href="https://komiagin.dev/telegram-mini-app/">
+<meta name="robots" content="index, follow, max-image-preview:large">
+<meta name="theme-color" content="#020604">
+
+<meta property="og:type" content="website">
+<meta property="og:locale" content="ru_RU">
+<meta property="og:site_name" content="komiagin.dev">
+<meta property="og:url" content="https://komiagin.dev/telegram-mini-app/">
+<meta property="og:title" content="Разработка Telegram-ботов и Mini Apps под ключ">
+<meta property="og:description" content="Боты, которые продают подписки, принимают оплату и присылают уведомления, и Mini Apps внутри Telegram. Админ-панель и сопровождение.">
+<meta property="og:image" content="https://komiagin.dev/og.png">
+<meta name="twitter:card" content="summary_large_image">
+
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'><rect width='64' height='64' fill='%23020604'/><text x='32' y='47' font-family='monospace' font-size='46' font-weight='bold' fill='%2300FF6A' text-anchor='middle'>K</text></svg>">
+<link rel="apple-touch-icon" href="/icon-512.png">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700;800&family=Manrope:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/assets/site.css">
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Service",
+      "name": "Разработка Telegram-ботов и Mini Apps",
+      "serviceType": "Разработка Telegram-ботов и Telegram Mini Apps",
+      "url": "https://komiagin.dev/telegram-mini-app/",
+      "description": "Telegram-боты и Mini Apps под ключ: продажа подписок и приём оплаты, уведомления и алерты, веб-приложение внутри Telegram с авторизацией через initData, админ-панель и сопровождение.",
+      "areaServed": { "@type": "Country", "name": "Россия" },
+      "provider": { "@type": "Person", "name": "Николай Комягин", "url": "https://komiagin.dev/" }
+    },
+    {
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        { "@type": "ListItem", "position": 1, "name": "Главная", "item": "https://komiagin.dev/" },
+        { "@type": "ListItem", "position": 2, "name": "Telegram-боты и Mini Apps", "item": "https://komiagin.dev/telegram-mini-app/" }
+      ]
+    },
+    {
+      "@type": "FAQPage",
+      "mainEntity": [
+        { "@type": "Question", "name": "Сколько стоит разработка Telegram-бота?",
+          "acceptedAnswer": { "@type": "Answer", "text": "Цена зависит от сценариев, числа интеграций и того, нужны ли Mini App и админ-панель. После короткого созвона присылаю оценку по этапам." } },
+        { "@type": "Question", "name": "Чем Mini App отличается от обычного бота?",
+          "acceptedAnswer": { "@type": "Answer", "text": "Бот общается сообщениями и кнопками. Mini App — веб-приложение, которое открывается внутри Telegram: в нём удобно делать каталог, личный кабинет, формы и графики. Часто их совмещают: бот присылает уведомления и открывает приложение, а основная работа идёт в нём." } },
+        { "@type": "Question", "name": "Нужна ли пользователю регистрация в Mini App?",
+          "acceptedAnswer": { "@type": "Answer", "text": "Нет. Telegram передаёт приложению данные запуска (initData) с подписью. Сервер проверяет подпись ключом, который получается из токена бота, и только после этого доверяет данным пользователя." } },
+        { "@type": "Question", "name": "Можно ли принимать оплату в Telegram-боте?",
+          "acceptedAnswer": { "@type": "Answer", "text": "Да: через платёжного провайдера по ссылке или через встроенные платежи Telegram. Во встроенных платежах цифровые товары и услуги продаются только за Telegram Stars. Какой вариант допустим для вашего продукта, проверяем по правилам Telegram и провайдера до начала разработки." } },
+        { "@type": "Question", "name": "Кому будет принадлежать бот?",
+          "acceptedAnswer": { "@type": "Answer", "text": "Вам. Бота создаём через @BotFather на ваш аккаунт, токен остаётся у вас, я подключаюсь по нему." } },
+        { "@type": "Question", "name": "На чём пишете ботов и Mini Apps?",
+          "acceptedAnswer": { "@type": "Answer", "text": "Бэкенд на PHP и Laravel или на Node.js и TypeScript, база PostgreSQL, Redis для очередей и кеша. Mini App и админ-панель — на Vue или React." } },
+        { "@type": "Question", "name": "Можно ли потом запустить бота и в MAX?",
+          "acceptedAnswer": { "@type": "Answer", "text": "Да. Логика, пользователи и подписки живут в общем бэкенде, для MAX добавляется свой слой работы с API мессенджера. Так устроен проект из кейса подписок." } }
+      ]
+    }
+  ]
+}
+</script>
+</head>
+<body>
+
+<div id="rain" aria-hidden="true">
+  <canvas id="rainc"></canvas>
+  <div class="scrim"></div>
+  <div class="scan"></div>
+</div>
+
+<div class="wrap">
+
+<!-- nav -->
+<nav class="topnav" aria-label="Разделы сайта">
+  <a class="brand" href="/">komiagin.dev</a>
+  <a href="/uslugi/" aria-current="page">Услуги и технологии</a>
+  <a href="/#cases">Кейсы</a>
+  <a href="/blog/">Статьи</a>
+</nav>
+<!-- /nav -->
+
+<header class="sheet">
+  <div class="crumbs"><a href="/">Главная</a> / Telegram-боты и Mini Apps</div>
+  <div class="stamp tag">Услуга</div>
+  <h1>Разработка Telegram-ботов и Mini Apps</h1>
+  <div class="role">Telegram-бот на заказ под ключ · Mini Apps · оплата и админ-панель</div>
+  <p class="pitch">Делаю Telegram-ботов, которые <strong>продают подписки, принимают оплату и присылают уведомления,</strong> и Mini Apps — веб-приложения, которые открываются прямо в Telegram. Беру задачу целиком: сценарии, бэкенд, админ-панель, сервер и сопровождение.</p>
+  <p class="pitch">В продакшене работают мой GymAssist — дневник тренировок в браузере и в Telegram Mini App — и бот мониторинга, который сообщает о простое оборудования через 3&nbsp;минуты.</p>
+  <div class="cta-row">
+    <a class="btn solid" href="https://t.me/uzver_ge" target="_blank" rel="noopener noreferrer">Обсудить задачу в Telegram</a>
+    <a class="btn ghost" href="#gymassist">Свой продукт на Mini App</a>
+  </div>
+</header>
+
+<section>
+  <div class="head"><h2>Какие задачи бизнеса закрывает бот</h2><span class="tag">пять сценариев</span></div>
+  <div class="ledger">
+    <div class="item">
+      <span class="idx">01</span>
+      <div>
+        <h3>Продажа подписок и платный доступ</h3>
+        <p>Бот оформляет подписку, принимает оплату, продлевает её и выдаёт доступ к закрытому каналу или материалам. Когда подписка заканчивается, доступ закрывается сам, без ручной работы.</p>
+        <div class="kit">подписки · автопродление · закрытый канал</div>
+        <a class="more" href="/oplata-v-bote/">Подробнее про оплату в боте →</a>
+      </div>
+    </div>
+    <div class="item">
+      <span class="idx">02</span>
+      <div>
+        <h3>Уведомления и алерты</h3>
+        <p>Бот сообщает о том, что нельзя пропустить: оплата, заявка, сбой оборудования. В кейсе мониторинга простой машины виден в Telegram через 3&nbsp;минуты, а не через недели.</p>
+        <div class="kit">Telegram Bot API · пороги · уведомления</div>
+        <a class="more" href="/cases/monitoring/">Кейс: мониторинг 10&nbsp;000 устройств →</a>
+      </div>
+    </div>
+    <div class="item">
+      <span class="idx">03</span>
+      <div>
+        <h3>Mini App: продукт без мобильного приложения</h3>
+        <p>Когда кнопок и сообщений мало — каталог, личный кабинет, запись, дашборд — к боту подключается веб-приложение. Оно открывается внутри Telegram, а пользователь входит без регистрации и пароля: сервер проверяет подпись данных запуска initData.</p>
+        <div class="kit">Vue / React · initData · веб и Telegram</div>
+      </div>
+    </div>
+    <div class="item">
+      <span class="idx">04</span>
+      <div>
+        <h3>Админ-панель для команды</h3>
+        <p>Пользователи, подписки и платежи в одном месте: видно, кто платит и у кого подписка закончилась. Сотрудникам — роли и права доступа.</p>
+        <div class="kit">Vue · роли и права</div>
+      </div>
+    </div>
+    <div class="item">
+      <span class="idx">05</span>
+      <div>
+        <h3>Второй канал в MAX</h3>
+        <p>Бот для MAX подключается к тому же бэкенду: одна база пользователей, одни подписки, одна админ-панель. Так сделано в кейсе подписок, когда часть аудитории ушла из Telegram.</p>
+        <div class="kit">общий бэкенд · MAX API</div>
+        <a class="more" href="/boty-max/">Боты для MAX →</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="head"><h2>Бот или Mini App</h2><span class="tag">что выбрать</span></div>
+  <div class="tbl">
+    <table>
+      <thead><tr><th>Формат</th><th>Что умеет</th><th>Когда подходит</th></tr></thead>
+      <tbody>
+        <tr><td>Бот</td><td>Сообщения, кнопки, команды, файлы, уведомления</td><td>Короткие сценарии: оплата, подписка, заявка, алерт.</td></tr>
+        <tr><td>Mini App</td><td>Полноценный веб-интерфейс внутри Telegram: экраны, формы, графики</td><td>Каталог, личный кабинет, запись, дашборд — всё, что неудобно делать сообщениями.</td></tr>
+        <tr><td>Бот + Mini App</td><td>Бот присылает уведомления и открывает приложение, работа идёт в Mini App</td><td>Продукт, которым пользуются регулярно, — без отдельного мобильного приложения.</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <p class="tbl-note">Mini App открывается из бота: кнопкой меню, кнопкой в сообщении или по прямой ссылке. Одно и то же веб-приложение может работать и в Telegram, и в обычном браузере — так сделан мой GymAssist.</p>
+</section>
+
+<section>
+  <div class="head"><h2>Что входит в разработку</h2><span class="tag">под ключ</span></div>
+  <div class="stack">
+    <div class="srow"><span class="k">Бот</span><div class="chips">
+      <span class="chip">сценарии и команды</span><span class="chip">клавиатуры и кнопки</span><span class="chip">вебхук или long polling</span><span class="chip">файлы и медиа</span>
+    </div></div>
+    <div class="srow"><span class="k">Mini App</span><div class="chips">
+      <span class="chip">Vue или React</span><span class="chip">проверка initData на сервере</span><span class="chip">цвета темы Telegram</span><span class="chip">работа в браузере</span>
+    </div></div>
+    <div class="srow"><span class="k">Админ-панель</span><div class="chips">
+      <span class="chip">пользователи</span><span class="chip">подписки и платежи</span><span class="chip">роли и права</span>
+    </div></div>
+    <div class="srow"><span class="k">Платежи</span><div class="chips">
+      <span class="chip">провайдер по ссылке</span><span class="chip">Telegram Stars</span><span class="chip">рекуррентные списания</span><span class="chip">54-ФЗ</span>
+    </div></div>
+    <div class="srow"><span class="k">Инфраструктура</span><div class="chips">
+      <span class="chip">сервер и деплой</span><span class="chip">Docker</span><span class="chip">мониторинг</span>
+    </div></div>
+    <div class="srow"><span class="k">Качество</span><div class="chips">
+      <span class="chip">автотесты на платежи и расчёты</span><span class="chip">ручная приёмка сценариев</span>
+    </div></div>
+  </div>
+</section>
+
+<section>
+  <div class="head"><h2>Как идёт работа</h2><span class="tag">пять этапов</span></div>
+  <div class="ledger">
+    <div class="item"><span class="idx">01</span><div><h3>Разбор задачи</h3><p>Созвон на двадцать минут: что должен делать бот, кто им пользуется, какие системы и платежи уже есть.</p></div></div>
+    <div class="item"><span class="idx">02</span><div><h3>Сценарии и модель данных</h3><p>Схема диалогов и экранов Mini App, статусы заказа или подписки, роли в админ-панели. На этом этапе становится понятна оценка по срокам и стоимости.</p></div></div>
+    <div class="item"><span class="idx">03</span><div><h3>Разработка</h3><p>Бота создаём через @BotFather на ваш аккаунт: токен остаётся у вас, я подключаюсь по нему. Дальше — бэкенд, сценарии бота, Mini App и админ-панель.</p></div></div>
+    <div class="item"><span class="idx">04</span><div><h3>Тесты и приёмка</h3><p>Логику оплаты, доступа и расчётов закрываю автотестами, перед релизом прогоняю сценарии руками.</p></div></div>
+    <div class="item"><span class="idx">05</span><div><h3>Запуск и поддержка</h3><p>Деплой, мониторинг работоспособности, исправления и доработки под новые сценарии и изменения Bot API.</p></div></div>
+  </div>
+</section>
+
+<section>
+  <div class="head"><h2>Сроки и стоимость</h2><span class="tag">по задаче</span></div>
+  <p class="sub">Цена зависит от сценариев, числа интеграций и того, нужны ли Mini App и админ-панель. После созвона присылаю оценку по этапам.</p>
+</section>
+
+<section>
+  <div class="head"><h2>Кейс: бот алертов</h2><span class="tag">боты в продакшене</span></div>
+  <div class="cases">
+    <article class="case">
+      <div class="case-top">
+        <span class="idx">01</span>
+        <h3>Мониторинг парка майнингового оборудования</h3>
+      </div>
+      <div class="case-role">Разработчик · полный цикл · заказчик под NDA</div>
+      <p class="sub">Простой отдельной машины раньше замечали случайно, иногда через недели. Система опрашивает API сервисов и пулов раз в минуту и присылает алерт в Telegram и на почту, когда устройство встало, перегрелось или просело по производительности.</p>
+      <div class="figs">
+        <div class="fig"><b>10&nbsp;000</b><span>устройств под мониторингом</span></div>
+        <div class="fig"><b>1&nbsp;мин</b><span>интервал опроса</span></div>
+        <div class="fig"><b>3&nbsp;мин</b><span>до алерта вместо недель</span></div>
+      </div>
+      <a class="more" href="/cases/monitoring/">Подробный разбор кейса →</a>
+    </article>
+  </div>
+</section>
+<section>
+  <div class="head"><h2>Типовое решение</h2><span class="tag">как это может выглядеть</span></div>
+  <article class="example">
+    <div class="ex-top"><span class="ex-label">Типовое решение</span><h3>Магазин внутри Telegram</h3></div>
+    <div class="ex-note">Пример задачи и архитектуры, а не проект из портфолио</div>
+    <dl>
+      <div class="crow"><dt>Задача</dt><dd>У кофейни или небольшого магазина аудитория сидит в Telegram-канале, а заказы принимаются в личных сообщениях.</dd></div>
+      <div class="crow"><dt>Как собрать</dt><dd>Mini App с каталогом и корзиной открывается из канала и из бота. Покупатель входит без регистрации через initData, оплачивает через платёжного провайдера, бот присылает статус заказа. Каталог и заказы — в админке на Vue.</dd></div>
+      <div class="crow"><dt>Что получит заказчик</dt><dd>Заказы без переписки, понятный статус для покупателя и список заказов для команды.</dd></div>
+    </dl>
+    <div class="kit">React или Vue · Laravel или Node.js · PostgreSQL · Telegram Bot API</div>
+  </article>
+</section>
+
+<section id="gymassist">
+  <div class="head"><h2>Свой продукт на Mini App</h2><span class="tag">делаю сам</span></div>
+  <div class="cases">
+    <article class="case">
+      <div class="case-top">
+        <span class="idx">01</span>
+        <h3>GymAssist — дневник силовых тренировок</h3>
+        <a class="site" href="https://gymassist.space/" target="_blank" rel="noopener noreferrer">gymassist.space</a>
+      </div>
+      <div class="case-role">Собственный продукт · в продакшене · веб и Telegram Mini App</div>
+      <p class="sub">Запись подходов прямо в зале, нагрузка по сорока мышцам на анатомической схеме, программы с автоматической прогрессией и режим тренера. Работает в браузере и как Telegram Mini App — тренировку ведут с телефона, не выходя из мессенджера.</p>
+      <div class="figs">
+        <div class="fig"><b>40</b><span>мышц на схеме нагрузки</span></div>
+        <div class="fig"><b>2</b><span>платформы: веб и Mini App</span></div>
+        <div class="fig"><b>1</b><span>разработчик — я</span></div>
+      </div>
+      <div class="shots">
+        <a class="shot lg" href="/img/gymassist-stats.webp" target="_blank" rel="noopener noreferrer">
+          <img src="/img/gymassist-stats.webp" width="1240" height="887" loading="lazy" decoding="async" alt="Экран статистики GymAssist: карта нагрузки по мышцам на анатомической схеме, счётчики подходов и тоннажа">
+          <span class="cap">Карта нагрузки — тело раскрашено по объёму за выбранный период</span>
+        </a>
+      </div>
+    </article>
+  </div>
+</section>
+
+<section>
+  <div class="head"><h2>Частые вопросы</h2><span class="tag">про Telegram-ботов</span></div>
+  <div class="faq">
+    <details><summary>Сколько стоит разработка Telegram-бота?</summary>
+      <p>Цена зависит от сценариев, числа интеграций и того, нужны ли Mini App и админ-панель. После короткого созвона присылаю оценку по этапам.</p></details>
+    <details><summary>Чем Mini App отличается от обычного бота?</summary>
+      <p>Бот общается сообщениями и кнопками. Mini App — веб-приложение, которое открывается внутри Telegram: в нём удобно делать каталог, личный кабинет, формы и графики. Часто их совмещают: бот присылает уведомления и открывает приложение, а основная работа идёт в нём.</p></details>
+    <details><summary>Нужна ли пользователю регистрация в Mini App?</summary>
+      <p>Нет. Telegram передаёт приложению данные запуска (initData) с подписью. Сервер проверяет подпись ключом, который получается из токена бота, и только после этого доверяет данным пользователя.</p></details>
+    <details><summary>Можно ли принимать оплату в Telegram-боте?</summary>
+      <p>Да: через платёжного провайдера по ссылке или через встроенные платежи Telegram. Во встроенных платежах цифровые товары и услуги продаются только за Telegram Stars. Какой вариант допустим для вашего продукта, проверяем по правилам Telegram и провайдера до начала разработки.</p></details>
+    <details><summary>Кому будет принадлежать бот?</summary>
+      <p>Вам. Бота создаём через @BotFather на ваш аккаунт, токен остаётся у вас, я подключаюсь по нему.</p></details>
+    <details><summary>На чём пишете ботов и Mini Apps?</summary>
+      <p>Бэкенд на PHP и Laravel или на Node.js и TypeScript, база PostgreSQL, Redis для очередей и кеша. Mini App и админ-панель — на Vue или React.</p></details>
+    <details><summary>Можно ли потом запустить бота и в MAX?</summary>
+      <p>Да. Логика, пользователи и подписки живут в общем бэкенде, для MAX добавляется свой слой работы с API мессенджера. Так устроен проект из кейса подписок.</p></details>
+  </div>
+</section>
+
+<div class="total">
+  <h2>Обсудим вашего бота</h2>
+  <p>Опишите задачу в Telegram: что должен делать бот и кто им будет пользоваться. Отвечу, как это собрать и что войдёт в первую версию.</p>
+  <div class="contacts">
+    <div><span>Telegram</span><a href="https://t.me/uzver_ge" target="_blank" rel="noopener noreferrer">@uzver_ge</a></div>
+    <div><span>Почта</span><a href="mailto:myworkermailbox2022@gmail.com">myworkermailbox2022@gmail.com</a></div>
+    <div><span>Резюме</span><a href="/">опыт и стек</a></div>
+  </div>
+</div>
+
+<footer>
+  <!-- footmap -->
+  <nav class="footmap" aria-label="Карта сайта">
+    <div><b>Услуги</b><a href="/telegram-mini-app/" aria-current="page">Telegram-боты и Mini Apps</a><a href="/boty-max/">Боты для MAX</a><a href="/oplata-v-bote/">Оплата в боте</a><a href="/platezhi/">Интеграция платёжных систем</a></div>
+    <div><b>Технологии</b><a href="/laravel/">PHP и Laravel</a><a href="/nodejs/">Node.js и TypeScript</a><a href="/react-nextjs/">React и Next.js</a><a href="/vue/">Vue</a><a href="/python/">Python</a><a href="/mobilnye-prilozheniya/">Мобильные приложения</a></div>
+    <div><b>Кейсы</b><a href="/cases/podpiski/">Платформа подписок</a><a href="/cases/monitoring/">Мониторинг майнеров</a><a href="/#cases">Все кейсы</a></div>
+    <div><b>Статьи</b><a href="/blog/go-ili-python/">Go или Python</a><a href="/blog/react-ili-vue/">React или Vue</a><a href="/blog/php-ili-python/">PHP или Python</a><a href="/blog/react-native-ili-flutter/">React Native или Flutter</a></div>
+  </nav>
+  <!-- /footmap -->
+  <div class="wrap">Комягин Николай · Fullstack-разработчик · боты Telegram и MAX, платежи, интеграции</div>
+</footer>
+
+</div>
+
+<script src="/assets/site.js"></script>
+</body>
+</html>

@@ -1,0 +1,313 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<title>Интеграция платёжных систем и приём платежей на сайте — Николай Комягин</title>
+<meta name="description" content="Подключаю приём платежей на сайте, в боте и в сервисе: разовые оплаты, рекуррентные платежи и подписки, обработка вебхуков без двойных списаний, чеки по 54-ФЗ. Опыт: ~6 000 подписчиков, ~3 млн ₽ в месяц.">
+<link rel="canonical" href="https://komiagin.dev/platezhi/">
+<meta name="robots" content="index, follow, max-image-preview:large">
+<meta name="theme-color" content="#020604">
+
+<meta property="og:type" content="website">
+<meta property="og:locale" content="ru_RU">
+<meta property="og:site_name" content="komiagin.dev">
+<meta property="og:url" content="https://komiagin.dev/platezhi/">
+<meta property="og:title" content="Интеграция платёжных систем: рекуррентные платежи, вебхуки, 54-ФЗ">
+<meta property="og:description" content="Приём платежей на сайте и в боте, подписки с автопродлением, идемпотентные вебхуки и чеки по 54-ФЗ.">
+<meta property="og:image" content="https://komiagin.dev/og.png">
+<meta name="twitter:card" content="summary_large_image">
+
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'><rect width='64' height='64' fill='%23020604'/><text x='32' y='47' font-family='monospace' font-size='46' font-weight='bold' fill='%2300FF6A' text-anchor='middle'>K</text></svg>">
+<link rel="apple-touch-icon" href="/icon-512.png">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700;800&family=Manrope:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/assets/site.css">
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Service",
+      "name": "Интеграция платёжных систем",
+      "serviceType": "Интеграция платёжных систем и приём онлайн-платежей",
+      "url": "https://komiagin.dev/platezhi/",
+      "description": "Приём платежей на сайте, в боте и в сервисе: разовые оплаты, рекуррентные платежи и подписки, идемпотентная обработка вебхуков, чеки по 54-ФЗ, история операций и сверка расхождений.",
+      "areaServed": { "@type": "Country", "name": "Россия" },
+      "provider": { "@type": "Person", "name": "Николай Комягин", "url": "https://komiagin.dev/" }
+    },
+    {
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        { "@type": "ListItem", "position": 1, "name": "Главная", "item": "https://komiagin.dev/" },
+        { "@type": "ListItem", "position": 2, "name": "Интеграция платежей", "item": "https://komiagin.dev/platezhi/" }
+      ]
+    },
+    {
+      "@type": "FAQPage",
+      "mainEntity": [
+        { "@type": "Question", "name": "Какую платёжную систему выбрать?",
+          "acceptedAnswer": { "@type": "Answer", "text": "Зависит от продукта, правовой формы и нужных способов оплаты. Для подписок проверяем, умеет ли провайдер автосписания, для приёма оплаты от физлиц — формирует ли он чеки по 54-ФЗ. Договор с провайдером заключает заказчик, я готовлю техническую часть." } },
+        { "@type": "Question", "name": "Как работают рекуррентные платежи?",
+          "acceptedAnswer": { "@type": "Answer", "text": "При первой оплате покупатель соглашается на автосписания, и провайдер сохраняет привязку карты. Следующие списания проходят без участия покупателя, а сервер получает уведомление о каждом — успешном или нет — и продлевает подписку или отмечает неудачное списание." } },
+        { "@type": "Question", "name": "Зачем нужны вебхуки?",
+          "acceptedAnswer": { "@type": "Answer", "text": "Вебхук — уведомление, которое провайдер присылает на ваш сервер, когда меняется статус платежа. Именно по нему система узнаёт, что деньги пришли: покупатель может закрыть вкладку и не вернуться на сайт. Уведомления обрабатываются идемпотентно, поэтому повторное не создаст второй платёж." } },
+        { "@type": "Question", "name": "Нужны ли чеки по 54-ФЗ при оплате на сайте?",
+          "acceptedAnswer": { "@type": "Answer", "text": "Если вы как ИП или компания принимаете оплату от физлиц, по 54-ФЗ нужен чек. Многие провайдеры формируют его через свою облачную кассу, это подключается в той же интеграции. Самозанятые выдают чеки через «Мой налог»." } },
+        { "@type": "Question", "name": "Можно ли подключить оплату к уже работающему сайту?",
+          "acceptedAnswer": { "@type": "Answer", "text": "Да. Работаю с чужим и legacy-кодом: разбираюсь в существующей системе и встраиваю платежи в неё. Что придётся поменять, становится понятно после разбора." } },
+        { "@type": "Question", "name": "Сколько стоит интеграция платёжной системы?",
+          "acceptedAnswer": { "@type": "Answer", "text": "Цена зависит от числа провайдеров, сложности тарифов, нужны ли подписки и чеки, есть ли уже бэкенд. После короткого созвона присылаю оценку по этапам." } }
+      ]
+    }
+  ]
+}
+</script>
+</head>
+<body>
+
+<div id="rain" aria-hidden="true">
+  <canvas id="rainc"></canvas>
+  <div class="scrim"></div>
+  <div class="scan"></div>
+</div>
+
+<div class="wrap">
+
+<!-- nav -->
+<nav class="topnav" aria-label="Разделы сайта">
+  <a class="brand" href="/">komiagin.dev</a>
+  <a href="/uslugi/" aria-current="page">Услуги и технологии</a>
+  <a href="/#cases">Кейсы</a>
+  <a href="/blog/">Статьи</a>
+</nav>
+<!-- /nav -->
+
+<header class="sheet">
+  <div class="crumbs"><a href="/">Главная</a> / Интеграция платежей</div>
+  <div class="stamp tag">Услуга</div>
+  <h1>Интеграция платёжных систем</h1>
+  <div class="role">Приём платежей на сайте и в боте · рекуррентные платежи · вебхуки · 54-ФЗ</div>
+  <p class="pitch">Подключаю приём платежей к сайту, боту или сервису: <strong>разовые оплаты, подписки с автопродлением, обработку уведомлений провайдера и чеки по 54-ФЗ.</strong> Проектирую так, чтобы баланс сходился, а любую операцию можно было объяснить постфактум.</p>
+  <p class="pitch">Опыт из продакшена: две платёжные интеграции с рекуррентными списаниями на платформе подписок — ~6&nbsp;000 подписчиков, оборот около 3&nbsp;млн ₽ в месяц. Двойные списания исключены на уровне модели данных.</p>
+  <div class="cta-row">
+    <a class="btn solid" href="https://t.me/uzver_ge" target="_blank" rel="noopener noreferrer">Обсудить задачу в Telegram</a>
+    <a class="btn ghost" href="#examples">Типовое решение</a>
+  </div>
+</header>
+
+<section>
+  <div class="head"><h2>Какие задачи бизнеса закрывает интеграция</h2><span class="tag">шесть задач</span></div>
+  <div class="ledger">
+    <div class="item">
+      <span class="idx">01</span>
+      <div>
+        <h3>Приём платежей на сайте</h3>
+        <p>Оплата заказа, услуги или доступа: платёжная форма провайдера на странице или переход на его платёжную страницу. Статус заказа меняется по уведомлению провайдера на сервер, а не по возврату покупателя на сайт.</p>
+        <div class="kit">платёжная форма · статусы заказа · вебхуки</div>
+      </div>
+    </div>
+    <div class="item">
+      <span class="idx">02</span>
+      <div>
+        <h3>Рекуррентные платежи и подписки</h3>
+        <p>Покупатель один раз соглашается на автосписания, дальше подписка продлевается без его участия. Полный жизненный цикл: оформление, продление, неудачное списание, отмена.</p>
+        <div class="kit">автопродление · тарифы · история операций</div>
+      </div>
+    </div>
+    <div class="item">
+      <span class="idx">03</span>
+      <div>
+        <h3>Оплата в Telegram- и MAX-боте</h3>
+        <p>Та же схема в мессенджерах: бот выдаёт ссылку на оплату, после уведомления провайдера открывает доступ к каналу или контенту.</p>
+        <div class="kit">Telegram · MAX · платный доступ</div>
+        <a class="more" href="/oplata-v-bote/">Приём оплаты и подписки в боте →</a>
+      </div>
+    </div>
+    <div class="item">
+      <span class="idx">04</span>
+      <div>
+        <h3>Чеки по 54-ФЗ</h3>
+        <p>Фискализация через облачную кассу провайдера в той же интеграции: чек уходит покупателю автоматически при каждом списании.</p>
+        <div class="kit">54-ФЗ · облачная касса</div>
+      </div>
+    </div>
+    <div class="item">
+      <span class="idx">05</span>
+      <div>
+        <h3>Несколько провайдеров в одной системе</h3>
+        <p>Две и больше платёжных интеграции на одном бэкенде: подписки и платежи от всех провайдеров видны в одной админ-панели. В кейсе так работают CloudPayments и Rocketr.</p>
+        <div class="kit">CloudPayments · Rocketr · общая модель платежей</div>
+      </div>
+    </div>
+    <div class="item">
+      <span class="idx">06</span>
+      <div>
+        <h3>Биллинг и движение средств</h3>
+        <p>Расчёт и списание, финансовые лимиты, распределение средств между участниками, история операций — когда задача не заканчивается на «деньги пришли».</p>
+        <div class="kit">Laravel · PostgreSQL · очереди · идемпотентность</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="head"><h2>Что входит в интеграцию</h2><span class="tag">под ключ</span></div>
+  <div class="stack">
+    <div class="srow"><span class="k">Платёж</span><div class="chips">
+      <span class="chip">создание платежа</span><span class="chip">ссылка или платёжная форма</span><span class="chip">статусы</span>
+    </div></div>
+    <div class="srow"><span class="k">Вебхуки</span><div class="chips">
+      <span class="chip">проверка подписи</span><span class="chip">идемпотентность по external_id</span><span class="chip">повторные уведомления</span>
+    </div></div>
+    <div class="srow"><span class="k">Подписки</span><div class="chips">
+      <span class="chip">согласие на автосписания</span><span class="chip">продление</span><span class="chip">неудачное списание</span><span class="chip">отмена</span>
+    </div></div>
+    <div class="srow"><span class="k">54-ФЗ</span><div class="chips">
+      <span class="chip">облачная касса провайдера</span><span class="chip">чек при каждом списании</span>
+    </div></div>
+    <div class="srow"><span class="k">Учёт</span><div class="chips">
+      <span class="chip">история операций</span><span class="chip">сверка расхождений</span><span class="chip">админ-панель</span><span class="chip">роли и права</span>
+    </div></div>
+    <div class="srow"><span class="k">Качество</span><div class="chips">
+      <span class="chip">автотесты на списания и вебхуки</span><span class="chip">ручная приёмка сценариев</span>
+    </div></div>
+  </div>
+  <div class="flow" aria-label="Как проходит платёж">
+    <span>сайт или бот создаёт платёж</span><b>→</b><span>покупатель платит у провайдера</span><b>→</b><span>провайдер шлёт вебхук</span><b>→</b><span>сервер проверяет подпись и пишет платёж один раз</span><b>→</b><span>заказ оплачен, чек у покупателя</span>
+  </div>
+</section>
+
+<section>
+  <div class="head"><h2>Где ошибка стоит денег</h2><span class="tag">что закладываю заранее</span></div>
+  <div class="ledger">
+    <div class="item">
+      <span class="idx">01</span>
+      <div>
+        <h3>Повторные уведомления</h3>
+        <p>Провайдер может прислать одно и то же уведомление несколько раз. Обработка идемпотентна по идентификатору операции у провайдера: повтор не создаст второй платёж и не продлит подписку дважды.</p>
+        <div class="kit">вебхуки · external_id · модель данных</div>
+      </div>
+    </div>
+    <div class="item">
+      <span class="idx">02</span>
+      <div>
+        <h3>Ответы не по документации</h3>
+        <p>Отдельно закладываю поведение на случай, когда внешний сервис отвечает не так, как обещал в документации: подпись запросов, лимиты частоты, повторы, отказы.</p>
+        <div class="kit">REST / JSON API · повторы · таймауты</div>
+      </div>
+    </div>
+    <div class="item">
+      <span class="idx">03</span>
+      <div>
+        <h3>Сверка расхождений</h3>
+        <p>Каждая операция остаётся в истории, поэтому расхождение между системой и провайдером можно найти и объяснить постфактум.</p>
+        <div class="kit">история операций · сверка</div>
+      </div>
+    </div>
+    <div class="item">
+      <span class="idx">04</span>
+      <div>
+        <h3>Автотесты на деньги</h3>
+        <p>Списания, продления и обработку ответов провайдера закрываю автотестами: PHPUnit и Pest на бэкенде, Jest или Vitest в Node-части. Перед релизом прогоняю сценарии руками.</p>
+        <div class="kit">PHPUnit · Pest · Jest / Vitest</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="head"><h2>Как идёт работа</h2><span class="tag">пять этапов</span></div>
+  <div class="ledger">
+    <div class="item"><span class="idx">01</span><div><h3>Разбор задачи</h3><p>Созвон на двадцать минут: что продаёте, разово или по подписке, где принимаете оплату — на сайте, в боте или в приложении, какой провайдер уже подключён.</p></div></div>
+    <div class="item"><span class="idx">02</span><div><h3>Выбор провайдера и схемы</h3><p>Подбираем провайдера под продукт и правовую форму: способы оплаты, автосписания, чеки. Договор с провайдером заключает заказчик, я готовлю техническую часть.</p></div></div>
+    <div class="item"><span class="idx">03</span><div><h3>Разработка</h3><p>Модель платежей и подписок, создание платежа, обработка вебхуков, чеки, админ-панель. Если сайт уже работает, встраиваю платежи в существующий код.</p></div></div>
+    <div class="item"><span class="idx">04</span><div><h3>Тесты и приёмка</h3><p>Списания, продления и обработку ответов провайдера закрываю автотестами. Перед релизом прогоняю сценарии руками.</p></div></div>
+    <div class="item"><span class="idx">05</span><div><h3>Запуск и поддержка</h3><p>Мониторинг, разбор спорных операций, доработки под новые тарифы.</p></div></div>
+  </div>
+</section>
+
+<section>
+  <div class="head"><h2>Сроки и стоимость</h2><span class="tag">по задаче</span></div>
+  <p class="sub">Цена зависит от числа провайдеров, сложности тарифов, нужны ли подписки и чеки, есть ли уже бэкенд. После созвона присылаю оценку по этапам.</p>
+</section>
+
+<section id="examples">
+  <div class="head"><h2>Типовое решение</h2><span class="tag">как это может выглядеть</span></div>
+  <article class="example">
+    <div class="ex-top"><span class="ex-label">Типовое решение</span><h3>Приём оплаты в интернет-магазине</h3></div>
+    <div class="ex-note">Пример задачи и архитектуры, а не проект из портфолио</div>
+    <dl>
+      <div class="crow"><dt>Задача</dt><dd>Магазин принимает заказы на сайте, а оплату — переводом по реквизитам. Менеджер сверяет поступления вручную, чеки выбивает отдельно.</dd></div>
+      <div class="crow"><dt>Как собрать</dt><dd>Платёжный провайдер с картами и СБП, оплата сразу при оформлении заказа. Вебхук провайдера меняет статус заказа и запускает сборку на складе, чек по 54-ФЗ формирует облачная касса провайдера. Возвраты и частичные возвраты — из админки.</dd></div>
+      <div class="crow"><dt>Что получит заказчик</dt><dd>Оплаченный заказ сам доходит до склада, чек — до покупателя, а сверка занимает минуты вместо часов.</dd></div>
+    </dl>
+    <div class="kit">Laravel или Node.js · PostgreSQL · платёжный провайдер · 54-ФЗ</div>
+  </article>
+</section>
+<section>
+  <div class="head"><h2>Реальный проект: финансовое API</h2><span class="tag">интеграция с биржей</span></div>
+  <div class="cases">
+    <article class="case">
+      <div class="case-top"><span class="idx">01</span><h3>Бэкенд сервиса автоматизации фьючерсной торговли</h3><span class="site dead">tradingforce.io · проект закрыт</span></div>
+      <div class="case-role">Единственный backend-разработчик в команде из четырёх</div>
+      <p class="sub">Интеграция с торговым API Bybit: подписанные запросы, автоматические stop-loss и take-profit, дедупликация запросов с кешированием ответов, чтобы не упираться в лимиты биржи. Торговая логика закрыта автотестами.</p>
+      <div class="figs">
+        <div class="fig"><b>3</b><span>торговых бота</span></div>
+        <div class="fig"><b>1</b><span>backend-разработчик</span></div>
+      </div>
+      <div class="kit">Node.js · TypeScript · Redis · PostgreSQL · Bybit API</div>
+      <a class="more" href="/nodejs/">Разработка на Node.js →</a>
+    </article>
+  </div>
+</section>
+
+<section>
+  <div class="head"><h2>Частые вопросы</h2><span class="tag">про интеграцию платежей</span></div>
+  <div class="faq">
+    <details><summary>Какую платёжную систему выбрать?</summary>
+      <p>Зависит от продукта, правовой формы и нужных способов оплаты. Для подписок проверяем, умеет ли провайдер автосписания, для приёма оплаты от физлиц — формирует ли он чеки по 54-ФЗ. Договор с провайдером заключает заказчик, я готовлю техническую часть.</p></details>
+    <details><summary>Как работают рекуррентные платежи?</summary>
+      <p>При первой оплате покупатель соглашается на автосписания, и провайдер сохраняет привязку карты. Следующие списания проходят без участия покупателя, а сервер получает уведомление о каждом — успешном или нет — и продлевает подписку или отмечает неудачное списание.</p></details>
+    <details><summary>Зачем нужны вебхуки?</summary>
+      <p>Вебхук — уведомление, которое провайдер присылает на ваш сервер, когда меняется статус платежа. Именно по нему система узнаёт, что деньги пришли: покупатель может закрыть вкладку и не вернуться на сайт. Уведомления обрабатываются идемпотентно, поэтому повторное не создаст второй платёж.</p></details>
+    <details><summary>Нужны ли чеки по 54-ФЗ при оплате на сайте?</summary>
+      <p>Если вы как ИП или компания принимаете оплату от физлиц, по 54-ФЗ нужен чек. Многие провайдеры формируют его через свою облачную кассу, это подключается в той же интеграции. Самозанятые выдают чеки через «Мой налог».</p></details>
+    <details><summary>Можно ли подключить оплату к уже работающему сайту?</summary>
+      <p>Да. Работаю с чужим и legacy-кодом: разбираюсь в существующей системе и встраиваю платежи в неё. Что придётся поменять, становится понятно после разбора.</p></details>
+    <details><summary>Сколько стоит интеграция платёжной системы?</summary>
+      <p>Цена зависит от числа провайдеров, сложности тарифов, нужны ли подписки и чеки, есть ли уже бэкенд. После короткого созвона присылаю оценку по этапам.</p></details>
+  </div>
+</section>
+
+<div class="total">
+  <h2>Подключим приём платежей</h2>
+  <p>Напишите в Telegram, что продаёте и где принимаете оплату: на сайте, в боте или в приложении. Отвечу, какую схему выбрать и что войдёт в первую версию.</p>
+  <div class="contacts">
+    <div><span>Telegram</span><a href="https://t.me/uzver_ge" target="_blank" rel="noopener noreferrer">@uzver_ge</a></div>
+    <div><span>Почта</span><a href="mailto:myworkermailbox2022@gmail.com">myworkermailbox2022@gmail.com</a></div>
+    <div><span>Резюме</span><a href="/">опыт и стек</a></div>
+  </div>
+</div>
+
+<footer>
+  <!-- footmap -->
+  <nav class="footmap" aria-label="Карта сайта">
+    <div><b>Услуги</b><a href="/telegram-mini-app/">Telegram-боты и Mini Apps</a><a href="/boty-max/">Боты для MAX</a><a href="/oplata-v-bote/">Оплата в боте</a><a href="/platezhi/" aria-current="page">Интеграция платёжных систем</a></div>
+    <div><b>Технологии</b><a href="/laravel/">PHP и Laravel</a><a href="/nodejs/">Node.js и TypeScript</a><a href="/react-nextjs/">React и Next.js</a><a href="/vue/">Vue</a><a href="/python/">Python</a><a href="/mobilnye-prilozheniya/">Мобильные приложения</a></div>
+    <div><b>Кейсы</b><a href="/cases/podpiski/">Платформа подписок</a><a href="/cases/monitoring/">Мониторинг майнеров</a><a href="/#cases">Все кейсы</a></div>
+    <div><b>Статьи</b><a href="/blog/go-ili-python/">Go или Python</a><a href="/blog/react-ili-vue/">React или Vue</a><a href="/blog/php-ili-python/">PHP или Python</a><a href="/blog/react-native-ili-flutter/">React Native или Flutter</a></div>
+  </nav>
+  <!-- /footmap -->
+  <div class="wrap">Комягин Николай · Fullstack-разработчик · боты Telegram и MAX, платежи, интеграции</div>
+</footer>
+
+</div>
+
+<script src="/assets/site.js"></script>
+</body>
+</html>

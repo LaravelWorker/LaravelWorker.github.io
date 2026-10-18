@@ -1,0 +1,314 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<title>Разработка на PHP и Laravel — Николай Комягин</title>
+<meta name="description" content="PHP и Laravel-разработчик: веб-сервисы и API, биллинг и платежи, очереди и фоновые расчёты, админ-панели, доработка legacy. Три проекта на Laravel в продакшене.">
+<link rel="canonical" href="https://komiagin.dev/laravel/">
+<meta name="robots" content="index, follow, max-image-preview:large">
+<meta name="theme-color" content="#020604">
+
+<meta property="og:type" content="website">
+<meta property="og:locale" content="ru_RU">
+<meta property="og:site_name" content="komiagin.dev">
+<meta property="og:url" content="https://komiagin.dev/laravel/">
+<meta property="og:title" content="Разработка на PHP и Laravel">
+<meta property="og:description" content="PHP и Laravel-разработчик: веб-сервисы и API, биллинг и платежи, очереди и фоновые расчёты, админ-панели, доработка legacy. Три проекта на Laravel в продакшене.">
+<meta property="og:image" content="https://komiagin.dev/og.png">
+<meta name="twitter:card" content="summary_large_image">
+
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'><rect width='64' height='64' fill='%23020604'/><text x='32' y='47' font-family='monospace' font-size='46' font-weight='bold' fill='%2300FF6A' text-anchor='middle'>K</text></svg>">
+<link rel="apple-touch-icon" href="/icon-512.png">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700;800&family=Manrope:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/assets/site.css">
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Service",
+      "name": "Разработка на PHP и Laravel",
+      "serviceType": "Разработка веб-приложений на PHP и Laravel",
+      "url": "https://komiagin.dev/laravel/",
+      "description": "PHP и Laravel-разработчик: веб-сервисы и API, биллинг и платежи, очереди и фоновые расчёты, админ-панели, доработка legacy. Три проекта на Laravel в продакшене.",
+      "areaServed": {
+        "@type": "Country",
+        "name": "Россия"
+      },
+      "provider": {
+        "@type": "Person",
+        "name": "Николай Комягин",
+        "url": "https://komiagin.dev/"
+      }
+    },
+    {
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "Главная",
+          "item": "https://komiagin.dev/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "name": "Услуги и технологии",
+          "item": "https://komiagin.dev/uslugi/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 3,
+          "name": "PHP и Laravel",
+          "item": "https://komiagin.dev/laravel/"
+        }
+      ]
+    },
+    {
+      "@type": "FAQPage",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "Беретесь за доработку чужого проекта на Laravel?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Да. Разбираю код, восстанавливаю и расширяю функционал, делаю ревью. Начинаю с короткого аудита: что в проекте устарело, где риски и что чинить в первую очередь."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Laravel или Symfony?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Работаю с обоими. Laravel быстрее в разработке типового продукта: очереди, авторизация и админка собираются из готовых частей. Если проект уже на Symfony, продолжаю на нём."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Пишете тесты?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Да: PHPUnit и Pest. Логика денег — расчёты, списания, обработка вебхуков — уходит в продакшен только с автотестами."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Можно подключить вас к нашей команде?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Да. Работал и один, и в команде: единственным backend-разработчиком рядом с лидом, фронтендом и тестировщиком, а в ilink — в команде из восьми человек с наставничеством четырёх junior-разработчиков."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Сколько стоит разработка на Laravel?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Цена зависит от объёма, числа интеграций и того, есть ли уже бэкенд или дизайн. После короткого созвона присылаю оценку по этапам."
+          }
+        }
+      ]
+    }
+  ]
+}
+</script>
+</head>
+<body>
+
+<div id="rain" aria-hidden="true">
+  <canvas id="rainc"></canvas>
+  <div class="scrim"></div>
+  <div class="scan"></div>
+</div>
+
+<div class="wrap">
+
+<!-- nav -->
+<nav class="topnav" aria-label="Разделы сайта">
+  <a class="brand" href="/">komiagin.dev</a>
+  <a href="/uslugi/" aria-current="page">Услуги и технологии</a>
+  <a href="/#cases">Кейсы</a>
+  <a href="/blog/">Статьи</a>
+</nav>
+<!-- /nav -->
+<header class="sheet">
+  <div class="crumbs"><a href="/">Главная</a> / <a href="/uslugi/">Услуги и технологии</a> / PHP и Laravel</div>
+  <div class="stamp tag">Технология</div>
+  <h1>Разработка на PHP и Laravel</h1>
+  <div class="role">Laravel-разработчик · API, биллинг, админ-панели, legacy</div>
+  <p class="pitch">Пишу на PHP с 2020 года, основной фреймворк — Laravel. <strong>Сервисы, где ошибка стоит денег: биллинг, подписки, платёжные интеграции, тяжёлые фоновые расчёты.</strong> Беру проект целиком — от схемы базы до деплоя — или подключаюсь к существующему коду.</p>
+  <p class="pitch">На Laravel собраны три проекта из кейсов: мониторинг 10&nbsp;000 устройств, SEO-инструменты на TF-IDF и платформа подписок.</p>
+  <div class="cta-row">
+    <a class="btn solid" href="https://t.me/uzver_ge" target="_blank" rel="noopener noreferrer">Обсудить задачу в Telegram</a>
+    <a class="btn ghost" href="/cases/monitoring/">Кейс на Laravel: мониторинг</a>
+  </div>
+</header>
+<section>
+  <div class="head"><h2>Что делаю на Laravel</h2><span class="tag">шесть направлений</span></div>
+  <div class="ledger">
+    <div class="item">
+      <span class="idx">01</span>
+      <div>
+        <h3>Веб-сервисы и API</h3>
+        <p>REST / JSON API для фронтенда, мобильных приложений и внешних систем. Авторизация, роли и права доступа, сложная фильтрация и агрегация данных.</p>
+        <div class="kit">Laravel · REST / JSON API · RBAC</div>
+      </div>
+    </div>
+    <div class="item">
+      <span class="idx">02</span>
+      <div>
+        <h3>Биллинг и платежи</h3>
+        <p>Рекуррентные списания, идемпотентная обработка вебхуков, чеки по 54-ФЗ. Проектирую так, чтобы баланс сходился и любую операцию можно было объяснить постфактум.</p>
+        <div class="kit">подписки · вебхуки · 54-ФЗ</div>
+        <a class="more" href="/platezhi/">Интеграция платёжных систем →</a>
+      </div>
+    </div>
+    <div class="item">
+      <span class="idx">03</span>
+      <div>
+        <h3>Очереди и фоновые расчёты</h3>
+        <p>Длительные задачи уходят в очереди: пользователь видит статус и процент выполнения, а сайт не тормозит. Кеширование и дедупликация запросов к внешним API.</p>
+        <div class="kit">очереди · Redis · кеширование</div>
+      </div>
+    </div>
+    <div class="item">
+      <span class="idx">04</span>
+      <div>
+        <h3>Админ-панели и кабинеты</h3>
+        <p>Связка Laravel и Vue 3: админка для команды, личный кабинет для клиентов, роли и права.</p>
+        <div class="kit">Laravel · Vue 3</div>
+        <a class="more" href="/vue/">Разработка на Vue →</a>
+      </div>
+    </div>
+    <div class="item">
+      <span class="idx">05</span>
+      <div>
+        <h3>Доработка legacy</h3>
+        <p>Разбираю чужой код, восстанавливаю и расширяю функционал, делаю ревью. Сначала короткий аудит, чтобы понять состояние проекта и риски.</p>
+        <div class="kit">аудит · рефакторинг · ревью</div>
+      </div>
+    </div>
+    <div class="item">
+      <span class="idx">06</span>
+      <div>
+        <h3>Тесты</h3>
+        <p>Расчёты, списания и обработку ответов внешних API закрываю автотестами на PHPUnit и Pest. Перед релизом прогоняю сценарии руками.</p>
+        <div class="kit">PHPUnit · Pest</div>
+      </div>
+    </div>
+  </div>
+</section>
+<section>
+  <div class="head"><h2>Стек</h2><span class="tag">чем работаю</span></div>
+  <div class="stack">
+    <div class="srow"><span class="k">Backend</span><div class="chips"><span class="chip">PHP</span><span class="chip">Laravel</span><span class="chip">Symfony</span><span class="chip">REST API</span></div></div>
+    <div class="srow"><span class="k">Данные</span><div class="chips"><span class="chip">PostgreSQL</span><span class="chip">MySQL</span><span class="chip">Redis</span><span class="chip">очереди</span></div></div>
+    <div class="srow"><span class="k">Frontend</span><div class="chips"><span class="chip">Vue 3</span><span class="chip">JavaScript</span><span class="chip">jQuery</span></div></div>
+    <div class="srow"><span class="k">Тесты</span><div class="chips"><span class="chip">PHPUnit</span><span class="chip">Pest</span></div></div>
+    <div class="srow"><span class="k">Инфраструктура</span><div class="chips"><span class="chip">Docker</span><span class="chip">Nginx</span><span class="chip">Linux</span><span class="chip">Cloudflare</span></div></div>
+  </div>
+</section>
+<section>
+  <div class="head"><h2>Типовые решения</h2><span class="tag">как это может выглядеть</span></div>
+  <article class="example">
+    <div class="ex-top"><span class="ex-label">Типовое решение</span><h3>SaaS-кабинет с тарифами и биллингом</h3></div>
+    <div class="ex-note">Пример задачи и архитектуры, а не проект из портфолио</div>
+    <dl>
+      <div class="crow"><dt>Задача</dt><dd>Сервис для малого бизнеса продаёт доступ по тарифам с ежемесячной оплатой. Нужны личный кабинет, админ-панель и автоматическое продление.</dd></div>
+      <div class="crow"><dt>Как собрать</dt><dd>API на Laravel и кабинет на Vue 3. Тарифы, подписки и платежи — отдельные сущности в PostgreSQL. Рекуррентные списания через платёжного провайдера, вебхуки обрабатываются в очереди идемпотентно. Уведомления о неудачном списании — в почту и Telegram.</dd></div>
+      <div class="crow"><dt>Что получит заказчик</dt><dd>Продажа и продление идут без ручной работы, в админке видно выручку, отток и статус каждого клиента.</dd></div>
+    </dl>
+    <div class="kit">Laravel · PostgreSQL · Redis · Vue 3 · Docker</div>
+  </article>
+  <article class="example">
+    <div class="ex-top"><span class="ex-label">Типовое решение</span><h3>API для мобильного приложения</h3></div>
+    <div class="ex-note">Пример задачи и архитектуры, а не проект из портфолио</div>
+    <dl>
+      <div class="crow"><dt>Задача</dt><dd>У компании есть мобильное приложение, бэкенд нужно написать с нуля или переписать устаревший.</dd></div>
+      <div class="crow"><dt>Как собрать</dt><dd>REST API на Laravel с токенной авторизацией, версионированием и документацией. Тяжёлые операции — в очередях, файлы — в объектном хранилище, push-уведомления через сервис платформы.</dd></div>
+      <div class="crow"><dt>Что получит заказчик</dt><dd>Стабильный API, с которым мобильная команда работает независимо, и админка для контента и пользователей.</dd></div>
+    </dl>
+    <div class="kit">Laravel · PostgreSQL · Redis · очереди</div>
+  </article>
+</section>
+<section>
+  <div class="head"><h2>Реальные проекты на Laravel</h2><span class="tag">в продакшене</span></div>
+  <div class="cases">
+    <article class="case">
+      <div class="case-top"><span class="idx">01</span><h3>Мониторинг парка майнингового оборудования</h3></div>
+      <div class="case-role">Разработчик · полный цикл · заказчик под NDA</div>
+      <p class="sub">Телеметрия по API нескольких сервисов и пулов — до 10&nbsp;000 устройств с опросом раз в минуту. Оперативные метрики в Redis, суточные агрегаты в PostgreSQL, алерты в Telegram и на почту. Простой машины виден через 3&nbsp;минуты вместо недель.</p>
+      <div class="figs">
+        <div class="fig"><b>10&nbsp;000</b><span>устройств</span></div>
+        <div class="fig"><b>1&nbsp;мин</b><span>интервал опроса</span></div>
+        <div class="fig"><b>3&nbsp;мин</b><span>до алерта</span></div>
+      </div>
+      <div class="kit">PHP · Laravel · Redis · PostgreSQL · Vue 3 · Telegram Bot API</div>
+      <a class="more" href="/cases/monitoring/">Подробный разбор кейса →</a>
+    </article>
+    <article class="case">
+      <div class="case-top"><span class="idx">02</span><h3>SEO-платформа «Титло»: три инструмента анализа</h3><a class="site" href="https://titlo.ru/" target="_blank" rel="noopener noreferrer">titlo.ru</a></div>
+      <div class="case-role">Один из двух разработчиков · свои модули — от постановки до продакшена</div>
+      <p class="sub">Анализ релевантности, текста и конкурентов с нуля: сбор выдачи через API Яндекса и Google, своя реализация TF-IDF, тяжёлые расчёты в фоновых очередях со статусом и процентом выполнения. Полный анализ по запросу — 1–5&nbsp;минут, инструменты работают в продакшене.</p>
+      <div class="figs">
+        <div class="fig"><b>3</b><span>инструмента с нуля</span></div>
+        <div class="fig"><b>30</b><span>конкурентов на запрос</span></div>
+        <div class="fig"><b>1–5&nbsp;мин</b><span>полный анализ</span></div>
+      </div>
+      <div class="kit">PHP · Laravel · очереди · API Яндекс / Google · jQuery</div>
+    </article>
+  </div>
+</section>
+<section>
+  <div class="head"><h2>Сроки и стоимость</h2><span class="tag">по задаче</span></div>
+  <p class="sub">Цена зависит от объёма, числа интеграций и того, есть ли уже бэкенд или дизайн. После короткого созвона присылаю оценку по этапам.</p>
+</section>
+<section>
+  <div class="head"><h2>Частые вопросы</h2><span class="tag">про Laravel</span></div>
+  <div class="faq">
+    <details><summary>Беретесь за доработку чужого проекта на Laravel?</summary>
+      <p>Да. Разбираю код, восстанавливаю и расширяю функционал, делаю ревью. Начинаю с короткого аудита: что в проекте устарело, где риски и что чинить в первую очередь.</p></details>
+    <details><summary>Laravel или Symfony?</summary>
+      <p>Работаю с обоими. Laravel быстрее в разработке типового продукта: очереди, авторизация и админка собираются из готовых частей. Если проект уже на Symfony, продолжаю на нём.</p></details>
+    <details><summary>Пишете тесты?</summary>
+      <p>Да: PHPUnit и Pest. Логика денег — расчёты, списания, обработка вебхуков — уходит в продакшен только с автотестами.</p></details>
+    <details><summary>Можно подключить вас к нашей команде?</summary>
+      <p>Да. Работал и один, и в команде: единственным backend-разработчиком рядом с лидом, фронтендом и тестировщиком, а в ilink — в команде из восьми человек с наставничеством четырёх junior-разработчиков.</p></details>
+    <details><summary>Сколько стоит разработка на Laravel?</summary>
+      <p>Цена зависит от объёма, числа интеграций и того, есть ли уже бэкенд или дизайн. После короткого созвона присылаю оценку по этапам.</p></details>
+  </div>
+</section>
+
+<div class="total">
+  <h2>Обсудим проект на Laravel</h2>
+  <p>Опишите задачу в Telegram: новый сервис, доработка или аудит существующего кода. Отвечу, с чего начать и что войдёт в первую версию.</p>
+  <div class="contacts">
+    <div><span>Telegram</span><a href="https://t.me/uzver_ge" target="_blank" rel="noopener noreferrer">@uzver_ge</a></div>
+    <div><span>Почта</span><a href="mailto:myworkermailbox2022@gmail.com">myworkermailbox2022@gmail.com</a></div>
+    <div><span>Резюме</span><a href="/">опыт и стек</a></div>
+  </div>
+</div>
+
+<footer>
+  <!-- footmap -->
+  <nav class="footmap" aria-label="Карта сайта">
+    <div><b>Услуги</b><a href="/telegram-mini-app/">Telegram-боты и Mini Apps</a><a href="/boty-max/">Боты для MAX</a><a href="/oplata-v-bote/">Оплата в боте</a><a href="/platezhi/">Интеграция платёжных систем</a></div>
+    <div><b>Технологии</b><a href="/laravel/" aria-current="page">PHP и Laravel</a><a href="/nodejs/">Node.js и TypeScript</a><a href="/react-nextjs/">React и Next.js</a><a href="/vue/">Vue</a><a href="/python/">Python</a><a href="/mobilnye-prilozheniya/">Мобильные приложения</a></div>
+    <div><b>Кейсы</b><a href="/cases/podpiski/">Платформа подписок</a><a href="/cases/monitoring/">Мониторинг майнеров</a><a href="/#cases">Все кейсы</a></div>
+    <div><b>Статьи</b><a href="/blog/go-ili-python/">Go или Python</a><a href="/blog/react-ili-vue/">React или Vue</a><a href="/blog/php-ili-python/">PHP или Python</a><a href="/blog/react-native-ili-flutter/">React Native или Flutter</a></div>
+  </nav>
+  <!-- /footmap -->
+  <div class="wrap">Комягин Николай · Fullstack-разработчик · веб, мобильные приложения, боты, платежи</div>
+</footer>
+
+</div>
+
+<script src="/assets/site.js"></script>
+</body>
+</html>

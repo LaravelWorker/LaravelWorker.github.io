@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<title>Go или Python: что выбрать для бэкенда — Николай Комягин</title>
+<meta name="description" content="Go или Python для бэкенда: сравнение по скорости и конкурентности, порогу входа, экосистеме, типовым задачам и найму. Когда выбирать Go и когда Python.">
+<link rel="canonical" href="https://komiagin.dev/blog/go-ili-python/">
+<meta name="robots" content="index, follow, max-image-preview:large">
+<meta name="theme-color" content="#020604">
+
+<meta property="og:type" content="article">
+<meta property="og:locale" content="ru_RU">
+<meta property="og:site_name" content="komiagin.dev">
+<meta property="og:url" content="https://komiagin.dev/blog/go-ili-python/">
+<meta property="og:title" content="Go или Python: что выбрать для бэкенда">
+<meta property="og:description" content="Сравнение Go и Python для бэкенда по пяти критериям: скорость, порог входа, экосистема, типовые задачи, найм. Когда какой язык уместнее.">
+<meta property="og:image" content="https://komiagin.dev/og.png">
+<meta name="twitter:card" content="summary_large_image">
+
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'><rect width='64' height='64' fill='%23020604'/><text x='32' y='47' font-family='monospace' font-size='46' font-weight='bold' fill='%2300FF6A' text-anchor='middle'>K</text></svg>">
+<link rel="apple-touch-icon" href="/icon-512.png">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700;800&family=Manrope:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/assets/site.css">
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Article",
+      "headline": "Go или Python: что выбрать для бэкенда",
+      "url": "https://komiagin.dev/blog/go-ili-python/",
+      "datePublished": "2026-10-18",
+      "inLanguage": "ru",
+      "image": "https://komiagin.dev/og.png",
+      "author": { "@type": "Person", "name": "Николай Комягин", "url": "https://komiagin.dev/" },
+      "about": ["Go", "Python", "Бэкенд-разработка"]
+    },
+    {
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        { "@type": "ListItem", "position": 1, "name": "Главная", "item": "https://komiagin.dev/" },
+        { "@type": "ListItem", "position": 2, "name": "Статьи", "item": "https://komiagin.dev/blog/" },
+        { "@type": "ListItem", "position": 3, "name": "Go или Python", "item": "https://komiagin.dev/blog/go-ili-python/" }
+      ]
+    },
+    {
+      "@type": "FAQPage",
+      "mainEntity": [
+        { "@type": "Question", "name": "Что быстрее, Go или Python?",
+          "acceptedAnswer": { "@type": "Answer", "text": "Как правило, Go. Он компилируется в машинный код и эффективнее работает с конкурентностью. В типичном API разница заметна меньше, потому что основное время уходит на базу данных и внешние сервисы." } },
+        { "@type": "Question", "name": "Что проще выучить новичку?",
+          "acceptedAnswer": { "@type": "Answer", "text": "Python. У него короче код, мягче порог входа и больше учебных материалов. Go тоже несложный язык, но в нём сразу придётся разобраться со статической типизацией, обработкой ошибок и конкурентностью." } },
+        { "@type": "Question", "name": "Golang и Go — это один язык?",
+          "acceptedAnswer": { "@type": "Answer", "text": "Да. Официальное название языка Go. Слово golang пошло от старого адреса сайта golang.org. Его используют в поиске, чтобы не путать язык с английским словом go." } },
+        { "@type": "Question", "name": "Можно ли использовать Go и Python в одном проекте?",
+          "acceptedAnswer": { "@type": "Answer", "text": "Да. Сервисы общаются через HTTP, gRPC или очереди сообщений, и каждый пишут на подходящем языке. Например, основной продукт на Python, а нагруженный сервис с узкой задачей на Go." } },
+        { "@type": "Question", "name": "Python или Go для бэкенда стартапа?",
+          "acceptedAnswer": { "@type": "Answer", "text": "Чаще Python. На Django или FastAPI первая версия продукта собирается быстрее, а разработчика найти проще. Go имеет смысл, если продукт с первого дня работает под высокой нагрузкой или команда уже пишет на Go." } }
+      ]
+    }
+  ]
+}
+</script>
+</head>
+<body>
+
+<div id="rain" aria-hidden="true">
+  <canvas id="rainc"></canvas>
+  <div class="scrim"></div>
+  <div class="scan"></div>
+</div>
+
+<div class="wrap">
+
+<!-- nav -->
+<nav class="topnav" aria-label="Разделы сайта">
+  <a class="brand" href="/">komiagin.dev</a>
+  <a href="/uslugi/">Услуги и технологии</a>
+  <a href="/#cases">Кейсы</a>
+  <a href="/blog/" aria-current="page">Статьи</a>
+</nav>
+<!-- /nav -->
+
+<header class="sheet">
+  <div class="crumbs"><a href="/">Главная</a> / <a href="/blog/">Статьи</a> / Go или Python</div>
+  <div class="stamp tag">Статья</div>
+  <h1>Go или Python: что выбрать для бэкенда</h1>
+  <div class="role">Статья · 18&nbsp;октября 2026 · Николай Комягин</div>
+  <p class="pitch">Go и Python часто сравнивают, когда выбирают язык для нового бэкенда. Go быстрее и хорошо держит большую нагрузку, Python выигрывает скоростью разработки и экосистемой. Ниже <strong>сравнение по пяти критериям и сценарии, когда какой язык уместнее.</strong></p>
+</header>
+
+<section>
+  <div class="head"><h2>Сравнение Go и Python по критериям</h2><span class="tag">коротко</span></div>
+  <p class="sub">Сначала о том, откуда взят этот обзор. Я пишу на Python: API на FastAPI и Django, Telegram-ботов на aiogram, парсеры и скрипты. На Go я не писал, поэтому про него рассказываю как сторонний наблюдатель: по документации, устройству языка и известным проектам на нём.</p>
+  <div class="tbl">
+    <table>
+      <thead><tr><th>Критерий</th><th>Go</th><th>Python</th></tr></thead>
+      <tbody>
+        <tr><td>Скорость и конкурентность</td><td>Компилируется в машинный код. Горутины и каналы встроены в язык, много одновременных соединений обслуживаются без сторонних библиотек.</td><td>Интерпретатор CPython медленнее на вычислениях. Для сетевых операций есть asyncio, тяжёлые расчёты выносят в процессы или библиотеки на C.</td></tr>
+        <tr><td>Порог входа</td><td>Небольшой строгий язык. Синтаксис осваивается быстро, конкурентность и обработку ошибок придётся изучить отдельно.</td><td>Мягкий старт: короткий код, понятный синтаксис. Сложности появляются позже, когда проект растёт.</td></tr>
+        <tr><td>Экосистема и фреймворки</td><td>Сильная стандартная библиотека: HTTP-сервер, JSON, тесты. Фреймворки Gin, Echo, chi. Популярен для gRPC и инфраструктуры.</td><td>Django, FastAPI, Flask. Огромный выбор библиотек для данных, машинного обучения, парсинга и ботов.</td></tr>
+        <tr><td>Типовые задачи</td><td>Нагруженные API, микросервисы, сетевые сервисы, CLI-утилиты, инструменты для DevOps.</td><td>Веб-приложения и API, админки, боты, парсинг, автоматизация, сервисы вокруг данных и ML.</td></tr>
+        <tr><td>Найм и стоимость поддержки</td><td>Разработчиков меньше. Код у разных команд похож, чужой сервис проще читать.</td><td>Разработчиков много, но часть из них работает с данными. Качество кода сильно зависит от типизации и тестов в команде.</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <p class="tbl-note">Таблица описывает типичные случаи. В конкретном проекте решают требования к нагрузке, сроки и люди, которые будут поддерживать код.</p>
+</section>
+
+<section>
+  <div class="head"><h2>Скорость и конкурентность</h2><span class="tag">производительность</span></div>
+  <p class="sub">Go компилируется в машинный код. Сервис быстро запускается и обычно расходует меньше памяти, чем похожий сервис на Python. На вычислениях разница заметна сразу: CPython исполняет байт-код в интерпретаторе, и это медленнее.</p>
+  <p class="sub">Главное преимущество Go для бэкенда в конкурентности. Горутины легче потоков операционной системы, и планирует их сама среда выполнения Go. Каналы и пакет <code>context</code> помогают передавать данные между горутинами и отменять операции по таймауту. Всё это есть в языке и стандартной библиотеке.</p>
+  <p class="sub">В Python для конкурентности несколько путей. Для сетевых операций подходит asyncio: на нём работают FastAPI, aiohttp и aiogram. Потоки в CPython ограничивает GIL: в один момент байт-код Python исполняет только один поток. Поэтому тяжёлые вычисления выносят в отдельные процессы, в очереди задач вроде Celery или в библиотеки на C, такие как NumPy. Сборку CPython без GIL уже можно попробовать, но по умолчанию интерпретатор работает с ним.</p>
+  <p class="sub">Для типичного API скорость языка часто важна меньше, чем кажется. Запрос ждёт базу данных, кеш или внешний сервис, и это время одинаково для обоих языков. Go выигрывает, когда поток запросов большой, серверов много и ресурсы стоят заметных денег. Или когда сервис держит много долгих соединений: WebSocket, стримы, длинные опросы.</p>
+</section>
+
+<section>
+  <div class="head"><h2>Порог входа</h2><span class="tag">обучение</span></div>
+  <p class="sub">Python считают одним из самых простых языков для старта. Код короткий и читается почти как текст. Небольшой API на FastAPI собирается быстро даже без опыта в бэкенде.</p>
+  <p class="sub">У этой простоты есть обратная сторона. Динамическая типизация прощает ошибки, пока проект маленький. Когда кода много, нужны аннотации типов, проверка через mypy или pyright, тесты и договорённости в команде. Без них крупный проект на Python трудно менять.</p>
+  <p class="sub">Go задуман небольшим языком. В нём мало конструкций, а стиль кода задаёт стандартная утилита <code>gofmt</code>. Статическая типизация ловит часть ошибок ещё при компиляции. Сложнее даются другие вещи: явная обработка ошибок через <code>if err != nil</code>, указатели, интерфейсы и аккуратная работа с горутинами. Гонки данных помогает найти встроенный детектор <code>go test -race</code>.</p>
+  <p class="sub">Разработчику, который уже писал на Java, C# или PHP, Go обычно даётся быстро. Новичку проще начать с Python.</p>
+</section>
+
+<section>
+  <div class="head"><h2>Экосистема и фреймворки</h2><span class="tag">библиотеки</span></div>
+  <p class="sub">В Go многое есть в стандартной библиотеке. HTTP-сервер и клиент, JSON, шаблоны, тесты и бенчмарки доступны без внешних пакетов. Часть команд пишет сервисы на чистом <code>net/http</code> и берёт Gin, Echo или chi для маршрутизации и middleware. На Go написаны Docker, Kubernetes, Terraform и Prometheus. Это хорошо показывает сильную сторону языка: инфраструктурные инструменты и облачные сервисы.</p>
+  <p class="sub">У Python библиотек больше, и они покрывают почти любую область. Для веба есть Django со встроенными ORM, миграциями и админкой, FastAPI с валидацией через Pydantic и автоматической документацией OpenAPI, лёгкий Flask. Рядом лежат библиотеки для данных и машинного обучения, парсинга, автоматизации и ботов. Я пишу на FastAPI и Django, ботов делаю на aiogram, на этом же языке пишу парсеры и скрипты.</p>
+  <div class="stack">
+    <div class="srow"><span class="k">Go: веб и API</span><div class="chips"><span class="chip">net/http</span><span class="chip">Gin</span><span class="chip">Echo</span><span class="chip">chi</span><span class="chip">gRPC</span></div></div>
+    <div class="srow"><span class="k">Go: базы данных</span><div class="chips"><span class="chip">database/sql</span><span class="chip">pgx</span><span class="chip">sqlc</span><span class="chip">GORM</span></div></div>
+    <div class="srow"><span class="k">Python: веб и API</span><div class="chips"><span class="chip">Django</span><span class="chip">FastAPI</span><span class="chip">Flask</span><span class="chip">SQLAlchemy</span><span class="chip">Celery</span></div></div>
+    <div class="srow"><span class="k">Python: данные</span><div class="chips"><span class="chip">pandas</span><span class="chip">NumPy</span><span class="chip">scikit-learn</span><span class="chip">PyTorch</span></div></div>
+    <div class="srow"><span class="k">Python: боты и парсинг</span><div class="chips"><span class="chip">aiogram</span><span class="chip">httpx</span><span class="chip">BeautifulSoup</span><span class="chip">Scrapy</span></div></div>
+  </div>
+</section>
+
+<section>
+  <div class="head"><h2>Типовые задачи</h2><span class="tag">где что применяют</span></div>
+  <p class="sub">Go чаще встречается в нагруженных API, микросервисах, шлюзах и прокси, в сервисах потоковой обработки, CLI-утилитах и инструментах для DevOps. Сервис собирается в один исполняемый файл, его удобно класть в маленький Docker-образ. Собрать его под другую систему и архитектуру можно через переменные <code>GOOS</code> и <code>GOARCH</code>.</p>
+  <p class="sub">Python берут для веб-приложений и API, внутренних сервисов и админок, ботов, парсинга, интеграций и автоматизации. Отдельная большая область: сервисы вокруг данных и машинного обучения. Если модель обучена на Python, обслуживать её удобнее тоже на Python.</p>
+  <p class="sub">Языки часто работают вместе. Основной продукт пишут на Python, а нагруженный сервис с одной узкой задачей выносят на Go. Бывает и наоборот: ядро на Go, аналитика и скрипты на Python.</p>
+</section>
+
+<section>
+  <div class="head"><h2>Найм и стоимость поддержки</h2><span class="tag">команда</span></div>
+  <p class="sub">Python-разработчиков на рынке много. Для бэкенда нужен опыт с Django или FastAPI, базами данных и асинхронным кодом. Знание Python для анализа данных или автотестов такой опыт не заменяет.</p>
+  <p class="sub">Go-разработчиков меньше, и в Go часто приходят люди с опытом в других языках. Зато код на Go у разных команд выглядит похоже: один форматтер, строгая типизация, мало способов написать одно и то же. Новому человеку проще разобраться в чужом сервисе.</p>
+  <p class="sub">Стоимость поддержки зависит от качества кода сильнее, чем от языка. Проект на Python с типами, тестами и понятной структурой поддерживать не сложнее сервиса на Go. У Go есть обещание совместимости Go&nbsp;1: код, написанный под ранние версии, собирается и новыми компиляторами. В Python часть возможностей со временем объявляют устаревшими и удаляют, поэтому интерпретатор и зависимости стоит обновлять регулярно.</p>
+</section>
+
+<section>
+  <div class="head"><h2>Когда выбирать Go</h2><span class="tag">четыре сценария</span></div>
+  <div class="ledger">
+    <div class="item"><span class="idx">01</span><div><h3>Высокая нагрузка и много соединений</h3><p>Сервис обрабатывает большой поток запросов, держит WebSocket-соединения или стримы. Горутины и скромный расход памяти помогают обойтись меньшим числом серверов.</p></div></div>
+    <div class="item"><span class="idx">02</span><div><h3>Микросервисы и gRPC</h3><p>Много небольших сервисов, которые общаются между собой. Быстрый запуск процесса, маленькие образы и хорошая поддержка gRPC упрощают эксплуатацию.</p></div></div>
+    <div class="item"><span class="idx">03</span><div><h3>Инфраструктура и утилиты</h3><p>CLI-инструменты, агенты сбора метрик, прокси, операторы для Kubernetes. Один исполняемый файл легко распространять и запускать.</p></div></div>
+    <div class="item"><span class="idx">04</span><div><h3>Команда уже пишет на Go</h3><p>Если в компании есть Go-разработчики, общие библиотеки и инфраструктура под Go, новый сервис логично делать на нём.</p></div></div>
+  </div>
+</section>
+
+<section>
+  <div class="head"><h2>Когда выбирать Python</h2><span class="tag">четыре сценария</span></div>
+  <div class="ledger">
+    <div class="item"><span class="idx">01</span><div><h3>Нужно быстро запустить продукт</h3><p>MVP, внутренний сервис, админка. Django даёт ORM, миграции, авторизацию и админ-панель из коробки. На FastAPI быстро собирается API с документацией.</p></div></div>
+    <div class="item"><span class="idx">02</span><div><h3>Рядом данные и машинное обучение</h3><p>Модели, аналитика, обработка таблиц и документов. Библиотеки для этого написаны под Python, и сервис на том же языке проще с ними связать.</p></div></div>
+    <div class="item"><span class="idx">03</span><div><h3>Боты, парсинг, автоматизация</h3><p>Telegram-боты на aiogram, сбор данных с сайтов, интеграции между сервисами, скрипты. В таких задачах скорость разработки важнее скорости исполнения.</p></div></div>
+    <div class="item"><span class="idx">04</span><div><h3>Обычная нагрузка</h3><p>Многие бизнес-приложения упираются в базу данных и внешние API. Для них производительности Python с asyncio обычно хватает.</p></div></div>
+  </div>
+</section>
+
+<section>
+  <div class="head"><h2>Вывод</h2><span class="tag">итог</span></div>
+  <p class="sub">Для многих новых веб-проектов Python будет разумным стартом. Он подходит продуктам, которым важны скорость разработки, богатая экосистема и связь с данными. Go стоит выбирать, когда нагрузка высокая и растёт, сервисов много, а серверные ресурсы стоят заметных денег.</p>
+  <p class="sub">Решение можно пересмотреть позже. Языки хорошо уживаются в одной системе: можно начать на Python и вынести на Go отдельный сервис, когда станет понятно, где узкое место. Если команда уже пишет на TypeScript, для API и ботов стоит рассмотреть и Node.js: у него тоже сильная асинхронная модель.</p>
+  <a class="more" href="/python/">Разработка на Python →</a>
+  <a class="more" href="/nodejs/">Node.js и TypeScript →</a>
+</section>
+
+<section>
+  <div class="head"><h2>Частые вопросы</h2><span class="tag">про Go и Python</span></div>
+  <div class="faq">
+    <details><summary>Что быстрее, Go или Python?</summary>
+      <p>Как правило, Go. Он компилируется в машинный код и эффективнее работает с конкурентностью. В типичном API разница заметна меньше, потому что основное время уходит на базу данных и внешние сервисы.</p></details>
+    <details><summary>Что проще выучить новичку?</summary>
+      <p>Python. У него короче код, мягче порог входа и больше учебных материалов. Go тоже несложный язык, но в нём сразу придётся разобраться со статической типизацией, обработкой ошибок и конкурентностью.</p></details>
+    <details><summary>Golang и Go — это один язык?</summary>
+      <p>Да. Официальное название языка Go. Слово golang пошло от старого адреса сайта golang.org. Его используют в поиске, чтобы не путать язык с английским словом go.</p></details>
+    <details><summary>Можно ли использовать Go и Python в одном проекте?</summary>
+      <p>Да. Сервисы общаются через HTTP, gRPC или очереди сообщений, и каждый пишут на подходящем языке. Например, основной продукт на Python, а нагруженный сервис с узкой задачей на Go.</p></details>
+    <details><summary>Python или Go для бэкенда стартапа?</summary>
+      <p>Чаще Python. На Django или FastAPI первая версия продукта собирается быстрее, а разработчика найти проще. Go имеет смысл, если продукт с первого дня работает под высокой нагрузкой или команда уже пишет на Go.</p></details>
+  </div>
+</section>
+
+<div class="total">
+  <h2>Выбираете стек для проекта?</h2>
+  <p>Расскажите о задаче в Telegram. Разберём на созвоне, какой стек подойдёт под вашу нагрузку, сроки и команду. Разработку на Python, PHP и Node.js беру целиком.</p>
+  <div class="contacts">
+    <div><span>Telegram</span><a href="https://t.me/uzver_ge" target="_blank" rel="noopener noreferrer">@uzver_ge</a></div>
+    <div><span>Почта</span><a href="mailto:myworkermailbox2022@gmail.com">myworkermailbox2022@gmail.com</a></div>
+  </div>
+  <a class="more" href="/python/">Разработка на Python →</a>
+  <a class="more" href="/laravel/">PHP и Laravel →</a>
+  <a class="more" href="/nodejs/">Node.js и TypeScript →</a>
+</div>
+
+<footer>
+<!-- footmap -->
+  <nav class="footmap" aria-label="Карта сайта">
+    <div><b>Услуги</b><a href="/telegram-mini-app/">Telegram-боты и Mini Apps</a><a href="/boty-max/">Боты для MAX</a><a href="/oplata-v-bote/">Оплата в боте</a><a href="/platezhi/">Интеграция платёжных систем</a></div>
+    <div><b>Технологии</b><a href="/laravel/">PHP и Laravel</a><a href="/nodejs/">Node.js и TypeScript</a><a href="/react-nextjs/">React и Next.js</a><a href="/vue/">Vue</a><a href="/python/">Python</a><a href="/mobilnye-prilozheniya/">Мобильные приложения</a></div>
+    <div><b>Кейсы</b><a href="/cases/podpiski/">Платформа подписок</a><a href="/cases/monitoring/">Мониторинг майнеров</a><a href="/#cases">Все кейсы</a></div>
+    <div><b>Статьи</b><a href="/blog/go-ili-python/" aria-current="page">Go или Python</a><a href="/blog/react-ili-vue/">React или Vue</a><a href="/blog/php-ili-python/">PHP или Python</a><a href="/blog/react-native-ili-flutter/">React Native или Flutter</a></div>
+  </nav>
+  <!-- /footmap -->
+  <div class="wrap">Комягин Николай · Fullstack-разработчик · боты Telegram и MAX, платежи, интеграции</div>
+</footer>
+
+</div>
+
+<script src="/assets/site.js"></script>
+</body>
+</html>

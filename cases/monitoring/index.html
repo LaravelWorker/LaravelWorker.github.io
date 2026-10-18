@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<title>Кейс: мониторинг 10 000 майнеров с алертами в Telegram — Николай Комягин</title>
+<meta name="description" content="Мониторинг майнинг-фермы: телеметрия по API сервисов и пулов, до 10 000 устройств с опросом раз в минуту, пороги по uptime, температуре и производительности, уведомления в Telegram и на почту. Простой виден через 3 минуты вместо недель.">
+<link rel="canonical" href="https://komiagin.dev/cases/monitoring/">
+<meta name="robots" content="index, follow, max-image-preview:large">
+<meta name="theme-color" content="#020604">
+
+<meta property="og:type" content="article">
+<meta property="og:locale" content="ru_RU">
+<meta property="og:site_name" content="komiagin.dev">
+<meta property="og:url" content="https://komiagin.dev/cases/monitoring/">
+<meta property="og:title" content="Кейс: мониторинг 10 000 майнеров с алертами в Telegram">
+<meta property="og:description" content="Опрос парка раз в минуту, двухуровневое хранение метрик в Redis и PostgreSQL, алерты в Telegram и на почту. Простой виден через 3 минуты.">
+<meta property="og:image" content="https://komiagin.dev/og.png">
+<meta name="twitter:card" content="summary_large_image">
+
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'><rect width='64' height='64' fill='%23020604'/><text x='32' y='47' font-family='monospace' font-size='46' font-weight='bold' fill='%2300FF6A' text-anchor='middle'>K</text></svg>">
+<link rel="apple-touch-icon" href="/icon-512.png">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700;800&family=Manrope:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/assets/site.css">
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Article",
+      "headline": "Мониторинг 10 000 майнеров с алертами в Telegram: опрос раз в минуту, Redis и PostgreSQL, простой виден через 3 минуты",
+      "url": "https://komiagin.dev/cases/monitoring/",
+      "inLanguage": "ru",
+      "image": "https://komiagin.dev/og.png",
+      "author": { "@type": "Person", "name": "Николай Комягин", "url": "https://komiagin.dev/" },
+      "about": ["Мониторинг майнингового оборудования", "Telegram-бот", "Laravel", "Redis", "PostgreSQL"]
+    },
+    {
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        { "@type": "ListItem", "position": 1, "name": "Главная", "item": "https://komiagin.dev/" },
+        { "@type": "ListItem", "position": 2, "name": "Кейсы", "item": "https://komiagin.dev/#cases" },
+        { "@type": "ListItem", "position": 3, "name": "Мониторинг майнеров", "item": "https://komiagin.dev/cases/monitoring/" }
+      ]
+    },
+    {
+      "@type": "FAQPage",
+      "mainEntity": [
+        { "@type": "Question", "name": "Как узнать, что майнер перестал работать?",
+          "acceptedAnswer": { "@type": "Answer", "text": "Система опрашивает API сервисов и пулов раз в минуту и сверяет показатели с порогами. Если устройство встало, перегрелось или просело по производительности, уведомление уходит в Telegram и на почту. В этом проекте простой машины виден через 3 минуты." } },
+        { "@type": "Question", "name": "Что отслеживает мониторинг?",
+          "acceptedAnswer": { "@type": "Answer", "text": "Uptime, температуру и просадки производительности каждого устройства. Пороги настраиваются, при выходе за них приходит уведомление." } },
+        { "@type": "Question", "name": "Оборудование подключено к разным пулам. Можно ли видеть всё в одном месте?",
+          "acceptedAnswer": { "@type": "Answer", "text": "Да. В проекте телеметрия собирается по API нескольких сервисов и пулов и сводится в одну систему: состояние всего парка видно в одном месте." } },
+        { "@type": "Question", "name": "Не разрастётся ли база при опросе раз в минуту?",
+          "acceptedAnswer": { "@type": "Answer", "text": "Нет. Оперативные метрики хранятся в Redis, а в PostgreSQL пишутся суточные агрегаты. Поэтому минутный опрос 10 000 устройств не раздувает базу, а история по каждому устройству остаётся за весь период наблюдения." } },
+        { "@type": "Question", "name": "Сколько стоит такой мониторинг для своей фермы?",
+          "acceptedAnswer": { "@type": "Answer", "text": "Цена зависит от числа источников данных, устройств и нужных уведомлений. После короткого созвона присылаю оценку по этапам." } }
+      ]
+    }
+  ]
+}
+</script>
+</head>
+<body>
+
+<div id="rain" aria-hidden="true">
+  <canvas id="rainc"></canvas>
+  <div class="scrim"></div>
+  <div class="scan"></div>
+</div>
+
+<div class="wrap">
+
+<!-- nav -->
+<nav class="topnav" aria-label="Разделы сайта">
+  <a class="brand" href="/">komiagin.dev</a>
+  <a href="/uslugi/">Услуги и технологии</a>
+  <a href="/#cases" aria-current="page">Кейсы</a>
+  <a href="/blog/">Статьи</a>
+</nav>
+<!-- /nav -->
+
+<header class="sheet">
+  <div class="crumbs"><a href="/">Главная</a> / <a href="/#cases">Кейсы</a> / Мониторинг майнеров</div>
+  <div class="stamp tag">Кейс</div>
+  <h1>Мониторинг 10&nbsp;000 майнеров с&nbsp;алертами в&nbsp;Telegram</h1>
+  <div class="role">Мониторинг майнинговой фермы · полный цикл · заказчик под NDA</div>
+  <p class="pitch">Оборудование заказчика распределено по разным сервисам и пулам. Простой отдельной машины замечали случайно — бывало, устройство не работало неделями. Я собрал систему, которая <strong>опрашивает весь парк раз в минуту и присылает алерт в Telegram и на почту, когда машина встала, перегрелась или просела по производительности.</strong></p>
+  <dl class="meta">
+    <div class="mrow"><dt>Заказчик</dt><dd>Парк майнингового оборудования, детали под NDA</dd><dd class="num">NDA</dd></div>
+    <div class="mrow"><dt>Роль</dt><dd>Разработчик, полный цикл: сбор данных, хранение, алерты, интерфейс</dd><dd class="num">полный цикл</dd></div>
+    <div class="mrow"><dt>Масштаб</dt><dd>До 10&nbsp;000 устройств, опрос раз в минуту</dd><dd class="num">10&nbsp;000</dd></div>
+  </dl>
+  <div class="figs">
+    <div class="fig"><b>10&nbsp;000</b><span>устройств под мониторингом</span></div>
+    <div class="fig"><b>1&nbsp;мин</b><span>интервал опроса</span></div>
+    <div class="fig"><b>3&nbsp;мин</b><span>до алерта вместо недель</span></div>
+  </div>
+</header>
+
+<section>
+  <div class="head"><h2>Задача</h2><span class="tag">что было</span></div>
+  <p class="sub">Оборудование распределено по разным сервисам и пулам. Простой отдельной машины замечали случайно — были случаи, когда устройство не работало неделями. Требовалось видеть состояние всего парка и узнавать о сбое сразу.</p>
+</section>
+
+<section>
+  <div class="head"><h2>Решение</h2><span class="tag">четыре части</span></div>
+  <div class="ledger">
+    <div class="item">
+      <span class="idx">01</span>
+      <div>
+        <h3>Сбор телеметрии</h3>
+        <p>Данные о каждом устройстве собираются по API нескольких сервисов и пулов — до 10&nbsp;000 устройств с опросом раз в минуту. Лимиты частоты, повторы и отказы внешних API учтены в опросе.</p>
+        <div class="kit">PHP · Laravel · API сервисов и пулов</div>
+      </div>
+    </div>
+    <div class="item">
+      <span class="idx">02</span>
+      <div>
+        <h3>Двухуровневое хранение метрик</h3>
+        <p>Оперативные метрики живут в Redis, в PostgreSQL пишутся суточные агрегаты. Минутный опрос парка такого размера не раздувает базу, а по каждому устройству остаётся история метрик за весь период наблюдения.</p>
+        <div class="kit">Redis · PostgreSQL</div>
+      </div>
+    </div>
+    <div class="item">
+      <span class="idx">03</span>
+      <div>
+        <h3>Пороги и алерты</h3>
+        <p>Контроль uptime, температуры и просадок производительности. Пороги настраиваются, при выходе за них уведомление уходит в Telegram и на почту.</p>
+        <div class="kit">Telegram Bot API · email</div>
+        <a class="more" href="/telegram-mini-app/">Разработка Telegram-ботов →</a>
+      </div>
+    </div>
+    <div class="item">
+      <span class="idx">04</span>
+      <div>
+        <h3>Интерфейс</h3>
+        <p>Состояние парка и история метрик по каждому устройству в веб-интерфейсе.</p>
+        <div class="kit">Vue 3</div>
+      </div>
+    </div>
+  </div>
+  <div class="flow" aria-label="Как работает мониторинг">
+    <span>API сервисов и пулов</span><b>→</b><span>опрос раз в минуту</span><b>→</b><span>метрики в Redis</span><b>→</b><span>проверка порогов</span><b>→</b><span>алерт в Telegram и на почту</span>
+  </div>
+</section>
+
+<section>
+  <div class="head"><h2>Результат</h2><span class="tag">что стало</span></div>
+  <p class="sub">Простой машины виден через 3&nbsp;минуты вместо недель. По каждому устройству — история метрик за весь период наблюдения, а база не растёт от минутного опроса десяти тысяч устройств.</p>
+</section>
+
+<section>
+  <div class="head"><h2>Стек</h2><span class="tag">чем собрано</span></div>
+  <div class="stack">
+    <div class="srow"><span class="k">Backend</span><div class="chips"><span class="chip">PHP</span><span class="chip">Laravel</span></div></div>
+    <div class="srow"><span class="k">Хранение</span><div class="chips"><span class="chip">Redis</span><span class="chip">PostgreSQL</span></div></div>
+    <div class="srow"><span class="k">Frontend</span><div class="chips"><span class="chip">Vue 3</span></div></div>
+    <div class="srow"><span class="k">Уведомления</span><div class="chips"><span class="chip">Telegram Bot API</span><span class="chip">email</span></div></div>
+  </div>
+</section>
+
+<section>
+  <div class="head"><h2>Частые вопросы</h2><span class="tag">про мониторинг майнеров</span></div>
+  <div class="faq">
+    <details><summary>Как узнать, что майнер перестал работать?</summary>
+      <p>Система опрашивает API сервисов и пулов раз в минуту и сверяет показатели с порогами. Если устройство встало, перегрелось или просело по производительности, уведомление уходит в Telegram и на почту. В этом проекте простой машины виден через 3&nbsp;минуты.</p></details>
+    <details><summary>Что отслеживает мониторинг?</summary>
+      <p>Uptime, температуру и просадки производительности каждого устройства. Пороги настраиваются, при выходе за них приходит уведомление.</p></details>
+    <details><summary>Оборудование подключено к разным пулам. Можно ли видеть всё в одном месте?</summary>
+      <p>Да. В проекте телеметрия собирается по API нескольких сервисов и пулов и сводится в одну систему: состояние всего парка видно в одном месте.</p></details>
+    <details><summary>Не разрастётся ли база при опросе раз в минуту?</summary>
+      <p>Нет. Оперативные метрики хранятся в Redis, а в PostgreSQL пишутся суточные агрегаты. Поэтому минутный опрос 10&nbsp;000 устройств не раздувает базу, а история по каждому устройству остаётся за весь период наблюдения.</p></details>
+    <details><summary>Сколько стоит такой мониторинг для своей фермы?</summary>
+      <p>Цена зависит от числа источников данных, устройств и нужных уведомлений. После короткого созвона присылаю оценку по этапам.</p></details>
+  </div>
+</section>
+
+<div class="total">
+  <h2>Похожая задача?</h2>
+  <p>Если о сбоях оборудования вы узнаёте случайно, напишите в Telegram. Разберём на созвоне за двадцать минут, откуда брать данные и какие алерты нужны.</p>
+  <div class="contacts">
+    <div><span>Telegram</span><a href="https://t.me/uzver_ge" target="_blank" rel="noopener noreferrer">@uzver_ge</a></div>
+    <div><span>Почта</span><a href="mailto:myworkermailbox2022@gmail.com">myworkermailbox2022@gmail.com</a></div>
+    <div><span>Ещё кейсы</span><a href="/#cases">на главной</a></div>
+  </div>
+</div>
+
+<footer>
+  <!-- footmap -->
+  <nav class="footmap" aria-label="Карта сайта">
+    <div><b>Услуги</b><a href="/telegram-mini-app/">Telegram-боты и Mini Apps</a><a href="/boty-max/">Боты для MAX</a><a href="/oplata-v-bote/">Оплата в боте</a><a href="/platezhi/">Интеграция платёжных систем</a></div>
+    <div><b>Технологии</b><a href="/laravel/">PHP и Laravel</a><a href="/nodejs/">Node.js и TypeScript</a><a href="/react-nextjs/">React и Next.js</a><a href="/vue/">Vue</a><a href="/python/">Python</a><a href="/mobilnye-prilozheniya/">Мобильные приложения</a></div>
+    <div><b>Кейсы</b><a href="/cases/podpiski/">Платформа подписок</a><a href="/cases/monitoring/" aria-current="page">Мониторинг майнеров</a><a href="/#cases">Все кейсы</a></div>
+    <div><b>Статьи</b><a href="/blog/go-ili-python/">Go или Python</a><a href="/blog/react-ili-vue/">React или Vue</a><a href="/blog/php-ili-python/">PHP или Python</a><a href="/blog/react-native-ili-flutter/">React Native или Flutter</a></div>
+  </nav>
+  <!-- /footmap -->
+  <div class="wrap">Комягин Николай · Fullstack-разработчик · боты Telegram и MAX, платежи, интеграции</div>
+</footer>
+
+</div>
+
+<script src="/assets/site.js"></script>
+</body>
+</html>

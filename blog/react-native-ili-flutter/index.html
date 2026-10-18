@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<title>React Native или Flutter: что выбрать для мобильного приложения — Николай Комягин</title>
+<meta name="description" content="React Native или Flutter: сравнение по порогу входа, экосистеме, скорости и найму. Плюс когда нужна нативная разработка на Swift и Kotlin, а когда хватит PWA.">
+<link rel="canonical" href="https://komiagin.dev/blog/react-native-ili-flutter/">
+<meta name="robots" content="index, follow, max-image-preview:large">
+<meta name="theme-color" content="#020604">
+
+<meta property="og:type" content="article">
+<meta property="og:locale" content="ru_RU">
+<meta property="og:site_name" content="komiagin.dev">
+<meta property="og:url" content="https://komiagin.dev/blog/react-native-ili-flutter/">
+<meta property="og:title" content="React Native или Flutter: что выбрать для мобильного приложения">
+<meta property="og:description" content="Сравнение React Native и Flutter по пяти критериям и разбор трёх путей: кроссплатформа, нативная разработка на Swift и Kotlin или PWA.">
+<meta property="og:image" content="https://komiagin.dev/og.png">
+<meta name="twitter:card" content="summary_large_image">
+
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'><rect width='64' height='64' fill='%23020604'/><text x='32' y='47' font-family='monospace' font-size='46' font-weight='bold' fill='%2300FF6A' text-anchor='middle'>K</text></svg>">
+<link rel="apple-touch-icon" href="/icon-512.png">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700;800&family=Manrope:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/assets/site.css">
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Article",
+      "headline": "React Native или Flutter: что выбрать для мобильного приложения",
+      "url": "https://komiagin.dev/blog/react-native-ili-flutter/",
+      "datePublished": "2026-10-18",
+      "inLanguage": "ru",
+      "image": "https://komiagin.dev/og.png",
+      "author": { "@type": "Person", "name": "Николай Комягин", "url": "https://komiagin.dev/" }
+    },
+    {
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        { "@type": "ListItem", "position": 1, "name": "Главная", "item": "https://komiagin.dev/" },
+        { "@type": "ListItem", "position": 2, "name": "Статьи", "item": "https://komiagin.dev/blog/" },
+        { "@type": "ListItem", "position": 3, "name": "React Native или Flutter", "item": "https://komiagin.dev/blog/react-native-ili-flutter/" }
+      ]
+    },
+    {
+      "@type": "FAQPage",
+      "mainEntity": [
+        { "@type": "Question", "name": "Что быстрее: React Native или Flutter?",
+          "acceptedAnswer": { "@type": "Answer", "text": "В типовом приложении с формами, списками и карточками пользователь разницы не заметит. Flutter рисует интерфейс своим движком и даёт предсказуемую плавность. React Native показывает системные компоненты, а тяжёлые анимации выполняет в потоке интерфейса через Reanimated." } },
+        { "@type": "Question", "name": "Можно ли сделать приложение для iOS, Android и сайт на одном коде?",
+          "acceptedAnswer": { "@type": "Answer", "text": "Частично. С React Native общими с сайтом на React становятся логика, типы и API-клиент, а экраны обычно делают отдельно. Flutter умеет собирать веб-версию, но для контентного сайта с SEO она подходит плохо." } },
+        { "@type": "Question", "name": "Когда нужна нативная разработка на Swift и Kotlin?",
+          "acceptedAnswer": { "@type": "Answer", "text": "Когда приложение глубоко работает с системой: обработка видео и звука, AR, Bluetooth, фоновые задачи, приложения для часов. В остальных случаях кроссплатформа обходится дешевле, а отдельные нативные модули к ней дописывают на Swift и Kotlin." } },
+        { "@type": "Question", "name": "Можно ли начать с PWA, а потом сделать приложение?",
+          "acceptedAnswer": { "@type": "Answer", "text": "Да, это нормальный путь для проверки идеи. PWA ставится на экран телефона и работает без магазинов. Когда понадобятся функции устройства, которых нет в браузере, или присутствие в App Store и Google Play, приложение делают на React Native или Flutter. Серверная часть при этом остаётся прежней." } },
+        { "@type": "Question", "name": "Что дешевле поддерживать: React Native или Flutter?",
+          "acceptedAnswer": { "@type": "Answer", "text": "Зависит от команды. Если у вас уже есть веб-разработчики на React, React Native обойдётся дешевле за счёт общего кода и людей. В обоих случаях бюджет на поддержку нужен постоянно: новые версии iOS и Android и требования магазинов заставляют регулярно обновлять приложение." } }
+      ]
+    }
+  ]
+}
+</script>
+</head>
+<body>
+
+<div id="rain" aria-hidden="true">
+  <canvas id="rainc"></canvas>
+  <div class="scrim"></div>
+  <div class="scan"></div>
+</div>
+
+<div class="wrap">
+
+<!-- nav -->
+<nav class="topnav" aria-label="Разделы сайта">
+  <a class="brand" href="/">komiagin.dev</a>
+  <a href="/uslugi/">Услуги и технологии</a>
+  <a href="/#cases">Кейсы</a>
+  <a href="/blog/" aria-current="page">Статьи</a>
+</nav>
+<!-- /nav -->
+
+<header class="sheet">
+  <div class="crumbs"><a href="/">Главная</a> / <a href="/blog/">Статьи</a> / React Native или Flutter</div>
+  <div class="stamp tag">Статья</div>
+  <h1>React Native или Flutter: что выбрать для мобильного приложения</h1>
+  <div class="role">Статья · <time datetime="2026-10-18">18&nbsp;октября 2026</time> · Николай Комягин</div>
+  <p class="pitch">React Native и Flutter позволяют написать одно приложение сразу для iOS и Android. Оба зрелые и подходят для большинства бизнес-приложений, но устроены по-разному, и от этого зависят интерфейс, найм и стоимость поддержки. Я пишу на React Native и нативно на Swift и Kotlin; <strong>Flutter разбираю как сторонний обзор по документации.</strong></p>
+</header>
+
+<section>
+  <div class="head"><h2>Сравнение по критериям</h2><span class="tag">коротко</span></div>
+  <div class="tbl">
+    <table>
+      <thead><tr><th>Критерий</th><th>React Native</th><th>Flutter</th></tr></thead>
+      <tbody>
+        <tr><td>Порог входа</td><td>JavaScript или TypeScript и React. Веб-разработчик начинает быстро.</td><td>Язык Dart и своя система виджетов. Язык простой, но его учат отдельно.</td></tr>
+        <tr><td>Экосистема</td><td>npm, Expo и библиотеки из веба для логики. Качество нативных библиотек разное.</td><td>pub.dev и большой набор официальных виджетов. Интерфейс собирается почти без сторонних пакетов.</td></tr>
+        <tr><td>Производительность и UX</td><td>Системные компоненты платформы, приложение выглядит привычно для iOS и Android.</td><td>Собственный движок отрисовки. Одинаковый вид на всех платформах и плавная анимация.</td></tr>
+        <tr><td>Типовые задачи</td><td>Продукт с сайтом на React, общая логика с вебом, быстрые правки JS-кода.</td><td>Приложение со сложным фирменным дизайном, один интерфейс на мобильных и десктопе.</td></tr>
+        <tr><td>Найм и поддержка</td><td>Большой рынок JS-разработчиков, людей можно делить с веб-командой.</td><td>Нужны отдельные специалисты по Dart. Фреймворк и основные виджеты развивает одна команда.</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <p class="tbl-note">React Native развивает Meta, Flutter развивает Google. Оба проекта открытые и бесплатные.</p>
+</section>
+
+<section>
+  <div class="head"><h2>Порог входа</h2><span class="tag">кто быстрее начнёт</span></div>
+  <p class="sub">React Native устроен как React для мобильных. Компоненты, хуки и состояние работают так же, как в вебе. Меняются базовые элементы: вместо div и span используются View и Text, а стили задаются объектами. Фронтендер на React быстро начинает писать экраны.</p>
+  <p class="sub">Для старта удобно взять Expo. Документация React Native советует начинать новый проект с фреймворка, и Expo там основной вариант.</p>
+  <p class="sub">Flutter использует язык Dart. У Dart строгая типизация и привычный синтаксис, поэтому разработчику с опытом Java, Kotlin или TypeScript он даётся легко. Интерфейс собирается из виджетов: отступ, кнопка и целый экран тоже виджеты. Для веб-разработчика такой подход новый.</p>
+  <p class="sub">Сложности у обоих начинаются на стыке с платформой. Нужно разбираться в сборке под iOS и Android, правах доступа, push-уведомлениях и публикации в магазинах.</p>
+</section>
+
+<section>
+  <div class="head"><h2>Экосистема</h2><span class="tag">библиотеки и инструменты</span></div>
+  <p class="sub">React Native берёт пакеты из npm. Валидацию, работу с датами и API-клиенты можно использовать те же, что в вебе. Модули для камеры, Bluetooth или фоновых задач часто пишут сторонние авторы, и качество у них разное. Expo закрывает многие типовые функции своими модулями и даёт облачную сборку через EAS Build.</p>
+  <p class="sub">У Flutter пакеты лежат на pub.dev. Сильная сторона Flutter в большом наборе официальных виджетов в стилях Material и Cupertino. Доступ к функциям устройства тоже идёт через плагины: часть поддерживает команда Flutter, остальные сторонние.</p>
+  <p class="sub">Если нужной функции нет, оба фреймворка дают выход в нативный код. В React Native пишут нативный модуль. Во Flutter используют платформенные каналы или FFI. Для React Native такие модули я пишу на Swift и Kotlin.</p>
+  <div class="stack">
+    <div class="srow"><span class="k">React Native</span><div class="chips"><span class="chip">TypeScript</span><span class="chip">Expo</span><span class="chip">EAS Build</span><span class="chip">Expo Router</span><span class="chip">React Navigation</span><span class="chip">Reanimated</span><span class="chip">TanStack Query</span></div></div>
+    <div class="srow"><span class="k">Flutter</span><div class="chips"><span class="chip">Dart</span><span class="chip">pub.dev</span><span class="chip">Material</span><span class="chip">Cupertino</span><span class="chip">Riverpod</span><span class="chip">BLoC</span><span class="chip">go_router</span></div></div>
+    <div class="srow"><span class="k">Нативно</span><div class="chips"><span class="chip">Swift</span><span class="chip">SwiftUI</span><span class="chip">Kotlin</span><span class="chip">Jetpack Compose</span></div></div>
+  </div>
+</section>
+
+<section>
+  <div class="head"><h2>Производительность и UX</h2><span class="tag">скорость и привычность</span></div>
+  <p class="sub">React Native показывает настоящие компоненты платформы. Поля ввода и прокрутка ведут себя так, как привык пользователь iOS или Android. JavaScript выполняется в движке Hermes. В новой архитектуре он обращается к нативному слою напрямую через JSI, без старого асинхронного моста. Для сложных анимаций берут Reanimated: он выполняет анимацию в потоке интерфейса.</p>
+  <p class="sub">Flutter рисует интерфейс сам, своим движком. Код на Dart в релизной сборке компилируется в машинный код. Отсюда одинаковый вид на всех платформах и предсказуемая плавность. Обратная сторона в том, что системные элементы Flutter повторяет своими виджетами. Когда Apple или Google меняют системный дизайн, приложение на Flutter получает его после обновления фреймворка.</p>
+  <p class="sub">Оба фреймворка добавляют в приложение свой движок, поэтому сборка весит больше нативной. Для игр и тяжёлой 3D-графики лучше подходят игровые движки или нативный код.</p>
+</section>
+
+<section>
+  <div class="head"><h2>Типовые задачи</h2><span class="tag">где что встречается</span></div>
+  <p class="sub">Типичные задачи для обоих одинаковые: магазин, доставка, запись на услуги, личный кабинет, внутреннее приложение для сотрудников. Разница видна в окружении проекта.</p>
+  <p class="sub">React Native хорош, когда у компании уже есть сайт или кабинет на React. Типы, API-клиент, валидация и часть бизнес-логики становятся общими. Ещё один плюс: JS-часть приложения можно обновлять без новой сборки через EAS Update, если правка укладывается в правила App Store и Google Play.</p>
+  <p class="sub">Flutter хорош для приложений с фирменным дизайном, который должен одинаково выглядеть на всех устройствах. Его выбирают и тогда, когда нужно одно приложение для телефонов и десктопа.</p>
+</section>
+
+<section>
+  <div class="head"><h2>Найм и стоимость поддержки</h2><span class="tag">команда и сопровождение</span></div>
+  <p class="sub">Разработчиков на JavaScript и TypeScript на рынке много, и многие из них знают React. Поэтому для React Native проще найти человека и можно делить задачи с веб-командой. Разработчика на Flutter ищут отдельно: Dart почти не используется вне Flutter.</p>
+  <p class="sub">Поддержка мобильного приложения стоит денег при любом выборе. Каждый год выходят новые версии iOS и Android, магазины поднимают требования к сборке, и приложение приходится пересобирать и проверять. В React Native многое зависит от сторонних нативных библиотек. Если автор перестал их обновлять, библиотеку меняют или чинят сами. Expo снижает эту нагрузку, потому что выпускает согласованные наборы модулей.</p>
+  <p class="sub">У Flutter больше функций в самом фреймворке, но плагины для доступа к устройству тоже приходится обновлять.</p>
+</section>
+
+<section>
+  <div class="head"><h2>Кроссплатформа, натив или PWA</h2><span class="tag">три пути</span></div>
+  <div class="ledger">
+    <div class="item"><span class="idx">01</span><div><h3>Нативная разработка на Swift и Kotlin</h3><p>Отдельное приложение под каждую платформу. Полный доступ к API системы с первого дня, лучшая производительность и привычный интерфейс. Цена в том, что кодовых баз две, и каждую функцию делают дважды.</p><div class="kit">Swift · SwiftUI · Kotlin · Jetpack Compose</div></div></div>
+    <div class="item"><span class="idx">02</span><div><h3>Кроссплатформа: React Native или Flutter</h3><p>Одна кодовая база для iOS и Android, одна команда и общий релизный цикл. Нативный код нужен точечно, для функций, которых нет в фреймворке.</p><div class="kit">React Native · Expo · Flutter</div></div></div>
+    <div class="item"><span class="idx">03</span><div><h3>PWA</h3><p>Сайт, который ставится на экран телефона, работает без сети через service worker и обновляется без магазинов. Ревью нет, один код работает везде, где есть браузер.</p><div class="kit">service worker · manifest · web push</div></div></div>
+  </div>
+  <p class="sub">Нативный путь оправдан, когда приложение глубоко работает с системой: обработка видео и звука, AR, сложная работа с Bluetooth и фоновыми задачами, приложения для часов. Часть нативного кода нужна и в кроссплатформенном приложении. Например, виджеты для экрана «Домой» на iOS пишутся на SwiftUI. Есть и промежуточный вариант: Kotlin Multiplatform выносит общую логику в Kotlin и оставляет нативный интерфейс на каждой платформе.</p>
+  <p class="sub">У PWA ограничения заметнее всего на iOS. Веб-push там приходит только в PWA, добавленную на экран «Домой», а Web Bluetooth и Web NFC в Safari нет. Чтобы попасть в App Store и Google Play, PWA заворачивают в нативную оболочку, и тогда на неё распространяются правила ревью.</p>
+  <p class="sub">PWA подходит для MVP, внутренних инструментов и сервисов, которыми и так пользуются из браузера. Если аудитория живёт в Telegram, вместо отдельного приложения иногда хватает Mini App.</p>
+  <a class="more" href="/telegram-mini-app/">Telegram Mini Apps →</a>
+</section>
+
+<section>
+  <div class="head"><h2>Когда выбирать React Native</h2><span class="tag">четыре случая</span></div>
+  <div class="ledger">
+    <div class="item"><span class="idx">01</span><div><h3>У вас уже есть веб на React</h3><p>Общий язык, типы и API-клиент. Одна команда ведёт и сайт, и приложение.</p></div></div>
+    <div class="item"><span class="idx">02</span><div><h3>Нужен привычный интерфейс платформы</h3><p>Приложение использует системные компоненты и выглядит своим и на iOS, и на Android.</p></div></div>
+    <div class="item"><span class="idx">03</span><div><h3>Важно быстро выпускать правки</h3><p>Изменения в JS-коде доставляют через EAS Update без новой сборки, если они укладываются в правила магазинов.</p></div></div>
+    <div class="item"><span class="idx">04</span><div><h3>Нужен широкий выбор разработчиков</h3><p>Разработчиков на JavaScript и TypeScript много, людей проще найти и заменить.</p></div></div>
+  </div>
+  <a class="more" href="/blog/react-ili-vue/">React или Vue для веба →</a>
+</section>
+
+<section>
+  <div class="head"><h2>Когда выбирать Flutter</h2><span class="tag">четыре случая</span></div>
+  <div class="ledger">
+    <div class="item"><span class="idx">01</span><div><h3>Сложный фирменный дизайн</h3><p>Собственный движок отрисовки даёт одинаковый до пикселя интерфейс на всех устройствах.</p></div></div>
+    <div class="item"><span class="idx">02</span><div><h3>Мобильные и десктоп из одного кода</h3><p>Flutter официально поддерживает iOS, Android, веб, Windows, macOS и Linux.</p></div></div>
+    <div class="item"><span class="idx">03</span><div><h3>Веб-команды на React нет</h3><p>Если проект начинается с нуля, плюс общего кода с сайтом пропадает, и выбор упирается в людей.</p></div></div>
+    <div class="item"><span class="idx">04</span><div><h3>Команда уже пишет на Flutter</h3><p>Опыт команды важнее разницы между фреймворками.</p></div></div>
+  </div>
+</section>
+
+<section>
+  <div class="head"><h2>Вывод</h2><span class="tag">итог</span></div>
+  <p class="sub">Если у вас есть веб на React или команда на TypeScript, берите React Native. Если важен единый фирменный интерфейс на многих платформах и есть люди с Dart, берите Flutter. Нативную разработку на Swift и Kotlin выбирайте, когда приложение глубоко работает с железом и системой. PWA подойдёт, чтобы проверить идею без магазинов и ревью.</p>
+</section>
+
+<section>
+  <div class="head"><h2>Частые вопросы</h2><span class="tag">про мобильную разработку</span></div>
+  <div class="faq">
+    <details><summary>Что быстрее: React Native или Flutter?</summary>
+      <p>В типовом приложении с формами, списками и карточками пользователь разницы не заметит. Flutter рисует интерфейс своим движком и даёт предсказуемую плавность. React Native показывает системные компоненты, а тяжёлые анимации выполняет в потоке интерфейса через Reanimated.</p></details>
+    <details><summary>Можно ли сделать приложение для iOS, Android и сайт на одном коде?</summary>
+      <p>Частично. С React Native общими с сайтом на React становятся логика, типы и API-клиент, а экраны обычно делают отдельно. Flutter умеет собирать веб-версию, но для контентного сайта с SEO она подходит плохо.</p></details>
+    <details><summary>Когда нужна нативная разработка на Swift и Kotlin?</summary>
+      <p>Когда приложение глубоко работает с системой: обработка видео и звука, AR, Bluetooth, фоновые задачи, приложения для часов. В остальных случаях кроссплатформа обходится дешевле, а отдельные нативные модули к ней дописывают на Swift и Kotlin.</p></details>
+    <details><summary>Можно ли начать с PWA, а потом сделать приложение?</summary>
+      <p>Да, это нормальный путь для проверки идеи. PWA ставится на экран телефона и работает без магазинов. Когда понадобятся функции устройства, которых нет в браузере, или присутствие в App Store и Google Play, приложение делают на React Native или Flutter. Серверная часть при этом остаётся прежней.</p></details>
+    <details><summary>Что дешевле поддерживать: React Native или Flutter?</summary>
+      <p>Зависит от команды. Если у вас уже есть веб-разработчики на React, React Native обойдётся дешевле за счёт общего кода и людей. В обоих случаях бюджет на поддержку нужен постоянно: новые версии iOS и Android и требования магазинов заставляют регулярно обновлять приложение.</p></details>
+  </div>
+</section>
+
+<div class="total">
+  <h2>Обсудим ваше приложение</h2>
+  <p>Напишите в Telegram, что должно делать приложение и есть ли у вас сайт или бэкенд. Подскажу, какой путь подойдёт: кроссплатформа, натив или PWA.</p>
+  <div class="contacts">
+    <div><span>Telegram</span><a href="https://t.me/uzver_ge" target="_blank" rel="noopener noreferrer">@uzver_ge</a></div>
+    <div><span>Приложения</span><a href="/mobilnye-prilozheniya/">разработка мобильных приложений</a></div>
+    <div><span>React</span><a href="/react-nextjs/">разработка на React и Next.js</a></div>
+  </div>
+</div>
+
+<footer>
+<!-- footmap -->
+  <nav class="footmap" aria-label="Карта сайта">
+    <div><b>Услуги</b><a href="/telegram-mini-app/">Telegram-боты и Mini Apps</a><a href="/boty-max/">Боты для MAX</a><a href="/oplata-v-bote/">Оплата в боте</a><a href="/platezhi/">Интеграция платёжных систем</a></div>
+    <div><b>Технологии</b><a href="/laravel/">PHP и Laravel</a><a href="/nodejs/">Node.js и TypeScript</a><a href="/react-nextjs/">React и Next.js</a><a href="/vue/">Vue</a><a href="/python/">Python</a><a href="/mobilnye-prilozheniya/">Мобильные приложения</a></div>
+    <div><b>Кейсы</b><a href="/cases/podpiski/">Платформа подписок</a><a href="/cases/monitoring/">Мониторинг майнеров</a><a href="/#cases">Все кейсы</a></div>
+    <div><b>Статьи</b><a href="/blog/go-ili-python/">Go или Python</a><a href="/blog/react-ili-vue/">React или Vue</a><a href="/blog/php-ili-python/">PHP или Python</a><a href="/blog/react-native-ili-flutter/" aria-current="page">React Native или Flutter</a></div>
+  </nav>
+  <!-- /footmap -->
+  <div class="wrap">Комягин Николай · Fullstack-разработчик · боты Telegram и MAX, платежи, интеграции</div>
+</footer>
+
+</div>
+
+<script src="/assets/site.js"></script>
+</body>
+</html>

@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<title>Разработка на Node.js и TypeScript — Николай Комягин</title>
+<meta name="description" content="Бэкенд на Node.js и TypeScript: REST API, интеграции с биржами и платёжными провайдерами, Telegram-боты, фоновые задачи и кеширование. Кейс: бэкенд торговых ботов для Bybit.">
+<link rel="canonical" href="https://komiagin.dev/nodejs/">
+<meta name="robots" content="index, follow, max-image-preview:large">
+<meta name="theme-color" content="#020604">
+
+<meta property="og:type" content="website">
+<meta property="og:locale" content="ru_RU">
+<meta property="og:site_name" content="komiagin.dev">
+<meta property="og:url" content="https://komiagin.dev/nodejs/">
+<meta property="og:title" content="Разработка на Node.js и TypeScript">
+<meta property="og:description" content="Бэкенд на Node.js и TypeScript: REST API, интеграции с биржами и платёжными провайдерами, Telegram-боты, фоновые задачи и кеширование. Кейс: бэкенд торговых ботов для Bybit.">
+<meta property="og:image" content="https://komiagin.dev/og.png">
+<meta name="twitter:card" content="summary_large_image">
+
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'><rect width='64' height='64' fill='%23020604'/><text x='32' y='47' font-family='monospace' font-size='46' font-weight='bold' fill='%2300FF6A' text-anchor='middle'>K</text></svg>">
+<link rel="apple-touch-icon" href="/icon-512.png">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700;800&family=Manrope:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/assets/site.css">
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Service",
+      "name": "Разработка на Node.js и TypeScript",
+      "serviceType": "Backend-разработка на Node.js и TypeScript",
+      "url": "https://komiagin.dev/nodejs/",
+      "description": "Бэкенд на Node.js и TypeScript: REST API, интеграции с биржами и платёжными провайдерами, Telegram-боты, фоновые задачи и кеширование. Кейс: бэкенд торговых ботов для Bybit.",
+      "areaServed": {
+        "@type": "Country",
+        "name": "Россия"
+      },
+      "provider": {
+        "@type": "Person",
+        "name": "Николай Комягин",
+        "url": "https://komiagin.dev/"
+      }
+    },
+    {
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "Главная",
+          "item": "https://komiagin.dev/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "name": "Услуги и технологии",
+          "item": "https://komiagin.dev/uslugi/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 3,
+          "name": "Node.js и TypeScript",
+          "item": "https://komiagin.dev/nodejs/"
+        }
+      ]
+    },
+    {
+      "@type": "FAQPage",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "Node.js или PHP для бэкенда?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Пишу на обоих. Node.js удобен там, где много одновременных соединений и работы с внешними API. Laravel быстрее даёт готовые очереди, авторизацию и админку для типового веб-сервиса. Выбор зависит от задачи и от того, кто будет поддерживать код."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Пишете на чистом JavaScript?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Новые проекты — на TypeScript: типы ловят часть ошибок до запуска и упрощают поддержку. С существующим кодом на JavaScript тоже работаю."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Можно ли подключиться к готовому проекту?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Да. Разбираю чужой код, восстанавливаю и расширяю функционал, делаю ревью."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Сколько стоит бэкенд на Node.js?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Цена зависит от объёма, числа интеграций и того, есть ли уже бэкенд или дизайн. После короткого созвона присылаю оценку по этапам."
+          }
+        }
+      ]
+    }
+  ]
+}
+</script>
+</head>
+<body>
+
+<div id="rain" aria-hidden="true">
+  <canvas id="rainc"></canvas>
+  <div class="scrim"></div>
+  <div class="scan"></div>
+</div>
+
+<div class="wrap">
+
+<!-- nav -->
+<nav class="topnav" aria-label="Разделы сайта">
+  <a class="brand" href="/">komiagin.dev</a>
+  <a href="/uslugi/" aria-current="page">Услуги и технологии</a>
+  <a href="/#cases">Кейсы</a>
+  <a href="/blog/">Статьи</a>
+</nav>
+<!-- /nav -->
+<header class="sheet">
+  <div class="crumbs"><a href="/">Главная</a> / <a href="/uslugi/">Услуги и технологии</a> / Node.js и TypeScript</div>
+  <div class="stamp tag">Технология</div>
+  <h1>Разработка на Node.js и TypeScript</h1>
+  <div class="role">Backend на Node.js · TypeScript · API и интеграции</div>
+  <p class="pitch">Пишу бэкенд на Node.js и TypeScript: <strong>API для фронтенда и мобильных приложений, интеграции с внешними финансовыми API, боты и сервисы, которые обрабатывают поток данных.</strong></p>
+  <p class="pitch">На Node.js и TypeScript написан бэкенд сервиса автоматизации фьючерсной торговли на Bybit. В ilink на этом же стеке я отвечал за серверную часть веб-приложений по госзаказам.</p>
+  <div class="cta-row">
+    <a class="btn solid" href="https://t.me/uzver_ge" target="_blank" rel="noopener noreferrer">Обсудить задачу в Telegram</a>
+    <a class="btn ghost" href="#cases">Кейс: бэкенд для Bybit</a>
+  </div>
+</header>
+<section>
+  <div class="head"><h2>Что делаю на Node.js</h2><span class="tag">пять направлений</span></div>
+  <div class="ledger">
+    <div class="item">
+      <span class="idx">01</span>
+      <div>
+        <h3>REST API</h3>
+        <p>API для веб-интерфейса, мобильного приложения и внешних потребителей: авторизация, роли, валидация, понятные ошибки.</p>
+        <div class="kit">Node.js · TypeScript · REST</div>
+      </div>
+    </div>
+    <div class="item">
+      <span class="idx">02</span>
+      <div>
+        <h3>Интеграции с биржами и финансовыми API</h3>
+        <p>Подпись запросов, лимиты частоты, повторы, сверка расхождений. Отдельно закладываю поведение на случай, когда внешний сервис отвечает не так, как обещал в документации.</p>
+        <div class="kit">криптобиржи · платёжные API · вебхуки</div>
+      </div>
+    </div>
+    <div class="item">
+      <span class="idx">03</span>
+      <div>
+        <h3>Кеширование и дедупликация</h3>
+        <p>Одинаковые запросы к внешним сервисам не уходят наружу повторно: ответы кешируются, параллельные запросы склеиваются. Это экономит лимиты и ускоряет ответ.</p>
+        <div class="kit">Redis · кеш · очереди</div>
+      </div>
+    </div>
+    <div class="item">
+      <span class="idx">04</span>
+      <div>
+        <h3>Telegram-боты и Mini Apps</h3>
+        <p>Бот и веб-приложение внутри Telegram на одном TypeScript-стеке: сценарии, авторизация через initData, оплата, админка.</p>
+        <div class="kit">Telegram Bot API · Vue / React</div>
+        <a class="more" href="/telegram-mini-app/">Telegram-боты и Mini Apps →</a>
+      </div>
+    </div>
+    <div class="item">
+      <span class="idx">05</span>
+      <div>
+        <h3>Тесты</h3>
+        <p>Логику, где ошибка стоит денег, закрываю автотестами на Jest или Vitest. Перед выкаткой прогоняю сценарии руками.</p>
+        <div class="kit">Jest · Vitest</div>
+      </div>
+    </div>
+  </div>
+</section>
+<section>
+  <div class="head"><h2>Стек</h2><span class="tag">чем работаю</span></div>
+  <div class="stack">
+    <div class="srow"><span class="k">Backend</span><div class="chips"><span class="chip">Node.js</span><span class="chip">TypeScript</span><span class="chip">REST API</span></div></div>
+    <div class="srow"><span class="k">Данные</span><div class="chips"><span class="chip">PostgreSQL</span><span class="chip">MongoDB</span><span class="chip">Redis</span></div></div>
+    <div class="srow"><span class="k">Интеграции</span><div class="chips"><span class="chip">биржевые API</span><span class="chip">платёжные провайдеры</span><span class="chip">Telegram Bot API</span><span class="chip">MAX API</span></div></div>
+    <div class="srow"><span class="k">Тесты</span><div class="chips"><span class="chip">Jest</span><span class="chip">Vitest</span></div></div>
+    <div class="srow"><span class="k">Инфраструктура</span><div class="chips"><span class="chip">Docker</span><span class="chip">Nginx</span><span class="chip">Linux</span></div></div>
+  </div>
+</section>
+<section id="cases">
+  <div class="head"><h2>Реальный проект на Node.js</h2><span class="tag">бэкенд целиком</span></div>
+  <div class="cases">
+    <article class="case">
+      <div class="case-top"><span class="idx">01</span><h3>Бэкенд сервиса автоматизации фьючерсной торговли</h3><span class="site dead">tradingforce.io · проект закрыт</span></div>
+      <div class="case-role">Единственный backend-разработчик в команде из четырёх · архитектура вместе с лидом</div>
+      <p class="sub">Интеграция с торговым API Bybit и REST API для фронтенда, автоматические stop-loss и take-profit. Котировки поставлял отдельный Python-сервис через Redis, на стороне бэкенда — дедупликация запросов с кешированием ответов. Торговая логика закрыта автотестами. Продукт не нашёл места на рынке, но серверная часть была собрана целиком и работала.</p>
+      <div class="figs">
+        <div class="fig"><b>3</b><span>торговых бота</span></div>
+        <div class="fig"><b>4</b><span>человека в команде</span></div>
+        <div class="fig"><b>1</b><span>backend-разработчик</span></div>
+      </div>
+      <div class="kit">Node.js · TypeScript · Python · Redis · PostgreSQL · Bybit API</div>
+    </article>
+  </div>
+</section>
+<section>
+  <div class="head"><h2>Типовое решение</h2><span class="tag">как это может выглядеть</span></div>
+  <article class="example">
+    <div class="ex-top"><span class="ex-label">Типовое решение</span><h3>Агрегатор заказов с нескольких маркетплейсов</h3></div>
+    <div class="ex-note">Пример задачи и архитектуры, а не проект из портфолио</div>
+    <dl>
+      <div class="crow"><dt>Задача</dt><dd>Продавец работает на нескольких площадках и тратит часы на сверку заказов и остатков вручную.</dd></div>
+      <div class="crow"><dt>Как собрать</dt><dd>Воркеры на Node.js по расписанию забирают заказы и остатки через API площадок с учётом их лимитов. Очередь на Redis, единая модель заказа в PostgreSQL, уведомления о новых заказах и расхождениях в Telegram, дашборд на React.</dd></div>
+      <div class="crow"><dt>Что получит заказчик</dt><dd>Один экран вместо пяти кабинетов и сообщение в Telegram, когда что-то не сходится.</dd></div>
+    </dl>
+    <div class="kit">Node.js · TypeScript · PostgreSQL · Redis · React</div>
+  </article>
+</section>
+<section>
+  <div class="head"><h2>Сроки и стоимость</h2><span class="tag">по задаче</span></div>
+  <p class="sub">Цена зависит от объёма, числа интеграций и того, есть ли уже бэкенд или дизайн. После короткого созвона присылаю оценку по этапам.</p>
+</section>
+<section>
+  <div class="head"><h2>Частые вопросы</h2><span class="tag">про Node.js</span></div>
+  <div class="faq">
+    <details><summary>Node.js или PHP для бэкенда?</summary>
+      <p>Пишу на обоих. Node.js удобен там, где много одновременных соединений и работы с внешними API. Laravel быстрее даёт готовые очереди, авторизацию и админку для типового веб-сервиса. Выбор зависит от задачи и от того, кто будет поддерживать код.</p></details>
+    <details><summary>Пишете на чистом JavaScript?</summary>
+      <p>Новые проекты — на TypeScript: типы ловят часть ошибок до запуска и упрощают поддержку. С существующим кодом на JavaScript тоже работаю.</p></details>
+    <details><summary>Можно ли подключиться к готовому проекту?</summary>
+      <p>Да. Разбираю чужой код, восстанавливаю и расширяю функционал, делаю ревью.</p></details>
+    <details><summary>Сколько стоит бэкенд на Node.js?</summary>
+      <p>Цена зависит от объёма, числа интеграций и того, есть ли уже бэкенд или дизайн. После короткого созвона присылаю оценку по этапам.</p></details>
+  </div>
+</section>
+
+<div class="total">
+  <h2>Обсудим бэкенд на Node.js</h2>
+  <p>Опишите задачу в Telegram: что за сервис, с какими API он работает и какая нагрузка ожидается.</p>
+  <div class="contacts">
+    <div><span>Telegram</span><a href="https://t.me/uzver_ge" target="_blank" rel="noopener noreferrer">@uzver_ge</a></div>
+    <div><span>Почта</span><a href="mailto:myworkermailbox2022@gmail.com">myworkermailbox2022@gmail.com</a></div>
+    <div><span>Резюме</span><a href="/">опыт и стек</a></div>
+  </div>
+</div>
+
+<footer>
+  <!-- footmap -->
+  <nav class="footmap" aria-label="Карта сайта">
+    <div><b>Услуги</b><a href="/telegram-mini-app/">Telegram-боты и Mini Apps</a><a href="/boty-max/">Боты для MAX</a><a href="/oplata-v-bote/">Оплата в боте</a><a href="/platezhi/">Интеграция платёжных систем</a></div>
+    <div><b>Технологии</b><a href="/laravel/">PHP и Laravel</a><a href="/nodejs/" aria-current="page">Node.js и TypeScript</a><a href="/react-nextjs/">React и Next.js</a><a href="/vue/">Vue</a><a href="/python/">Python</a><a href="/mobilnye-prilozheniya/">Мобильные приложения</a></div>
+    <div><b>Кейсы</b><a href="/cases/podpiski/">Платформа подписок</a><a href="/cases/monitoring/">Мониторинг майнеров</a><a href="/#cases">Все кейсы</a></div>
+    <div><b>Статьи</b><a href="/blog/go-ili-python/">Go или Python</a><a href="/blog/react-ili-vue/">React или Vue</a><a href="/blog/php-ili-python/">PHP или Python</a><a href="/blog/react-native-ili-flutter/">React Native или Flutter</a></div>
+  </nav>
+  <!-- /footmap -->
+  <div class="wrap">Комягин Николай · Fullstack-разработчик · веб, мобильные приложения, боты, платежи</div>
+</footer>
+
+</div>
+
+<script src="/assets/site.js"></script>
+</body>
+</html>

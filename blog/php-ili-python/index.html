@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<title>PHP или Python для веб-разработки: Laravel или Django — Николай Комягин</title>
+<meta name="description" content="PHP или Python для веб-разработки: сравнение по скорости, порогу входа, экосистеме, типовым задачам и найму. Laravel или Django, когда выбирать PHP и когда Python.">
+<link rel="canonical" href="https://komiagin.dev/blog/php-ili-python/">
+<meta name="robots" content="index, follow, max-image-preview:large">
+<meta name="theme-color" content="#020604">
+
+<meta property="og:type" content="article">
+<meta property="og:locale" content="ru_RU">
+<meta property="og:site_name" content="komiagin.dev">
+<meta property="og:url" content="https://komiagin.dev/blog/php-ili-python/">
+<meta property="og:title" content="PHP или Python для веб-разработки">
+<meta property="og:description" content="Сравнение PHP и Python для веба по пяти критериям, разбор Laravel и Django и сценарии, когда какой язык уместнее.">
+<meta property="og:image" content="https://komiagin.dev/og.png">
+<meta name="twitter:card" content="summary_large_image">
+
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'><rect width='64' height='64' fill='%23020604'/><text x='32' y='47' font-family='monospace' font-size='46' font-weight='bold' fill='%2300FF6A' text-anchor='middle'>K</text></svg>">
+<link rel="apple-touch-icon" href="/icon-512.png">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700;800&family=Manrope:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/assets/site.css">
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Article",
+      "headline": "PHP или Python для веб-разработки",
+      "url": "https://komiagin.dev/blog/php-ili-python/",
+      "datePublished": "2026-10-18",
+      "inLanguage": "ru",
+      "image": "https://komiagin.dev/og.png",
+      "author": { "@type": "Person", "name": "Николай Комягин", "url": "https://komiagin.dev/" },
+      "about": ["PHP", "Python", "Laravel", "Django", "Веб-разработка"]
+    },
+    {
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        { "@type": "ListItem", "position": 1, "name": "Главная", "item": "https://komiagin.dev/" },
+        { "@type": "ListItem", "position": 2, "name": "Статьи", "item": "https://komiagin.dev/blog/" },
+        { "@type": "ListItem", "position": 3, "name": "PHP или Python", "item": "https://komiagin.dev/blog/php-ili-python/" }
+      ]
+    },
+    {
+      "@type": "FAQPage",
+      "mainEntity": [
+        { "@type": "Question", "name": "Что выбрать новичку: PHP или Python?",
+          "acceptedAnswer": { "@type": "Answer", "text": "Python проще как первый язык и пригодится за пределами веба: в автоматизации, анализе данных, ботах. Если цель именно веб-разработка, PHP с Laravel тоже хороший старт. На PHP работает много коммерческих сайтов, и задач для PHP-разработчиков хватает." } },
+        { "@type": "Question", "name": "Laravel или Django: что лучше?",
+          "acceptedAnswer": { "@type": "Answer", "text": "Оба фреймворка зрелые и подходят для продакшена. Django сильнее во внутренних системах благодаря встроенной админке и автоматическим миграциям. Laravel удобнее для продуктов с очередями, платежами и уведомлениями, потому что эти инструменты встроены во фреймворк." } },
+        { "@type": "Question", "name": "PHP устарел?",
+          "acceptedAnswer": { "@type": "Answer", "text": "Нет. Язык развивается: в новых версиях появились типизированные свойства, перечисления, атрибуты, readonly-свойства. На PHP работают Laravel, Symfony, WordPress и множество коммерческих проектов. Плохая репутация осталась от старого кода, написанного без фреймворков и стандартов." } },
+        { "@type": "Question", "name": "Что быстрее, PHP или Python?",
+          "acceptedAnswer": { "@type": "Answer", "text": "Для типичного сайта или API разница между языками редко заметна: время уходит на базу данных и внешние сервисы. Для вычислений у Python есть библиотеки на C, для долгих соединений встроенная асинхронность. У PHP есть OPcache, JIT и серверы вроде Swoole и RoadRunner." } },
+        { "@type": "Question", "name": "Можно ли совмещать PHP и Python в одном проекте?",
+          "acceptedAnswer": { "@type": "Answer", "text": "Да. Например, сайт и личный кабинет на Laravel, а парсинг, обработка данных или модель машинного обучения отдельным сервисом на Python. Сервисы обмениваются данными через HTTP API или очереди." } }
+      ]
+    }
+  ]
+}
+</script>
+</head>
+<body>
+
+<div id="rain" aria-hidden="true">
+  <canvas id="rainc"></canvas>
+  <div class="scrim"></div>
+  <div class="scan"></div>
+</div>
+
+<div class="wrap">
+
+<!-- nav -->
+<nav class="topnav" aria-label="Разделы сайта">
+  <a class="brand" href="/">komiagin.dev</a>
+  <a href="/uslugi/">Услуги и технологии</a>
+  <a href="/#cases">Кейсы</a>
+  <a href="/blog/" aria-current="page">Статьи</a>
+</nav>
+<!-- /nav -->
+
+<header class="sheet">
+  <div class="crumbs"><a href="/">Главная</a> / <a href="/blog/">Статьи</a> / PHP или Python</div>
+  <div class="stamp tag">Статья</div>
+  <h1>PHP или Python для веб-разработки</h1>
+  <div class="role">Статья · 18&nbsp;октября 2026 · Николай Комягин</div>
+  <p class="pitch">PHP и Python закрывают одни и те же веб-задачи: сайты, API, личные кабинеты, админки. PHP с самого начала делали для веба, у Python шире круг применения за пределами сайтов. Я пишу на обоих языках, ниже <strong>сравнение по пяти критериям и отдельный разбор Laravel и Django.</strong></p>
+</header>
+
+<section>
+  <div class="head"><h2>Сравнение PHP и Python по критериям</h2><span class="tag">коротко</span></div>
+  <p class="sub">Мой основной бэкенд-стек: PHP и Laravel. На Python я пишу API на FastAPI и Django, Telegram-ботов на aiogram, парсеры и скрипты.</p>
+  <div class="tbl">
+    <table>
+      <thead><tr><th>Критерий</th><th>PHP</th><th>Python</th></tr></thead>
+      <tbody>
+        <tr><td>Скорость и конкурентность</td><td>Каждый запрос обрабатывается отдельно, память между запросами не делится. Для WebSocket и долгоживущих процессов нужны Swoole, RoadRunner или Laravel Octane.</td><td>Приложение работает как долгоживущий процесс. Асинхронность через asyncio встроена в язык, на ней работают FastAPI и aiogram.</td></tr>
+        <tr><td>Порог входа</td><td>Низкий: простая страница на PHP запускается на обычном хостинге. Для современного кода нужно освоить Composer, типы и фреймворк.</td><td>Низкий: простой синтаксис, много учебных материалов. Для веба сразу нужен фреймворк и сервер приложений.</td></tr>
+        <tr><td>Экосистема и фреймворки</td><td>Laravel, Symfony, Yii. CMS: WordPress, 1С-Битрикс. Пакеты через Composer.</td><td>Django, FastAPI, Flask. Рядом библиотеки для данных, ML, парсинга и ботов. Пакеты через pip.</td></tr>
+        <tr><td>Типовые задачи</td><td>Сайты, интернет-магазины, CMS, личные кабинеты, SaaS, API, интеграции с платёжными системами и CRM.</td><td>API и веб-сервисы, внутренние системы с админкой, боты, парсинг, автоматизация, сервисы вокруг данных и ML.</td></tr>
+        <tr><td>Найм и стоимость поддержки</td><td>Разработчиков много, но опыт разный: часть рынка работает с CMS и старым кодом. Для нового проекта ищут опыт с Laravel или Symfony.</td><td>Разработчиков много, но часть из них работает с данными. Для бэкенда нужен опыт с Django или FastAPI.</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <p class="tbl-note">Таблица описывает типичные случаи. В конкретном проекте решают задачи продукта, сроки и команда, которая будет поддерживать код.</p>
+</section>
+
+<section>
+  <div class="head"><h2>Скорость и конкурентность</h2><span class="tag">производительность</span></div>
+  <p class="sub">Для типичного сайта или API скорости хватает обоим языкам. Время ответа чаще зависит от запросов к базе, кеша и внешних сервисов, чем от интерпретатора. Узкие места в обоих случаях ищут одинаково: профилируют, добавляют индексы, кешируют в Redis, выносят тяжёлую работу в очереди.</p>
+  <p class="sub">В PHP каждый запрос обычно обрабатывается с нуля. PHP-FPM запускает скрипт, тот отвечает и освобождает память. Такую модель называют shared nothing. Она прощает утечки памяти и упрощает масштабирование, потому что запросы не мешают друг другу. Цена в том, что фреймворк загружается на каждый запрос. OPcache хранит скомпилированный байт-код в памяти, а Laravel Octane держит приложение запущенным между запросами.</p>
+  <p class="sub">Python-приложение работает как долгоживущий процесс под сервером приложений: Gunicorn, Uvicorn или аналогом. Асинхронность встроена в язык через asyncio. WebSocket, долгие соединения и много параллельных запросов к внешним API в Python делать проще. В PHP для этого есть Swoole, RoadRunner, ReactPHP и AMPHP, но это отдельный стек со своими правилами.</p>
+  <p class="sub">Для тяжёлых вычислений оба языка подходят хуже компилируемых. В Python выручают библиотеки на C, например NumPy. В PHP такие задачи обычно выносят в отдельный сервис.</p>
+</section>
+
+<section>
+  <div class="head"><h2>Порог входа</h2><span class="tag">обучение</span></div>
+  <p class="sub">PHP долго был одним из самых простых способов сделать динамический сайт. Файл с кодом кладут на хостинг, и страница работает. Эта простота оставила много плохого кода в старых проектах. Современный PHP выглядит иначе: типы у аргументов, свойств и возвращаемых значений, перечисления, атрибуты, автозагрузка через Composer, стандарты PSR.</p>
+  <p class="sub">Python проще читать новичку. Отступы задают структуру кода, синтаксис короткий. Для веба почти сразу нужны фреймворк, виртуальное окружение и сервер приложений. Обычный виртуальный хостинг в первую очередь рассчитан на PHP, поэтому Python-приложение чаще запускают на VPS или в Docker.</p>
+  <p class="sub">В обоих языках сложность начинается в больших проектах. Нужны типы, тесты и статический анализ. В PHP это PHPStan или Psalm, PHPUnit или Pest. В Python это mypy или pyright и pytest.</p>
+</section>
+
+<section>
+  <div class="head"><h2>Экосистема и фреймворки</h2><span class="tag">библиотеки</span></div>
+  <p class="sub">Экосистема PHP заточена под веб. Laravel и Symfony закрывают почти любые задачи сайта и API. В России на PHP работает много коммерческих сайтов на 1С-Битрикс и WordPress. У многих платёжных систем и CRM есть готовые SDK и модули для PHP.</p>
+  <p class="sub">У Python экосистема шире за пределами веба. Для сайта и API есть Django, FastAPI и Flask. Рядом лежат pandas, NumPy, PyTorch, scikit-learn, библиотеки для парсинга и ботов. Если веб-сервис работает с данными или моделями машинного обучения, Python избавляет проект от второго языка.</p>
+  <div class="stack">
+    <div class="srow"><span class="k">PHP: фреймворки</span><div class="chips"><span class="chip">Laravel</span><span class="chip">Symfony</span><span class="chip">Yii</span></div></div>
+    <div class="srow"><span class="k">PHP: CMS</span><div class="chips"><span class="chip">WordPress</span><span class="chip">1С-Битрикс</span></div></div>
+    <div class="srow"><span class="k">PHP: инструменты</span><div class="chips"><span class="chip">Composer</span><span class="chip">PHPStan</span><span class="chip">PHPUnit</span><span class="chip">Pest</span></div></div>
+    <div class="srow"><span class="k">Python: веб</span><div class="chips"><span class="chip">Django</span><span class="chip">FastAPI</span><span class="chip">Flask</span><span class="chip">SQLAlchemy</span></div></div>
+    <div class="srow"><span class="k">Python: данные и боты</span><div class="chips"><span class="chip">pandas</span><span class="chip">NumPy</span><span class="chip">aiogram</span><span class="chip">Scrapy</span></div></div>
+    <div class="srow"><span class="k">Python: инструменты</span><div class="chips"><span class="chip">pip</span><span class="chip">Poetry</span><span class="chip">uv</span><span class="chip">pytest</span><span class="chip">mypy</span></div></div>
+  </div>
+</section>
+
+<section>
+  <div class="head"><h2>Laravel или Django</h2><span class="tag">фреймворки</span></div>
+  <p class="sub">Оба фреймворка зрелые и закрывают типичный веб-проект целиком: маршруты, ORM, миграции, авторизацию, шаблоны, тесты. Разница в деталях.</p>
+  <div class="tbl">
+    <table>
+      <thead><tr><th>Что</th><th>Laravel</th><th>Django</th></tr></thead>
+      <tbody>
+        <tr><td>ORM</td><td>Eloquent, паттерн Active Record.</td><td>Django ORM, модели описываются классами Python.</td></tr>
+        <tr><td>Миграции</td><td>Пишутся вручную, заготовку создаёт Artisan.</td><td>Генерируются из изменений моделей командой makemigrations.</td></tr>
+        <tr><td>Админ-панель</td><td>Встроенной нет. Берут Filament или платный Nova.</td><td>Встроенная Django admin, работает после регистрации моделей.</td></tr>
+        <tr><td>Фоновые задачи</td><td>Встроенные очереди с драйверами для Redis и базы данных, планировщик задач, мониторинг через Horizon.</td><td>Обычно Celery или его аналоги. В свежих версиях Django появился встроенный интерфейс задач, но исполнитель для него ставят отдельно.</td></tr>
+        <tr><td>API</td><td>API-ресурсы, Sanctum для токенов.</td><td>Django REST Framework или Django Ninja.</td></tr>
+        <tr><td>Шаблоны и фронтенд</td><td>Blade, Livewire, Inertia с Vue или React.</td><td>Шаблоны Django или Jinja2, сложный фронтенд обычно отдельно.</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <p class="sub">Django сильнее там, где нужна админка из коробки. Для внутренних систем и контентных проектов это заметно экономит время. Laravel обычно удобнее для продуктов с очередями, рассылками, платежами и событиями: всё это встроено и описано в одной документации.</p>
+  <p class="sub">Если нужен только API без шаблонов, в Python часто берут FastAPI вместо Django. Он легче, асинхронный и сам строит документацию OpenAPI.</p>
+</section>
+
+<section>
+  <div class="head"><h2>Типовые задачи</h2><span class="tag">где что применяют</span></div>
+  <p class="sub">PHP чаще выбирают для сайтов, интернет-магазинов, личных кабинетов, SaaS и API, особенно если вокруг много интеграций: платёжные системы, CRM, службы доставки. Из моих кейсов на Laravel сделаны <a href="/cases/podpiski/">платформа подписок</a> с ботами и платежами и <a href="/cases/monitoring/">мониторинг майнеров</a> с уведомлениями в Telegram.</p>
+  <p class="sub">Python выбирают для API и веб-сервисов, внутренних систем с админкой, ботов, парсинга и автоматизации. Особенно если в продукте есть аналитика, обработка данных или машинное обучение.</p>
+</section>
+
+<section>
+  <div class="head"><h2>Найм и стоимость поддержки</h2><span class="tag">команда</span></div>
+  <p class="sub">PHP-разработчиков много, но опыт у них сильно различается. Заметная часть рынка работает с CMS и старым кодом. Для нового проекта на Laravel или Symfony стоит проверять опыт именно с фреймворком, тестами и современным PHP.</p>
+  <p class="sub">С Python похожая ситуация. Язык знают многие, но часть из них работает с данными, автоматизацией или автотестами. Для бэкенда нужен опыт с Django или FastAPI, базами данных и асинхронным кодом.</p>
+  <p class="sub">Поддержка дешевле там, где фреймворк популярный и код написан по его правилам. В проекте на Laravel или Django новый разработчик разберётся быстро: структура папок, миграции и тесты устроены везде одинаково. Оба фреймворка регулярно выпускают новые версии, у Django есть LTS-версии с долгой поддержкой.</p>
+</section>
+
+<section>
+  <div class="head"><h2>Когда выбирать PHP</h2><span class="tag">четыре сценария</span></div>
+  <div class="ledger">
+    <div class="item"><span class="idx">01</span><div><h3>Сайт, магазин или личный кабинет</h3><p>Классический веб с формами, каталогом, оплатой и интеграциями. Laravel закрывает это без лишних зависимостей.</p></div></div>
+    <div class="item"><span class="idx">02</span><div><h3>Продукт с платежами, очередями и уведомлениями</h3><p>Подписки, рассылки, вебхуки, фоновые задачи. В Laravel очереди, планировщик и события входят во фреймворк.</p></div></div>
+    <div class="item"><span class="idx">03</span><div><h3>Проект уже на PHP</h3><p>Битрикс, WordPress или старый самописный код. Новые модули логично писать на PHP: перенос всего проекта на другой язык обычно выходит дороже.</p></div></div>
+    <div class="item"><span class="idx">04</span><div><h3>Простой хостинг</h3><p>Небольшой проект, который должен работать на обычном виртуальном хостинге. PHP поддерживают почти все виртуальные хостинги.</p></div></div>
+  </div>
+</section>
+
+<section>
+  <div class="head"><h2>Когда выбирать Python</h2><span class="tag">четыре сценария</span></div>
+  <div class="ledger">
+    <div class="item"><span class="idx">01</span><div><h3>Рядом данные и машинное обучение</h3><p>Аналитика, рекомендации, обработка документов, модели. Один язык для веба и данных упрощает код и команду.</p></div></div>
+    <div class="item"><span class="idx">02</span><div><h3>Внутренняя система с админкой</h3><p>Справочники, заявки, учёт. Django admin даёт рабочий интерфейс для сотрудников почти без фронтенда.</p></div></div>
+    <div class="item"><span class="idx">03</span><div><h3>API и асинхронные сервисы</h3><p>Много запросов к внешним API, WebSocket, интеграции. FastAPI и asyncio справляются с этим без дополнительного стека.</p></div></div>
+    <div class="item"><span class="idx">04</span><div><h3>Боты, парсинг и автоматизация</h3><p>Telegram-боты на aiogram, сбор данных с сайтов, скрипты и интеграции. В этих задачах у Python больше готовых библиотек.</p></div></div>
+  </div>
+</section>
+
+<section>
+  <div class="head"><h2>Вывод</h2><span class="tag">итог</span></div>
+  <p class="sub">Для классического веб-продукта с платежами, кабинетами и интеграциями удобнее PHP и Laravel. Если в продукте важны данные, машинное обучение, парсинг или асинхронные сервисы, лучше подходит Python с Django или FastAPI.</p>
+  <p class="sub">Оба языка живые и подходят для долгих проектов. Если стек ещё не выбран, спросите себя, что будет рядом с сайтом через год: данные и модели или платежи и интеграции.</p>
+  <a class="more" href="/laravel/">PHP и Laravel →</a>
+  <a class="more" href="/python/">Разработка на Python →</a>
+</section>
+
+<section>
+  <div class="head"><h2>Частые вопросы</h2><span class="tag">про PHP и Python</span></div>
+  <div class="faq">
+    <details><summary>Что выбрать новичку: PHP или Python?</summary>
+      <p>Python проще как первый язык и пригодится за пределами веба: в автоматизации, анализе данных, ботах. Если цель именно веб-разработка, PHP с Laravel тоже хороший старт. На PHP работает много коммерческих сайтов, и задач для PHP-разработчиков хватает.</p></details>
+    <details><summary>Laravel или Django: что лучше?</summary>
+      <p>Оба фреймворка зрелые и подходят для продакшена. Django сильнее во внутренних системах благодаря встроенной админке и автоматическим миграциям. Laravel удобнее для продуктов с очередями, платежами и уведомлениями, потому что эти инструменты встроены во фреймворк.</p></details>
+    <details><summary>PHP устарел?</summary>
+      <p>Нет. Язык развивается: в новых версиях появились типизированные свойства, перечисления, атрибуты, readonly-свойства. На PHP работают Laravel, Symfony, WordPress и множество коммерческих проектов. Плохая репутация осталась от старого кода, написанного без фреймворков и стандартов.</p></details>
+    <details><summary>Что быстрее, PHP или Python?</summary>
+      <p>Для типичного сайта или API разница между языками редко заметна: время уходит на базу данных и внешние сервисы. Для вычислений у Python есть библиотеки на C, для долгих соединений встроенная асинхронность. У PHP есть OPcache, JIT и серверы вроде Swoole и RoadRunner.</p></details>
+    <details><summary>Можно ли совмещать PHP и Python в одном проекте?</summary>
+      <p>Да. Например, сайт и личный кабинет на Laravel, а парсинг, обработка данных или модель машинного обучения отдельным сервисом на Python. Сервисы обмениваются данными через HTTP API или очереди.</p></details>
+  </div>
+</section>
+
+<div class="total">
+  <h2>Выбираете стек для проекта?</h2>
+  <p>Расскажите о задаче в Telegram. Разберём на созвоне, что подойдёт вашему проекту: Laravel, Django, FastAPI или Node.js. Разработку на любом из этих стеков беру целиком.</p>
+  <div class="contacts">
+    <div><span>Telegram</span><a href="https://t.me/uzver_ge" target="_blank" rel="noopener noreferrer">@uzver_ge</a></div>
+    <div><span>Почта</span><a href="mailto:myworkermailbox2022@gmail.com">myworkermailbox2022@gmail.com</a></div>
+  </div>
+  <a class="more" href="/python/">Разработка на Python →</a>
+  <a class="more" href="/laravel/">PHP и Laravel →</a>
+  <a class="more" href="/nodejs/">Node.js и TypeScript →</a>
+</div>
+
+<footer>
+<!-- footmap -->
+  <nav class="footmap" aria-label="Карта сайта">
+    <div><b>Услуги</b><a href="/telegram-mini-app/">Telegram-боты и Mini Apps</a><a href="/boty-max/">Боты для MAX</a><a href="/oplata-v-bote/">Оплата в боте</a><a href="/platezhi/">Интеграция платёжных систем</a></div>
+    <div><b>Технологии</b><a href="/laravel/">PHP и Laravel</a><a href="/nodejs/">Node.js и TypeScript</a><a href="/react-nextjs/">React и Next.js</a><a href="/vue/">Vue</a><a href="/python/">Python</a><a href="/mobilnye-prilozheniya/">Мобильные приложения</a></div>
+    <div><b>Кейсы</b><a href="/cases/podpiski/">Платформа подписок</a><a href="/cases/monitoring/">Мониторинг майнеров</a><a href="/#cases">Все кейсы</a></div>
+    <div><b>Статьи</b><a href="/blog/go-ili-python/">Go или Python</a><a href="/blog/react-ili-vue/">React или Vue</a><a href="/blog/php-ili-python/" aria-current="page">PHP или Python</a><a href="/blog/react-native-ili-flutter/">React Native или Flutter</a></div>
+  </nav>
+  <!-- /footmap -->
+  <div class="wrap">Комягин Николай · Fullstack-разработчик · боты Telegram и MAX, платежи, интеграции</div>
+</footer>
+
+</div>
+
+<script src="/assets/site.js"></script>
+</body>
+</html>

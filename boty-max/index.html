@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<title>Разработка ботов для MAX под ключ — Николай Комягин</title>
+<meta name="description" content="Чат-боты для мессенджера MAX: продажа подписок, приём оплаты, платный доступ к контенту, заявки и уведомления. Общий бэкенд с Telegram-ботом, админ-панель, рабочий кейс.">
+<link rel="canonical" href="https://komiagin.dev/boty-max/">
+<meta name="robots" content="index, follow, max-image-preview:large">
+<meta name="theme-color" content="#020604">
+
+<meta property="og:type" content="website">
+<meta property="og:locale" content="ru_RU">
+<meta property="og:site_name" content="komiagin.dev">
+<meta property="og:url" content="https://komiagin.dev/boty-max/">
+<meta property="og:title" content="Разработка ботов для MAX под ключ">
+<meta property="og:description" content="Боты для MAX, которые продают подписки, принимают оплату и открывают доступ к контенту. Общий бэкенд с Telegram-ботом.">
+<meta property="og:image" content="https://komiagin.dev/og.png">
+<meta name="twitter:card" content="summary_large_image">
+
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'><rect width='64' height='64' fill='%23020604'/><text x='32' y='47' font-family='monospace' font-size='46' font-weight='bold' fill='%2300FF6A' text-anchor='middle'>K</text></svg>">
+<link rel="apple-touch-icon" href="/icon-512.png">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700;800&family=Manrope:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/assets/site.css">
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Service",
+      "name": "Разработка ботов для MAX",
+      "serviceType": "Разработка чат-ботов для мессенджера MAX",
+      "url": "https://komiagin.dev/boty-max/",
+      "description": "Чат-боты для MAX: продажа подписок, приём оплаты через платёжного провайдера, платный доступ к контенту, заявки и уведомления. Общий бэкенд с Telegram-ботом и админ-панель.",
+      "areaServed": { "@type": "Country", "name": "Россия" },
+      "provider": { "@type": "Person", "name": "Николай Комягин", "url": "https://komiagin.dev/" }
+    },
+    {
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        { "@type": "ListItem", "position": 1, "name": "Главная", "item": "https://komiagin.dev/" },
+        { "@type": "ListItem", "position": 2, "name": "Боты для MAX", "item": "https://komiagin.dev/boty-max/" }
+      ]
+    },
+    {
+      "@type": "FAQPage",
+      "mainEntity": [
+        { "@type": "Question", "name": "Кто может завести бота в MAX?",
+          "acceptedAnswer": { "@type": "Answer", "text": "По правилам платформы — юрлица, ИП и самозанятые, которые являются резидентами РФ, после верификации профиля. Бота регистрирует заказчик на свою организацию, я подключаюсь по токену. Модерация занимает до 48 часов по рабочим дням." } },
+        { "@type": "Question", "name": "Можно ли принимать оплату в боте MAX?",
+          "acceptedAnswer": { "@type": "Answer", "text": "Да, через платёжного провайдера. Бот формирует ссылку на оплату, после оплаты провайдер присылает уведомление на сервер, и бот открывает доступ. Встроенных платёжных методов, как Stars в Telegram, в Bot API MAX нет." } },
+        { "@type": "Question", "name": "У меня уже есть бот в Telegram. Его придётся писать заново?",
+          "acceptedAnswer": { "@type": "Answer", "text": "Нет. Логика, пользователи и подписки живут в общем бэкенде, для MAX добавляется свой слой работы с API мессенджера. Так устроен проект из кейса: админ-панель, Telegram-бот и бот для MAX работают на одном бэкенде." } },
+        { "@type": "Question", "name": "Сколько стоит бот для MAX?",
+          "acceptedAnswer": { "@type": "Answer", "text": "Цена зависит от сценариев, числа интеграций и того, есть ли уже бэкенд. После короткого созвона присылаю оценку по этапам." } },
+        { "@type": "Question", "name": "На чём пишете ботов?",
+          "acceptedAnswer": { "@type": "Answer", "text": "Бэкенд на PHP и Laravel или на Node.js и TypeScript, база PostgreSQL, Redis для очередей и кеша, админ-панель на Vue." } },
+        { "@type": "Question", "name": "Что происходит после запуска?",
+          "acceptedAnswer": { "@type": "Answer", "text": "Сервис можно оставить на сопровождении: мониторинг работоспособности, исправления, доработки под новые сценарии и изменения API мессенджера." } }
+      ]
+    }
+  ]
+}
+</script>
+</head>
+<body>
+
+<div id="rain" aria-hidden="true">
+  <canvas id="rainc"></canvas>
+  <div class="scrim"></div>
+  <div class="scan"></div>
+</div>
+
+<div class="wrap">
+
+<nav class="topnav" aria-label="Разделы сайта">
+  <a class="brand" href="/">komiagin.dev</a>
+  <a href="/boty-max/" aria-current="page">Боты для MAX</a>
+  <a href="/oplata-v-bote/">Оплата в боте</a>
+  <a href="/cases/podpiski/">Кейс: подписки</a>
+</nav>
+
+<header class="sheet">
+  <div class="crumbs"><a href="/">Главная</a> / Боты для MAX</div>
+  <div class="stamp tag">Услуга</div>
+  <h1>Разработка ботов для MAX</h1>
+  <div class="role">Чат-боты для мессенджера MAX под ключ · общий бэкенд с Telegram</div>
+  <p class="pitch">Делаю ботов для MAX, которые <strong>продают подписки, принимают оплату и открывают доступ к платному контенту.</strong> Если у вас уже есть Telegram-бот, бот для MAX работает на том же бэкенде: одна база пользователей, одни подписки, одна админ-панель.</p>
+  <p class="pitch">В рабочем проекте бот для MAX появился, когда часть аудитории заказчика ушла из Telegram. Канал доставки контента сохранили, а продажа и продление подписок так и идут без ручных операций.</p>
+  <div class="cta-row">
+    <a class="btn solid" href="https://t.me/uzver_ge" target="_blank" rel="noopener noreferrer">Обсудить задачу в Telegram</a>
+    <a class="btn ghost" href="/cases/podpiski/">Кейс: платформа подписок</a>
+  </div>
+</header>
+
+<section>
+  <div class="head"><h2>Какие задачи бизнеса закрывает бот</h2><span class="tag">пять сценариев</span></div>
+  <div class="ledger">
+    <div class="item">
+      <span class="idx">01</span>
+      <div>
+        <h3>Продажа подписок и платный контент</h3>
+        <p>Бот оформляет подписку, принимает оплату, продлевает её и открывает доступ к закрытым материалам. Когда подписка заканчивается, доступ закрывается сам.</p>
+        <div class="kit">подписки · автопродление · доступ к контенту</div>
+      </div>
+    </div>
+    <div class="item">
+      <span class="idx">02</span>
+      <div>
+        <h3>Приём оплаты</h3>
+        <p>Встроенной оплаты в Bot API MAX нет, поэтому платёж идёт через провайдера: бот выдаёт ссылку, провайдер присылает уведомление на сервер, бот подтверждает оплату и выдаёт доступ. Чеки по 54-ФЗ — в той же интеграции.</p>
+        <div class="kit">платёжный провайдер · вебхуки · 54-ФЗ</div>
+        <a class="more" href="/oplata-v-bote/">Подробнее про оплату в боте →</a>
+      </div>
+    </div>
+    <div class="item">
+      <span class="idx">03</span>
+      <div>
+        <h3>Заявки и уведомления</h3>
+        <p>Сбор заявок, напоминания клиентам, уведомления сотрудникам. Данные попадают в админ-панель или в вашу CRM по API.</p>
+        <div class="kit">заявки · рассылки · интеграция с CRM</div>
+      </div>
+    </div>
+    <div class="item">
+      <span class="idx">04</span>
+      <div>
+        <h3>Второй канал рядом с Telegram</h3>
+        <p>Бот для MAX подключается к существующему бэкенду. Логика и данные общие, отличается только слой работы с API мессенджера. Аудиторию, которая ушла из Telegram, не нужно заводить в новую систему.</p>
+        <div class="kit">общий бэкенд · одна база · одна админка</div>
+      </div>
+    </div>
+    <div class="item">
+      <span class="idx">05</span>
+      <div>
+        <h3>Мини-приложение внутри MAX</h3>
+        <p>Когда кнопок и сообщений мало — каталог, личный кабинет, форма записи — к боту подключается веб-приложение, которое открывается прямо в мессенджере. Мини-приложение проходит отдельную модерацию платформы.</p>
+        <div class="kit">веб-приложение · Vue / React</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="head"><h2>Что входит в разработку</h2><span class="tag">под ключ</span></div>
+  <div class="stack">
+    <div class="srow"><span class="k">Бот</span><div class="chips">
+      <span class="chip">сценарии и команды</span><span class="chip">клавиатуры и кнопки</span><span class="chip">вебхук или long polling</span><span class="chip">файлы и медиа</span>
+    </div></div>
+    <div class="srow"><span class="k">Админ-панель</span><div class="chips">
+      <span class="chip">пользователи</span><span class="chip">подписки и платежи</span><span class="chip">рассылки</span><span class="chip">права доступа</span>
+    </div></div>
+    <div class="srow"><span class="k">Платежи</span><div class="chips">
+      <span class="chip">рекуррентные списания</span><span class="chip">идемпотентные вебхуки</span><span class="chip">54-ФЗ</span>
+    </div></div>
+    <div class="srow"><span class="k">Инфраструктура</span><div class="chips">
+      <span class="chip">сервер и деплой</span><span class="chip">Docker</span><span class="chip">мониторинг</span>
+    </div></div>
+    <div class="srow"><span class="k">Качество</span><div class="chips">
+      <span class="chip">автотесты на платежи и расчёты</span><span class="chip">ручная приёмка сценариев</span>
+    </div></div>
+  </div>
+</section>
+
+<section>
+  <div class="head"><h2>Как идёт работа</h2><span class="tag">пять этапов</span></div>
+  <div class="ledger">
+    <div class="item"><span class="idx">01</span><div><h3>Разбор задачи</h3><p>Созвон на двадцать минут: что продаём, кому, как сейчас принимаете оплату, какие системы уже есть.</p></div></div>
+    <div class="item"><span class="idx">02</span><div><h3>Сценарии и модель данных</h3><p>Схема диалогов, статусы подписки и платежа, роли в админ-панели. На этом этапе становится понятна оценка по срокам и стоимости.</p></div></div>
+    <div class="item"><span class="idx">03</span><div><h3>Регистрация и разработка</h3><p>Бота регистрирует заказчик на свою организацию: так требует платформа. Модерация занимает до 48 часов по рабочим дням, разработка за это время не стоит.</p></div></div>
+    <div class="item"><span class="idx">04</span><div><h3>Запуск и приёмка</h3><p>Логику оплаты и доступа закрываю автотестами, перед релизом прогоняю сценарии руками.</p></div></div>
+    <div class="item"><span class="idx">05</span><div><h3>Поддержка</h3><p>Мониторинг, исправления, доработки под новые сценарии и изменения API мессенджера.</p></div></div>
+  </div>
+</section>
+
+<section>
+  <div class="head"><h2>Сроки и стоимость</h2><span class="tag">по задаче</span></div>
+  <p class="sub">Цена зависит от сценариев, числа интеграций и того, есть ли уже бэкенд. После созвона присылаю оценку по этапам.</p>
+  <p class="sub">Для ориентира: экосистема из админ-панели, Telegram-бота и бота для MAX с двумя платёжными провайдерами ушла в продакшен за 1,5–2 месяца.</p>
+</section>
+
+<section>
+  <div class="head"><h2>Кейс</h2><span class="tag">в продакшене</span></div>
+  <div class="cases">
+    <article class="case">
+      <div class="case-top">
+        <span class="idx">01</span>
+        <h3>Платформа подписок для инвестиционного советника</h3>
+      </div>
+      <div class="case-role">Единственный разработчик · Telegram-бот, бот для MAX и админ-панель на общем бэкенде</div>
+      <p class="sub" style="font-size:15.5px">Продажа клубных подписок шла вручную. Теперь подписки продаются и продлеваются автоматически через две платёжные интеграции с рекуррентными списаниями, чеки формируются по 54-ФЗ, доступ к аналитике выдаётся и снимается сам.</p>
+      <div class="figs">
+        <div class="fig"><b>~6 000</b><span>подписчиков</span></div>
+        <div class="fig"><b>~3 млн ₽</b><span>оборот в месяц</span></div>
+        <div class="fig"><b>2</b><span>мессенджера: Telegram и MAX</span></div>
+      </div>
+      <a class="more" href="/cases/podpiski/">Подробный разбор кейса →</a>
+    </article>
+  </div>
+</section>
+
+<section>
+  <div class="head"><h2>Частые вопросы</h2><span class="tag">про ботов в MAX</span></div>
+  <div class="faq">
+    <details><summary>Кто может завести бота в MAX?</summary>
+      <p>По правилам платформы — юрлица, ИП и самозанятые, которые являются резидентами РФ, после верификации профиля. Бота регистрирует заказчик на свою организацию, я подключаюсь по токену. Модерация занимает до 48 часов по рабочим дням.</p></details>
+    <details><summary>Можно ли принимать оплату в боте MAX?</summary>
+      <p>Да, через платёжного провайдера. Бот формирует ссылку на оплату, после оплаты провайдер присылает уведомление на сервер, и бот открывает доступ. Встроенных платёжных методов, как Stars в Telegram, в Bot API MAX нет.</p></details>
+    <details><summary>У меня уже есть бот в Telegram. Его придётся писать заново?</summary>
+      <p>Нет. Логика, пользователи и подписки живут в общем бэкенде, для MAX добавляется свой слой работы с API мессенджера. Так устроен проект из кейса: админ-панель, Telegram-бот и бот для MAX работают на одном бэкенде.</p></details>
+    <details><summary>Сколько стоит бот для MAX?</summary>
+      <p>Цена зависит от сценариев, числа интеграций и того, есть ли уже бэкенд. После короткого созвона присылаю оценку по этапам.</p></details>
+    <details><summary>На чём пишете ботов?</summary>
+      <p>Бэкенд на PHP и Laravel или на Node.js и TypeScript, база PostgreSQL, Redis для очередей и кеша, админ-панель на Vue.</p></details>
+    <details><summary>Что происходит после запуска?</summary>
+      <p>Сервис можно оставить на сопровождении: мониторинг работоспособности, исправления, доработки под новые сценарии и изменения API мессенджера.</p></details>
+  </div>
+</section>
+
+<div class="total">
+  <h2>Обсудим вашего бота</h2>
+  <p>Опишите задачу в Telegram: что продаёте и где сейчас ваша аудитория. Отвечу, как это собрать и что войдёт в первую версию.</p>
+  <div class="contacts">
+    <div><span>Telegram</span><a href="https://t.me/uzver_ge" target="_blank" rel="noopener noreferrer">@uzver_ge</a></div>
+    <div><span>Почта</span><a href="mailto:myworkermailbox2022@gmail.com">myworkermailbox2022@gmail.com</a></div>
+    <div><span>Резюме</span><a href="/">опыт и стек</a></div>
+  </div>
+</div>
+
+<footer>
+  <div class="footlinks topnav" style="padding:0 0 14px"><a href="/">Резюме</a><a href="/oplata-v-bote/">Оплата в боте</a><a href="/cases/podpiski/">Кейс: платформа подписок</a></div>
+  <div class="wrap" style="padding:0">Комягин Николай · Fullstack-разработчик · боты Telegram и MAX, платежи, интеграции</div>
+</footer>
+
+</div>
+
+<script src="/assets/site.js"></script>
+</body>
+</html>

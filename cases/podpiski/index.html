@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<title>Кейс: платформа подписок с ботами Telegram и MAX — Николай Комягин</title>
+<meta name="description" content="Как продажа клубных подписок инвестиционного советника переехала из ручного режима в автоматический: Telegram-бот, бот для MAX, админ-панель, две платёжные интеграции, 54-ФЗ. ~6 000 подписчиков, ~3 млн ₽ в месяц.">
+<link rel="canonical" href="https://komiagin.dev/cases/podpiski/">
+<meta name="robots" content="index, follow, max-image-preview:large">
+<meta name="theme-color" content="#020604">
+
+<meta property="og:type" content="article">
+<meta property="og:locale" content="ru_RU">
+<meta property="og:site_name" content="komiagin.dev">
+<meta property="og:url" content="https://komiagin.dev/cases/podpiski/">
+<meta property="og:title" content="Кейс: платформа подписок с ботами Telegram и MAX">
+<meta property="og:description" content="Telegram-бот, бот для MAX и админ-панель на общем бэкенде. Две платёжные интеграции, рекуррентные списания, 54-ФЗ.">
+<meta property="og:image" content="https://komiagin.dev/og.png">
+<meta name="twitter:card" content="summary_large_image">
+
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'><rect width='64' height='64' fill='%23020604'/><text x='32' y='47' font-family='monospace' font-size='46' font-weight='bold' fill='%2300FF6A' text-anchor='middle'>K</text></svg>">
+<link rel="apple-touch-icon" href="/icon-512.png">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700;800&family=Manrope:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/assets/site.css">
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Article",
+      "headline": "Платформа подписок для инвестиционного советника: боты Telegram и MAX, две платёжные интеграции, 54-ФЗ",
+      "url": "https://komiagin.dev/cases/podpiski/",
+      "inLanguage": "ru",
+      "image": "https://komiagin.dev/og.png",
+      "author": { "@type": "Person", "name": "Николай Комягин", "url": "https://komiagin.dev/" },
+      "about": ["Рекуррентные платежи", "Telegram-бот", "Бот для MAX", "54-ФЗ", "Laravel"]
+    },
+    {
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        { "@type": "ListItem", "position": 1, "name": "Главная", "item": "https://komiagin.dev/" },
+        { "@type": "ListItem", "position": 2, "name": "Кейсы", "item": "https://komiagin.dev/#cases" },
+        { "@type": "ListItem", "position": 3, "name": "Платформа подписок", "item": "https://komiagin.dev/cases/podpiski/" }
+      ]
+    }
+  ]
+}
+</script>
+</head>
+<body>
+
+<div id="rain" aria-hidden="true">
+  <canvas id="rainc"></canvas>
+  <div class="scrim"></div>
+  <div class="scan"></div>
+</div>
+
+<div class="wrap">
+
+<nav class="topnav" aria-label="Разделы сайта">
+  <a class="brand" href="/">komiagin.dev</a>
+  <a href="/boty-max/">Боты для MAX</a>
+  <a href="/oplata-v-bote/">Оплата в боте</a>
+  <a href="/cases/podpiski/" aria-current="page">Кейс: подписки</a>
+</nav>
+
+<header class="sheet">
+  <div class="crumbs"><a href="/">Главная</a> / <a href="/#cases">Кейсы</a> / Платформа подписок</div>
+  <div class="stamp tag">Кейс</div>
+  <h1>Платформа подписок для инвестиционного советника</h1>
+  <div class="role">Telegram-бот, бот для MAX и админ-панель · единственный разработчик · 1,5–2 месяца до продакшена</div>
+  <p class="pitch">Заказчик — независимый инвестиционный советник из реестра ЦБ РФ. Клубные подписки на его аналитику продавались, оплачивались и продлевались вручную. Я собрал систему, в которой <strong>продажа, оплата, продление, чеки и доступ к аналитике работают без участия заказчика.</strong></p>
+  <dl class="meta">
+    <div class="mrow"><dt>Проект</dt><dd><a href="https://antifragile-trading.ru/" target="_blank" rel="noopener noreferrer">antifragile-trading.ru</a></dd><dd class="num">в продакшене</dd></div>
+    <div class="mrow"><dt>Роль</dt><dd>Единственный разработчик, полный цикл: от модели данных до деплоя</dd><dd class="num">1 разработчик</dd></div>
+    <div class="mrow"><dt>Срок</dt><dd>От старта до продакшена</dd><dd class="num">1,5–2 мес.</dd></div>
+  </dl>
+  <div class="figs">
+    <div class="fig"><b>~6 000</b><span>подписчиков</span></div>
+    <div class="fig"><b>~3 млн ₽</b><span>оборот в месяц</span></div>
+    <div class="fig"><b>2</b><span>платёжных провайдера</span></div>
+    <div class="fig"><b>2</b><span>мессенджера: Telegram и MAX</span></div>
+  </div>
+</header>
+
+<section>
+  <div class="head"><h2>Задача</h2><span class="tag">что было</span></div>
+  <p class="sub">Продажа клубных подписок и приём оплат шли вручную. Требовалось автоматизировать продажу и продление подписок, регулярные списания и доставку аналитики клиентам — с соблюдением 54-ФЗ.</p>
+</section>
+
+<section>
+  <div class="head"><h2>Решение</h2><span class="tag">три части на общем бэкенде</span></div>
+  <div class="ledger">
+    <div class="item">
+      <span class="idx">01</span>
+      <div>
+        <h3>Telegram-бот</h3>
+        <p>Продаёт и продлевает подписку, принимает оплату через провайдера, доставляет аналитику подписчикам.</p>
+        <div class="kit">Telegram Bot API</div>
+      </div>
+    </div>
+    <div class="item">
+      <span class="idx">02</span>
+      <div>
+        <h3>Бот для MAX</h3>
+        <p>Добавлен, когда часть аудитории ушла из Telegram. Работает на том же бэкенде, поэтому канал доставки не потеряли, а подписчиков не пришлось переносить в новую систему.</p>
+        <div class="kit">MAX API</div>
+        <a class="more" href="/boty-max/">Разработка ботов для MAX →</a>
+      </div>
+    </div>
+    <div class="item">
+      <span class="idx">03</span>
+      <div>
+        <h3>Админ-панель</h3>
+        <p>Подписчики, подписки и платежи в одном месте для заказчика.</p>
+        <div class="kit">Vue 3</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="head"><h2>Платежи</h2><span class="tag">где ошибка стоит денег</span></div>
+  <div class="ledger">
+    <div class="item">
+      <span class="idx">01</span>
+      <div>
+        <h3>Две платёжные интеграции с рекуррентными списаниями</h3>
+        <p>Автопродление подписки через провайдеров и обработка их вебхуков.</p>
+        <div class="kit">CloudPayments · Rocketr · вебхуки</div>
+      </div>
+    </div>
+    <div class="item">
+      <span class="idx">02</span>
+      <div>
+        <h3>Идемпотентность по external_id провайдера</h3>
+        <p>Двойные списания и дубли подписок исключены на уровне модели данных: повторное уведомление от провайдера не создаёт второй платёж.</p>
+        <div class="kit">PostgreSQL · модель данных</div>
+      </div>
+    </div>
+    <div class="item">
+      <span class="idx">03</span>
+      <div>
+        <h3>Фискализация по 54-ФЗ</h3>
+        <p>Чеки по платежам формируются автоматически, без ручной работы заказчика.</p>
+        <div class="kit">54-ФЗ</div>
+      </div>
+    </div>
+    <div class="item">
+      <span class="idx">04</span>
+      <div>
+        <h3>Жизненный цикл подписки и доступ к контенту</h3>
+        <p>Оформление, продление и окончание подписки управляют доступом к платной аналитике: доступ выдаётся после оплаты и снимается, когда подписка заканчивается.</p>
+        <div class="kit">разграничение доступа</div>
+      </div>
+    </div>
+  </div>
+  <div class="flow" aria-label="Как проходит оплата">
+    <span>бот выдаёт ссылку</span><b>→</b><span>подписчик платит</span><b>→</b><span>провайдер шлёт вебхук</span><b>→</b><span>бэкенд пишет платёж и чек</span><b>→</b><span>доступ в Telegram или MAX</span>
+  </div>
+  <a class="more" href="/oplata-v-bote/">Подключение оплаты и подписок в боте →</a>
+</section>
+
+<section>
+  <div class="head"><h2>Результат</h2><span class="tag">что стало</span></div>
+  <p class="sub">Заказчик больше не участвует в приёме платежей: продажа и продление подписок идут без ручных операций. Когда часть аудитории ушла из Telegram, бот для MAX сохранил канал доставки аналитики.</p>
+</section>
+
+<section>
+  <div class="head"><h2>Стек</h2><span class="tag">чем собрано</span></div>
+  <div class="stack">
+    <div class="srow"><span class="k">Backend</span><div class="chips"><span class="chip">PHP</span><span class="chip">Laravel</span><span class="chip">PostgreSQL</span></div></div>
+    <div class="srow"><span class="k">Frontend</span><div class="chips"><span class="chip">Vue 3</span></div></div>
+    <div class="srow"><span class="k">Мессенджеры</span><div class="chips"><span class="chip">Telegram Bot API</span><span class="chip">MAX API</span></div></div>
+    <div class="srow"><span class="k">Платежи</span><div class="chips"><span class="chip">CloudPayments</span><span class="chip">Rocketr</span><span class="chip">54-ФЗ</span></div></div>
+  </div>
+</section>
+
+<div class="total">
+  <h2>Похожая задача?</h2>
+  <p>Если подписки, оплата или доступ к контенту у вас пока держатся на ручной работе, напишите в Telegram. Разберём на созвоне за двадцать минут.</p>
+  <div class="contacts">
+    <div><span>Telegram</span><a href="https://t.me/uzver_ge" target="_blank" rel="noopener noreferrer">@uzver_ge</a></div>
+    <div><span>Почта</span><a href="mailto:myworkermailbox2022@gmail.com">myworkermailbox2022@gmail.com</a></div>
+    <div><span>Ещё кейсы</span><a href="/#cases">на главной</a></div>
+  </div>
+</div>
+
+<footer>
+  <div class="footlinks topnav" style="padding:0 0 14px"><a href="/">Резюме</a><a href="/boty-max/">Боты для MAX</a><a href="/oplata-v-bote/">Оплата в боте</a></div>
+  <div class="wrap" style="padding:0">Комягин Николай · Fullstack-разработчик · боты Telegram и MAX, платежи, интеграции</div>
+</footer>
+
+</div>
+
+<script src="/assets/site.js"></script>
+</body>
+</html>

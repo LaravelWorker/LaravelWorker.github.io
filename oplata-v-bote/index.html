@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<title>Приём оплаты и подписки в Telegram- и MAX-боте — Николай Комягин</title>
+<meta name="description" content="Подключаю оплату к ботам Telegram и MAX: подписки с автопродлением, платный доступ к каналу и контенту, разовые платежи, чеки по 54-ФЗ, защита от двойных списаний.">
+<link rel="canonical" href="https://komiagin.dev/oplata-v-bote/">
+<meta name="robots" content="index, follow, max-image-preview:large">
+<meta name="theme-color" content="#020604">
+
+<meta property="og:type" content="website">
+<meta property="og:locale" content="ru_RU">
+<meta property="og:site_name" content="komiagin.dev">
+<meta property="og:url" content="https://komiagin.dev/oplata-v-bote/">
+<meta property="og:title" content="Приём оплаты и подписки в боте Telegram и MAX">
+<meta property="og:description" content="Подписки с автопродлением, платный доступ к каналу, чеки по 54-ФЗ и защита от двойных списаний.">
+<meta property="og:image" content="https://komiagin.dev/og.png">
+<meta name="twitter:card" content="summary_large_image">
+
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'><rect width='64' height='64' fill='%23020604'/><text x='32' y='47' font-family='monospace' font-size='46' font-weight='bold' fill='%2300FF6A' text-anchor='middle'>K</text></svg>">
+<link rel="apple-touch-icon" href="/icon-512.png">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700;800&family=Manrope:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/assets/site.css">
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Service",
+      "name": "Приём оплаты и подписки в Telegram- и MAX-боте",
+      "serviceType": "Интеграция платёжных систем в чат-боты",
+      "url": "https://komiagin.dev/oplata-v-bote/",
+      "description": "Подписки с автопродлением, платный доступ к каналу и контенту, разовые платежи, чеки по 54-ФЗ и защита от двойных списаний в ботах Telegram и MAX.",
+      "areaServed": { "@type": "Country", "name": "Россия" },
+      "provider": { "@type": "Person", "name": "Николай Комягин", "url": "https://komiagin.dev/" }
+    },
+    {
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        { "@type": "ListItem", "position": 1, "name": "Главная", "item": "https://komiagin.dev/" },
+        { "@type": "ListItem", "position": 2, "name": "Оплата в боте", "item": "https://komiagin.dev/oplata-v-bote/" }
+      ]
+    },
+    {
+      "@type": "FAQPage",
+      "mainEntity": [
+        { "@type": "Question", "name": "Можно ли принимать оплату в боте без ИП?",
+          "acceptedAnswer": { "@type": "Answer", "text": "Договор с платёжным провайдером заключает владелец бизнеса. Провайдеры подключают юрлиц и ИП, часть из них работает и с самозанятыми. Условия у каждого свои, поэтому провайдера выбираем до начала разработки." } },
+        { "@type": "Question", "name": "Когда нужна оплата звёздами (Telegram Stars)?",
+          "acceptedAnswer": { "@type": "Answer", "text": "Когда бот в Telegram продаёт цифровые товары или услуги через встроенные платежи: по правилам Telegram такие платежи проходят только в Stars. Для физических товаров и услуг можно подключать сторонних платёжных провайдеров. В MAX звёзд нет, оплата идёт через провайдера." } },
+        { "@type": "Question", "name": "Можно ли принимать оплату по СБП?",
+          "acceptedAnswer": { "@type": "Answer", "text": "Да, если провайдер принимает СБП. Для подписок отдельно проверяем, умеет ли он автосписания: от этого зависит, будет ли продление автоматическим." } },
+        { "@type": "Question", "name": "Как работает бот для платного канала?",
+          "acceptedAnswer": { "@type": "Answer", "text": "Бот принимает оплату, выдаёт доступ к закрытому каналу или разделу и снимает его, когда подписка заканчивается. В Telegram для этого бот получает права администратора канала и работает с пригласительными ссылками. В MAX набор методов для управления участниками другой, схему подбираю под актуальные ограничения API." } },
+        { "@type": "Question", "name": "Что будет, если провайдер пришлёт уведомление об оплате дважды?",
+          "acceptedAnswer": { "@type": "Answer", "text": "Ничего: каждое уведомление обрабатывается идемпотентно по идентификатору операции у провайдера. Повторное уведомление не создаст второй платёж и не продлит подписку дважды." } },
+        { "@type": "Question", "name": "Нужны ли чеки по 54-ФЗ?",
+          "acceptedAnswer": { "@type": "Answer", "text": "Если вы как ИП или компания принимаете оплату от физлиц, по 54-ФЗ нужен чек. Многие провайдеры формируют его через свою облачную кассу, это подключается в той же интеграции. Самозанятые выдают чеки через «Мой налог»." } }
+      ]
+    }
+  ]
+}
+</script>
+</head>
+<body>
+
+<div id="rain" aria-hidden="true">
+  <canvas id="rainc"></canvas>
+  <div class="scrim"></div>
+  <div class="scan"></div>
+</div>
+
+<div class="wrap">
+
+<nav class="topnav" aria-label="Разделы сайта">
+  <a class="brand" href="/">komiagin.dev</a>
+  <a href="/boty-max/">Боты для MAX</a>
+  <a href="/oplata-v-bote/" aria-current="page">Оплата в боте</a>
+  <a href="/cases/podpiski/">Кейс: подписки</a>
+</nav>
+
+<header class="sheet">
+  <div class="crumbs"><a href="/">Главная</a> / Оплата в боте</div>
+  <div class="stamp tag">Услуга</div>
+  <h1>Приём оплаты и подписки в боте</h1>
+  <div class="role">Telegram и MAX · рекуррентные списания · чеки по 54-ФЗ</div>
+  <p class="pitch">Подключаю оплату к ботам Telegram и MAX: <strong>подписки с автопродлением, платный доступ к каналу или контенту, разовые платежи.</strong> Деньги, чеки и доступ сходятся без ручных операций, а каждую операцию можно объяснить постфактум.</p>
+  <p class="pitch">Опыт из продакшена: платформа подписок на ~6 000 подписчиков с оборотом около 3 млн ₽ в месяц. Заказчик больше не участвует в приёме платежей.</p>
+  <div class="cta-row">
+    <a class="btn solid" href="https://t.me/uzver_ge" target="_blank" rel="noopener noreferrer">Обсудить задачу в Telegram</a>
+    <a class="btn ghost" href="/cases/podpiski/">Как это устроено в кейсе</a>
+  </div>
+</header>
+
+<section>
+  <div class="head"><h2>Что подключаю</h2><span class="tag">шесть частей</span></div>
+  <div class="ledger">
+    <div class="item">
+      <span class="idx">01</span>
+      <div>
+        <h3>Подписки с автопродлением</h3>
+        <p>Рекуррентные списания через провайдера и полный жизненный цикл подписки: оформление, продление, неудачное списание, отмена. Проектирую так, чтобы баланс сходился и любую операцию можно было объяснить постфактум.</p>
+        <div class="kit">рекуррентные платежи · тарифы · история операций</div>
+      </div>
+    </div>
+    <div class="item">
+      <span class="idx">02</span>
+      <div>
+        <h3>Платный доступ к каналу и контенту</h3>
+        <p>После оплаты бот открывает доступ к закрытому каналу, разделу или материалам. Когда подписка заканчивается, доступ закрывается сам.</p>
+        <div class="kit">разграничение доступа · пригласительные ссылки</div>
+      </div>
+    </div>
+    <div class="item">
+      <span class="idx">03</span>
+      <div>
+        <h3>Разовые платежи</h3>
+        <p>Оплата товара, консультации или доступа к материалу кнопкой или ссылкой прямо из диалога с ботом.</p>
+        <div class="kit">счёт · ссылка на оплату · подтверждение</div>
+      </div>
+    </div>
+    <div class="item">
+      <span class="idx">04</span>
+      <div>
+        <h3>Чеки по 54-ФЗ</h3>
+        <p>Фискализация через облачную кассу провайдера в той же интеграции: чек уходит покупателю автоматически при каждом списании.</p>
+        <div class="kit">54-ФЗ · облачная касса</div>
+      </div>
+    </div>
+    <div class="item">
+      <span class="idx">05</span>
+      <div>
+        <h3>Защита от двойных списаний</h3>
+        <p>Уведомления провайдера обрабатываются идемпотентно по идентификатору операции. Повторный вебхук не создаст второй платёж и не продлит подписку дважды: это заложено на уровне модели данных.</p>
+        <div class="kit">вебхуки · идемпотентность · external_id</div>
+      </div>
+    </div>
+    <div class="item">
+      <span class="idx">06</span>
+      <div>
+        <h3>Админ-панель и отчёты</h3>
+        <p>Пользователи, подписки и платежи в одном месте: видно, кто платит и у кого подписка закончилась.</p>
+        <div class="kit">админ-панель · роли и права · выгрузки</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="head"><h2>Способы оплаты</h2><span class="tag">выбираем под продукт</span></div>
+  <div class="tbl">
+    <table>
+      <thead><tr><th>Способ</th><th>Где работает</th><th>Когда подходит</th></tr></thead>
+      <tbody>
+        <tr><td>Платёжный провайдер по ссылке</td><td>Telegram и MAX</td><td>Подписки с автопродлением, оплата картой и через СБП, если провайдер её принимает. Деньги приходят на счёт бизнеса. В кейсе — CloudPayments и Rocketr.</td></tr>
+        <tr><td>Telegram Stars</td><td>Только Telegram</td><td>Цифровые товары и услуги через встроенные платежи Telegram: по правилам платформы такие платежи проходят только в Stars.</td></tr>
+        <tr><td>Встроенные платежи Telegram с провайдером</td><td>Только Telegram</td><td>Физические товары и услуги: покупатель платит, не выходя из чата.</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <p class="tbl-note">Какой вариант допустим для вашего продукта, проверяем по правилам мессенджера и провайдера до начала разработки.</p>
+  <div class="flow" aria-label="Как проходит оплата">
+    <span>бот выдаёт ссылку</span><b>→</b><span>покупатель платит</span><b>→</b><span>провайдер шлёт вебхук</span><b>→</b><span>сервер проверяет и пишет платёж</span><b>→</b><span>бот открывает доступ</span>
+  </div>
+</section>
+
+<section>
+  <div class="head"><h2>Как идёт работа</h2><span class="tag">пять этапов</span></div>
+  <div class="ledger">
+    <div class="item"><span class="idx">01</span><div><h3>Разбор задачи</h3><p>Созвон на двадцать минут: что продаёте, разово или по подписке, в каком мессенджере аудитория, какой провайдер уже подключён.</p></div></div>
+    <div class="item"><span class="idx">02</span><div><h3>Выбор провайдера и схемы</h3><p>Подбираем провайдера под продукт и правовую форму. Договор с провайдером заключает заказчик, я готовлю техническую часть.</p></div></div>
+    <div class="item"><span class="idx">03</span><div><h3>Разработка</h3><p>Модель подписок и платежей, обработка вебхуков, доступ к контенту, чеки, админ-панель.</p></div></div>
+    <div class="item"><span class="idx">04</span><div><h3>Тесты и приёмка</h3><p>Списания, продления и обработку ответов провайдера закрываю автотестами. Перед релизом прогоняю сценарии руками.</p></div></div>
+    <div class="item"><span class="idx">05</span><div><h3>Запуск и поддержка</h3><p>Мониторинг, разбор спорных операций, доработки под новые тарифы.</p></div></div>
+  </div>
+</section>
+
+<section>
+  <div class="head"><h2>Сроки и стоимость</h2><span class="tag">по задаче</span></div>
+  <p class="sub">Цена зависит от числа провайдеров и мессенджеров, сложности тарифов и того, есть ли уже бэкенд. После созвона присылаю оценку по этапам.</p>
+  <p class="sub">Для ориентира: платформа с админ-панелью, двумя ботами и двумя платёжными провайдерами ушла в продакшен за 1,5–2 месяца.</p>
+</section>
+
+<section>
+  <div class="head"><h2>Частые вопросы</h2><span class="tag">про оплату в ботах</span></div>
+  <div class="faq">
+    <details><summary>Можно ли принимать оплату в боте без ИП?</summary>
+      <p>Договор с платёжным провайдером заключает владелец бизнеса. Провайдеры подключают юрлиц и ИП, часть из них работает и с самозанятыми. Условия у каждого свои, поэтому провайдера выбираем до начала разработки.</p></details>
+    <details><summary>Когда нужна оплата звёздами (Telegram Stars)?</summary>
+      <p>Когда бот в Telegram продаёт цифровые товары или услуги через встроенные платежи: по правилам Telegram такие платежи проходят только в Stars. Для физических товаров и услуг можно подключать сторонних платёжных провайдеров. В MAX звёзд нет, оплата идёт через провайдера.</p></details>
+    <details><summary>Можно ли принимать оплату по СБП?</summary>
+      <p>Да, если провайдер принимает СБП. Для подписок отдельно проверяем, умеет ли он автосписания: от этого зависит, будет ли продление автоматическим.</p></details>
+    <details><summary>Как работает бот для платного канала?</summary>
+      <p>Бот принимает оплату, выдаёт доступ к закрытому каналу или разделу и снимает его, когда подписка заканчивается. В Telegram для этого бот получает права администратора канала и работает с пригласительными ссылками. В MAX набор методов для управления участниками другой, схему подбираю под актуальные ограничения API.</p></details>
+    <details><summary>Что будет, если провайдер пришлёт уведомление об оплате дважды?</summary>
+      <p>Ничего: каждое уведомление обрабатывается идемпотентно по идентификатору операции у провайдера. Повторное уведомление не создаст второй платёж и не продлит подписку дважды.</p></details>
+    <details><summary>Нужны ли чеки по 54-ФЗ?</summary>
+      <p>Если вы как ИП или компания принимаете оплату от физлиц, по 54-ФЗ нужен чек. Многие провайдеры формируют его через свою облачную кассу, это подключается в той же интеграции. Самозанятые выдают чеки через «Мой налог».</p></details>
+  </div>
+</section>
+
+<div class="total">
+  <h2>Подключим оплату</h2>
+  <p>Напишите в Telegram, что продаёте и как сейчас принимаете деньги. Отвечу, какую схему выбрать и что войдёт в первую версию.</p>
+  <div class="contacts">
+    <div><span>Telegram</span><a href="https://t.me/uzver_ge" target="_blank" rel="noopener noreferrer">@uzver_ge</a></div>
+    <div><span>Почта</span><a href="mailto:myworkermailbox2022@gmail.com">myworkermailbox2022@gmail.com</a></div>
+    <div><span>Резюме</span><a href="/">опыт и стек</a></div>
+  </div>
+</div>
+
+<footer>
+  <div class="footlinks topnav" style="padding:0 0 14px"><a href="/">Резюме</a><a href="/boty-max/">Боты для MAX</a><a href="/cases/podpiski/">Кейс: платформа подписок</a></div>
+  <div class="wrap" style="padding:0">Комягин Николай · Fullstack-разработчик · боты Telegram и MAX, платежи, интеграции</div>
+</footer>
+
+</div>
+
+<script src="/assets/site.js"></script>
+</body>
+</html>

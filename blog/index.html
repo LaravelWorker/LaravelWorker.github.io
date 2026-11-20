@@ -3,28 +3,31 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
+<script>(function(d){d.classList.add('js');try{var t=localStorage.getItem('theme');if(t==='dark'||t==='light')d.setAttribute('data-theme',t)}catch(e){}})(document.documentElement)</script>
 
 <title>Статьи о выборе стека и разработке — Николай Комягин</title>
-<meta name="description" content="Статьи-сравнения технологий веб- и мобильной разработки: Go или Python, React или Vue, PHP или Python, React Native или Flutter.">
+<meta name="description" content="Статьи-сравнения технологий веб- и мобильной разработки: Go или Python, React или Vue, PHP или Python, React Native или Flutter, кто такой Python- и Java-разработчик.">
 <link rel="canonical" href="https://komiagin.dev/blog/">
 <meta name="robots" content="index, follow, max-image-preview:large">
-<meta name="theme-color" content="#020604">
+<meta name="color-scheme" content="light dark">
+<meta name="theme-color" media="(prefers-color-scheme: light)" content="#ECEEF2">
+<meta name="theme-color" media="(prefers-color-scheme: dark)" content="#090B10">
 
 <meta property="og:type" content="website">
 <meta property="og:locale" content="ru_RU">
 <meta property="og:site_name" content="komiagin.dev">
 <meta property="og:url" content="https://komiagin.dev/blog/">
 <meta property="og:title" content="Статьи о разработке">
-<meta property="og:description" content="Статьи-сравнения технологий веб- и мобильной разработки: Go или Python, React или Vue, PHP или Python, React Native или Flutter.">
+<meta property="og:description" content="Статьи-сравнения технологий веб- и мобильной разработки: Go или Python, React или Vue, PHP или Python, React Native или Flutter, кто такой Python- и Java-разработчик.">
 <meta property="og:image" content="https://komiagin.dev/og.png">
 <meta name="twitter:card" content="summary_large_image">
 
-<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'><rect width='64' height='64' fill='%23020604'/><text x='32' y='47' font-family='monospace' font-size='46' font-weight='bold' fill='%2300FF6A' text-anchor='middle'>K</text></svg>">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'><rect width='64' height='64' rx='16' fill='%232B33FF'/><text x='32' y='45' font-family='Arial,sans-serif' font-size='38' font-weight='900' fill='%23ffffff' text-anchor='middle'>K</text></svg>">
 <link rel="apple-touch-icon" href="/icon-512.png">
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700;800&family=Manrope:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Geologica:wght,CRSV,SHRP@100..900,0..1,0..100&family=Martian+Mono:wdth,wght@75..112.5,400..700&family=Onest:wght@400..700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="/assets/site.css">
 
 <script type="application/ld+json">
@@ -62,6 +65,18 @@
             "position": 4,
             "url": "https://komiagin.dev/blog/react-native-ili-flutter/",
             "name": "React Native или Flutter"
+          },
+          {
+            "@type": "ListItem",
+            "position": 5,
+            "url": "https://komiagin.dev/blog/kto-takoy-python-razrabotchik/",
+            "name": "Кто такой Python-разработчик"
+          },
+          {
+            "@type": "ListItem",
+            "position": 6,
+            "url": "https://komiagin.dev/blog/kto-takoy-java-razrabotchik/",
+            "name": "Кто такой Java-разработчик"
           }
         ]
       }
@@ -89,20 +104,17 @@
 </head>
 <body>
 
-<div id="rain" aria-hidden="true">
-  <canvas id="rainc"></canvas>
-  <div class="scrim"></div>
-  <div class="scan"></div>
-</div>
+<div id="bg" aria-hidden="true"><canvas id="bgc"></canvas></div>
 
 <div class="wrap">
 
 <!-- nav -->
 <nav class="topnav" aria-label="Разделы сайта">
   <a class="brand" href="/">komiagin.dev</a>
-  <a href="/uslugi/">Услуги и технологии</a>
+  <a href="/uslugi/">Услуги</a>
   <a href="/#cases">Кейсы</a>
   <a href="/blog/" aria-current="page">Статьи</a>
+  <button class="theme-toggle" type="button" aria-label="Сменить тему"></button>
 </nav>
 <!-- /nav -->
 <header class="sheet">
@@ -121,14 +133,18 @@
     <a class="card" href="/blog/react-ili-vue/"><h3>React или Vue</h3><p>Что выбрать для интерфейса проекта и кто будет его поддерживать.</p><div class="kit">сравнение</div></a>
     <a class="card" href="/blog/php-ili-python/"><h3>PHP или Python</h3><p>Какой язык выбрать для веб-разработки, Laravel или Django.</p><div class="kit">сравнение</div></a>
     <a class="card" href="/blog/react-native-ili-flutter/"><h3>React Native или Flutter</h3><p>Кроссплатформа, натив или PWA для мобильного приложения.</p><div class="kit">сравнение</div></a>
+    <a class="card" href="/blog/kto-takoy-python-razrabotchik/"><h3>Кто такой Python-разработчик</h3><p>Чем занимается, типичные задачи, стек, чем junior отличается от senior и как войти в профессию.</p><div class="kit">профессия</div></a>
+    <a class="card" href="/blog/kto-takoy-java-razrabotchik/"><h3>Кто такой Java-разработчик</h3><p>Задачи и стек на Spring, разница уровней, план обучения и темы собеседования.</p><div class="kit">профессия</div></a>
   </div>
 </section>
 <section>
   <div class="head"><h2>Услуги и технологии</h2><span class="tag">на чём делаю</span></div>
   <div class="cards">
-    <a class="card" href="/laravel/"><h3>PHP и Laravel</h3><p>Веб-сервисы, API, биллинг, очереди, доработка legacy.</p><div class="kit">PHP · Laravel · Symfony</div></a>
-    <a class="card" href="/nodejs/"><h3>Node.js и TypeScript</h3><p>Бэкенд, интеграции с биржами и платёжными API, боты.</p><div class="kit">Node.js · TypeScript</div></a>
-    <a class="card" href="/react-nextjs/"><h3>React и Next.js</h3><p>SEO-сайты и каталоги, кабинеты, админки, Mini Apps.</p><div class="kit">React · Next.js</div></a>
+    <a class="card" href="/python/"><h3>Python-разработчик</h3><p>FastAPI, Django, боты на aiogram, парсинг и автоматизация.</p><div class="kit">FastAPI · Django · aiogram</div></a>
+    <a class="card" href="/java/"><h3>Java-разработчик</h3><p>Бэкенд на Spring и Android-приложения на Java.</p><div class="kit">Java · Spring · Android</div></a>
+    <a class="card" href="/laravel/"><h3>Laravel-разработчик</h3><p>Веб-сервисы, API, биллинг, очереди, доработка legacy.</p><div class="kit">PHP · Laravel · Symfony</div></a>
+    <a class="card" href="/nodejs/"><h3>Node.js-разработчик</h3><p>Бэкенд, интеграции с биржами и платёжными API, боты.</p><div class="kit">Node.js · TypeScript</div></a>
+    <a class="card" href="/react-nextjs/"><h3>React-разработчик</h3><p>SEO-сайты и каталоги на Next.js, кабинеты, админки, Mini Apps.</p><div class="kit">React · Next.js</div></a>
     <a class="card" href="/mobilnye-prilozheniya/"><h3>Мобильные приложения</h3><p>iOS и Android на React Native, нативно на Swift и Kotlin или как PWA.</p><div class="kit">React Native · Swift · Kotlin · PWA</div></a>
   </div>
 </section>
@@ -149,7 +165,7 @@
     <div><b>Услуги</b><a href="/telegram-mini-app/">Telegram-боты и Mini Apps</a><a href="/boty-max/">Боты для MAX</a><a href="/oplata-v-bote/">Оплата в боте</a><a href="/platezhi/">Интеграция платёжных систем</a><a href="/mobilnye-prilozheniya/">Мобильные приложения</a></div>
     <div><b>Бэкенд-разработчик</b><a href="/php/">PHP-разработчик</a><a href="/laravel/">Laravel-разработчик</a><a href="/nodejs/">Node.js-разработчик</a><a href="/typescript/">TypeScript-разработчик</a><a href="/python/">Python-разработчик</a><a href="/java/">Java-разработчик</a><a href="/csharp/">C#-разработчик</a><a href="/cpp/">C++-разработчик</a></div>
     <div><b>Фронтенд и мобильные</b><a href="/react-nextjs/">React-разработчик</a><a href="/vue/">Vue-разработчик</a><a href="/ios/">iOS-разработчик</a><a href="/android/">Android-разработчик</a></div>
-    <div><b>Кейсы и статьи</b><a href="/cases/podpiski/">Платформа подписок</a><a href="/cases/monitoring/">Мониторинг майнеров</a><a href="/blog/go-ili-python/">Go или Python</a><a href="/blog/react-ili-vue/">React или Vue</a><a href="/blog/php-ili-python/">PHP или Python</a><a href="/blog/react-native-ili-flutter/">React Native или Flutter</a></div>
+    <div><b>Кейсы и статьи</b><a href="/cases/podpiski/">Платформа подписок</a><a href="/cases/monitoring/">Мониторинг майнеров</a><a href="/blog/go-ili-python/">Go или Python</a><a href="/blog/react-ili-vue/">React или Vue</a><a href="/blog/php-ili-python/">PHP или Python</a><a href="/blog/react-native-ili-flutter/">React Native или Flutter</a><a href="/blog/kto-takoy-python-razrabotchik/">Кто такой Python-разработчик</a><a href="/blog/kto-takoy-java-razrabotchik/">Кто такой Java-разработчик</a></div>
   </nav>
   <!-- /footmap -->
   <div class="wrap">Комягин Николай · Fullstack-разработчик · веб, мобильные приложения, боты, платежи</div>

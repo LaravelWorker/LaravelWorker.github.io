@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script>(function(d){d.classList.add('js');try{var t=localStorage.getItem('theme');if(t==='dark'||t==='light')d.setAttribute('data-theme',t)}catch(e){}})(document.documentElement)</script>
+
+<title>Кто такой Java-разработчик и чем он занимается — Николай Комягин</title>
+<meta name="description" content="Кто такой Java-разработчик: чем занимается, типичные задачи и стек, чем junior отличается от senior, как стать Java-разработчиком и что спрашивают на собеседовании.">
+<link rel="canonical" href="https://komiagin.dev/blog/kto-takoy-java-razrabotchik/">
+<meta name="robots" content="index, follow, max-image-preview:large">
+<meta name="color-scheme" content="light dark">
+<meta name="theme-color" media="(prefers-color-scheme: light)" content="#ECEEF2">
+<meta name="theme-color" media="(prefers-color-scheme: dark)" content="#090B10">
+
+<meta property="og:type" content="article">
+<meta property="og:locale" content="ru_RU">
+<meta property="og:site_name" content="komiagin.dev">
+<meta property="og:url" content="https://komiagin.dev/blog/kto-takoy-java-razrabotchik/">
+<meta property="og:title" content="Кто такой Java-разработчик и чем он занимается">
+<meta property="og:description" content="Что делает Java-разработчик на практике: типичные задачи, стек Spring и Kafka, разница между junior и senior, план обучения и темы собеседования.">
+<meta property="og:image" content="https://komiagin.dev/og.png">
+<meta name="twitter:card" content="summary_large_image">
+
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'><rect width='64' height='64' rx='16' fill='%232B33FF'/><text x='32' y='45' font-family='Arial,sans-serif' font-size='38' font-weight='900' fill='%23ffffff' text-anchor='middle'>K</text></svg>">
+<link rel="apple-touch-icon" href="/icon-512.png">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Geologica:wght,CRSV,SHRP@100..900,0..1,0..100&family=Martian+Mono:wdth,wght@75..112.5,400..700&family=Onest:wght@400..700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/assets/site.css">
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Article",
+      "headline": "Кто такой Java-разработчик и чем он занимается",
+      "url": "https://komiagin.dev/blog/kto-takoy-java-razrabotchik/",
+      "datePublished": "2026-11-20",
+      "inLanguage": "ru",
+      "image": "https://komiagin.dev/og.png",
+      "author": { "@type": "Person", "name": "Николай Комягин", "url": "https://komiagin.dev/" },
+      "about": ["Java", "Java-разработчик", "Бэкенд-разработка", "Spring"]
+    },
+    {
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        { "@type": "ListItem", "position": 1, "name": "Главная", "item": "https://komiagin.dev/" },
+        { "@type": "ListItem", "position": 2, "name": "Статьи", "item": "https://komiagin.dev/blog/" },
+        { "@type": "ListItem", "position": 3, "name": "Кто такой Java-разработчик", "item": "https://komiagin.dev/blog/kto-takoy-java-razrabotchik/" }
+      ]
+    },
+    {
+      "@type": "FAQPage",
+      "mainEntity": [
+        { "@type": "Question", "name": "Java-разработчик — это кто простыми словами?",
+          "acceptedAnswer": { "@type": "Answer", "text": "Программист, который пишет программы на языке Java. Чаще всего это серверная часть: она принимает запросы от сайта и мобильного приложения, работает с базой данных и связывает компанию с другими системами. Ещё Java-разработчики делают Android-приложения и автотесты." } },
+        { "@type": "Question", "name": "Чем Java backend-разработчик отличается от Java-разработчика?",
+          "acceptedAnswer": { "@type": "Answer", "text": "Обычно ничем. Когда в вакансии написано «Java-разработчик» без уточнений, чаще всего имеют в виду бэкенд. Слово backend добавляют, чтобы отделить вакансию от Android-разработки и автоматизации тестирования." } },
+        { "@type": "Question", "name": "Java и JavaScript — одно и то же?",
+          "acceptedAnswer": { "@type": "Answer", "text": "Нет. Это разные языки с похожими названиями. Java работает на виртуальной машине JVM, на ней пишут бэкенд и Android-приложения. JavaScript — язык браузера, на нём же пишут серверный код для Node.js." } },
+        { "@type": "Question", "name": "Сколько учиться, чтобы стать Java-разработчиком?",
+          "acceptedAnswer": { "@type": "Answer", "text": "Зависит от того, сколько часов в неделю есть на учёбу и был ли раньше опыт программирования. Ориентир готовности к первой работе: вы сами собираете сервис на Spring Boot с базой данных, тестами и запуском в Docker и можете объяснить каждое решение в нём." } },
+        { "@type": "Question", "name": "Нужно ли Java-разработчику знать Kotlin?",
+          "acceptedAnswer": { "@type": "Answer", "text": "Для бэкенда не обязательно, но полезно уметь его читать: Kotlin работает на той же JVM и встречается в соседних сервисах и библиотеках. Для Android Kotlin почти обязателен, Google рекомендует его для новых приложений." } },
+        { "@type": "Question", "name": "Сколько зарабатывает Java-разработчик?",
+          "acceptedAnswer": { "@type": "Answer", "text": "Зависит от уровня, задач, компании и формата работы. Актуальные вилки удобнее смотреть в вакансиях на hh.ru и в разделе зарплат Хабр Карьеры с фильтром по грейду: там цифры свежее, чем в статьях." } }
+      ]
+    }
+  ]
+}
+</script>
+</head>
+<body>
+
+<div id="bg" aria-hidden="true"><canvas id="bgc"></canvas></div>
+
+<div class="wrap">
+
+<!-- nav -->
+<nav class="topnav" aria-label="Разделы сайта">
+  <a class="brand" href="/">komiagin.dev</a>
+  <a href="/uslugi/">Услуги</a>
+  <a href="/#cases">Кейсы</a>
+  <a href="/blog/" aria-current="page">Статьи</a>
+  <button class="theme-toggle" type="button" aria-label="Сменить тему"></button>
+</nav>
+<!-- /nav -->
+
+<header class="sheet">
+  <div class="crumbs"><a href="/">Главная</a> / <a href="/blog/">Статьи</a> / Кто такой Java-разработчик</div>
+  <div class="stamp tag">Статья</div>
+  <h1>Кто такой Java-разработчик и чем он занимается</h1>
+  <div class="role">Статья · 20&nbsp;ноября 2026 · Николай Комягин</div>
+  <p class="pitch">Java-разработчик пишет серверную часть банковских сервисов, интернет-магазинов и внутренних систем компаний, а ещё Android-приложения. Ниже <strong>что он делает каждый день, какой нужен стек, чем junior отличается от senior, как войти в профессию и к чему готовиться на собеседовании.</strong></p>
+</header>
+
+<section>
+  <div class="head"><h2>Кто такой Java-разработчик</h2><span class="tag">определение</span></div>
+  <p class="sub">Java-разработчик — это программист, который пишет программы на языке Java. Чаще всего это бэкенд: серверная часть, которая принимает запросы от сайта и мобильного приложения, проверяет и сохраняет данные и обменивается ими с другими системами. Пользователь этот код не видит, но именно он списывает деньги, резервирует товар на складе и отправляет уведомление. Поэтому, когда в вакансии написано просто «Java-разработчик», обычно ищут Java backend-разработчика.</p>
+  <p class="sub">Java появилась в&nbsp;1995&nbsp;году в Sun Microsystems, сейчас язык развивают Oracle и сообщество OpenJDK. Код на Java компилируется не в машинный код, а в байт-код, который исполняет виртуальная машина JVM. Поэтому одна и та же сборка запускается на Linux, Windows и macOS, а память за программиста освобождает сборщик мусора. Новая версия Java выходит раз в полгода, и раз в два года одна из них получает долгую поддержку (LTS). На новых проектах обычно берут Java&nbsp;17, 21 или 25, в старых до сих пор встречается Java&nbsp;8.</p>
+  <p class="sub">Пара слов о том, кто пишет. Я пишу на Java бэкенд на Spring и Android-приложения, но основные мои проекты сделаны на PHP/Laravel и Node.js. Поэтому в статье много сравнений с ними: так проще показать, что в Java-разработке особенного, а что одинаково для любого бэкенда.</p>
+</section>
+
+<section>
+  <div class="head"><h2>Чем занимается Java-разработчик</h2><span class="tag">четыре направления</span></div>
+  <p class="sub">Java редко берут для лендинга или небольшого магазина. Её выбирают, когда система большая, должна жить много лет и её одновременно меняют несколько команд. В России Java чаще всего встречается в банках и финтехе, крупном ритейле и маркетплейсах, у телеком-операторов, в логистике, у системных интеграторов и в проектах для госсектора.</p>
+  <p class="sub">Код — только часть работы. В течение дня Java-разработчик разбирает задачу с аналитиком, смотрит изменения коллег на ревью, ищет причину ошибки по логам и метрикам, договаривается со смежной командой о формате сообщения в очереди. Основные направления — ниже.</p>
+  <div class="ledger">
+    <div class="item"><span class="idx">01</span><div><h3>Бэкенд крупных систем</h3><p>Банки и финтех: счета, платежи, кредитные заявки, антифрод. Ритейл и e-commerce: каталог, остатки, цены, заказы, доставка. Телеком: биллинг, тарифы, учёт услуг абонентов. Общее у них одно: сложные правила, деньги и большие объёмы данных, где ошибка стоит дорого.</p><div class="kit">Spring Boot · PostgreSQL · Oracle Database · микросервисы</div></div></div>
+    <div class="item"><span class="idx">02</span><div><h3>Интеграции и очереди</h3><p>В крупной компании десятки систем: учётная, складская, CRM, платёжный шлюз, сайт. Java-разработчик связывает их через REST, SOAP и очереди сообщений и следит, чтобы событие не потерялось и не обработалось дважды.</p><div class="kit">Kafka · RabbitMQ · REST · SOAP</div></div></div>
+    <div class="item"><span class="idx">03</span><div><h3>Android-приложения</h3><p>Приложения под Android пишут на Java и Kotlin. С&nbsp;2019&nbsp;года Google рекомендует для новых приложений Kotlin, но в существующих приложениях и библиотеках много кода на Java, и его поддерживают и развивают.</p><div class="kit">Android SDK · Android Studio · Gradle</div></div></div>
+    <div class="item"><span class="idx">04</span><div><h3>Данные и автотесты</h3><p>На JVM написаны Kafka, Elasticsearch и Hadoop, поэтому Java встречается в обработке больших потоков данных. Ещё одно направление — автотесты на Selenium и REST Assured.</p><div class="kit">Kafka Streams · Selenium · REST Assured · JUnit</div></div></div>
+  </div>
+  <div class="flow" aria-label="Путь заказа через Java-бэкенд">
+    <span>приложение покупателя</span><b>→</b><span>REST API на Spring Boot</span><b>→</b><span>заказ в PostgreSQL</span><b>→</b><span>событие в Kafka</span><b>→</b><span>склад и уведомления</span>
+  </div>
+  <p class="tbl-note">Путь одного заказа через типичный Java-бэкенд. За каждым звеном стоят задачи из следующего раздела.</p>
+</section>
+
+<section>
+  <div class="head"><h2>Типичные задачи Java-разработчика на практике</h2><span class="tag">примеры</span></div>
+  <p class="sub">Чтобы было понятнее, что делает Java-разработчик, вот задачи, которые встречаются почти в любом Java-бэкенде, и инструменты, которыми их решают.</p>
+  <div class="tbl">
+    <table>
+      <thead><tr><th>Задача</th><th>Что делает разработчик</th><th>Инструменты</th></tr></thead>
+      <tbody>
+        <tr><td>Новый метод API</td><td>«Показать историю заказов клиента с фильтром по датам и постраничным выводом». Описывает контракт, пишет контроллер и DTO, валидирует параметры, пишет запрос в репозитории, проверяет индекс, покрывает тестом и обновляет OpenAPI.</td><td>Spring Web, Spring Data JPA, Bean Validation, springdoc-openapi, JUnit</td></tr>
+        <tr><td>Вебхук оплаты</td><td>Проверяет подпись провайдера, сохраняет событие с уникальным ключом, чтобы повторный вебхук не провёл платёж дважды, меняет статус заказа в одной транзакции и быстро отвечает провайдеру.</td><td>Spring Web, <code>@Transactional</code>, PostgreSQL</td></tr>
+        <tr><td>Событие для других систем</td><td>После оформления заказа публикует событие для склада и рассылки. Решает, что делать, если брокер недоступен, как обработать повторную доставку и куда складывать сообщения, которые не удалось обработать. Чтобы событие не потерялось между записью в базу и отправкой, часто применяют шаблон transactional outbox.</td><td>Kafka или RabbitMQ, Spring for Apache Kafka, Spring AMQP</td></tr>
+        <tr><td>Медленный отчёт</td><td>Страница открывается полминуты. Включает логирование SQL и находит проблему N+1: Hibernate делает один запрос на список и ещё по одному на каждую строку. Переписывает выборку через fetch join или проекцию, смотрит план запроса и добавляет индекс.</td><td>Hibernate, PostgreSQL, <code>EXPLAIN ANALYZE</code></td></tr>
+        <tr><td>Падение по памяти</td><td>Сервис в Kubernetes перезапускается с <code>OutOfMemoryError</code>. Снимает дамп памяти, ищет, кто держит объекты (часто это кеш без ограничения размера), сверяет настройки JVM с лимитом памяти контейнера.</td><td>jcmd, Eclipse MAT, логи GC</td></tr>
+        <tr><td>Обновление Spring Boot</td><td>Переход со Spring Boot&nbsp;2 на&nbsp;3: подъём версии Java до&nbsp;17, замена пакетов <code>javax</code> на <code>jakarta</code>, обновление зависимостей, починка тестов, которые сломались после обновления.</td><td>Maven или Gradle, OpenRewrite, JUnit</td></tr>
+        <tr><td>Экран Android-приложения</td><td>Список заказов курьера: загрузка из API, кеш на устройстве на случай пропавшей связи, обновление списка по push-уведомлению.</td><td>Retrofit, Room, Firebase Cloud Messaging</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <p class="tbl-note">Детали зависят от проекта, но набор повторяется: API, данные, интеграции, производительность, обновления.</p>
+  <p class="sub">Половина этих задач от языка не зависит. Вебхуки с уникальным ключом по идентификатору платежа я делал на Laravel для платформы подписок. В Spring это тот же уникальный индекс в базе плюс <code>@Transactional</code>.</p>
+  <a class="more" href="/cases/podpiski/">Кейс: платформа подписок на Laravel →</a>
+</section>
+
+<section>
+  <div class="head"><h2>Стек Java-разработчика</h2><span class="tag">инструменты</span></div>
+  <p class="sub">Набор инструментов в Java-бэкенде устойчивый: в вакансиях раз за разом повторяются одни и те же названия. Spring Boot — основа большинства Java-бэкендов. Он собирает приложение из готовых модулей: веб-сервер, работа с базой, безопасность, метрики. Spring Data JPA и Hibernate превращают строки таблиц в Java-объекты и обратно. Это экономит код, но требует понимания: неудачно описанная связь между сущностями легко превращается в сотню лишних запросов. Схему базы меняют миграциями через Flyway или Liquibase.</p>
+  <p class="sub">Kafka и RabbitMQ — брокеры сообщений, но устроены по-разному. RabbitMQ раскладывает сообщения по очередям и удаляет их после обработки. Kafka хранит поток событий как журнал: несколько систем читают его независимо, каждая со своего места, а события можно перечитать. Maven и Gradle собирают проект и подтягивают зависимости. Maven описывает сборку в <code>pom.xml</code>, Gradle — скриптом, и на нём же собираются Android-приложения. Testcontainers поднимает для тестов настоящий PostgreSQL или Kafka в Docker, чтобы тест проверял реальную базу, а не заглушку.</p>
+  <p class="sub">Разница с Laravel и Node.js, на которых сделаны мои основные проекты, в строгости. В Spring больше кода на старте и строже типы, зато крупный проект проще менять: компилятор и IDE находят все места, которые заденет правка. Автоконфигурация Spring Boot при этом тоже «магия», и её приходится понимать.</p>
+  <div class="stack">
+    <div class="srow"><span class="k">Язык и среда</span><div class="chips"><span class="chip">Java</span><span class="chip">JVM</span><span class="chip">IntelliJ IDEA</span></div></div>
+    <div class="srow"><span class="k">Фреймворк</span><div class="chips"><span class="chip">Spring Boot</span><span class="chip">Spring Web</span><span class="chip">Spring Security</span><span class="chip">Spring Data JPA</span><span class="chip">Hibernate</span></div></div>
+    <div class="srow"><span class="k">Базы данных</span><div class="chips"><span class="chip">PostgreSQL</span><span class="chip">Oracle Database</span><span class="chip">Redis</span><span class="chip">Flyway</span><span class="chip">Liquibase</span></div></div>
+    <div class="srow"><span class="k">Очереди</span><div class="chips"><span class="chip">Kafka</span><span class="chip">RabbitMQ</span></div></div>
+    <div class="srow"><span class="k">Сборка</span><div class="chips"><span class="chip">Maven</span><span class="chip">Gradle</span></div></div>
+    <div class="srow"><span class="k">Тесты</span><div class="chips"><span class="chip">JUnit</span><span class="chip">Mockito</span><span class="chip">Testcontainers</span></div></div>
+    <div class="srow"><span class="k">Инфраструктура</span><div class="chips"><span class="chip">Docker</span><span class="chip">Kubernetes</span><span class="chip">CI/CD</span><span class="chip">Prometheus</span><span class="chip">Grafana</span></div></div>
+    <div class="srow"><span class="k">Android</span><div class="chips"><span class="chip">Android SDK</span><span class="chip">Android Studio</span><span class="chip">Retrofit</span><span class="chip">Room</span></div></div>
+  </div>
+</section>
+
+<section>
+  <div class="head"><h2>Junior, middle, senior: в&nbsp;чём разница</h2><span class="tag">уровни</span></div>
+  <p class="sub">Грейды отличаются не числом выученных аннотаций, а тем, за какой кусок системы человек отвечает и сколько ему нужно подсказывать. Названия и границы в компаниях разные, но логика одна.</p>
+  <p class="sub">Я был наставником четырёх junior-разработчиков — на PHP и Node.js, но в Java разница между уровнями устроена так же. Junior перестаёт быть junior, когда сам видит, что его правка сломает в соседнем модуле.</p>
+  <div class="ledger">
+    <div class="item"><span class="idx">01</span><div><h3>Junior Java-разработчик</h3><p>Берёт задачу с понятной постановкой внутри готовой архитектуры: добавить поле в API, исправить ошибку, покрыть метод тестом. Код проходит ревью, решения по структуре принимает кто-то другой. Главное умение на этом уровне — быстро разбираться в чужом коде и вовремя задавать вопросы.</p><div class="kit">отвечает за свою задачу</div></div></div>
+    <div class="item"><span class="idx">02</span><div><h3>Middle Java-разработчик</h3><p>Ведёт фичу целиком: уточняет требования, проектирует таблицы и API, пишет код и тесты, выкатывает и смотрит, как она работает в продакшене. Сам разбирает ошибки в своей части системы и ревьюит код коллег.</p><div class="kit">отвечает за фичу и свой сервис</div></div></div>
+    <div class="item"><span class="idx">03</span><div><h3>Senior Java-разработчик</h3><p>Отвечает за решения, которые дорого переделывать: синхронный вызов или очередь, как разделить данные между сервисами, как мигрировать базу без простоя. Находит узкие места под нагрузкой, разбирает сложные инциденты, оценивает сроки, учит других и может обосновать, почему фичу лучше сделать не так, как просят.</p><div class="kit">отвечает за надёжность и архитектуру системы</div></div></div>
+    <div class="item"><span class="idx">04</span><div><h3>Дальше: тимлид или архитектор</h3><p>После senior пути расходятся. Тимлид отвечает за людей и процесс в команде, архитектор — за устройство нескольких систем сразу и за то, как они связаны.</p><div class="kit">отвечает за команду или за несколько систем</div></div></div>
+  </div>
+</section>
+
+<section>
+  <div class="head"><h2>Как стать Java-разработчиком</h2><span class="tag">шесть шагов</span></div>
+  <p class="sub">Реалистичный план без обещаний «с нуля до senior за&nbsp;три месяца». Сроки зависят от того, сколько часов в неделю вы готовы учиться, поэтому называть их не буду. Ориентир готовности к первой работе — пятый шаг.</p>
+  <p class="sub">Если вы уже пишете на PHP, Python или C#, путь короче: синтаксис осваивается быстро, основное время уходит на Spring, Hibernate и привычки экосистемы. Транзакции, индексы, очереди и идемпотентность работают одинаково в любом языке.</p>
+  <div class="ledger">
+    <div class="item"><span class="idx">01</span><div><h3>Основы языка</h3><p>Синтаксис, ООП, коллекции, исключения, дженерики, Stream API, работа со строками и датами. Пишите маленькие консольные программы, а не только читайте. Материалы для старта есть на официальном сайте dev.java.</p><div class="kit">JDK · IntelliJ IDEA Community</div></div></div>
+    <div class="item"><span class="idx">02</span><div><h3>Инструменты с первого дня</h3><p>Git, сборка через Maven или Gradle, тесты на JUnit. Работодатель ждёт не только код, но и умение собрать проект, запустить тесты и оформить изменения так, чтобы их было удобно ревьюить.</p><div class="kit">Git · Maven · Gradle · JUnit</div></div></div>
+    <div class="item"><span class="idx">03</span><div><h3>SQL и базы данных</h3><p>PostgreSQL: таблицы, связи, JOIN, индексы, транзакции. Сначала простой JDBC, чтобы видеть, какие запросы уходят в базу, потом JPA и Hibernate.</p><div class="kit">PostgreSQL · JDBC · Hibernate</div></div></div>
+    <div class="item"><span class="idx">04</span><div><h3>Spring Boot</h3><p>REST API, Spring Data JPA, валидация и обработка ошибок, основы Spring Security, миграции через Flyway, интеграционные тесты с Testcontainers.</p><div class="kit">Spring Boot · Spring Data JPA · Flyway · Testcontainers</div></div></div>
+    <div class="item"><span class="idx">05</span><div><h3>Проект как на работе</h3><p>Один сервис, но доведённый до конца: API с авторизацией, база с миграциями, фоновая задача или обмен сообщениями через очередь, тесты, запуск одной командой через Docker Compose, README. Например, учёт заказов или бронирование. Такой проект полезнее пяти учебных: его можно подробно разобрать на собеседовании.</p><div class="kit">Docker · Kafka или RabbitMQ</div></div></div>
+    <div class="item"><span class="idx">06</span><div><h3>Многопоточность, JVM и поиск работы</h3><p>Потоки, синхронизация, пулы потоков, устройство памяти JVM и сборка мусора. Эти темы хорошо ложатся уже после практики. Параллельно читайте вакансии на hh.ru и Хабр Карьере, сверяйте требования со своим проектом и закрывайте пробелы.</p><div class="kit">java.util.concurrent · hh.ru · Хабр Карьера</div></div></div>
+  </div>
+</section>
+
+<section>
+  <div class="head"><h2>К чему готовиться на собеседовании на Java-разработчика</h2><span class="tag">темы</span></div>
+  <p class="sub">Вопросы у компаний разные, но темы повторяются. Ниже то, что обычно проверяют. Примеры вопросов типовые, а не взяты у конкретной компании. Лучшая подготовка — свой проект из пятого шага: по нему удобно отвечать на вопросы о транзакциях, тестах и очередях своими примерами, а не пересказом статьи.</p>
+  <div class="ledger">
+    <div class="item"><span class="idx">01</span><div><h3>Java Core и коллекции</h3><p>Контракт <code>equals</code> и <code>hashCode</code>, почему <code>String</code> неизменяемый, checked и unchecked исключения. Коллекции: чем <code>ArrayList</code> отличается от <code>LinkedList</code>, как <code>HashMap</code> раскладывает элементы по корзинам, что будет с ключом, у которого после вставки изменился хеш.</p><div class="kit">подготовка: исходники ArrayList и HashMap в JDK</div></div></div>
+    <div class="item"><span class="idx">02</span><div><h3>Многопоточность</h3><p>Чем <code>synchronized</code> отличается от <code>volatile</code>, что такое состояние гонки и взаимная блокировка, как работают <code>ExecutorService</code>, <code>CompletableFuture</code> и <code>ConcurrentHashMap</code>. На уровне middle и выше — модель памяти Java и отношение happens-before, виртуальные потоки из Java&nbsp;21.</p><div class="kit">подготовка: пакет java.util.concurrent, книга «Java Concurrency in Practice»</div></div></div>
+    <div class="item"><span class="idx">03</span><div><h3>JVM и сборка мусора</h3><p>Из чего состоит память JVM: куча, стеки потоков, Metaspace. Как сборщик мусора находит ненужные объекты, чем отличаются G1 и ZGC, откуда берётся <code>OutOfMemoryError</code> и как снять дамп памяти.</p><div class="kit">подготовка: логи GC, jcmd, VisualVM</div></div></div>
+    <div class="item"><span class="idx">04</span><div><h3>Spring</h3><p>Как устроены внедрение зависимостей и бины, что делает автоконфигурация Spring Boot. Классический вопрос: почему <code>@Transactional</code> не срабатывает, если вызвать метод из того же класса. Ответ: Spring оборачивает бин в прокси, а внутренний вызов идёт мимо него.</p><div class="kit">подготовка: документация Spring Framework и Spring Boot</div></div></div>
+    <div class="item"><span class="idx">05</span><div><h3>SQL и транзакции</h3><p>JOIN, GROUP BY, индексы и случаи, когда они не помогают, план запроса. Уровни изоляции транзакций и какие аномалии каждый допускает, оптимистичная и пессимистичная блокировки, проблема N+1 в Hibernate.</p><div class="kit">подготовка: PostgreSQL, EXPLAIN ANALYZE</div></div></div>
+    <div class="item"><span class="idx">06</span><div><h3>Задача и проектирование</h3><p>Часто дают задачу на код в редакторе. На позицию senior добавляют проектирование системы: например, как устроить сервис уведомлений, который не теряет сообщения. Здесь оценивают не «правильный» ответ, а то, как вы рассуждаете о компромиссах.</p><div class="kit">live coding · system design</div></div></div>
+  </div>
+</section>
+
+<section>
+  <div class="head"><h2>Java или Kotlin и другие языки для бэкенда</h2><span class="tag">честно</span></div>
+  <p class="sub">Kotlin — язык от JetBrains, который работает на той же JVM. Код на Kotlin и Java свободно вызывает друг друга в одном проекте. В Android Kotlin стал основным языком, а в бэкенде его поддерживает Spring, но в серверном коде компаний Java пока встречается заметно чаще. Практический вывод: Java-разработчику полезно уметь читать Kotlin, а Android-разработчику без Kotlin сейчас трудно.</p>
+  <p class="sub">Из практики: проекты с подписками, платежами и интеграциями я делаю на Laravel и Node.js, и для них этого хватает. Java я бы выбрал, если у заказчика уже есть система на JVM, команда пишет на Java или предметная область настолько сложная, что строгие типы и зрелая экосистема Spring окупят более медленный старт. Коротко о других языках — в таблице.</p>
+  <div class="tbl">
+    <table>
+      <thead><tr><th>Язык</th><th>Когда выбирают вместо Java</th><th>Чем сильна Java</th></tr></thead>
+      <tbody>
+        <tr><td>Kotlin</td><td>Новое Android-приложение. Команда на JVM хочет код короче и строгую проверку null при компиляции.</td><td>Больше разработчиков и готового кода, проще найм.</td></tr>
+        <tr><td>C#</td><td>Компания живёт на стеке Microsoft и .NET.</td><td>Языки очень похожи. Обычно выбор определяет стек компании, а не сам язык.</td></tr>
+        <tr><td>Go</td><td>Небольшие сервисы под высокую нагрузку, инфраструктурные утилиты, быстрый запуск и малый расход памяти.</td><td>Spring закрывает сложную бизнес-логику, транзакции и интеграции готовыми модулями.</td></tr>
+        <tr><td>Python</td><td>MVP, сервисы рядом с данными и машинным обучением, автоматизация.</td><td>Строгая типизация и инструменты для больших систем, которые живут годами.</td></tr>
+        <tr><td>PHP, Node.js</td><td>Веб-продукты, API и боты, когда важна скорость запуска.</td><td>Сложные предметные области и большие команды, где строгость окупается.</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="related"><a class="more" href="/blog/go-ili-python/">Go или Python для бэкенда →</a><a class="more" href="/blog/php-ili-python/">PHP или Python →</a><a class="more" href="/csharp/">C#-разработчик →</a></div>
+</section>
+
+<section>
+  <div class="head"><h2>Когда бизнесу нужен Java-разработчик</h2><span class="tag">для заказчика</span></div>
+  <p class="sub">Java-разработчик нужен не всегда. Если нужен MVP, бот или небольшой сервис, а системы на Java ещё нет, быстрее начать на PHP, Node.js или Python, и это я скажу на созвоне. Java оправдана в четырёх случаях.</p>
+  <div class="ledger">
+    <div class="item"><span class="idx">01</span><div><h3>Система уже на Java</h3><p>Нужно доработать, ускорить или обновить существующий бэкенд. Переписать работающую систему на другом языке почти всегда дороже, чем развивать её.</p></div></div>
+    <div class="item"><span class="idx">02</span><div><h3>Android-приложение на Java</h3><p>Приложение нужно поддерживать, обновлять под новые версии Android и требования Google Play, добавлять функции и постепенно переводить на Kotlin.</p></div></div>
+    <div class="item"><span class="idx">03</span><div><h3>Сложная логика и деньги</h3><p>Расчёты, биллинг, документооборот, интеграции с банками и учётными системами. Строгие типы, транзакции и проверенные библиотеки снижают цену ошибки.</p></div></div>
+    <div class="item"><span class="idx">04</span><div><h3>Команда уже на JVM</h3><p>В компании есть Java-разработчики, общие библиотеки и инфраструктура под JVM. Новый сервис логично делать на том же стеке.</p></div></div>
+  </div>
+  <a class="more" href="/java/">Java-разработчик на проект →</a>
+  <a class="more" href="/android/">Android-разработчик →</a>
+</section>
+
+<section>
+  <div class="head"><h2>Частые вопросы</h2><span class="tag">про Java-разработчиков</span></div>
+  <div class="faq">
+    <details><summary>Java-разработчик — это кто простыми словами?</summary>
+      <p>Программист, который пишет программы на языке Java. Чаще всего это серверная часть: она принимает запросы от сайта и мобильного приложения, работает с базой данных и связывает компанию с другими системами. Ещё Java-разработчики делают Android-приложения и автотесты.</p></details>
+    <details><summary>Чем Java backend-разработчик отличается от Java-разработчика?</summary>
+      <p>Обычно ничем. Когда в вакансии написано «Java-разработчик» без уточнений, чаще всего имеют в виду бэкенд. Слово backend добавляют, чтобы отделить вакансию от Android-разработки и автоматизации тестирования.</p></details>
+    <details><summary>Java и JavaScript — одно и то же?</summary>
+      <p>Нет. Это разные языки с похожими названиями. Java работает на виртуальной машине JVM, на ней пишут бэкенд и Android-приложения. JavaScript — язык браузера, на нём же пишут серверный код для Node.js.</p></details>
+    <details><summary>Сколько учиться, чтобы стать Java-разработчиком?</summary>
+      <p>Зависит от того, сколько часов в неделю есть на учёбу и был ли раньше опыт программирования. Ориентир готовности к первой работе: вы сами собираете сервис на Spring Boot с базой данных, тестами и запуском в Docker и можете объяснить каждое решение в нём.</p></details>
+    <details><summary>Нужно ли Java-разработчику знать Kotlin?</summary>
+      <p>Для бэкенда не обязательно, но полезно уметь его читать: Kotlin работает на той же JVM и встречается в соседних сервисах и библиотеках. Для Android Kotlin почти обязателен, Google рекомендует его для новых приложений.</p></details>
+    <details><summary>Сколько зарабатывает Java-разработчик?</summary>
+      <p>Зависит от уровня, задач, компании и формата работы. Актуальные вилки удобнее смотреть в вакансиях на hh.ru и в разделе зарплат Хабр Карьеры с фильтром по грейду: там цифры свежее, чем в статьях.</p></details>
+  </div>
+</section>
+
+<div class="total">
+  <h2>Нужен Java-разработчик?</h2>
+  <p>Опишите задачу в Telegram: бэкенд на Spring, Android-приложение на Java или доработка существующего кода. Если ищете разработчика в штат — пришлите вакансию.</p>
+  <div class="contacts">
+    <div><span>Telegram</span><a href="https://t.me/uzver_ge" target="_blank" rel="noopener noreferrer">@uzver_ge</a></div>
+    <div><span>Почта</span><a href="mailto:myworkermailbox2022@gmail.com">myworkermailbox2022@gmail.com</a></div>
+  </div>
+  <a class="more" href="/java/">Java-разработчик на проект →</a>
+  <a class="more" href="/android/">Android-разработчик →</a>
+  <a class="more" href="/blog/">Все статьи →</a>
+</div>
+
+<footer>
+<!-- footmap -->
+  <nav class="footmap" aria-label="Карта сайта">
+    <div><b>Услуги</b><a href="/telegram-mini-app/">Telegram-боты и Mini Apps</a><a href="/boty-max/">Боты для MAX</a><a href="/oplata-v-bote/">Оплата в боте</a><a href="/platezhi/">Интеграция платёжных систем</a><a href="/mobilnye-prilozheniya/">Мобильные приложения</a></div>
+    <div><b>Бэкенд-разработчик</b><a href="/php/">PHP-разработчик</a><a href="/laravel/">Laravel-разработчик</a><a href="/nodejs/">Node.js-разработчик</a><a href="/typescript/">TypeScript-разработчик</a><a href="/python/">Python-разработчик</a><a href="/java/">Java-разработчик</a><a href="/csharp/">C#-разработчик</a><a href="/cpp/">C++-разработчик</a></div>
+    <div><b>Фронтенд и мобильные</b><a href="/react-nextjs/">React-разработчик</a><a href="/vue/">Vue-разработчик</a><a href="/ios/">iOS-разработчик</a><a href="/android/">Android-разработчик</a></div>
+    <div><b>Кейсы и статьи</b><a href="/cases/podpiski/">Платформа подписок</a><a href="/cases/monitoring/">Мониторинг майнеров</a><a href="/blog/go-ili-python/">Go или Python</a><a href="/blog/react-ili-vue/">React или Vue</a><a href="/blog/php-ili-python/">PHP или Python</a><a href="/blog/react-native-ili-flutter/">React Native или Flutter</a><a href="/blog/kto-takoy-python-razrabotchik/">Кто такой Python-разработчик</a><a href="/blog/kto-takoy-java-razrabotchik/" aria-current="page">Кто такой Java-разработчик</a></div>
+  </nav>
+  <!-- /footmap -->
+  <div class="wrap">Комягин Николай · Fullstack-разработчик · боты Telegram и MAX, платежи, интеграции</div>
+</footer>
+
+</div>
+
+<script src="/assets/site.js"></script>
+</body>
+</html>

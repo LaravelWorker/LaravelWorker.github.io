@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script>(function(d){d.classList.add('js');try{var t=localStorage.getItem('theme');if(t==='dark'||t==='light')d.setAttribute('data-theme',t)}catch(e){}})(document.documentElement)</script>
+
+<title>Кто такой Python-разработчик и чем он занимается — Николай Комягин</title>
+<meta name="description" content="Кто такой Python-разработчик и чем он занимается: бэкенд и API, боты, парсинг, данные. Типичные задачи, стек, junior и senior, как стать — глазами практика.">
+<link rel="canonical" href="https://komiagin.dev/blog/kto-takoy-python-razrabotchik/">
+<meta name="robots" content="index, follow, max-image-preview:large">
+<meta name="color-scheme" content="light dark">
+<meta name="theme-color" media="(prefers-color-scheme: light)" content="#ECEEF2">
+<meta name="theme-color" media="(prefers-color-scheme: dark)" content="#090B10">
+
+<meta property="og:type" content="article">
+<meta property="og:locale" content="ru_RU">
+<meta property="og:site_name" content="komiagin.dev">
+<meta property="og:url" content="https://komiagin.dev/blog/kto-takoy-python-razrabotchik/">
+<meta property="og:title" content="Кто такой Python-разработчик и чем он занимается">
+<meta property="og:description" content="Python-разработчик глазами практика: направления работы, типичные задачи с инструментами, стек, разница между junior, middle и senior и реалистичный план входа в профессию.">
+<meta property="og:image" content="https://komiagin.dev/og.png">
+<meta name="twitter:card" content="summary_large_image">
+
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'><rect width='64' height='64' rx='16' fill='%232B33FF'/><text x='32' y='45' font-family='Arial,sans-serif' font-size='38' font-weight='900' fill='%23ffffff' text-anchor='middle'>K</text></svg>">
+<link rel="apple-touch-icon" href="/icon-512.png">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Geologica:wght,CRSV,SHRP@100..900,0..1,0..100&family=Martian+Mono:wdth,wght@75..112.5,400..700&family=Onest:wght@400..700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/assets/site.css">
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Article",
+      "headline": "Кто такой Python-разработчик и чем он занимается",
+      "url": "https://komiagin.dev/blog/kto-takoy-python-razrabotchik/",
+      "datePublished": "2026-11-20",
+      "inLanguage": "ru",
+      "image": "https://komiagin.dev/og.png",
+      "author": { "@type": "Person", "name": "Николай Комягин", "url": "https://komiagin.dev/" },
+      "about": ["Python", "Профессия Python-разработчика", "Бэкенд-разработка"]
+    },
+    {
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        { "@type": "ListItem", "position": 1, "name": "Главная", "item": "https://komiagin.dev/" },
+        { "@type": "ListItem", "position": 2, "name": "Статьи", "item": "https://komiagin.dev/blog/" },
+        { "@type": "ListItem", "position": 3, "name": "Кто такой Python-разработчик", "item": "https://komiagin.dev/blog/kto-takoy-python-razrabotchik/" }
+      ]
+    },
+    {
+      "@type": "FAQPage",
+      "mainEntity": [
+        { "@type": "Question", "name": "Python-разработчик — это бэкенд?",
+          "acceptedAnswer": { "@type": "Answer", "text": "Чаще всего да. В вакансиях с таким названием обычно ищут бэкенд-разработчика на Django или FastAPI. Но на Python пишут и ботов, и парсеры, и скрипты автоматизации, и сервисы для машинного обучения, поэтому смотреть стоит на требования, а не на название." } },
+        { "@type": "Question", "name": "Чем Python-разработчик отличается от data scientist?",
+          "acceptedAnswer": { "@type": "Answer", "text": "Data scientist исследует данные и строит модели: статистика, эксперименты, метрики качества. Python-разработчик строит сервисы: API, базы данных, очереди, деплой. Язык у них общий, а задачи и набор знаний разные. На стыке работают ML-инженеры, которые превращают модель в работающий сервис." } },
+        { "@type": "Question", "name": "Кто такой fullstack-разработчик на Python?",
+          "acceptedAnswer": { "@type": "Answer", "text": "Это разработчик, который делает и серверную часть, и интерфейс. Бэкенд он пишет на Django или FastAPI, а фронтенд на JavaScript или TypeScript с React или Vue либо на шаблонах Django. Браузер исполняет JavaScript, поэтому знать его fullstack-разработчику на Python всё равно придётся." } },
+        { "@type": "Question", "name": "Сколько учиться на Python-разработчика?",
+          "acceptedAnswer": { "@type": "Answer", "text": "Зависит от базы и регулярности. С нуля до уровня, с которым можно откликаться на junior-вакансии, обычно уходит от полугода до года занятий каждую неделю, с собственными проектами. С опытом в другом языке быстрее: синтаксис Python осваивается за несколько недель, дольше даются фреймворк, базы данных и инфраструктура." } },
+        { "@type": "Question", "name": "Сколько зарабатывает Python-разработчик?",
+          "acceptedAnswer": { "@type": "Answer", "text": "Зависит от уровня, направления, компании и формата работы. Цифры быстро устаревают, поэтому актуальные вилки лучше смотреть в вакансиях на hh.ru и в Хабр Карьере. Там же видно, какой стек просят за эти деньги." } },
+        { "@type": "Question", "name": "Python или PHP для веб-разработки?",
+          "acceptedAnswer": { "@type": "Answer", "text": "Оба языка подходят для веба. Python удобнее, если в продукте есть данные, машинное обучение, парсинг или боты. PHP с Laravel хорош для классического веб-продукта с платежами, личными кабинетами и интеграциями, и его поддерживают почти все виртуальные хостинги. Подробное сравнение — в статье «PHP или Python»." } }
+      ]
+    }
+  ]
+}
+</script>
+</head>
+<body>
+
+<div id="bg" aria-hidden="true"><canvas id="bgc"></canvas></div>
+
+<div class="wrap">
+
+<!-- nav -->
+<nav class="topnav" aria-label="Разделы сайта">
+  <a class="brand" href="/">komiagin.dev</a>
+  <a href="/uslugi/">Услуги</a>
+  <a href="/#cases">Кейсы</a>
+  <a href="/blog/" aria-current="page">Статьи</a>
+  <button class="theme-toggle" type="button" aria-label="Сменить тему"></button>
+</nav>
+<!-- /nav -->
+
+<header class="sheet">
+  <div class="crumbs"><a href="/">Главная</a> / <a href="/blog/">Статьи</a> / Кто такой Python-разработчик</div>
+  <div class="stamp tag">Статья</div>
+  <h1>Кто такой Python-разработчик и чем он занимается</h1>
+  <div class="role">Статья · 20&nbsp;ноября 2026 · Николай Комягин</div>
+  <p class="pitch">Python-разработчик пишет серверную часть сайтов и приложений, ботов, парсеры и скрипты, которые снимают с людей ручную работу. Ниже — <strong>чем он занимается на практике, какие задачи решает, на чём пишет, чем junior отличается от senior и как войти в профессию.</strong></p>
+</header>
+
+<section>
+  <div class="head"><h2>Кто такой Python-разработчик</h2><span class="tag">простыми словами</span></div>
+  <p class="sub">Python-разработчик — это программист, который пишет программы на языке Python. Чаще всего это серверная часть: код, который работает не в браузере пользователя, а на сервере. Он принимает запросы от сайта, мобильного приложения или бота, проверяет данные, сохраняет их в базу, обращается к внешним сервисам и возвращает ответ. Пользователь этот код не видит, но без него не работает ни одна кнопка.</p>
+  <p class="sub">Python — язык общего назначения, поэтому одно название профессии покрывает разную работу. На нём пишут бэкенд, Telegram-ботов, парсеры, скрипты автоматизации, сервисы для анализа данных и машинного обучения. Если в вакансии написано просто «Python-разработчик», обычно ищут бэкенд-разработчика: в требованиях будут Django или FastAPI, PostgreSQL и Docker. Тех, кто пишет на Python модели, аналитику или автотесты, чаще называют по специальности: data scientist, аналитик, инженер по автоматизации тестирования.</p>
+  <p class="sub">Откуда мой взгляд. Я в коммерческой разработке с&nbsp;сентября 2020. Основной стек у меня PHP/Laravel и Node.js/TypeScript, а на Python я пишу API на FastAPI и Django, Telegram-ботов на aiogram, парсеры и скрипты автоматизации. Python-сервисы в моих проектах обычно стоят рядом с основным бэкендом. Поэтому дальше не программа курса, а то, как эта работа выглядит изнутри.</p>
+</section>
+
+<section>
+  <div class="head"><h2>Чем занимается Python-разработчик</h2><span class="tag">четыре направления</span></div>
+  <p class="sub">Работу Python-разработчика удобно разложить на четыре направления. В небольшой компании один человек часто закрывает два-три из них сразу, в крупной обычно работает в одном.</p>
+  <div class="ledger">
+    <div class="item"><span class="idx">01</span><div><h3>Бэкенд и API</h3><p>Python backend-разработчик пишет серверную логику: API для фронтенда и мобильных приложений, личные кабинеты, админки, интеграции с платёжными сервисами и CRM. Именно это чаще всего имеют в виду, когда говорят «Python-разработчик».</p><div class="kit">Django · FastAPI · PostgreSQL · Redis</div></div></div>
+    <div class="item"><span class="idx">02</span><div><h3>Автоматизация и парсинг</h3><p>Скрипты, которые делают то, что сейчас делают руками: выгружают отчёты, переносят данные между системами, обрабатывают файлы. Парсеры по расписанию собирают цены, остатки, объявления и другие открытые данные. Python здесь удобен коротким кодом и готовыми библиотеками почти под любой формат.</p><div class="kit">httpx · BeautifulSoup · Scrapy · Playwright · cron</div></div></div>
+    <div class="item"><span class="idx">03</span><div><h3>Боты</h3><p>Telegram-боты для записи, заказов, поддержки, рассылок и оплаты. Фреймворк aiogram берёт на себя работу с Bot API, а разработчик описывает сценарии, состояния диалога и связь с базой и бэкендом. Тот же подход годится для мессенджеров, у которых есть HTTP API для ботов.</p><div class="kit">aiogram · Telegram Bot API · Redis</div><a class="more" href="/telegram-mini-app/">Telegram-боты и Mini Apps →</a></div></div>
+    <div class="item"><span class="idx">04</span><div><h3>Данные и машинное обучение</h3><p>Обработка таблиц и логов, отчёты, модели машинного обучения и сервисы вокруг них. Исследованием данных и обучением моделей занимаются аналитики и data scientist'ы. Python-разработчик здесь чаще отвечает за инженерную часть: загрузку данных, расписание расчётов и API, через которое продукт обращается к модели.</p><div class="kit">pandas · NumPy · scikit-learn · PyTorch</div></div></div>
+  </div>
+  <p class="sub">В главном работа во всех направлениях похожа. Нужно понять, что на самом деле требуется, разложить задачу на части, написать код, проверить его тестами и выкатить так, чтобы он не падал ночью. Язык здесь инструмент, а не вся профессия.</p>
+</section>
+
+<section>
+  <div class="head"><h2>Типичные задачи Python-разработчика на практике</h2><span class="tag">задача → решение</span></div>
+  <p class="sub">Что делает Python-разработчик в обычных рабочих задачах. Таблица собрана из типовых ситуаций в бэкенде, ботах и автоматизации, а не из одного конкретного проекта.</p>
+  <div class="tbl">
+    <table>
+      <thead><tr><th>Задача</th><th>Что делает разработчик</th><th>Инструменты</th></tr></thead>
+      <tbody>
+        <tr><td>API для мобильного приложения</td><td>Проектирует эндпоинты и модели данных, валидацию, авторизацию по токенам, пишет тесты. В FastAPI документация OpenAPI собирается из кода автоматически.</td><td>FastAPI, Pydantic, PostgreSQL, pytest</td></tr>
+        <tr><td>Админка для сотрудников</td><td>Описывает модели, настраивает админ-панель, фильтры, роли и права доступа.</td><td>Django, Django Admin</td></tr>
+        <tr><td>Интеграция с платёжным сервисом или CRM</td><td>Читает документацию чужого API, пишет клиент, принимает вебхуки, проверяет подписи, повторяет запросы при сбоях.</td><td>httpx, FastAPI или Django, Celery</td></tr>
+        <tr><td>Telegram-бот</td><td>Продумывает сценарии и состояния диалога, клавиатуры, оплату, рассылки с учётом лимитов Telegram.</td><td>aiogram, Redis, PostgreSQL</td></tr>
+        <tr><td>Парсер цен или объявлений</td><td>Разбирает структуру сайта, обходит пагинацию, чистит данные, сохраняет их и запускает сбор по расписанию. Для сайтов, которые рисуют страницу на JavaScript, берёт управляемый браузер.</td><td>httpx, BeautifulSoup, Scrapy, Playwright</td></tr>
+        <tr><td>Долгие операции: письма, отчёты, обработка файлов</td><td>Выносит работу из HTTP-запроса в фоновую очередь, настраивает повторы, таймауты и задачи по расписанию.</td><td>Celery, Redis или RabbitMQ</td></tr>
+        <tr><td>Отчёт, который каждую неделю собирают руками</td><td>Пишет скрипт: он забирает данные из базы и API, считает итоги и складывает результат в Excel или Google Таблицу.</td><td>pandas, openpyxl, Google Sheets API, cron</td></tr>
+        <tr><td>Медленная страница или эндпоинт</td><td>Находит медленные SQL-запросы, добавляет индексы, убирает лишние запросы в цикле (проблема N+1), кеширует результат.</td><td>EXPLAIN ANALYZE, Redis, профилировщик</td></tr>
+        <tr><td>Модель машинного обучения в продукте</td><td>Оборачивает модель в сервис: принимает данные по API, вызывает модель, отдаёт результат, следит за временем ответа.</td><td>FastAPI, библиотека модели, Docker</td></tr>
+        <tr><td>Обновление Python и зависимостей</td><td>Поднимает версии библиотек, прогоняет тесты, переписывает то, что объявлено устаревшим.</td><td>pytest, uv или Poetry</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <p class="tbl-note">Заметная часть времени уходит не на новый код. Разработчик читает чужой код, разбирает ошибки из логов, обсуждает требования и делает ревью. Умение быстро разобраться в чужом проекте ценится не меньше, чем умение писать с нуля.</p>
+</section>
+
+<section>
+  <div class="head"><h2>Стек Python-разработчика</h2><span class="tag">инструменты</span></div>
+  <p class="sub">Набор инструментов зависит от направления, но у бэкенд-разработчиков он во многом совпадает. Ниже то, что часто встречается в проектах и в требованиях вакансий.</p>
+  <div class="stack">
+    <div class="srow"><span class="k">Язык</span><div class="chips"><span class="chip">Python 3</span><span class="chip">аннотации типов</span><span class="chip">asyncio</span><span class="chip">mypy</span><span class="chip">ruff</span></div></div>
+    <div class="srow"><span class="k">Веб и API</span><div class="chips"><span class="chip">Django</span><span class="chip">Django REST framework</span><span class="chip">FastAPI</span><span class="chip">Pydantic</span></div></div>
+    <div class="srow"><span class="k">Боты</span><div class="chips"><span class="chip">aiogram</span></div></div>
+    <div class="srow"><span class="k">Базы данных</span><div class="chips"><span class="chip">PostgreSQL</span><span class="chip">Django ORM</span><span class="chip">SQLAlchemy</span><span class="chip">Alembic</span><span class="chip">Redis</span></div></div>
+    <div class="srow"><span class="k">Фоновые задачи</span><div class="chips"><span class="chip">Celery</span><span class="chip">RabbitMQ</span><span class="chip">Redis</span><span class="chip">cron</span></div></div>
+    <div class="srow"><span class="k">Инфраструктура</span><div class="chips"><span class="chip">Docker</span><span class="chip">Docker Compose</span><span class="chip">Linux</span><span class="chip">Nginx</span><span class="chip">Gunicorn</span><span class="chip">Uvicorn</span><span class="chip">Git</span><span class="chip">CI</span></div></div>
+    <div class="srow"><span class="k">Тесты</span><div class="chips"><span class="chip">pytest</span><span class="chip">pytest-asyncio</span></div></div>
+    <div class="srow"><span class="k">Парсинг</span><div class="chips"><span class="chip">httpx</span><span class="chip">BeautifulSoup</span><span class="chip">lxml</span><span class="chip">Scrapy</span><span class="chip">Playwright</span></div></div>
+    <div class="srow"><span class="k">Данные</span><div class="chips"><span class="chip">pandas</span><span class="chip">NumPy</span></div></div>
+  </div>
+  <p class="sub">Начинающему не нужно всё сразу. Обязательный минимум для бэкенда: сам Python, один фреймворк, SQL и PostgreSQL, Git, Docker на уровне «собрать и запустить» и pytest. Celery, RabbitMQ, профилирование и тонкости асинхронности обычно добираются уже на первой работе.</p>
+  <p class="sub">Из этого списка я пишу на FastAPI, Django и aiogram. Есть навык, которого в списке не видно: договориться о стыке. Если Python-сервис работает рядом с основным бэкендом, нужно заранее решить, в каком формате он отдаёт данные и что происходит, когда одна из сторон недоступна.</p>
+</section>
+
+<section>
+  <div class="head"><h2>Junior, middle, senior — в чём разница</h2><span class="tag">по ответственности</span></div>
+  <p class="sub">Уровни часто путают со стажем: «год опыта — junior, три года — middle». На деле грейд определяет ответственность: какую задачу человеку можно отдать и насколько подробно её нужно описать.</p>
+  <div class="tbl">
+    <table>
+      <thead><tr><th>Уровень</th><th>За что отвечает</th><th>Как звучит задача</th></tr></thead>
+      <tbody>
+        <tr><td>Junior</td><td>За свою задачу в понятных рамках. Пишет код по готовому описанию, просит помощи, когда застрял, проходит ревью.</td><td>«Добавить в API поле и фильтр по нему, покрыть тестом». Решение в целом понятно заранее.</td></tr>
+        <tr><td>Middle</td><td>За задачу целиком: от уточнения требований до работы в продакшене. Сам проектирует таблицы и эндпоинты, оценивает сроки, разбирает ошибки на своём участке.</td><td>«Подключить платёжный сервис». Как именно, решает сам.</td></tr>
+        <tr><td>Senior</td><td>За систему или направление. Выбирает архитектуру и технологии, видит риски по нагрузке и безопасности, ревьюит код, помогает расти младшим, объясняет бизнесу цену решений.</td><td>«Платежи иногда теряются, разобраться и сделать так, чтобы это не повторялось». Задача приходит как проблема, а не как план.</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <p class="sub">Junior Python-разработчика берут за базу и за умение учиться: язык, один фреймворк, SQL, Git и пара законченных проектов. Следующий уровень наступает, когда задачу можно отдать без подробной инструкции и не проверять каждый шаг.</p>
+  <p class="sub">Названия грейдов в разных компаниях не совпадают. Поэтому на собеседовании полезнее рассказывать, какие задачи вы решали сами и за что отвечали, чем называть свой прошлый грейд.</p>
+</section>
+
+<section>
+  <div class="head"><h2>Как стать Python-разработчиком</h2><span class="tag">шесть шагов</span></div>
+  <p class="sub">Реалистичный путь в бэкенд на Python, без обещаний «профессия за&nbsp;три месяца». Шаги идут по порядку, но перекрываются: к SQL можно переходить, не закончив с основами языка. Диплом по специальности для бэкенда обычно не обязателен, а математика глубже школьной нужна в основном в машинном обучении.</p>
+  <div class="ledger">
+    <div class="item"><span class="idx">01</span><div><h3>Основы языка и рабочие инструменты</h3><p>Типы данных, функции, классы, исключения, модули, работа с файлами. Сразу привыкайте к виртуальным окружениям, менеджеру зависимостей, Git и терминалу Linux: без них не обходится ни одна рабочая задача.</p><div class="kit">Python 3 · venv · pip или uv · Git · Linux</div></div></div>
+    <div class="item"><span class="idx">02</span><div><h3>Как устроены веб и базы данных</h3><p>HTTP: методы, коды ответа, заголовки, cookies. REST и JSON. SQL на PostgreSQL: запросы с JOIN, индексы, транзакции. Многие учатся работать только через ORM и не знают, какой SQL выполняется под ней. Потом это дорого обходится на первом же медленном запросе.</p><div class="kit">HTTP · REST · SQL · PostgreSQL</div></div></div>
+    <div class="item"><span class="idx">03</span><div><h3>Один фреймворк, но глубоко</h3><p>Выберите Django или FastAPI и доведите до уверенного уровня: модели и миграции, авторизация, валидация, обработка ошибок, тесты на pytest. Второй фреймворк после первого осваивается заметно быстрее.</p><div class="kit">Django или FastAPI · pytest</div></div></div>
+    <div class="item"><span class="idx">04</span><div><h3>Инфраструктура вокруг кода</h3><p>Docker и Docker Compose, Redis, фоновые задачи, деплой на сервер, логи. Работодателю важно, что ваш код запускается не только на вашем ноутбуке.</p><div class="kit">Docker · Redis · Celery · Nginx</div></div></div>
+    <div class="item"><span class="idx">05</span><div><h3>Два-три законченных проекта</h3><p>Не копии учебных примеров, а задачи, похожие на реальные: бот с оплатой, парсер со сбором данных по расписанию, API с документацией и тестами. У каждого проекта README с описанием и запуском одной командой. Небольшой законченный проект ценнее большого брошенного.</p><div class="kit">бот · парсер · API</div></div></div>
+    <div class="item"><span class="idx">06</span><div><h3>Первая работа</h3><p>Отклики на вакансии стажёра и junior, тестовые задания, небольшие заказы. На собеседовании спрашивают про язык, SQL, HTTP и ваши проекты: почему сделано так, а не иначе. Требования и вилки удобно смотреть в вакансиях на hh.ru и в Хабр Карьере, там же видно, какой стек сейчас просят.</p><div class="kit">стажировка · junior · тестовое задание</div></div></div>
+  </div>
+  <p class="sub">Если вы уже пишете на другом языке, путь короче: синтаксис Python осваивается быстро, основное время уйдёт на фреймворк и экосистему. Если на Python вы анализируете данные или пишете автотесты, для бэкенда понадобятся HTTP, базы данных, проектирование API и опыт эксплуатации сервиса.</p>
+</section>
+
+<section>
+  <div class="head"><h2>Когда бизнесу нужен Python-разработчик</h2><span class="tag">для заказчиков</span></div>
+  <p class="sub">Если вы читаете это как заказчик, а не как будущий разработчик, вот ситуации, в которых Python будет разумным выбором.</p>
+  <div class="ledger">
+    <div class="item"><span class="idx">01</span><div><h3>Сотрудники делают одно и то же руками</h3><p>Переносят данные между таблицей и CRM, собирают отчёты, проверяют цены конкурентов. Скрипт или парсер по расписанию делает это быстрее и без ошибок копирования.</p></div></div>
+    <div class="item"><span class="idx">02</span><div><h3>Нужен бот</h3><p>Запись, заказы, ответы на типовые вопросы, оплата и рассылки в Telegram. Бот на aiogram может работать с той же базой, что и сайт.</p></div></div>
+    <div class="item"><span class="idx">03</span><div><h3>Рядом с продуктом нужен отдельный сервис</h3><p>Обработка данных, интеграция с внешним API, сервис вокруг модели машинного обучения. Его удобно сделать на Python, даже если основной бэкенд написан на PHP или Node.js. Именно так Python чаще всего появляется в моих проектах.</p></div></div>
+    <div class="item"><span class="idx">04</span><div><h3>Новый веб-сервис или MVP</h3><p>Django даёт админку, ORM и авторизацию из коробки, на FastAPI быстро собирается API с документацией. Если команда уже пишет на PHP или Node.js, новый язык ради одного проекта может оказаться лишним.</p></div></div>
+  </div>
+  <p class="sub">Разработчик на проект подходит, когда задача понятна и ограничена: бот, интеграция, парсер, отдельный сервис. Если Python становится основным языком продукта, разумнее думать о постоянном разработчике в команде.</p>
+  <div class="related"><a class="more" href="/python/">Python-разработчик на проект →</a><a class="more" href="/blog/php-ili-python/">PHP или Python →</a><a class="more" href="/blog/go-ili-python/">Go или Python →</a></div>
+</section>
+
+<section>
+  <div class="head"><h2>Частые вопросы</h2><span class="tag">про профессию</span></div>
+  <div class="faq">
+    <details><summary>Python-разработчик — это бэкенд?</summary>
+      <p>Чаще всего да. В вакансиях с таким названием обычно ищут бэкенд-разработчика на Django или FastAPI. Но на Python пишут и ботов, и парсеры, и скрипты автоматизации, и сервисы для машинного обучения, поэтому смотреть стоит на требования, а не на название.</p></details>
+    <details><summary>Чем Python-разработчик отличается от data scientist?</summary>
+      <p>Data scientist исследует данные и строит модели: статистика, эксперименты, метрики качества. Python-разработчик строит сервисы: API, базы данных, очереди, деплой. Язык у них общий, а задачи и набор знаний разные. На стыке работают ML-инженеры, которые превращают модель в работающий сервис.</p></details>
+    <details><summary>Кто такой fullstack-разработчик на Python?</summary>
+      <p>Это разработчик, который делает и серверную часть, и интерфейс. Бэкенд он пишет на Django или FastAPI, а фронтенд на JavaScript или TypeScript с React или Vue либо на шаблонах Django. Браузер исполняет JavaScript, поэтому знать его fullstack-разработчику на Python всё равно придётся.</p></details>
+    <details><summary>Сколько учиться на Python-разработчика?</summary>
+      <p>Зависит от базы и регулярности. С нуля до уровня, с которым можно откликаться на junior-вакансии, обычно уходит от полугода до года занятий каждую неделю, с собственными проектами. С опытом в другом языке быстрее: синтаксис Python осваивается за несколько недель, дольше даются фреймворк, базы данных и инфраструктура.</p></details>
+    <details><summary>Сколько зарабатывает Python-разработчик?</summary>
+      <p>Зависит от уровня, направления, компании и формата работы. Цифры быстро устаревают, поэтому актуальные вилки лучше смотреть в вакансиях на hh.ru и в Хабр Карьере. Там же видно, какой стек просят за эти деньги.</p></details>
+    <details><summary>Python или PHP для веб-разработки?</summary>
+      <p>Оба языка подходят для веба. Python удобнее, если в продукте есть данные, машинное обучение, парсинг или боты. PHP с Laravel хорош для классического веб-продукта с платежами, личными кабинетами и интеграциями, и его поддерживают почти все виртуальные хостинги. Подробное сравнение — в статье <a href="/blog/php-ili-python/">«PHP или Python»</a>.</p></details>
+  </div>
+</section>
+
+<div class="total">
+  <h2>Нужен Python-разработчик на задачу?</h2>
+  <p>Опишите в Telegram, что нужно автоматизировать, собрать или связать. Отвечу, как это сделать и что войдёт в первую версию. Если ищете разработчика в штат — пришлите вакансию.</p>
+  <div class="contacts">
+    <div><span>Telegram</span><a href="https://t.me/uzver_ge" target="_blank" rel="noopener noreferrer">@uzver_ge</a></div>
+    <div><span>Почта</span><a href="mailto:myworkermailbox2022@gmail.com">myworkermailbox2022@gmail.com</a></div>
+    <div><span>Резюме</span><a href="/">опыт и стек</a></div>
+  </div>
+  <a class="more" href="/python/">Python-разработчик на проект →</a>
+  <a class="more" href="/telegram-mini-app/">Telegram-боты и Mini Apps →</a>
+</div>
+
+<footer>
+<!-- footmap -->
+  <nav class="footmap" aria-label="Карта сайта">
+    <div><b>Услуги</b><a href="/telegram-mini-app/">Telegram-боты и Mini Apps</a><a href="/boty-max/">Боты для MAX</a><a href="/oplata-v-bote/">Оплата в боте</a><a href="/platezhi/">Интеграция платёжных систем</a><a href="/mobilnye-prilozheniya/">Мобильные приложения</a></div>
+    <div><b>Бэкенд-разработчик</b><a href="/php/">PHP-разработчик</a><a href="/laravel/">Laravel-разработчик</a><a href="/nodejs/">Node.js-разработчик</a><a href="/typescript/">TypeScript-разработчик</a><a href="/python/">Python-разработчик</a><a href="/java/">Java-разработчик</a><a href="/csharp/">C#-разработчик</a><a href="/cpp/">C++-разработчик</a></div>
+    <div><b>Фронтенд и мобильные</b><a href="/react-nextjs/">React-разработчик</a><a href="/vue/">Vue-разработчик</a><a href="/ios/">iOS-разработчик</a><a href="/android/">Android-разработчик</a></div>
+    <div><b>Кейсы и статьи</b><a href="/cases/podpiski/">Платформа подписок</a><a href="/cases/monitoring/">Мониторинг майнеров</a><a href="/blog/go-ili-python/">Go или Python</a><a href="/blog/react-ili-vue/">React или Vue</a><a href="/blog/php-ili-python/">PHP или Python</a><a href="/blog/react-native-ili-flutter/">React Native или Flutter</a><a href="/blog/kto-takoy-python-razrabotchik/" aria-current="page">Кто такой Python-разработчик</a><a href="/blog/kto-takoy-java-razrabotchik/">Кто такой Java-разработчик</a></div>
+  </nav>
+  <!-- /footmap -->
+  <div class="wrap">Комягин Николай · Fullstack-разработчик · боты Telegram и MAX, платежи, интеграции</div>
+</footer>
+
+</div>
+
+<script src="/assets/site.js"></script>
+</body>
+</html>

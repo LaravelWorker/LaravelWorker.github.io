@@ -3,12 +3,15 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
+<script>(function(d){d.classList.add('js');try{var t=localStorage.getItem('theme');if(t==='dark'||t==='light')d.setAttribute('data-theme',t)}catch(e){}})(document.documentElement)</script>
 
 <title>Приём оплаты и подписки в Telegram- и MAX-боте — Николай Комягин</title>
 <meta name="description" content="Подключаю оплату к ботам Telegram и MAX: подписки с автопродлением, платный доступ к каналу и контенту, разовые платежи, чеки по 54-ФЗ, защита от двойных списаний.">
 <link rel="canonical" href="https://komiagin.dev/oplata-v-bote/">
 <meta name="robots" content="index, follow, max-image-preview:large">
-<meta name="theme-color" content="#020604">
+<meta name="color-scheme" content="light dark">
+<meta name="theme-color" media="(prefers-color-scheme: light)" content="#ECEEF2">
+<meta name="theme-color" media="(prefers-color-scheme: dark)" content="#090B10">
 
 <meta property="og:type" content="website">
 <meta property="og:locale" content="ru_RU">
@@ -19,12 +22,12 @@
 <meta property="og:image" content="https://komiagin.dev/og.png">
 <meta name="twitter:card" content="summary_large_image">
 
-<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'><rect width='64' height='64' fill='%23020604'/><text x='32' y='47' font-family='monospace' font-size='46' font-weight='bold' fill='%2300FF6A' text-anchor='middle'>K</text></svg>">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'><rect width='64' height='64' rx='16' fill='%232B33FF'/><text x='32' y='45' font-family='Arial,sans-serif' font-size='38' font-weight='900' fill='%23ffffff' text-anchor='middle'>K</text></svg>">
 <link rel="apple-touch-icon" href="/icon-512.png">
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700;800&family=Manrope:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Geologica:wght,CRSV,SHRP@100..900,0..1,0..100&family=Martian+Mono:wdth,wght@75..112.5,400..700&family=Onest:wght@400..700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="/assets/site.css">
 
 <script type="application/ld+json">
@@ -70,20 +73,17 @@
 </head>
 <body>
 
-<div id="rain" aria-hidden="true">
-  <canvas id="rainc"></canvas>
-  <div class="scrim"></div>
-  <div class="scan"></div>
-</div>
+<div id="bg" aria-hidden="true"><canvas id="bgc"></canvas></div>
 
 <div class="wrap">
 
 <!-- nav -->
 <nav class="topnav" aria-label="Разделы сайта">
   <a class="brand" href="/">komiagin.dev</a>
-  <a href="/uslugi/" aria-current="page">Услуги и технологии</a>
+  <a href="/uslugi/" aria-current="page">Услуги</a>
   <a href="/#cases">Кейсы</a>
   <a href="/blog/">Статьи</a>
+  <button class="theme-toggle" type="button" aria-label="Сменить тему"></button>
 </nav>
 <!-- /nav -->
 
@@ -237,7 +237,7 @@
     <div><b>Услуги</b><a href="/telegram-mini-app/">Telegram-боты и Mini Apps</a><a href="/boty-max/">Боты для MAX</a><a href="/oplata-v-bote/" aria-current="page">Оплата в боте</a><a href="/platezhi/">Интеграция платёжных систем</a><a href="/mobilnye-prilozheniya/">Мобильные приложения</a></div>
     <div><b>Бэкенд-разработчик</b><a href="/php/">PHP-разработчик</a><a href="/laravel/">Laravel-разработчик</a><a href="/nodejs/">Node.js-разработчик</a><a href="/typescript/">TypeScript-разработчик</a><a href="/python/">Python-разработчик</a><a href="/java/">Java-разработчик</a><a href="/csharp/">C#-разработчик</a><a href="/cpp/">C++-разработчик</a></div>
     <div><b>Фронтенд и мобильные</b><a href="/react-nextjs/">React-разработчик</a><a href="/vue/">Vue-разработчик</a><a href="/ios/">iOS-разработчик</a><a href="/android/">Android-разработчик</a></div>
-    <div><b>Кейсы и статьи</b><a href="/cases/podpiski/">Платформа подписок</a><a href="/cases/monitoring/">Мониторинг майнеров</a><a href="/blog/go-ili-python/">Go или Python</a><a href="/blog/react-ili-vue/">React или Vue</a><a href="/blog/php-ili-python/">PHP или Python</a><a href="/blog/react-native-ili-flutter/">React Native или Flutter</a></div>
+    <div><b>Кейсы и статьи</b><a href="/cases/podpiski/">Платформа подписок</a><a href="/cases/monitoring/">Мониторинг майнеров</a><a href="/blog/go-ili-python/">Go или Python</a><a href="/blog/react-ili-vue/">React или Vue</a><a href="/blog/php-ili-python/">PHP или Python</a><a href="/blog/react-native-ili-flutter/">React Native или Flutter</a><a href="/blog/kto-takoy-python-razrabotchik/">Кто такой Python-разработчик</a><a href="/blog/kto-takoy-java-razrabotchik/">Кто такой Java-разработчик</a></div>
   </nav>
   <!-- /footmap -->
   <div class="wrap">Комягин Николай · Fullstack-разработчик · боты Telegram и MAX, платежи, интеграции</div>

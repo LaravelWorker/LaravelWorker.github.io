@@ -3,13 +3,16 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
+<script>(function(d){d.classList.add('js');try{var t=localStorage.getItem('theme');if(t==='dark'||t==='light')d.setAttribute('data-theme',t)}catch(e){}})(document.documentElement)</script>
 
 <title>Николай Комягин — fullstack-разработчик: PHP, Node.js, Python, React</title>
 <meta name="description" content="Fullstack-разработчик, 6+ лет коммерческой разработки: PHP и Laravel, Node.js и TypeScript, Python, React и Vue. Платежи и подписки, боты Telegram и MAX, интеграции с API. На проект или в штат: удалённо, гибрид или офис.">
 <link rel="canonical" href="https://komiagin.dev/">
 <meta name="robots" content="index, follow, max-image-preview:large">
 <meta name="author" content="Николай Комягин">
-<meta name="theme-color" content="#020604">
+<meta name="color-scheme" content="light dark">
+<meta name="theme-color" media="(prefers-color-scheme: light)" content="#ECEEF2">
+<meta name="theme-color" media="(prefers-color-scheme: dark)" content="#090B10">
 
 <meta property="og:type" content="profile">
 <meta property="og:locale" content="ru_RU">
@@ -29,12 +32,12 @@
 <meta name="twitter:description" content="PHP и Laravel, Node.js и TypeScript, Python, React и Vue. Платежи и подписки, боты Telegram и MAX, интеграции с API.">
 <meta name="twitter:image" content="https://komiagin.dev/og.png">
 
-<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'><rect width='64' height='64' fill='%23020604'/><text x='32' y='47' font-family='monospace' font-size='46' font-weight='bold' fill='%2300FF6A' text-anchor='middle'>K</text></svg>">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'><rect width='64' height='64' rx='16' fill='%232B33FF'/><text x='32' y='45' font-family='Arial,sans-serif' font-size='38' font-weight='900' fill='%23ffffff' text-anchor='middle'>K</text></svg>">
 <link rel="apple-touch-icon" href="/icon-512.png">
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700;800&family=Manrope:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Geologica:wght,CRSV,SHRP@100..900,0..1,0..100&family=Martian+Mono:wdth,wght@75..112.5,400..700&family=Onest:wght@400..700&display=swap" rel="stylesheet">
 
 <script type="application/ld+json">
 {
@@ -81,30 +84,49 @@
 </head>
 <body>
 
-<div id="rain" aria-hidden="true">
-  <canvas id="rainc"></canvas>
-  <div class="scrim"></div>
-  <div class="scan"></div>
-</div>
+<div id="bg" aria-hidden="true"><canvas id="bgc"></canvas></div>
 
 <div class="wrap">
 
 <!-- nav -->
 <nav class="topnav" aria-label="Разделы сайта">
   <a class="brand" href="/" aria-current="page">komiagin.dev</a>
-  <a href="/uslugi/">Услуги и технологии</a>
+  <a href="/uslugi/">Услуги</a>
   <a href="/#cases">Кейсы</a>
   <a href="/blog/">Статьи</a>
+  <button class="theme-toggle" type="button" aria-label="Сменить тему"></button>
 </nav>
 <!-- /nav -->
 
 <div class="printhead">komiagin.dev · Telegram @uzver_ge · myworkermailbox2022@gmail.com · удалённо, гибрид, офис</div>
 
-<header class="sheet">
-  <div class="stamp tag">Доступен для найма</div>
-  <h1>Комягин<br>Николай</h1>
-  <div class="role">Fullstack-разработчик · платежи, биллинг, интеграции</div>
-
+<header class="sheet hero">
+  <div class="hero-main">
+    <div class="stamp tag">Доступен для найма</div>
+    <h1>Комягин<br>Николай</h1>
+    <div class="role">Fullstack-разработчик · платежи, биллинг, интеграции</div>
+    <p class="pitch">Шесть лет пишу серверную часть для сервисов, где ошибка стоит денег: <strong>биллинг, платёжные интеграции, лимиты и распределение средств, разграничение прав доступа.</strong> Беру задачу целиком — от схемы базы и REST API до деплоя, мониторинга и настройки сервера.</p>
+    <p class="pitch">Отдельная специализация — интеграции с внешними финансовыми API, включая криптобиржи, и Telegram-боты с Mini Apps.</p>
+    <div class="cta-row">
+      <a class="btn solid" href="https://t.me/uzver_ge" target="_blank" rel="noopener noreferrer">Написать в Telegram</a>
+      <a class="btn dl" href="/Komiagin_Nikolay_CV.pdf" download><span class="ar">↓</span>Резюме · PDF</a>
+    </div>
+  </div>
+  <aside class="term" aria-label="Демо-лог: события из моих кейсов">
+    <div class="term-bar"><i></i><i></i><i></i><span>tail -f prod.log — демо</span></div>
+    <ol class="term-log">
+      <li><span class="t">09:41:02</span><span class="s">payments</span><span class="e ok">webhook payment.succeeded · дубль отклонён</span></li>
+      <li><span class="t">09:41:02</span><span class="s">billing</span><span class="e ok">subscription.renewed · +30&nbsp;дней</span></li>
+      <li><span class="t">09:41:03</span><span class="s">fiscal</span><span class="e ok">receipt.sent · чек по&nbsp;54-ФЗ</span></li>
+      <li><span class="t">09:41:03</span><span class="s">tg-bot</span><span class="e ok">notify «Подписка продлена»</span></li>
+      <li><span class="t">09:41:04</span><span class="s">max-bot</span><span class="e ok">notify «Подписка продлена»</span></li>
+      <li><span class="t">09:42:00</span><span class="s">monitor</span><span class="e ok">poll · 10&nbsp;000 устройств · 58&nbsp;с</span></li>
+      <li><span class="t">09:42:03</span><span class="s">alert</span><span class="e warn">asic-0427 offline 3&nbsp;мин → Telegram</span></li>
+      <li><span class="t">09:42:07</span><span class="s">queue</span><span class="e info">tfidf.analyze · 30&nbsp;конкурентов · 100%</span></li>
+      <li><span class="t">09:42:10</span><span class="s">bybit</span><span class="e ok cur">stop_loss выставлен · BTCUSDT</span></li>
+    </ol>
+    <div class="term-foot">Демо: так в логах выглядят мои кейсы — подписки, платежи, мониторинг, торговые боты</div>
+  </aside>
   <dl class="meta">
     <div class="mrow"><dt>Опыт</dt><dd>Коммерческая разработка с сентября 2020</dd><dd class="num" id="years">6 лет 3 месяца</dd></div>
     <div class="mrow"><dt>Специализация</dt><dd>Биллинг, платежи, финансовые лимиты, распределение средств, управление контентом</dd><dd class="num">FullStack</dd></div>
@@ -113,15 +135,9 @@
     <div class="mrow"><dt>Языки</dt><dd>Русский — родной · английский — A2, читаю техническую документацию</dd><dd class="num">RU / EN</dd></div>
     <div class="mrow"><dt>Оформление</dt><dd>В штат или по договору услуг — на выбор работодателя</dd><dd class="num">Открыт</dd></div>
   </dl>
-
-  <p class="pitch">Шесть лет пишу серверную часть для сервисов, где ошибка стоит денег: <strong>биллинг, платёжные интеграции, лимиты и распределение средств, разграничение прав доступа.</strong> Беру задачу целиком — от схемы базы и REST API до деплоя, мониторинга и настройки сервера.</p>
-  <p class="pitch">Отдельная специализация — интеграции с внешними финансовыми API, включая криптобиржи, и Telegram-боты с Mini Apps.</p>
-
-  <div class="cta-row">
-    <a class="btn solid" href="https://t.me/uzver_ge" target="_blank" rel="noopener noreferrer">Написать в Telegram</a>
-    <a class="btn dl" href="/Komiagin_Nikolay_CV.pdf" download><span class="ar">↓</span>Резюме · PDF</a>
-  </div>
 </header>
+
+<div class="marquee" aria-hidden="true"><div class="marquee-track"><span>PHP</span><span>Laravel</span><span>Node.js</span><span>TypeScript</span><span>Vue 3</span><span>React</span><span>Next.js</span><span>Python</span><span>PostgreSQL</span><span>Redis</span><span>Docker</span><span>Telegram Bot API</span><span>MAX API</span><span>54-ФЗ</span><span>Вебхуки</span><span>Очереди</span><span>PHP</span><span>Laravel</span><span>Node.js</span><span>TypeScript</span><span>Vue 3</span><span>React</span><span>Next.js</span><span>Python</span><span>PostgreSQL</span><span>Redis</span><span>Docker</span><span>Telegram Bot API</span><span>MAX API</span><span>54-ФЗ</span><span>Вебхуки</span><span>Очереди</span></div></div>
 
 <section>
   <div class="head"><h2>Услуги: платежи, боты Telegram и MAX, интеграции</h2><span class="tag">шесть направлений</span></div>
@@ -464,7 +480,7 @@
     <div><b>Услуги</b><a href="/telegram-mini-app/">Telegram-боты и Mini Apps</a><a href="/boty-max/">Боты для MAX</a><a href="/oplata-v-bote/">Оплата в боте</a><a href="/platezhi/">Интеграция платёжных систем</a><a href="/mobilnye-prilozheniya/">Мобильные приложения</a></div>
     <div><b>Бэкенд-разработчик</b><a href="/php/">PHP-разработчик</a><a href="/laravel/">Laravel-разработчик</a><a href="/nodejs/">Node.js-разработчик</a><a href="/typescript/">TypeScript-разработчик</a><a href="/python/">Python-разработчик</a><a href="/java/">Java-разработчик</a><a href="/csharp/">C#-разработчик</a><a href="/cpp/">C++-разработчик</a></div>
     <div><b>Фронтенд и мобильные</b><a href="/react-nextjs/">React-разработчик</a><a href="/vue/">Vue-разработчик</a><a href="/ios/">iOS-разработчик</a><a href="/android/">Android-разработчик</a></div>
-    <div><b>Кейсы и статьи</b><a href="/cases/podpiski/">Платформа подписок</a><a href="/cases/monitoring/">Мониторинг майнеров</a><a href="/blog/go-ili-python/">Go или Python</a><a href="/blog/react-ili-vue/">React или Vue</a><a href="/blog/php-ili-python/">PHP или Python</a><a href="/blog/react-native-ili-flutter/">React Native или Flutter</a></div>
+    <div><b>Кейсы и статьи</b><a href="/cases/podpiski/">Платформа подписок</a><a href="/cases/monitoring/">Мониторинг майнеров</a><a href="/blog/go-ili-python/">Go или Python</a><a href="/blog/react-ili-vue/">React или Vue</a><a href="/blog/php-ili-python/">PHP или Python</a><a href="/blog/react-native-ili-flutter/">React Native или Flutter</a><a href="/blog/kto-takoy-python-razrabotchik/">Кто такой Python-разработчик</a><a href="/blog/kto-takoy-java-razrabotchik/">Кто такой Java-разработчик</a></div>
   </nav>
   <!-- /footmap -->
   <div class="wrap">Комягин Николай · Fullstack-разработчик · Томский техникум информационных технологий, 2021</div>

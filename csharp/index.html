@@ -1,0 +1,330 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<title>C#-разработчик: .NET и десктоп — Николай Комягин</title>
+<meta name="description" content="C#-разработчик на проект или в штат: бэкенд на ASP.NET Core, REST API и интеграции, десктопные приложения для Windows на WPF или WinForms. Удалённо, гибрид или офис.">
+<link rel="canonical" href="https://komiagin.dev/csharp/">
+<meta name="robots" content="index, follow, max-image-preview:large">
+<meta name="theme-color" content="#020604">
+
+<meta property="og:type" content="website">
+<meta property="og:locale" content="ru_RU">
+<meta property="og:site_name" content="komiagin.dev">
+<meta property="og:url" content="https://komiagin.dev/csharp/">
+<meta property="og:title" content="C#-разработчик — Николай Комягин">
+<meta property="og:description" content="Бэкенд на .NET: REST API, интеграции, фоновые задачи. Десктопные приложения для Windows. На проект или в штат: удалённо, гибрид или офис.">
+<meta property="og:image" content="https://komiagin.dev/og.png">
+<meta name="twitter:card" content="summary_large_image">
+
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'><rect width='64' height='64' fill='%23020604'/><text x='32' y='47' font-family='monospace' font-size='46' font-weight='bold' fill='%2300FF6A' text-anchor='middle'>K</text></svg>">
+<link rel="apple-touch-icon" href="/icon-512.png">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700;800&family=Manrope:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/assets/site.css">
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Service",
+      "name": "C#-разработчик на проект",
+      "serviceType": "Разработка на C# и .NET: бэкенд и десктопные приложения",
+      "url": "https://komiagin.dev/csharp/",
+      "description": "C#-разработчик на проект или в штат: бэкенд на ASP.NET Core, REST API и интеграции, десктопные приложения для Windows на WPF или WinForms. Удалённо, гибрид или офис.",
+      "areaServed": {
+        "@type": "Country",
+        "name": "Россия"
+      },
+      "provider": {
+        "@type": "Person",
+        "name": "Николай Комягин",
+        "jobTitle": "Fullstack-разработчик",
+        "url": "https://komiagin.dev/"
+      }
+    },
+    {
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "Главная",
+          "item": "https://komiagin.dev/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "name": "Услуги и технологии",
+          "item": "https://komiagin.dev/uslugi/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 3,
+          "name": "C#-разработчик",
+          "item": "https://komiagin.dev/csharp/"
+        }
+      ]
+    },
+    {
+      "@type": "FAQPage",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "Чем занимается C#-разработчик?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Пишет приложения на C# и платформе .NET: серверную часть и API, десктопные программы для Windows, сервисы обработки данных и интеграции. Современный .NET кроссплатформенный, поэтому бэкенд на C# работает и на Linux, в том числе в Docker."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Можно нанять вас на проект, а не в штат?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Да. Работаю по договору с ИП — на отдельный проект, этап или на постоянную доработку. В штат тоже рассматриваю — удалённо, в гибридном формате или в офисе. На удалёнке рабочий день совпадает с московским."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": ".NET или Node.js для бэкенда?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Пишу на обоих. .NET хорош для систем со сложной бизнес-логикой, строгими типами и долгим сроком жизни, особенно если в компании уже есть инфраструктура Microsoft. Node.js проще для API, ботов и сервисов, которые много общаются с внешними API, и удобен, когда фронтенд и бэкенд пишут на одном языке. Выбор зависит от задачи и от того, кто будет поддерживать код."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Десктоп или веб-приложение?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Веб удобнее, когда пользователей много и они работают с разных устройств: обновление одно для всех, ничего не нужно устанавливать. Десктоп оправдан, когда программа должна работать без интернета, с локальными файлами и оборудованием на рабочем месте или с большими таблицами, где важна скорость интерфейса. Часто разумен гибрид: десктоп-клиент на рабочем месте и общий сервер с API."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "WPF или WinForms?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "WinForms проще и быстрее для небольших внутренних утилит и доработки старых программ. WPF даёт больше для сложного интерфейса: привязку данных, стили, масштабирование под разные экраны. Что выбрать, решаем по требованиям проекта и по тому, на чём написан существующий код."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Сколько стоит разработка на C#?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Цена зависит от объёма, числа интеграций и того, есть ли уже бэкенд, программа или дизайн. После короткого созвона присылаю оценку по этапам."
+          }
+        }
+      ]
+    }
+  ]
+}
+</script>
+</head>
+<body>
+
+<div id="rain" aria-hidden="true">
+  <canvas id="rainc"></canvas>
+  <div class="scrim"></div>
+  <div class="scan"></div>
+</div>
+
+<div class="wrap">
+
+<!-- nav -->
+<nav class="topnav" aria-label="Разделы сайта">
+  <a class="brand" href="/">komiagin.dev</a>
+  <a href="/uslugi/" aria-current="page">Услуги и технологии</a>
+  <a href="/#cases">Кейсы</a>
+  <a href="/blog/">Статьи</a>
+</nav>
+<!-- /nav -->
+<header class="sheet">
+  <div class="crumbs"><a href="/">Главная</a> / <a href="/uslugi/">Услуги и технологии</a> / C#-разработчик</div>
+  <div class="stamp tag">Разработчик</div>
+  <h1>C#-разработчик</h1>
+  <div class="role">Бэкенд на .NET · REST API · интеграции · десктоп под Windows</div>
+
+  <dl class="meta">
+    <div class="mrow"><dt>Опыт</dt><dd>Коммерческая разработка с&nbsp;сентября 2020</dd><dd class="num">Fullstack</dd></div>
+    <div class="mrow"><dt>Формат</dt><dd>На проект по договору с&nbsp;ИП или в&nbsp;штат: удалённо, гибрид или офис</dd><dd class="num">Гибко</dd></div>
+    <div class="mrow"><dt>Стек</dt><dd>C#, .NET, ASP.NET Core, Entity Framework Core, PostgreSQL, WPF / WinForms, Docker</dd><dd class="num">Backend · Desktop</dd></div>
+    <div class="mrow"><dt>Часовой пояс</dt><dd>Рабочий день совпадает с&nbsp;московским</dd><dd class="num">МСК</dd></div>
+  </dl>
+
+  <p class="pitch">Пишу на C# <strong>бэкенд на ASP.NET Core — REST API, интеграции, фоновые задачи — и десктопные приложения для Windows.</strong></p>
+  <p class="pitch">Мои крупные кейсы сделаны на PHP/Laravel и Node.js, но задачи в них те же, что встречаются в проектах на .NET: платежи, обмен данными с внешними системами, мониторинг тысяч устройств, тяжёлые расчёты в фоне. Подход к надёжности и данным от языка не зависит.</p>
+  <div class="cta-row">
+    <a class="btn solid" href="https://t.me/uzver_ge" target="_blank" rel="noopener noreferrer">Обсудить проект в Telegram</a>
+    <a class="btn ghost" href="#cases">Кейсы и опыт</a>
+  </div>
+</header>
+<section>
+  <div class="head"><h2>Чем занимается C#-разработчик</h2><span class="tag">коротко</span></div>
+  <p class="sub">C#-разработчик пишет приложения на платформе .NET: серверную часть и API, десктопные программы для Windows, сервисы обработки данных и интеграции. Современный .NET кроссплатформенный — бэкенд на нём работает и на Linux, в Docker. C# часто встречается в корпоративных системах, в автоматизации внутри компаний и там, где нужна программа на рабочем месте сотрудника, а не сайт.</p>
+  <p class="sub">Как разработчик на C# я делаю бэкенд на .NET и десктопные приложения. Подход тот же, что и на других моих стеках: понятное API, аккуратная работа с данными и предсказуемое поведение, когда внешний сервис отвечает медленно или с ошибкой.</p>
+</section>
+<section>
+  <div class="head"><h2>Что делаю на C#</h2><span class="tag">пять направлений</span></div>
+  <div class="ledger">
+    <div class="item">
+      <span class="idx">01</span>
+      <div>
+        <h3>Бэкенд и REST API на ASP.NET Core</h3>
+        <p>API для веб-интерфейса, мобильного приложения и внешних систем: авторизация и роли, валидация, понятные ошибки, документация OpenAPI.</p>
+        <div class="kit">C# · ASP.NET Core · OpenAPI</div>
+      </div>
+    </div>
+    <div class="item">
+      <span class="idx">02</span>
+      <div>
+        <h3>Работа с данными</h3>
+        <p>Схема базы и миграции через Entity Framework Core, сложные выборки — на SQL. Транзакции там, где важна целостность денег и остатков.</p>
+        <div class="kit">EF Core · PostgreSQL · SQL</div>
+      </div>
+    </div>
+    <div class="item">
+      <span class="idx">03</span>
+      <div>
+        <h3>Интеграции и фоновые задачи</h3>
+        <p>Внешние API, платёжные провайдеры, вебхуки, обмен с учётными системами. Фоновая обработка и повторы при ошибках — чтобы сбой на чужой стороне не терял данные.</p>
+        <div class="kit">HttpClient · вебхуки · фоновые задачи</div>
+        <a class="more" href="/platezhi/">Интеграция платёжных систем →</a>
+      </div>
+    </div>
+    <div class="item">
+      <span class="idx">04</span>
+      <div>
+        <h3>Десктопные приложения для Windows</h3>
+        <p>Программы для рабочего места: формы, таблицы и отчёты, работа с локальными файлами, обмен данными с сервером. WPF или WinForms — по требованиям проекта.</p>
+        <div class="kit">C# · WPF · WinForms</div>
+      </div>
+    </div>
+    <div class="item">
+      <span class="idx">05</span>
+      <div>
+        <h3>Доработка и сопровождение</h3>
+        <p>Подключаюсь к существующим проектам на .NET: разбираю код, исправляю ошибки, расширяю функционал, закрываю тестами логику, где ошибка стоит денег.</p>
+        <div class="kit">xUnit · ревью кода · Docker</div>
+      </div>
+    </div>
+  </div>
+</section>
+<section>
+  <div class="head"><h2>Стек</h2><span class="tag">чем работаю</span></div>
+  <div class="stack">
+    <div class="srow"><span class="k">Backend</span><div class="chips"><span class="chip">C#</span><span class="chip">.NET</span><span class="chip">ASP.NET Core</span><span class="chip">REST API</span></div></div>
+    <div class="srow"><span class="k">Десктоп</span><div class="chips"><span class="chip">WPF</span><span class="chip">WinForms</span></div></div>
+    <div class="srow"><span class="k">Данные</span><div class="chips"><span class="chip">Entity Framework Core</span><span class="chip">PostgreSQL</span><span class="chip">Redis</span></div></div>
+    <div class="srow"><span class="k">Тесты</span><div class="chips"><span class="chip">xUnit</span></div></div>
+    <div class="srow"><span class="k">Инфраструктура</span><div class="chips"><span class="chip">Docker</span><span class="chip">Nginx</span><span class="chip">Linux</span></div></div>
+  </div>
+  <div class="related"><a class="more" href="/java/">Java-разработчик →</a><a class="more" href="/cpp/">C++-разработчик →</a><a class="more" href="/nodejs/">Node.js-разработчик →</a></div>
+</section>
+<section id="cases">
+  <div class="head"><h2>Опыт, который переносится</h2><span class="tag">кейсы на PHP и Laravel</span></div>
+  <p class="sub">Кейсы ниже сделаны не на C# — на PHP/Laravel. Привожу их, потому что задачи в них те же, ради которых обычно нанимают C#-разработчика: обмен данными с чужими системами, большие объёмы данных, тяжёлые расчёты и деньги.</p>
+  <p class="sub">До ИП — ilink (Томск), сентябрь&nbsp;2020 — июнь&nbsp;2022: backend на PHP/Laravel и Node.js, наставник четырёх junior-разработчиков. С июня&nbsp;2022 работаю как&nbsp;ИП.</p>
+  <div class="cases">
+    <article class="case">
+      <div class="case-top"><span class="idx">01</span><h3>Мониторинг парка майнингового оборудования</h3></div>
+      <div class="case-role">Сделано на PHP и Laravel · полный цикл · заказчик под NDA</div>
+      <p class="sub">Сбор телеметрии по API нескольких сервисов и пулов — до 10&nbsp;000 устройств с опросом раз в минуту. Двухуровневое хранение: оперативные метрики в Redis, суточные агрегаты в PostgreSQL, чтобы минутный опрос не раздувал базу. Пороги по uptime, температуре и производительности, алерт о простое через 3&nbsp;минуты.</p>
+      <div class="kit">PHP · Laravel · Redis · PostgreSQL · Vue 3</div>
+      <a class="more" href="/cases/monitoring/">Подробный разбор кейса →</a>
+    </article>
+    <article class="case">
+      <div class="case-top"><span class="idx">02</span><h3>Инструменты анализа текста для SEO-платформы «Титло»</h3><a class="site" href="https://titlo.ru/" target="_blank" rel="noopener noreferrer">titlo.ru</a></div>
+      <div class="case-role">Сделано на PHP и Laravel · один из двух разработчиков · свои модули от постановки до продакшена</div>
+      <p class="sub">Три инструмента с нуля: анализ релевантности, текста и конкурентов. Сбор поисковой выдачи через API Яндекса и Google, собственная реализация TF-IDF. Тяжёлые расчёты — в фоновых очередях со статусом и процентом выполнения в реальном времени. Инструменты работают в продакшене по сей день.</p>
+      <div class="kit">PHP · Laravel · очереди · API Яндекс / Google</div>
+      <a class="more" href="/#cases">Все кейсы в резюме →</a>
+    </article>
+    <article class="case">
+      <div class="case-top"><span class="idx">03</span><h3>Платформа подписок с регулярными списаниями</h3></div>
+      <div class="case-role">Сделано на PHP и Laravel · единственный разработчик · полный цикл</div>
+      <p class="sub">Админ-панель, боты в Telegram и MAX на общем бэкенде, две платёжные интеграции с рекуррентными списаниями. Идемпотентность по идентификатору платежа у провайдера исключает двойные списания. Около 6&nbsp;000 подписчиков и ~3&nbsp;млн&nbsp;₽ оборота в месяц.</p>
+      <div class="kit">PHP · Laravel · PostgreSQL · Vue 3 · Telegram Bot API · MAX API</div>
+      <a class="more" href="/cases/podpiski/">Подробный разбор кейса →</a>
+    </article>
+  </div>
+</section>
+<section>
+  <div class="head"><h2>Типовые решения</h2><span class="tag">как это может выглядеть</span></div>
+  <article class="example">
+    <div class="ex-top"><span class="ex-label">Типовое решение</span><h3>Программа учёта для склада с синхронизацией</h3></div>
+    <div class="ex-note">Пример задачи и архитектуры, а не проект из портфолио</div>
+    <dl>
+      <div class="crow"><dt>Задача</dt><dd>Кладовщики ведут приёмку в таблицах, файлы расходятся между сменами, а остатки в учётной системе отстают на день.</dd></div>
+      <div class="crow"><dt>Как собрать</dt><dd>Десктоп-приложение на WPF для рабочего места: приёмка и выдача по сканеру штрихкодов, локальная база SQLite на случай обрыва связи. Бэкенд на ASP.NET Core принимает операции, отсекает дубли и передаёт их в учётную систему через её API.</dd></div>
+      <div class="crow"><dt>Что получит заказчик</dt><dd>Остатки обновляются в течение минут, а не на следующий день, и работа не встаёт, когда пропадает сеть.</dd></div>
+    </dl>
+    <div class="kit">C# · WPF · SQLite · ASP.NET Core · PostgreSQL</div>
+  </article>
+  <article class="example">
+    <div class="ex-top"><span class="ex-label">Типовое решение</span><h3>Сервис отчётов для отдела продаж</h3></div>
+    <div class="ex-note">Пример задачи и архитектуры, а не проект из портфолио</div>
+    <dl>
+      <div class="crow"><dt>Задача</dt><dd>Руководитель отдела продаж каждую неделю вручную собирает отчёт из CRM и таблиц с оплатами.</dd></div>
+      <div class="crow"><dt>Как собрать</dt><dd>Сервис на ASP.NET Core по расписанию забирает сделки из CRM через API, сводит их с оплатами в PostgreSQL и строит отчёт. Веб-страница с фильтрами для руководителя и сводка на почту в понедельник утром.</dd></div>
+      <div class="crow"><dt>Что получит заказчик</dt><dd>Отчёт готов к началу недели без ручной сборки, и цифры в нём одни для всех.</dd></div>
+    </dl>
+    <div class="kit">C# · ASP.NET Core · EF Core · PostgreSQL</div>
+  </article>
+</section>
+<section>
+  <div class="head"><h2>Формат работы и стоимость</h2><span class="tag">по задаче</span></div>
+  <p class="sub">Работаю на проект или этап по договору с ИП, на постоянную доработку или в штат — удалённо, гибрид или офис. Цена зависит от объёма, числа интеграций и того, есть ли уже бэкенд, программа или дизайн. После короткого созвона присылаю оценку по этапам.</p>
+</section>
+<section>
+  <div class="head"><h2>Частые вопросы</h2><span class="tag">про C# и .NET</span></div>
+  <div class="faq">
+    <details><summary>Чем занимается C#-разработчик?</summary>
+      <p>Пишет приложения на C# и платформе .NET: серверную часть и API, десктопные программы для Windows, сервисы обработки данных и интеграции. Современный .NET кроссплатформенный, поэтому бэкенд на C# работает и на Linux, в том числе в Docker.</p></details>
+    <details><summary>Можно нанять вас на проект, а не в штат?</summary>
+      <p>Да. Работаю по договору с ИП — на отдельный проект, этап или на постоянную доработку. В штат тоже рассматриваю — удалённо, в гибридном формате или в офисе. На удалёнке рабочий день совпадает с московским.</p></details>
+    <details><summary>.NET или Node.js для бэкенда?</summary>
+      <p>Пишу на обоих. .NET хорош для систем со сложной бизнес-логикой, строгими типами и долгим сроком жизни, особенно если в компании уже есть инфраструктура Microsoft. Node.js проще для API, ботов и сервисов, которые много общаются с внешними API, и удобен, когда фронтенд и бэкенд пишут на одном языке. Выбор зависит от задачи и от того, кто будет поддерживать код.</p></details>
+    <details><summary>Десктоп или веб-приложение?</summary>
+      <p>Веб удобнее, когда пользователей много и они работают с разных устройств: обновление одно для всех, ничего не нужно устанавливать. Десктоп оправдан, когда программа должна работать без интернета, с локальными файлами и оборудованием на рабочем месте или с большими таблицами, где важна скорость интерфейса. Часто разумен гибрид: десктоп-клиент на рабочем месте и общий сервер с API.</p></details>
+    <details><summary>WPF или WinForms?</summary>
+      <p>WinForms проще и быстрее для небольших внутренних утилит и доработки старых программ. WPF даёт больше для сложного интерфейса: привязку данных, стили, масштабирование под разные экраны. Что выбрать, решаем по требованиям проекта и по тому, на чём написан существующий код.</p></details>
+    <details><summary>Сколько стоит разработка на C#?</summary>
+      <p>Цена зависит от объёма, числа интеграций и того, есть ли уже бэкенд, программа или дизайн. После короткого созвона присылаю оценку по этапам.</p></details>
+  </div>
+</section>
+
+<div class="total">
+  <h2>Нужен C#-разработчик?</h2>
+  <p>Опишите задачу в Telegram: бэкенд, десктопная программа или доработка существующего кода на .NET и с какими системами она связана. Если ищете разработчика в штат — пришлите вакансию.</p>
+  <div class="contacts">
+    <div><span>Telegram</span><a href="https://t.me/uzver_ge" target="_blank" rel="noopener noreferrer">@uzver_ge</a></div>
+    <div><span>Почта</span><a href="mailto:myworkermailbox2022@gmail.com">myworkermailbox2022@gmail.com</a></div>
+    <div><span>Резюме</span><a href="/">опыт и стек</a></div>
+  </div>
+</div>
+
+<footer>
+  <!-- footmap -->
+  <nav class="footmap" aria-label="Карта сайта">
+    <div><b>Услуги</b><a href="/telegram-mini-app/">Telegram-боты и Mini Apps</a><a href="/boty-max/">Боты для MAX</a><a href="/oplata-v-bote/">Оплата в боте</a><a href="/platezhi/">Интеграция платёжных систем</a><a href="/mobilnye-prilozheniya/">Мобильные приложения</a></div>
+    <div><b>Бэкенд-разработчик</b><a href="/php/">PHP-разработчик</a><a href="/laravel/">Laravel-разработчик</a><a href="/nodejs/">Node.js-разработчик</a><a href="/typescript/">TypeScript-разработчик</a><a href="/python/">Python-разработчик</a><a href="/java/">Java-разработчик</a><a href="/csharp/" aria-current="page">C#-разработчик</a><a href="/cpp/">C++-разработчик</a></div>
+    <div><b>Фронтенд и мобильные</b><a href="/react-nextjs/">React-разработчик</a><a href="/vue/">Vue-разработчик</a><a href="/ios/">iOS-разработчик</a><a href="/android/">Android-разработчик</a></div>
+    <div><b>Кейсы и статьи</b><a href="/cases/podpiski/">Платформа подписок</a><a href="/cases/monitoring/">Мониторинг майнеров</a><a href="/blog/go-ili-python/">Go или Python</a><a href="/blog/react-ili-vue/">React или Vue</a><a href="/blog/php-ili-python/">PHP или Python</a><a href="/blog/react-native-ili-flutter/">React Native или Flutter</a></div>
+  </nav>
+  <!-- /footmap -->
+  <div class="wrap">Комягин Николай · Fullstack-разработчик · веб, мобильные приложения, боты, платежи</div>
+</footer>
+
+</div>
+
+<script src="/assets/site.js"></script>
+</body>
+</html>

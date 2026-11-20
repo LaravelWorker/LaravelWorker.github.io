@@ -1,0 +1,328 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<title>C++-разработчик: быстрые модули и нативные расширения — Николай Комягин</title>
+<meta name="description" content="C++-разработчик на проект или в штат: быстрые модули и вычисления, расширения для Node.js и Python, утилиты, доработка кода на C++. Удалённо, гибрид или офис.">
+<link rel="canonical" href="https://komiagin.dev/cpp/">
+<meta name="robots" content="index, follow, max-image-preview:large">
+<meta name="theme-color" content="#020604">
+
+<meta property="og:type" content="website">
+<meta property="og:locale" content="ru_RU">
+<meta property="og:site_name" content="komiagin.dev">
+<meta property="og:url" content="https://komiagin.dev/cpp/">
+<meta property="og:title" content="C++-разработчик — Николай Комягин">
+<meta property="og:description" content="Производительные модули и вычисления, нативные расширения для Node.js и Python, утилиты обработки данных, доработка кода на C++. На проект или в штат: удалённо, гибрид или офис.">
+<meta property="og:image" content="https://komiagin.dev/og.png">
+<meta name="twitter:card" content="summary_large_image">
+
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'><rect width='64' height='64' fill='%23020604'/><text x='32' y='47' font-family='monospace' font-size='46' font-weight='bold' fill='%2300FF6A' text-anchor='middle'>K</text></svg>">
+<link rel="apple-touch-icon" href="/icon-512.png">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700;800&family=Manrope:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/assets/site.css">
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Service",
+      "name": "C++-разработчик на проект",
+      "serviceType": "Разработка на C++: производительные модули, нативные расширения, утилиты",
+      "url": "https://komiagin.dev/cpp/",
+      "description": "C++-разработчик на проект или в штат: быстрые модули и вычисления, расширения для Node.js и Python, утилиты, доработка кода на C++. Удалённо, гибрид или офис.",
+      "areaServed": {
+        "@type": "Country",
+        "name": "Россия"
+      },
+      "provider": {
+        "@type": "Person",
+        "name": "Николай Комягин",
+        "jobTitle": "Fullstack-разработчик",
+        "url": "https://komiagin.dev/"
+      }
+    },
+    {
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "Главная",
+          "item": "https://komiagin.dev/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "name": "Услуги и технологии",
+          "item": "https://komiagin.dev/uslugi/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 3,
+          "name": "C++-разработчик",
+          "item": "https://komiagin.dev/cpp/"
+        }
+      ]
+    },
+    {
+      "@type": "FAQPage",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "Чем занимается C++-разработчик?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Пишет программы, где важны скорость и контроль над памятью: вычислительные модули, обработку больших объёмов данных, системные утилиты, библиотеки и нативные расширения для других языков. На C++ также пишут игровые движки, встраиваемое ПО и нагруженные компоненты серверов."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Можно нанять вас на проект, а не в штат?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Да. Работаю по договору с ИП — на отдельный проект, этап или на постоянную доработку. В штат тоже рассматриваю — удалённо, в гибридном формате или в офисе. На удалёнке рабочий день совпадает с московским."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Когда нужен C++, а когда хватит Python или Node.js?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "В большинстве веб-сервисов хватает Python или Node.js: время уходит на базу данных и сеть, а не на вычисления. C++ нужен, когда профилирование показывает узкое место именно в расчётах или обработке данных, когда критичны память и время отклика или когда нужно встроиться в существующий код на C++. Часто достаточно вынести на C++ одну тяжёлую функцию, а не переписывать сервис."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Можно встроить модуль на C++ в сервис на Python или Node.js?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Да. Для Python модуль подключается, например, через pybind11, для Node.js — через Node-API. Сервис вызывает его как обычную библиотеку, а сборка модуля входит в Docker-образ сервиса."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Беретесь за доработку чужого кода на C++?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Да. Сначала добиваюсь, чтобы проект воспроизводимо собирался, затем разбираю структуру и исправляю или расширяю нужное. Если тестов нет, начинаю с них — для той части, которую предстоит менять."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Сколько стоит разработка на C++?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Цена зависит от объёма, состояния существующего кода и того, как модуль встраивается в систему. После короткого созвона присылаю оценку по этапам."
+          }
+        }
+      ]
+    }
+  ]
+}
+</script>
+</head>
+<body>
+
+<div id="rain" aria-hidden="true">
+  <canvas id="rainc"></canvas>
+  <div class="scrim"></div>
+  <div class="scan"></div>
+</div>
+
+<div class="wrap">
+
+<!-- nav -->
+<nav class="topnav" aria-label="Разделы сайта">
+  <a class="brand" href="/">komiagin.dev</a>
+  <a href="/uslugi/" aria-current="page">Услуги и технологии</a>
+  <a href="/#cases">Кейсы</a>
+  <a href="/blog/">Статьи</a>
+</nav>
+<!-- /nav -->
+<header class="sheet">
+  <div class="crumbs"><a href="/">Главная</a> / <a href="/uslugi/">Услуги и технологии</a> / C++-разработчик</div>
+  <div class="stamp tag">Разработчик</div>
+  <h1>C++-разработчик</h1>
+  <div class="role">Производительные модули · нативные расширения · утилиты · сопровождение кода</div>
+
+  <dl class="meta">
+    <div class="mrow"><dt>Опыт</dt><dd>Коммерческая разработка с&nbsp;сентября 2020</dd><dd class="num">Fullstack</dd></div>
+    <div class="mrow"><dt>Формат</dt><dd>На проект по договору с&nbsp;ИП или в&nbsp;штат: удалённо, гибрид или офис</dd><dd class="num">Гибко</dd></div>
+    <div class="mrow"><dt>Стек</dt><dd>C++, STL, CMake, Linux, Docker; связка с&nbsp;Node.js и&nbsp;Python</dd><dd class="num">Native</dd></div>
+    <div class="mrow"><dt>Часовой пояс</dt><dd>Рабочий день совпадает с&nbsp;московским</dd><dd class="num">МСК</dd></div>
+  </dl>
+
+  <p class="pitch">Пишу на C++ <strong>то, что должно работать быстро: вычислительные модули, нативные расширения для сервисов на Node.js и Python, консольные утилиты для обработки данных.</strong> Беру на доработку и сопровождение существующий код на C++.</p>
+  <p class="pitch">Основная часть моей коммерческой работы — бэкенд на PHP/Laravel и Node.js. Поэтому смотрю на модуль на C++ как на часть системы: он должен снимать конкретное узкое место и встраиваться в сервис, который потом будут поддерживать другие люди.</p>
+  <div class="cta-row">
+    <a class="btn solid" href="https://t.me/uzver_ge" target="_blank" rel="noopener noreferrer">Обсудить проект в Telegram</a>
+    <a class="btn ghost" href="#cases">Кейсы и опыт</a>
+  </div>
+</header>
+<section>
+  <div class="head"><h2>Чем занимается C++-разработчик</h2><span class="tag">коротко</span></div>
+  <p class="sub">C++-разработчик пишет программы, где важны скорость и контроль над памятью: вычисления и обработку больших объёмов данных, системные утилиты, библиотеки, встраиваемое ПО, игры. На C++ написаны браузеры, многие базы данных, игровые движки и ядра библиотек, которыми пользуются из Python и Node.js.</p>
+  <p class="sub">Часто C++ нужен не вместо основного стека, а рядом с ним: в сервисе на Python или Node.js есть одна тяжёлая операция, и её выносят в нативный модуль. Как разработчик на C++ я беру именно такие задачи — и более широкие: утилиты обработки данных и доработку существующего кода.</p>
+</section>
+<section>
+  <div class="head"><h2>Что делаю на C++</h2><span class="tag">пять направлений</span></div>
+  <div class="ledger">
+    <div class="item">
+      <span class="idx">01</span>
+      <div>
+        <h3>Производительные модули и вычисления</h3>
+        <p>Расчёты, обработка массивов данных, алгоритмы, которые на интерпретируемом языке работают слишком медленно. Сначала профилирование и замеры: переписывать на C++ имеет смысл только реальное узкое место.</p>
+        <div class="kit">C++ · STL · профилирование</div>
+      </div>
+    </div>
+    <div class="item">
+      <span class="idx">02</span>
+      <div>
+        <h3>Нативные расширения для Node.js и Python</h3>
+        <p>Модуль на C++, который сервис вызывает как обычную библиотеку. Понятный интерфейс, обработка ошибок на границе языков, сборка под целевую платформу.</p>
+        <div class="kit">Node-API · pybind11 · CMake</div>
+      </div>
+    </div>
+    <div class="item">
+      <span class="idx">03</span>
+      <div>
+        <h3>Консольные утилиты и обработка данных</h3>
+        <p>Разбор логов, конвертация форматов, пакетная обработка файлов — то, что запускается по расписанию или в конвейере и должно отработать быстро и без лишних зависимостей.</p>
+        <div class="kit">CLI · Linux · обработка файлов</div>
+      </div>
+    </div>
+    <div class="item">
+      <span class="idx">04</span>
+      <div>
+        <h3>Доработка и сопровождение существующего кода</h3>
+        <p>Разбираю чужой проект на C++, исправляю ошибки, добавляю функциональность. Если сборка держится на одной машине — переношу её на CMake и Docker, чтобы её мог повторить любой.</p>
+        <div class="kit">CMake · Docker · рефакторинг</div>
+      </div>
+    </div>
+    <div class="item">
+      <span class="idx">05</span>
+      <div>
+        <h3>Тесты на границе модулей</h3>
+        <p>Модульные тесты на ключевые функции. При переносе кода на C++ сверяю результаты с прежней реализацией на тестовом наборе данных — чтобы ускорение не меняло ответы.</p>
+        <div class="kit">GoogleTest · эталонные данные</div>
+      </div>
+    </div>
+  </div>
+</section>
+<section>
+  <div class="head"><h2>Стек</h2><span class="tag">чем работаю</span></div>
+  <div class="stack">
+    <div class="srow"><span class="k">Язык</span><div class="chips"><span class="chip">C++</span><span class="chip">STL</span><span class="chip">CMake</span></div></div>
+    <div class="srow"><span class="k">Связка</span><div class="chips"><span class="chip">Node-API</span><span class="chip">pybind11</span><span class="chip">Node.js</span><span class="chip">Python</span></div></div>
+    <div class="srow"><span class="k">Тесты</span><div class="chips"><span class="chip">GoogleTest</span></div></div>
+    <div class="srow"><span class="k">Инфраструктура</span><div class="chips"><span class="chip">Linux</span><span class="chip">Docker</span></div></div>
+  </div>
+  <div class="related"><a class="more" href="/python/">Python-разработчик →</a><a class="more" href="/nodejs/">Node.js-разработчик →</a><a class="more" href="/csharp/">C#-разработчик →</a><a class="more" href="/java/">Java-разработчик →</a></div>
+</section>
+<section id="cases">
+  <div class="head"><h2>Опыт, который переносится</h2><span class="tag">кейсы на PHP и Node.js</span></div>
+  <p class="sub">Кейсы ниже сделаны не на C++ — на PHP/Laravel и Node.js. Привожу их, потому что в них те же вопросы, ради которых обычно берут C++: объём данных, скорость обработки и стык нескольких языков в одной системе.</p>
+  <p class="sub">До ИП — ilink (Томск), сентябрь&nbsp;2020 — июнь&nbsp;2022: backend на PHP/Laravel и Node.js, наставник четырёх junior-разработчиков. С июня&nbsp;2022 работаю как&nbsp;ИП.</p>
+  <div class="cases">
+    <article class="case">
+      <div class="case-top"><span class="idx">01</span><h3>Инструменты анализа текста для SEO-платформы «Титло»</h3><a class="site" href="https://titlo.ru/" target="_blank" rel="noopener noreferrer">titlo.ru</a></div>
+      <div class="case-role">Сделано на PHP и Laravel · один из двух разработчиков · свои модули от постановки до продакшена</div>
+      <p class="sub">Собственная реализация TF-IDF: облака словосочетаний страницы и конкурентов, плотность фраз, зональное сравнение. До 30&nbsp;конкурентов на запрос, пакетная обработка списков фраз. Тяжёлые расчёты — в фоновых очередях с процентом выполнения в реальном времени, результаты сжимаются при записи в базу. Полный анализ занимает 1–5&nbsp;минут.</p>
+      <div class="kit">PHP · Laravel · очереди · API Яндекс / Google</div>
+      <a class="more" href="/#cases">Все кейсы в резюме →</a>
+    </article>
+    <article class="case">
+      <div class="case-top"><span class="idx">02</span><h3>Мониторинг парка майнингового оборудования</h3></div>
+      <div class="case-role">Сделано на PHP и Laravel · полный цикл · заказчик под NDA</div>
+      <p class="sub">До 10&nbsp;000 устройств с опросом раз в минуту по API нескольких сервисов и пулов. Двухуровневое хранение: оперативные метрики в Redis, суточные агрегаты в PostgreSQL — минутный опрос парка такого размера не раздувает базу. Алерт о простое через 3&nbsp;минуты.</p>
+      <div class="kit">PHP · Laravel · Redis · PostgreSQL · Vue 3</div>
+      <a class="more" href="/cases/monitoring/">Подробный разбор кейса →</a>
+    </article>
+    <article class="case">
+      <div class="case-top"><span class="idx">03</span><h3>Бэкенд сервиса торговых ботов для Bybit</h3><span class="site dead">tradingforce.io · проект закрыт</span></div>
+      <div class="case-role">Сделано на Node.js и TypeScript · единственный backend-разработчик в команде из четырёх</div>
+      <p class="sub">Система из двух языков: котировки поставлял отдельный Python-сервис через Redis, бэкенд на Node.js забирал их, склеивал одинаковые запросы и кешировал ответы, чтобы не ходить наружу повторно. Интеграция с торговым API Bybit, автоматические stop-loss и take-profit, торговая логика закрыта автотестами. Продукт закрылся, но серверная часть была собрана целиком и работала.</p>
+      <div class="kit">Node.js · TypeScript · Python · Redis · PostgreSQL · Bybit API</div>
+      <a class="more" href="/nodejs/">Node.js-разработчик →</a>
+    </article>
+  </div>
+</section>
+<section>
+  <div class="head"><h2>Типовые решения</h2><span class="tag">как это может выглядеть</span></div>
+  <article class="example">
+    <div class="ex-top"><span class="ex-label">Типовое решение</span><h3>Ускорение расчёта в сервисе на Python</h3></div>
+    <div class="ex-note">Пример задачи и архитектуры, а не проект из портфолио</div>
+    <dl>
+      <div class="crow"><dt>Задача</dt><dd>Сервис на Python пересчитывает показатели по большому массиву данных, расчёт идёт долго и задерживает отчёты.</dd></div>
+      <div class="crow"><dt>Как собрать</dt><dd>Профилирование показывает, что почти всё время уходит на один вычислительный цикл. Его переносят в модуль на C++ с интерфейсом через pybind11, остальной сервис не меняется. Результаты нового модуля сверяются с прежней реализацией на тестовом наборе данных, сборка модуля входит в Docker-образ сервиса.</dd></div>
+      <div class="crow"><dt>Что получит заказчик</dt><dd>Тот же расчёт и тот же код вокруг, но отчёты не ждут; плюс тест, который подтверждает, что результаты не изменились.</dd></div>
+    </dl>
+    <div class="kit">C++ · pybind11 · Python · CMake · Docker</div>
+  </article>
+  <article class="example">
+    <div class="ex-top"><span class="ex-label">Типовое решение</span><h3>Утилита ночной обработки логов</h3></div>
+    <div class="ex-note">Пример задачи и архитектуры, а не проект из портфолио</div>
+    <dl>
+      <div class="crow"><dt>Задача</dt><dd>Каждую ночь нужно разобрать большие логи оборудования и сложить агрегаты в базу, а текущий скрипт не успевает до утра.</dd></div>
+      <div class="crow"><dt>Как собрать</dt><dd>Консольная утилита на C++ читает файлы потоком, не загружая их в память целиком, считает агрегаты и пишет результат в PostgreSQL. Запуск по расписанию, код возврата и лог — чтобы сбой было видно в мониторинге.</dd></div>
+      <div class="crow"><dt>Что получит заказчик</dt><dd>Обработка укладывается в ночное окно, данные к утру готовы.</dd></div>
+    </dl>
+    <div class="kit">C++ · CMake · Linux · PostgreSQL</div>
+  </article>
+</section>
+<section>
+  <div class="head"><h2>Формат работы и стоимость</h2><span class="tag">по задаче</span></div>
+  <p class="sub">Работаю на проект или этап по договору с ИП, на постоянную доработку или в штат — удалённо, гибрид или офис. Цена зависит от объёма, состояния существующего кода и того, как модуль встраивается в систему. После короткого созвона присылаю оценку по этапам.</p>
+</section>
+<section>
+  <div class="head"><h2>Частые вопросы</h2><span class="tag">про C++</span></div>
+  <div class="faq">
+    <details><summary>Чем занимается C++-разработчик?</summary>
+      <p>Пишет программы, где важны скорость и контроль над памятью: вычислительные модули, обработку больших объёмов данных, системные утилиты, библиотеки и нативные расширения для других языков. На C++ также пишут игровые движки, встраиваемое ПО и нагруженные компоненты серверов.</p></details>
+    <details><summary>Можно нанять вас на проект, а не в штат?</summary>
+      <p>Да. Работаю по договору с ИП — на отдельный проект, этап или на постоянную доработку. В штат тоже рассматриваю — удалённо, в гибридном формате или в офисе. На удалёнке рабочий день совпадает с московским.</p></details>
+    <details><summary>Когда нужен C++, а когда хватит Python или Node.js?</summary>
+      <p>В большинстве веб-сервисов хватает Python или Node.js: время уходит на базу данных и сеть, а не на вычисления. C++ нужен, когда профилирование показывает узкое место именно в расчётах или обработке данных, когда критичны память и время отклика или когда нужно встроиться в существующий код на C++. Часто достаточно вынести на C++ одну тяжёлую функцию, а не переписывать сервис.</p></details>
+    <details><summary>Можно встроить модуль на C++ в сервис на Python или Node.js?</summary>
+      <p>Да. Для Python модуль подключается, например, через pybind11, для Node.js — через Node-API. Сервис вызывает его как обычную библиотеку, а сборка модуля входит в Docker-образ сервиса.</p></details>
+    <details><summary>Беретесь за доработку чужого кода на C++?</summary>
+      <p>Да. Сначала добиваюсь, чтобы проект воспроизводимо собирался, затем разбираю структуру и исправляю или расширяю нужное. Если тестов нет, начинаю с них — для той части, которую предстоит менять.</p></details>
+    <details><summary>Сколько стоит разработка на C++?</summary>
+      <p>Цена зависит от объёма, состояния существующего кода и того, как модуль встраивается в систему. После короткого созвона присылаю оценку по этапам.</p></details>
+  </div>
+</section>
+
+<div class="total">
+  <h2>Нужен C++-разработчик?</h2>
+  <p>Опишите задачу в Telegram: что нужно ускорить, написать или доработать и в какую систему это встраивается. Если ищете разработчика в штат — пришлите вакансию.</p>
+  <div class="contacts">
+    <div><span>Telegram</span><a href="https://t.me/uzver_ge" target="_blank" rel="noopener noreferrer">@uzver_ge</a></div>
+    <div><span>Почта</span><a href="mailto:myworkermailbox2022@gmail.com">myworkermailbox2022@gmail.com</a></div>
+    <div><span>Резюме</span><a href="/">опыт и стек</a></div>
+  </div>
+</div>
+
+<footer>
+  <!-- footmap -->
+  <nav class="footmap" aria-label="Карта сайта">
+    <div><b>Услуги</b><a href="/telegram-mini-app/">Telegram-боты и Mini Apps</a><a href="/boty-max/">Боты для MAX</a><a href="/oplata-v-bote/">Оплата в боте</a><a href="/platezhi/">Интеграция платёжных систем</a><a href="/mobilnye-prilozheniya/">Мобильные приложения</a></div>
+    <div><b>Бэкенд-разработчик</b><a href="/php/">PHP-разработчик</a><a href="/laravel/">Laravel-разработчик</a><a href="/nodejs/">Node.js-разработчик</a><a href="/typescript/">TypeScript-разработчик</a><a href="/python/">Python-разработчик</a><a href="/java/">Java-разработчик</a><a href="/csharp/">C#-разработчик</a><a href="/cpp/" aria-current="page">C++-разработчик</a></div>
+    <div><b>Фронтенд и мобильные</b><a href="/react-nextjs/">React-разработчик</a><a href="/vue/">Vue-разработчик</a><a href="/ios/">iOS-разработчик</a><a href="/android/">Android-разработчик</a></div>
+    <div><b>Кейсы и статьи</b><a href="/cases/podpiski/">Платформа подписок</a><a href="/cases/monitoring/">Мониторинг майнеров</a><a href="/blog/go-ili-python/">Go или Python</a><a href="/blog/react-ili-vue/">React или Vue</a><a href="/blog/php-ili-python/">PHP или Python</a><a href="/blog/react-native-ili-flutter/">React Native или Flutter</a></div>
+  </nav>
+  <!-- /footmap -->
+  <div class="wrap">Комягин Николай · Fullstack-разработчик · веб, мобильные приложения, боты, платежи</div>
+</footer>
+
+</div>
+
+<script src="/assets/site.js"></script>
+</body>
+</html>

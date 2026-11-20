@@ -1,0 +1,328 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<title>PHP-разработчик: Laravel, Symfony, API и legacy — Николай Комягин</title>
+<meta name="description" content="PHP-разработчик, 6+ лет коммерческой разработки: Laravel и Symfony, API и веб-сервисы, биллинг и платежи, очереди, доработка legacy, плагины Moodle. На проект или в штат: удалённо, гибрид или офис.">
+<link rel="canonical" href="https://komiagin.dev/php/">
+<meta name="robots" content="index, follow, max-image-preview:large">
+<meta name="theme-color" content="#020604">
+
+<meta property="og:type" content="website">
+<meta property="og:locale" content="ru_RU">
+<meta property="og:site_name" content="komiagin.dev">
+<meta property="og:url" content="https://komiagin.dev/php/">
+<meta property="og:title" content="PHP-разработчик — Николай Комягин">
+<meta property="og:description" content="Разработка на PHP: Laravel и Symfony, API, биллинг и платежи, очереди и фоновые расчёты, доработка legacy-кода. На проект или в штат: удалённо, гибрид или офис.">
+<meta property="og:image" content="https://komiagin.dev/og.png">
+<meta name="twitter:card" content="summary_large_image">
+
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'><rect width='64' height='64' fill='%23020604'/><text x='32' y='47' font-family='monospace' font-size='46' font-weight='bold' fill='%2300FF6A' text-anchor='middle'>K</text></svg>">
+<link rel="apple-touch-icon" href="/icon-512.png">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700;800&family=Manrope:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/assets/site.css">
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Service",
+      "name": "PHP-разработчик на проект",
+      "serviceType": "Backend-разработка на PHP, Laravel и Symfony",
+      "url": "https://komiagin.dev/php/",
+      "description": "PHP-разработчик, 6+ лет коммерческой разработки: Laravel и Symfony, API и веб-сервисы, биллинг и платежи, очереди, доработка legacy, плагины Moodle. На проект или в штат: удалённо, гибрид или офис.",
+      "areaServed": {
+        "@type": "Country",
+        "name": "Россия"
+      },
+      "provider": {
+        "@type": "Person",
+        "name": "Николай Комягин",
+        "jobTitle": "Fullstack-разработчик",
+        "url": "https://komiagin.dev/"
+      }
+    },
+    {
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "Главная",
+          "item": "https://komiagin.dev/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "name": "Услуги и технологии",
+          "item": "https://komiagin.dev/uslugi/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 3,
+          "name": "PHP-разработчик",
+          "item": "https://komiagin.dev/php/"
+        }
+      ]
+    },
+    {
+      "@type": "FAQPage",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "Чем занимается PHP-разработчик?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Пишет серверную часть сайтов и веб-сервисов на PHP: API, работу с базой данных, авторизацию, платежи, фоновые задачи и интеграции с внешними сервисами. Чаще всего — на фреймворках Laravel или Symfony, а в старых проектах — и на самописном коде, который нужно поддерживать и развивать."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Можно нанять вас на проект, а не в штат?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Да. Работаю по договору с ИП — на отдельный проект, этап или на постоянную доработку. В штат тоже рассматриваю — удалённо, в гибридном формате или в офисе. На удалёнке рабочий день совпадает с московским."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Laravel или Symfony?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Работаю с обоими. Для нового продукта чаще выбираю Laravel: очереди, авторизация и админка собираются из готовых частей. Если проект уже на Symfony, продолжаю на нём — переписывать работающий код ради смены фреймворка обычно невыгодно."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Беретесь за старый код на PHP?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Да. Разбираю чужой код, восстанавливаю и расширяю функционал, делаю ревью. Начинаю с короткого аудита: что устарело, где риски и что чинить в первую очередь."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Пишете тесты?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Да: PHPUnit и Pest. Расчёты, списания и обработка вебхуков уходят в продакшен только с автотестами, а перед релизом я прогоняю сценарии руками."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Сколько стоит разработка на PHP?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Цена зависит от объёма, состояния существующего кода и числа интеграций. После короткого созвона присылаю оценку по этапам."
+          }
+        }
+      ]
+    }
+  ]
+}
+</script>
+</head>
+<body>
+
+<div id="rain" aria-hidden="true">
+  <canvas id="rainc"></canvas>
+  <div class="scrim"></div>
+  <div class="scan"></div>
+</div>
+
+<div class="wrap">
+
+<!-- nav -->
+<nav class="topnav" aria-label="Разделы сайта">
+  <a class="brand" href="/">komiagin.dev</a>
+  <a href="/uslugi/" aria-current="page">Услуги и технологии</a>
+  <a href="/#cases">Кейсы</a>
+  <a href="/blog/">Статьи</a>
+</nav>
+<!-- /nav -->
+<header class="sheet">
+  <div class="crumbs"><a href="/">Главная</a> / <a href="/uslugi/">Услуги и технологии</a> / PHP-разработчик</div>
+  <div class="stamp tag">Разработчик</div>
+  <h1>PHP-разработчик</h1>
+  <div class="role">PHP · Laravel · Symfony · API · биллинг · legacy</div>
+
+  <dl class="meta">
+    <div class="mrow"><dt>Опыт</dt><dd>Коммерческая разработка с&nbsp;сентября 2020: PHP и Laravel — в&nbsp;ilink и&nbsp;в&nbsp;контрактных проектах</dd><dd class="num">6+ лет</dd></div>
+    <div class="mrow"><dt>Формат</dt><dd>На проект по договору с&nbsp;ИП или в&nbsp;штат: удалённо, гибрид или офис</dd><dd class="num">Гибко</dd></div>
+    <div class="mrow"><dt>Стек</dt><dd>PHP, Laravel, Symfony, PostgreSQL, MySQL, Redis, PHPUnit / Pest, Docker</dd><dd class="num">Backend</dd></div>
+    <div class="mrow"><dt>Часовой пояс</dt><dd>Рабочий день совпадает с&nbsp;московским</dd><dd class="num">МСК</dd></div>
+  </dl>
+
+  <p class="pitch">Пишу бэкенд на PHP: <strong>веб-сервисы и API, биллинг и платежи, очереди и фоновые расчёты, доработку чужого legacy-кода.</strong> Основной фреймворк — Laravel, с проектами на Symfony тоже работаю.</p>
+  <p class="pitch">На PHP я сделал три инструмента анализа для SEO-платформы «Титло» — они работают в продакшене. А начинал с плагинов для Moodle, на которой вёл курс веб-разработки.</p>
+  <div class="cta-row">
+    <a class="btn solid" href="https://t.me/uzver_ge" target="_blank" rel="noopener noreferrer">Обсудить проект в Telegram</a>
+    <a class="btn ghost" href="#cases">Кейс: SEO-платформа «Титло»</a>
+  </div>
+</header>
+<section>
+  <div class="head"><h2>Чем занимается PHP-разработчик</h2><span class="tag">коротко</span></div>
+  <p class="sub">PHP-разработчик пишет серверную часть сайтов и веб-сервисов: API для фронтенда и мобильных приложений, работу с базой данных, авторизацию, платежи, фоновые задачи и интеграции с внешними сервисами. На PHP написано много сайтов и сервисов, которые работают годами, поэтому кроме новых проектов в этой работе много чужого кода.</p>
+  <p class="sub">У меня это чаще всего Laravel и сервисы, где ошибка стоит денег, а тяжёлые расчёты нельзя выполнять прямо в запросе пользователя. Отдельная часть работы — legacy: разобраться, как устроен проект, восстановить то, что сломалось, и аккуратно добавить новое.</p>
+</section>
+<section>
+  <div class="head"><h2>Что делаю на PHP</h2><span class="tag">шесть направлений</span></div>
+  <div class="ledger">
+    <div class="item">
+      <span class="idx">01</span>
+      <div>
+        <h3>Laravel и Symfony</h3>
+        <p>Новые проекты чаще начинаю на Laravel: очереди, авторизация и админка собираются из готовых частей. Если проект уже на Symfony, продолжаю на нём.</p>
+        <div class="kit">PHP · Laravel · Symfony</div>
+        <a class="more" href="/laravel/">Laravel-разработчик →</a>
+      </div>
+    </div>
+    <div class="item">
+      <span class="idx">02</span>
+      <div>
+        <h3>API и веб-сервисы</h3>
+        <p>REST / JSON API для фронтенда, мобильных приложений и внешних систем: авторизация, роли и права доступа, валидация, сложная фильтрация и агрегация данных.</p>
+        <div class="kit">REST / JSON API · RBAC</div>
+      </div>
+    </div>
+    <div class="item">
+      <span class="idx">03</span>
+      <div>
+        <h3>Биллинг и платежи</h3>
+        <p>Рекуррентные списания, идемпотентная обработка вебхуков платёжных провайдеров, чеки по 54-ФЗ. Баланс должен сходиться, а любую операцию можно объяснить постфактум.</p>
+        <div class="kit">подписки · вебхуки · 54-ФЗ</div>
+        <a class="more" href="/platezhi/">Интеграция платёжных систем →</a>
+      </div>
+    </div>
+    <div class="item">
+      <span class="idx">04</span>
+      <div>
+        <h3>Очереди и фоновые расчёты</h3>
+        <p>Тяжёлые задачи уходят в очередь: пользователь видит статус и процент выполнения, а сайт не тормозит. Повторные запросы к внешним API не уходят наружу — ответы кешируются.</p>
+        <div class="kit">очереди · Redis · кеширование</div>
+      </div>
+    </div>
+    <div class="item">
+      <span class="idx">05</span>
+      <div>
+        <h3>Доработка legacy</h3>
+        <p>Разбираю чужой код, восстанавливаю и расширяю функционал, делаю ревью. Сначала короткий аудит: что устарело, где риски и что чинить в первую очередь.</p>
+        <div class="kit">аудит · рефакторинг · ревью</div>
+      </div>
+    </div>
+    <div class="item">
+      <span class="idx">06</span>
+      <div>
+        <h3>Плагины на PHP</h3>
+        <p>Когда штатных возможностей платформы не хватает, пишу расширение под её API. Первые такие плагины я сделал для Moodle: проверку вёрстки учеников и отчёты по группе.</p>
+        <div class="kit">PHP · Moodle API · MySQL</div>
+      </div>
+    </div>
+  </div>
+</section>
+<section>
+  <div class="head"><h2>Стек</h2><span class="tag">чем работаю</span></div>
+  <div class="stack">
+    <div class="srow"><span class="k">Backend</span><div class="chips"><span class="chip">PHP</span><span class="chip">Laravel</span><span class="chip">Symfony</span><span class="chip">REST API</span></div></div>
+    <div class="srow"><span class="k">Данные</span><div class="chips"><span class="chip">PostgreSQL</span><span class="chip">MySQL</span><span class="chip">Redis</span><span class="chip">очереди</span></div></div>
+    <div class="srow"><span class="k">Frontend</span><div class="chips"><span class="chip">Vue 3</span><span class="chip">JavaScript</span><span class="chip">jQuery</span></div></div>
+    <div class="srow"><span class="k">Тесты</span><div class="chips"><span class="chip">PHPUnit</span><span class="chip">Pest</span></div></div>
+    <div class="srow"><span class="k">Инфраструктура</span><div class="chips"><span class="chip">Docker</span><span class="chip">Nginx</span><span class="chip">Linux</span><span class="chip">Cloudflare</span></div></div>
+  </div>
+  <div class="related"><a class="more" href="/typescript/">TypeScript-разработчик →</a><a class="more" href="/nodejs/">Node.js-разработчик →</a><a class="more" href="/python/">Python-разработчик →</a><a class="more" href="/blog/php-ili-python/">Статья: PHP или Python →</a></div>
+</section>
+<section id="cases">
+  <div class="head"><h2>Реальные проекты на PHP</h2><span class="tag">от плагинов до продакшена</span></div>
+  <div class="cases">
+    <article class="case">
+      <div class="case-top"><span class="idx">01</span><h3>SEO-платформа «Титло»: три инструмента анализа</h3><a class="site" href="https://titlo.ru/" target="_blank" rel="noopener noreferrer">titlo.ru</a></div>
+      <div class="case-role">Один из двух разработчиков · свои модули — от постановки до продакшена</div>
+      <p class="sub">Платформе нужны были инструменты текстового и конкурентного анализа сильнее, чем у аналогов. С нуля сделал три: анализ релевантности, анализ текста и анализ конкурентов. Выдача собирается через API Яндекса и Google, TF-IDF — своя реализация, тяжёлые расчёты идут в фоновых очередях со статусом и процентом выполнения, а результаты сжимаются при записи в базу. Полный анализ по запросу занимает 1–5&nbsp;минут, инструменты работают в продакшене.</p>
+      <div class="figs">
+        <div class="fig"><b>3</b><span>инструмента с нуля</span></div>
+        <div class="fig"><b>30</b><span>конкурентов на запрос</span></div>
+        <div class="fig"><b>1–5&nbsp;мин</b><span>полный анализ</span></div>
+      </div>
+      <div class="kit">PHP · Laravel · очереди · API Яндекс / Google · jQuery</div>
+    </article>
+    <article class="case">
+      <div class="case-top"><span class="idx">02</span><h3>Плагины Moodle для курса веб-разработки</h3></div>
+      <div class="case-role">Преподаватель веб-разработки · учебный центр для детей, Томск · февраль — июнь 2020</div>
+      <p class="sub">Курс для школьников шёл через Moodle, и под него я написал два плагина на PHP. Первый — тип сдачи задания: ученик отправлял HTML и CSS, плагин рендерил превью, сверял результат с эталонным макетом и прогонял валидатор разметки, так что разбор ошибок ученик видел сразу, а не на следующем занятии. Второй — отчёты по группе: кто на какой теме, сколько попыток ушло на задание, где группа застревает массово, и еженедельный отчёт по ученику родителям на почту. Оба плагина я сопровождал при обновлениях Moodle.</p>
+      <div class="figs">
+        <div class="fig"><b>2</b><span>плагина на PHP</span></div>
+        <div class="fig"><b>10–12</b><span>учеников в группе</span></div>
+        <div class="fig"><b>4</b><span>месяца курса</span></div>
+      </div>
+      <div class="kit">PHP · Moodle API · MySQL · HTML / CSS / JavaScript</div>
+    </article>
+  </div>
+</section>
+<section>
+  <div class="head"><h2>Типовое решение</h2><span class="tag">как это может выглядеть</span></div>
+  <article class="example">
+    <div class="ex-top"><span class="ex-label">Типовое решение</span><h3>Обновление legacy-проекта на PHP без остановки продаж</h3></div>
+    <div class="ex-note">Пример задачи и архитектуры, а не проект из портфолио</div>
+    <dl>
+      <div class="crow"><dt>Задача</dt><dd>Интернет-магазин работает на старой версии PHP и самописном коде. Любая правка ломает что-то рядом, а хостинг перестаёт поддерживать старую версию языка.</dd></div>
+      <div class="crow"><dt>Как собрать</dt><dd>Сначала аудит и автотесты на критичные сценарии: оформление заказа, оплату, личный кабинет. Затем переезд по частям: новые модули пишутся на Laravel рядом со старым кодом, старые страницы переносятся по одной, пока прежний код не перестанет быть нужен. Окружение в Docker, чтобы локальная и боевая версии совпадали.</dd></div>
+      <div class="crow"><dt>Что получит заказчик</dt><dd>Проект на поддерживаемой версии PHP, правки без страха сломать соседнее, а магазин продолжает принимать заказы, пока идёт переезд.</dd></div>
+    </dl>
+    <div class="kit">PHP · Laravel · MySQL · PHPUnit · Docker</div>
+  </article>
+</section>
+<section>
+  <div class="head"><h2>Формат работы и стоимость</h2><span class="tag">по задаче</span></div>
+  <p class="sub">Работаю на проект или этап по договору с ИП, на постоянную доработку или в штат — удалённо, в гибридном формате или в офисе. Если проект уже есть, начинаю с короткого аудита — после него понятно, сколько займут доработки. Цена зависит от объёма, состояния существующего кода и числа интеграций. После короткого созвона присылаю оценку по этапам.</p>
+</section>
+<section>
+  <div class="head"><h2>Частые вопросы</h2><span class="tag">про PHP</span></div>
+  <div class="faq">
+    <details><summary>Чем занимается PHP-разработчик?</summary>
+      <p>Пишет серверную часть сайтов и веб-сервисов на PHP: API, работу с базой данных, авторизацию, платежи, фоновые задачи и интеграции с внешними сервисами. Чаще всего — на фреймворках Laravel или Symfony, а в старых проектах — и на самописном коде, который нужно поддерживать и развивать.</p></details>
+    <details><summary>Можно нанять вас на проект, а не в штат?</summary>
+      <p>Да. Работаю по договору с ИП — на отдельный проект, этап или на постоянную доработку. В штат тоже рассматриваю — удалённо, в гибридном формате или в офисе. На удалёнке рабочий день совпадает с московским.</p></details>
+    <details><summary>Laravel или Symfony?</summary>
+      <p>Работаю с обоими. Для нового продукта чаще выбираю Laravel: очереди, авторизация и админка собираются из готовых частей. Если проект уже на Symfony, продолжаю на нём — переписывать работающий код ради смены фреймворка обычно невыгодно.</p></details>
+    <details><summary>Беретесь за старый код на PHP?</summary>
+      <p>Да. Разбираю чужой код, восстанавливаю и расширяю функционал, делаю ревью. Начинаю с короткого аудита: что устарело, где риски и что чинить в первую очередь.</p></details>
+    <details><summary>Пишете тесты?</summary>
+      <p>Да: PHPUnit и Pest. Расчёты, списания и обработка вебхуков уходят в продакшен только с автотестами, а перед релизом я прогоняю сценарии руками.</p></details>
+    <details><summary>Сколько стоит разработка на PHP?</summary>
+      <p>Цена зависит от объёма, состояния существующего кода и числа интеграций. После короткого созвона присылаю оценку по этапам.</p></details>
+  </div>
+</section>
+
+<div class="total">
+  <h2>Нужен PHP-разработчик?</h2>
+  <p>Опишите задачу в Telegram: новый сервис, доработка существующего кода или аудит. Если ищете разработчика в штат — пришлите вакансию.</p>
+  <div class="contacts">
+    <div><span>Telegram</span><a href="https://t.me/uzver_ge" target="_blank" rel="noopener noreferrer">@uzver_ge</a></div>
+    <div><span>Почта</span><a href="mailto:myworkermailbox2022@gmail.com">myworkermailbox2022@gmail.com</a></div>
+    <div><span>Резюме</span><a href="/">опыт и стек</a></div>
+  </div>
+</div>
+
+<footer>
+  <!-- footmap -->
+  <nav class="footmap" aria-label="Карта сайта">
+    <div><b>Услуги</b><a href="/telegram-mini-app/">Telegram-боты и Mini Apps</a><a href="/boty-max/">Боты для MAX</a><a href="/oplata-v-bote/">Оплата в боте</a><a href="/platezhi/">Интеграция платёжных систем</a><a href="/mobilnye-prilozheniya/">Мобильные приложения</a></div>
+    <div><b>Бэкенд-разработчик</b><a href="/php/" aria-current="page">PHP-разработчик</a><a href="/laravel/">Laravel-разработчик</a><a href="/nodejs/">Node.js-разработчик</a><a href="/typescript/">TypeScript-разработчик</a><a href="/python/">Python-разработчик</a><a href="/java/">Java-разработчик</a><a href="/csharp/">C#-разработчик</a><a href="/cpp/">C++-разработчик</a></div>
+    <div><b>Фронтенд и мобильные</b><a href="/react-nextjs/">React-разработчик</a><a href="/vue/">Vue-разработчик</a><a href="/ios/">iOS-разработчик</a><a href="/android/">Android-разработчик</a></div>
+    <div><b>Кейсы и статьи</b><a href="/cases/podpiski/">Платформа подписок</a><a href="/cases/monitoring/">Мониторинг майнеров</a><a href="/blog/go-ili-python/">Go или Python</a><a href="/blog/react-ili-vue/">React или Vue</a><a href="/blog/php-ili-python/">PHP или Python</a><a href="/blog/react-native-ili-flutter/">React Native или Flutter</a></div>
+  </nav>
+  <!-- /footmap -->
+  <div class="wrap">Комягин Николай · Fullstack-разработчик · веб, мобильные приложения, боты, платежи</div>
+</footer>
+
+</div>
+
+<script src="/assets/site.js"></script>
+</body>
+</html>

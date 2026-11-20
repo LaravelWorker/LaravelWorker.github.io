@@ -1,0 +1,330 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<title>TypeScript-разработчик: Node.js, React, Vue и общие типы API — Николай Комягин</title>
+<meta name="description" content="TypeScript-разработчик, 6+ лет коммерческой разработки: бэкенд на Node.js, фронтенд на React, Next.js и Vue 3, общие типы API, Telegram Mini Apps, перевод проектов с JavaScript. На проект или в штат.">
+<link rel="canonical" href="https://komiagin.dev/typescript/">
+<meta name="robots" content="index, follow, max-image-preview:large">
+<meta name="theme-color" content="#020604">
+
+<meta property="og:type" content="website">
+<meta property="og:locale" content="ru_RU">
+<meta property="og:site_name" content="komiagin.dev">
+<meta property="og:url" content="https://komiagin.dev/typescript/">
+<meta property="og:title" content="TypeScript-разработчик — Николай Комягин">
+<meta property="og:description" content="TypeScript на всём стеке: бэкенд на Node.js, интерфейсы на React, Next.js и Vue 3, общие типы контракта API, перевод с JavaScript. На проект или в штат: удалённо, гибрид или офис.">
+<meta property="og:image" content="https://komiagin.dev/og.png">
+<meta name="twitter:card" content="summary_large_image">
+
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'><rect width='64' height='64' fill='%23020604'/><text x='32' y='47' font-family='monospace' font-size='46' font-weight='bold' fill='%2300FF6A' text-anchor='middle'>K</text></svg>">
+<link rel="apple-touch-icon" href="/icon-512.png">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700;800&family=Manrope:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/assets/site.css">
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Service",
+      "name": "TypeScript-разработчик на проект",
+      "serviceType": "Fullstack-разработка на TypeScript: Node.js, React, Next.js, Vue",
+      "url": "https://komiagin.dev/typescript/",
+      "description": "TypeScript-разработчик, 6+ лет коммерческой разработки: бэкенд на Node.js, фронтенд на React, Next.js и Vue 3, общие типы API, Telegram Mini Apps, перевод проектов с JavaScript. На проект или в штат.",
+      "areaServed": {
+        "@type": "Country",
+        "name": "Россия"
+      },
+      "provider": {
+        "@type": "Person",
+        "name": "Николай Комягин",
+        "jobTitle": "Fullstack-разработчик",
+        "url": "https://komiagin.dev/"
+      }
+    },
+    {
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "Главная",
+          "item": "https://komiagin.dev/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "name": "Услуги и технологии",
+          "item": "https://komiagin.dev/uslugi/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 3,
+          "name": "TypeScript-разработчик",
+          "item": "https://komiagin.dev/typescript/"
+        }
+      ]
+    },
+    {
+      "@type": "FAQPage",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "Чем занимается TypeScript-разработчик?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Пишет на TypeScript — JavaScript с типами — серверную часть на Node.js, интерфейсы на React или Vue, а часто и то и другое. Типы проверяются до запуска кода, поэтому часть ошибок ловится при сборке, а не у пользователя."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Можно нанять вас на проект, а не в штат?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Да. Работаю по договору с ИП — на отдельный проект, этап или на постоянную доработку. В штат тоже рассматриваю — удалённо, в гибридном формате или в офисе. На удалёнке рабочий день совпадает с московским."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Зачем TypeScript, если есть JavaScript?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Типы описывают, какие данные принимает и возвращает каждая функция и каждый запрос к API. Редактор подсказывает и подсвечивает ошибки, переименование и рефакторинг становятся безопаснее, а новому человеку в команде проще разобраться в коде. Для короткого скрипта это лишнее, для продукта, который будут развивать годами, — нет."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Можно перевести наш проект с JavaScript на TypeScript?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Да, постепенно и без остановки разработки. TypeScript работает рядом с JavaScript в одном проекте, поэтому сначала типизируются API и общие модели, а остальной код переводится модуль за модулем."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Пишете и бэкенд, и фронтенд?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Да. Бэкенд на Node.js, фронтенд на React, Next.js или Vue 3 — с общими типами запросов и ответов. Могу вести обе части или подключиться к одной из них в вашей команде."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Сколько стоит разработка на TypeScript?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Цена зависит от объёма, числа интеграций и того, есть ли уже код, который нужно переводить на TypeScript. После короткого созвона присылаю оценку по этапам."
+          }
+        }
+      ]
+    }
+  ]
+}
+</script>
+</head>
+<body>
+
+<div id="rain" aria-hidden="true">
+  <canvas id="rainc"></canvas>
+  <div class="scrim"></div>
+  <div class="scan"></div>
+</div>
+
+<div class="wrap">
+
+<!-- nav -->
+<nav class="topnav" aria-label="Разделы сайта">
+  <a class="brand" href="/">komiagin.dev</a>
+  <a href="/uslugi/" aria-current="page">Услуги и технологии</a>
+  <a href="/#cases">Кейсы</a>
+  <a href="/blog/">Статьи</a>
+</nav>
+<!-- /nav -->
+<header class="sheet">
+  <div class="crumbs"><a href="/">Главная</a> / <a href="/uslugi/">Услуги и технологии</a> / TypeScript-разработчик</div>
+  <div class="stamp tag">Разработчик</div>
+  <h1>TypeScript-разработчик</h1>
+  <div class="role">TypeScript на всём стеке · Node.js · React / Next.js · Vue 3</div>
+
+  <dl class="meta">
+    <div class="mrow"><dt>Опыт</dt><dd>Коммерческая разработка с&nbsp;сентября 2020: TypeScript и Node.js — в&nbsp;ilink и&nbsp;в&nbsp;контрактных проектах</dd><dd class="num">6+ лет</dd></div>
+    <div class="mrow"><dt>Формат</dt><dd>На проект по договору с&nbsp;ИП или в&nbsp;штат: удалённо, гибрид или офис</dd><dd class="num">Гибко</dd></div>
+    <div class="mrow"><dt>Стек</dt><dd>TypeScript, Node.js, React, Next.js, Vue 3, PostgreSQL, Redis, Jest / Vitest</dd><dd class="num">Fullstack</dd></div>
+    <div class="mrow"><dt>Часовой пояс</dt><dd>Рабочий день совпадает с&nbsp;московским</dd><dd class="num">МСК</dd></div>
+  </dl>
+
+  <p class="pitch">Пишу на TypeScript и сервер, и интерфейс: <strong>бэкенд на Node.js, фронтенд на React, Next.js и Vue 3 и общие типы контракта API между ними.</strong> Поле, переименованное на сервере, ломает сборку фронтенда, а не работу пользователя.</p>
+  <p class="pitch">На TypeScript и Node.js написан бэкенд сервиса автоматизации фьючерсной торговли на Bybit — там я был единственным backend-разработчиком. В ilink на этом стеке я отвечал за серверную часть веб-приложений по госзаказам.</p>
+  <div class="cta-row">
+    <a class="btn solid" href="https://t.me/uzver_ge" target="_blank" rel="noopener noreferrer">Обсудить проект в Telegram</a>
+    <a class="btn ghost" href="#cases">Кейс: бэкенд на TypeScript</a>
+  </div>
+</header>
+<section>
+  <div class="head"><h2>Чем занимается TypeScript-разработчик</h2><span class="tag">коротко</span></div>
+  <p class="sub">TypeScript — это JavaScript с типами: компилятор ещё до запуска проверяет, что функции получают и возвращают данные нужной формы. TypeScript-разработчик пишет на нём серверную часть на Node.js, интерфейсы на React или Vue, а часто и то и другое.</p>
+  <p class="sub">Больше всего типы дают на стыке частей. Когда сервер и фронтенд описывают запросы и ответы одними и теми же типами, изменение в API сразу видно во всём проекте: редактор подсвечивает каждое место, которое нужно поправить. Поэтому я веду TypeScript через весь стек, а не только в одной его половине.</p>
+</section>
+<section>
+  <div class="head"><h2>Что делаю на TypeScript</h2><span class="tag">шесть направлений</span></div>
+  <div class="ledger">
+    <div class="item">
+      <span class="idx">01</span>
+      <div>
+        <h3>Бэкенд на Node.js</h3>
+        <p>REST API, авторизация и роли, интеграции с внешними API, очереди и фоновые задачи. Строгий режим компилятора и проверка входящих данных там, где они приходят извне.</p>
+        <div class="kit">Node.js · TypeScript · PostgreSQL · Redis</div>
+        <a class="more" href="/nodejs/">Node.js-разработчик →</a>
+      </div>
+    </div>
+    <div class="item">
+      <span class="idx">02</span>
+      <div>
+        <h3>Фронтенд на React, Next.js и Vue 3</h3>
+        <p>Личные кабинеты, админ-панели, дашборды и сайты, которые должны находиться в поиске. Типизированные компоненты, формы и ответы API.</p>
+        <div class="kit">React · Next.js · Vue 3 · TypeScript</div>
+        <a class="more" href="/react-nextjs/">Разработка на React и Next.js →</a>
+        <a class="more" href="/vue/">Разработка на Vue →</a>
+      </div>
+    </div>
+    <div class="item">
+      <span class="idx">03</span>
+      <div>
+        <h3>Общие типы контракта API</h3>
+        <p>Типы запросов и ответов описываются один раз и используются и на сервере, и во фронтенде: в общем пакете или с генерацией из схемы API. Переименованное поле не уедет в продакшен незамеченным.</p>
+        <div class="kit">общие типы · схема API · монорепозиторий</div>
+      </div>
+    </div>
+    <div class="item">
+      <span class="idx">04</span>
+      <div>
+        <h3>Telegram Mini Apps</h3>
+        <p>Бот, веб-приложение внутри Telegram и сервер на одном языке. Данные запуска initData проверяются на сервере, а их тип общий с клиентом.</p>
+        <div class="kit">Telegram Bot API · React / Vue · initData</div>
+        <a class="more" href="/telegram-mini-app/">Telegram-боты и Mini Apps →</a>
+      </div>
+    </div>
+    <div class="item">
+      <span class="idx">05</span>
+      <div>
+        <h3>Перевод с JavaScript на TypeScript</h3>
+        <p>Постепенно, без остановки разработки: сначала настройка компилятора и типы для API и общих моделей, затем модуль за модулем. Строгость проверок растёт вместе с долей переведённого кода.</p>
+        <div class="kit">JavaScript → TypeScript · поэтапно</div>
+      </div>
+    </div>
+    <div class="item">
+      <span class="idx">06</span>
+      <div>
+        <h3>Тесты</h3>
+        <p>Типы не заменяют тесты, а отсекают другой класс ошибок. Логику, где ошибка стоит денег, закрываю автотестами на Jest или Vitest, перед выкаткой прогоняю сценарии руками.</p>
+        <div class="kit">Jest · Vitest</div>
+      </div>
+    </div>
+  </div>
+</section>
+<section>
+  <div class="head"><h2>Стек</h2><span class="tag">чем работаю</span></div>
+  <div class="stack">
+    <div class="srow"><span class="k">Язык</span><div class="chips"><span class="chip">TypeScript</span><span class="chip">JavaScript</span></div></div>
+    <div class="srow"><span class="k">Backend</span><div class="chips"><span class="chip">Node.js</span><span class="chip">REST API</span><span class="chip">Telegram Bot API</span></div></div>
+    <div class="srow"><span class="k">Frontend</span><div class="chips"><span class="chip">React</span><span class="chip">Next.js</span><span class="chip">Vue 3</span></div></div>
+    <div class="srow"><span class="k">Данные</span><div class="chips"><span class="chip">PostgreSQL</span><span class="chip">MongoDB</span><span class="chip">Redis</span></div></div>
+    <div class="srow"><span class="k">Тесты</span><div class="chips"><span class="chip">Jest</span><span class="chip">Vitest</span></div></div>
+    <div class="srow"><span class="k">Инфраструктура</span><div class="chips"><span class="chip">Docker</span><span class="chip">Nginx</span><span class="chip">Linux</span></div></div>
+  </div>
+  <div class="related"><a class="more" href="/php/">PHP-разработчик →</a><a class="more" href="/python/">Python-разработчик →</a><a class="more" href="/blog/react-ili-vue/">Статья: React или Vue →</a></div>
+</section>
+<section id="cases">
+  <div class="head"><h2>Реальные проекты на TypeScript</h2><span class="tag">бэкенд и команда</span></div>
+  <div class="cases">
+    <article class="case">
+      <div class="case-top"><span class="idx">01</span><h3>Бэкенд сервиса автоматизации фьючерсной торговли</h3><span class="site dead">tradingforce.io · проект закрыт</span></div>
+      <div class="case-role">Единственный backend-разработчик в команде из четырёх · архитектура вместе с лидом</div>
+      <p class="sub">Вся серверная часть на Node.js и TypeScript: интеграция с торговым API Bybit, REST API для веб-кабинета и отдельное API для графиков во фронтенде, автоматическое выставление stop-loss и take-profit при достижении заданной цены. Котировки приходили из отдельного Python-сервиса через Redis, на стороне бэкенда повторные запросы склеивались, а ответы кешировались. Торговую логику я закрыл автотестами. Продукт не нашёл места на рынке и закрыт, но бэкенд был собран целиком и работал.</p>
+      <div class="figs">
+        <div class="fig"><b>3</b><span>торговых бота</span></div>
+        <div class="fig"><b>4</b><span>человека в команде</span></div>
+        <div class="fig"><b>1</b><span>backend-разработчик</span></div>
+      </div>
+      <div class="kit">Node.js · TypeScript · Python · Redis · PostgreSQL · Bybit API</div>
+    </article>
+    <article class="case">
+      <div class="case-top"><span class="idx">02</span><h3>Серверная часть веб-приложений по госзаказам</h3></div>
+      <div class="case-role">ilink, Томск · backend-разработчик · сентябрь 2020 — июнь 2022 · детали под NDA</div>
+      <p class="sub">Аутсорс-разработка по государственным заказам. Отвечал за серверную часть веб-приложений на TypeScript, Node.js и Laravel, закрывал и клиентские задачи. Был наставником четырёх junior-разработчиков: разбор задач и решений, код-ревью. Среда регламентированная: фиксированные требования, формальная приёмка, повышенные требования к качеству и срокам.</p>
+      <div class="figs">
+        <div class="fig"><b>8</b><span>человек в команде</span></div>
+        <div class="fig"><b>4</b><span>junior-разработчика под наставничеством</span></div>
+      </div>
+      <div class="kit">TypeScript · Node.js · Laravel</div>
+    </article>
+  </div>
+</section>
+<section>
+  <div class="head"><h2>Типовое решение</h2><span class="tag">как это может выглядеть</span></div>
+  <article class="example">
+    <div class="ex-top"><span class="ex-label">Типовое решение</span><h3>Портал для дилеров: заказы, остатки и документы</h3></div>
+    <div class="ex-note">Пример задачи и архитектуры, а не проект из портфолио</div>
+    <dl>
+      <div class="crow"><dt>Задача</dt><dd>Производитель принимает заказы от дилеров по почте и в мессенджерах, менеджеры вручную сверяют остатки и цены и пересылают документы.</dd></div>
+      <div class="crow"><dt>Как собрать</dt><dd>Монорепозиторий на TypeScript: API на Node.js, кабинет дилера на Next.js, админка для менеджеров на React. Типы заказа, позиций и статусов лежат в общем пакете, который используют все три части. Остатки подтягиваются из учётной системы по расписанию, о смене статуса заказа дилер узнаёт в Telegram.</dd></div>
+      <div class="crow"><dt>Что получит заказчик</dt><dd>Заказы без переписки и ручной сверки. Доработки API не ломают кабинет и админку молча: несовпадение типов видно ещё при сборке.</dd></div>
+    </dl>
+    <div class="kit">TypeScript · Node.js · Next.js · React · PostgreSQL · Telegram Bot API</div>
+  </article>
+</section>
+<section>
+  <div class="head"><h2>Формат работы и стоимость</h2><span class="tag">по задаче</span></div>
+  <p class="sub">Работаю на проект или этап по договору с ИП, на постоянную доработку или в штат — удалённо, в гибридном формате или в офисе. Могу вести и сервер, и интерфейс или подключиться к одной из частей в вашей команде. Цена зависит от объёма, числа интеграций и того, есть ли уже код, который нужно переводить на TypeScript. После короткого созвона присылаю оценку по этапам.</p>
+</section>
+<section>
+  <div class="head"><h2>Частые вопросы</h2><span class="tag">про TypeScript</span></div>
+  <div class="faq">
+    <details><summary>Чем занимается TypeScript-разработчик?</summary>
+      <p>Пишет на TypeScript — JavaScript с типами — серверную часть на Node.js, интерфейсы на React или Vue, а часто и то и другое. Типы проверяются до запуска кода, поэтому часть ошибок ловится при сборке, а не у пользователя.</p></details>
+    <details><summary>Можно нанять вас на проект, а не в штат?</summary>
+      <p>Да. Работаю по договору с ИП — на отдельный проект, этап или на постоянную доработку. В штат тоже рассматриваю — удалённо, в гибридном формате или в офисе. На удалёнке рабочий день совпадает с московским.</p></details>
+    <details><summary>Зачем TypeScript, если есть JavaScript?</summary>
+      <p>Типы описывают, какие данные принимает и возвращает каждая функция и каждый запрос к API. Редактор подсказывает и подсвечивает ошибки, переименование и рефакторинг становятся безопаснее, а новому человеку в команде проще разобраться в коде. Для короткого скрипта это лишнее, для продукта, который будут развивать годами, — нет.</p></details>
+    <details><summary>Можно перевести наш проект с JavaScript на TypeScript?</summary>
+      <p>Да, постепенно и без остановки разработки. TypeScript работает рядом с JavaScript в одном проекте, поэтому сначала типизируются API и общие модели, а остальной код переводится модуль за модулем.</p></details>
+    <details><summary>Пишете и бэкенд, и фронтенд?</summary>
+      <p>Да. Бэкенд на Node.js, фронтенд на React, Next.js или Vue 3 — с общими типами запросов и ответов. Могу вести обе части или подключиться к одной из них в вашей команде.</p></details>
+    <details><summary>Сколько стоит разработка на TypeScript?</summary>
+      <p>Цена зависит от объёма, числа интеграций и того, есть ли уже код, который нужно переводить на TypeScript. После короткого созвона присылаю оценку по этапам.</p></details>
+  </div>
+</section>
+
+<div class="total">
+  <h2>Нужен TypeScript-разработчик?</h2>
+  <p>Опишите задачу в Telegram: что за продукт, на чём он написан сейчас и какая часть нужна — сервер, интерфейс или обе. Если ищете разработчика в штат — пришлите вакансию.</p>
+  <div class="contacts">
+    <div><span>Telegram</span><a href="https://t.me/uzver_ge" target="_blank" rel="noopener noreferrer">@uzver_ge</a></div>
+    <div><span>Почта</span><a href="mailto:myworkermailbox2022@gmail.com">myworkermailbox2022@gmail.com</a></div>
+    <div><span>Резюме</span><a href="/">опыт и стек</a></div>
+  </div>
+</div>
+
+<footer>
+  <!-- footmap -->
+  <nav class="footmap" aria-label="Карта сайта">
+    <div><b>Услуги</b><a href="/telegram-mini-app/">Telegram-боты и Mini Apps</a><a href="/boty-max/">Боты для MAX</a><a href="/oplata-v-bote/">Оплата в боте</a><a href="/platezhi/">Интеграция платёжных систем</a><a href="/mobilnye-prilozheniya/">Мобильные приложения</a></div>
+    <div><b>Бэкенд-разработчик</b><a href="/php/">PHP-разработчик</a><a href="/laravel/">Laravel-разработчик</a><a href="/nodejs/">Node.js-разработчик</a><a href="/typescript/" aria-current="page">TypeScript-разработчик</a><a href="/python/">Python-разработчик</a><a href="/java/">Java-разработчик</a><a href="/csharp/">C#-разработчик</a><a href="/cpp/">C++-разработчик</a></div>
+    <div><b>Фронтенд и мобильные</b><a href="/react-nextjs/">React-разработчик</a><a href="/vue/">Vue-разработчик</a><a href="/ios/">iOS-разработчик</a><a href="/android/">Android-разработчик</a></div>
+    <div><b>Кейсы и статьи</b><a href="/cases/podpiski/">Платформа подписок</a><a href="/cases/monitoring/">Мониторинг майнеров</a><a href="/blog/go-ili-python/">Go или Python</a><a href="/blog/react-ili-vue/">React или Vue</a><a href="/blog/php-ili-python/">PHP или Python</a><a href="/blog/react-native-ili-flutter/">React Native или Flutter</a></div>
+  </nav>
+  <!-- /footmap -->
+  <div class="wrap">Комягин Николай · Fullstack-разработчик · веб, мобильные приложения, боты, платежи</div>
+</footer>
+
+</div>
+
+<script src="/assets/site.js"></script>
+</body>
+</html>

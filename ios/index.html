@@ -1,0 +1,343 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<title>iOS-разработчик: Swift, React Native, публикация в App Store — Николай Комягин</title>
+<meta name="description" content="iOS-разработчик: приложения для iPhone нативно на Swift или кроссплатформенно на React Native. Бэкенд, API, оплата и админка в одних руках, публикация в App Store. На проект или в штат: удалённо, гибрид или офис.">
+<link rel="canonical" href="https://komiagin.dev/ios/">
+<meta name="robots" content="index, follow, max-image-preview:large">
+<meta name="theme-color" content="#020604">
+
+<meta property="og:type" content="website">
+<meta property="og:locale" content="ru_RU">
+<meta property="og:site_name" content="komiagin.dev">
+<meta property="og:url" content="https://komiagin.dev/ios/">
+<meta property="og:title" content="iOS-разработчик — Николай Комягин">
+<meta property="og:description" content="Приложения для iPhone на Swift или React Native, бэкенд, оплата и админка в одних руках, публикация в App Store. На проект или в штат: удалённо, гибрид или офис.">
+<meta property="og:image" content="https://komiagin.dev/og.png">
+<meta name="twitter:card" content="summary_large_image">
+
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'><rect width='64' height='64' fill='%23020604'/><text x='32' y='47' font-family='monospace' font-size='46' font-weight='bold' fill='%2300FF6A' text-anchor='middle'>K</text></svg>">
+<link rel="apple-touch-icon" href="/icon-512.png">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700;800&family=Manrope:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/assets/site.css">
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Service",
+      "name": "iOS-разработчик на проект",
+      "serviceType": "Разработка приложений для iOS на Swift и React Native",
+      "url": "https://komiagin.dev/ios/",
+      "description": "iOS-разработчик: приложения для iPhone нативно на Swift или кроссплатформенно на React Native. Бэкенд, API, оплата и админка в одних руках, публикация в App Store. На проект или в штат: удалённо, гибрид или офис.",
+      "areaServed": {
+        "@type": "Country",
+        "name": "Россия"
+      },
+      "provider": {
+        "@type": "Person",
+        "name": "Николай Комягин",
+        "jobTitle": "Fullstack-разработчик",
+        "url": "https://komiagin.dev/"
+      }
+    },
+    {
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "Главная",
+          "item": "https://komiagin.dev/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "name": "Услуги и технологии",
+          "item": "https://komiagin.dev/uslugi/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 3,
+          "name": "iOS-разработчик",
+          "item": "https://komiagin.dev/ios/"
+        }
+      ]
+    },
+    {
+      "@type": "FAQPage",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "Чем занимается iOS-разработчик?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Делает приложения для iPhone и iPad: экраны и навигацию, работу с сетью и данными, push-уведомления и доступ к функциям устройства. Потом собирает приложение, проходит проверку App Store и выпускает обновления под новые версии iOS."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Можно нанять вас на проект, а не в штат?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Да. Работаю по договору с ИП — на отдельный проект, этап или на постоянную доработку. В штат тоже рассматриваю — удалённо, в гибридном формате или в офисе. На удалёнке рабочий день совпадает с московским."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Swift или React Native?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Swift — когда нужно только iOS-приложение или важны производительность и глубокая работа с системой: камера, датчики, фоновые задачи, виджеты. React Native — когда нужны iOS и Android сразу и важны сроки и бюджет; отдельные нативные модули к нему дописываются на Swift."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Кто публикует приложение в App Store?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Я готовлю сборку, тестовую раздачу через TestFlight и материалы для карточки приложения, отправляю на проверку и исправляю замечания. Аккаунт в Apple Developer Program оформляется на заказчика, чтобы приложение принадлежало ему."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Как принимать оплату в iOS-приложении?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Зависит от того, что продаётся. Цифровой контент и подписки внутри приложения App Store, как правило, требует продавать через встроенные покупки, а физические товары и услуги оплачиваются через платёжного провайдера. Какой вариант допустим для вашего продукта, проверяем по актуальным правилам App Store до начала разработки."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Можно ли обойтись без приложения в App Store?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Часто да. PWA ставится на экран iPhone из браузера, а Telegram Mini App открывается внутри мессенджера — так работает мой GymAssist. Ограничение PWA на iOS: push-уведомления приходят, только если приложение добавлено на экран «Домой»."
+          }
+        }
+      ]
+    }
+  ]
+}
+</script>
+</head>
+<body>
+
+<div id="rain" aria-hidden="true">
+  <canvas id="rainc"></canvas>
+  <div class="scrim"></div>
+  <div class="scan"></div>
+</div>
+
+<div class="wrap">
+
+<!-- nav -->
+<nav class="topnav" aria-label="Разделы сайта">
+  <a class="brand" href="/">komiagin.dev</a>
+  <a href="/uslugi/" aria-current="page">Услуги и технологии</a>
+  <a href="/#cases">Кейсы</a>
+  <a href="/blog/">Статьи</a>
+</nav>
+<!-- /nav -->
+<header class="sheet">
+  <div class="crumbs"><a href="/">Главная</a> / <a href="/uslugi/">Услуги и технологии</a> / iOS-разработчик</div>
+  <div class="stamp tag">Разработчик</div>
+  <h1>iOS-разработчик</h1>
+  <div class="role">Swift · React Native · бэкенд и API · App Store</div>
+
+  <dl class="meta">
+    <div class="mrow"><dt>Опыт</dt><dd>Коммерческая разработка с&nbsp;сентября 2020: бэкенд, API и&nbsp;интерфейсы; для iOS — Swift и&nbsp;React Native</dd><dd class="num">Fullstack</dd></div>
+    <div class="mrow"><dt>Формат</dt><dd>На проект по договору с&nbsp;ИП или в&nbsp;штат: удалённо, гибрид или офис</dd><dd class="num">Гибко</dd></div>
+    <div class="mrow"><dt>Стек</dt><dd>Swift, SwiftUI, React Native, TypeScript, Laravel / Node.js, PostgreSQL</dd><dd class="num">iOS</dd></div>
+    <div class="mrow"><dt>Часовой пояс</dt><dd>Рабочий день совпадает с&nbsp;московским</dd><dd class="num">МСК</dd></div>
+  </dl>
+
+  <p class="pitch">Делаю приложения для iPhone <strong>нативно на Swift или кроссплатформенно на React Native — и сервер под них: API, оплату и админ-панель.</strong> Приложение и бэкенд проектирую вместе, поэтому правки не ходят между двумя подрядчиками.</p>
+  <p class="pitch">До старта помогаю решить, нужно ли приложение в App Store вообще. Иногда задачу быстрее и дешевле закрыть PWA или Telegram Mini App — так устроен мой собственный продукт GymAssist.</p>
+  <div class="cta-row">
+    <a class="btn solid" href="https://t.me/uzver_ge" target="_blank" rel="noopener noreferrer">Обсудить проект в Telegram</a>
+    <a class="btn ghost" href="#format">Swift, React Native или PWA</a>
+  </div>
+</header>
+<section>
+  <div class="head"><h2>Чем занимается iOS-разработчик</h2><span class="tag">коротко</span></div>
+  <p class="sub">iOS-разработчик делает приложения для iPhone и iPad: экраны и навигацию, работу с сетью и данными на устройстве, push-уведомления, доступ к камере, геолокации и другим функциям системы. Затем собирает приложение, отправляет его на проверку в App Store и выпускает обновления под новые версии iOS.</p>
+  <p class="sub">Само приложение — только часть продукта. Ему нужны сервер, авторизация, оплата и админка для команды. Я пишу и iOS-часть, и бэкенд, поэтому формат данных, push-уведомления и покупки проектирую сразу с двух сторон.</p>
+</section>
+<section id="format">
+  <div class="head"><h2>Swift, React Native или PWA</h2><span class="tag">что выбрать</span></div>
+  <div class="tbl">
+    <table>
+      <thead><tr><th>Формат</th><th>Когда подходит</th><th>Что учесть</th></tr></thead>
+      <tbody>
+        <tr><td>Нативно на Swift</td><td>Нужно только iOS-приложение; важны производительность, камера, датчики, фоновые задачи, виджеты</td><td>Версию для Android придётся писать отдельно</td></tr>
+        <tr><td>React Native</td><td>Нужны iOS и Android сразу, сроки и бюджет ограничены, есть сайт на React</td><td>Функции, которых нет в библиотеках, дописываются нативным модулем на Swift</td></tr>
+        <tr><td>PWA</td><td>Внутренние инструменты, кабинеты, проверка идеи без App Store</td><td>На iOS push-уведомления приходят только в PWA, добавленную на экран «Домой»</td></tr>
+        <tr><td>Telegram Mini App</td><td>Аудитория уже в Telegram, нужен вход без регистрации</td><td>Работает внутри мессенджера, в App Store не публикуется</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <p class="tbl-note">Подробно про выбор между кроссплатформой и нативом — в статье «React Native или Flutter».</p>
+  <a class="more" href="/blog/react-native-ili-flutter/">Статья: React Native или Flutter →</a>
+</section>
+<section>
+  <div class="head"><h2>Что делаю для iOS</h2><span class="tag">шесть направлений</span></div>
+  <div class="ledger">
+    <div class="item">
+      <span class="idx">01</span>
+      <div>
+        <h3>Нативное приложение на Swift</h3>
+        <p>Экраны по макету, навигация, работа с сетью и данными без связи, доступ к камере, геолокации и уведомлениям.</p>
+        <div class="kit">Swift · SwiftUI</div>
+      </div>
+    </div>
+    <div class="item">
+      <span class="idx">02</span>
+      <div>
+        <h3>Кроссплатформенно на React Native</h3>
+        <p>Одно приложение на TypeScript для iPhone и Android. Функции, которых нет в библиотеках, дописываю нативным модулем на Swift.</p>
+        <div class="kit">React Native · TypeScript · Swift</div>
+        <a class="more" href="/typescript/">TypeScript-разработчик →</a>
+      </div>
+    </div>
+    <div class="item">
+      <span class="idx">03</span>
+      <div>
+        <h3>Бэкенд и API</h3>
+        <p>Сервер, база, авторизация, файлы и push-уведомления через сервис Apple (APNs). API проектирую под экраны приложения, а не наоборот.</p>
+        <div class="kit">Laravel · Node.js · APNs</div>
+        <a class="more" href="/php/">PHP-разработчик →</a>
+      </div>
+    </div>
+    <div class="item">
+      <span class="idx">04</span>
+      <div>
+        <h3>Оплата</h3>
+        <p>Встроенные покупки или платёжный провайдер — по правилам App Store для конкретного продукта. Вариант проверяем до начала разработки, чеки — по 54-ФЗ.</p>
+        <div class="kit">покупки в приложении · провайдеры · 54-ФЗ</div>
+        <a class="more" href="/platezhi/">Интеграция платёжных систем →</a>
+      </div>
+    </div>
+    <div class="item">
+      <span class="idx">05</span>
+      <div>
+        <h3>Админ-панель</h3>
+        <p>Контент, пользователи, заказы и рассылки push-уведомлений — без участия разработчика.</p>
+        <div class="kit">Vue · React · роли и права</div>
+      </div>
+    </div>
+    <div class="item">
+      <span class="idx">06</span>
+      <div>
+        <h3>Публикация в App Store</h3>
+        <p>Сборка, тестовая раздача через TestFlight, описание и скриншоты для карточки, отправка на проверку и исправление замечаний ревью. Затем обновления под новые версии iOS.</p>
+        <div class="kit">Xcode · TestFlight · App Store Connect</div>
+      </div>
+    </div>
+  </div>
+</section>
+<section>
+  <div class="head"><h2>Стек</h2><span class="tag">чем работаю</span></div>
+  <div class="stack">
+    <div class="srow"><span class="k">iOS</span><div class="chips"><span class="chip">Swift</span><span class="chip">SwiftUI</span><span class="chip">React Native</span><span class="chip">TypeScript</span></div></div>
+    <div class="srow"><span class="k">Backend</span><div class="chips"><span class="chip">Laravel</span><span class="chip">Node.js</span><span class="chip">REST API</span></div></div>
+    <div class="srow"><span class="k">Данные</span><div class="chips"><span class="chip">PostgreSQL</span><span class="chip">Redis</span></div></div>
+    <div class="srow"><span class="k">Без App Store</span><div class="chips"><span class="chip">PWA</span><span class="chip">Telegram Mini Apps</span></div></div>
+    <div class="srow"><span class="k">Инфраструктура</span><div class="chips"><span class="chip">Docker</span><span class="chip">Nginx</span><span class="chip">Linux</span></div></div>
+  </div>
+  <div class="related"><a class="more" href="/mobilnye-prilozheniya/">Разработка мобильных приложений →</a><a class="more" href="/android/">Android-разработчик →</a></div>
+</section>
+<section id="gymassist">
+  <div class="head"><h2>Свой продукт без отдельного приложения</h2><span class="tag">веб и Mini App</span></div>
+  <div class="cases">
+    <article class="case">
+      <div class="case-top"><span class="idx">01</span><h3>GymAssist — дневник силовых тренировок</h3><a class="site" href="https://gymassist.space/" target="_blank" rel="noopener noreferrer">gymassist.space</a></div>
+      <div class="case-role">Собственный продукт · в продакшене · разработка и инфраструктура — на мне</div>
+      <p class="sub">Запись подходов в зале, нагрузка по сорока мышцам на анатомической схеме, программы с автоматической прогрессией и режим тренера. На iPhone его открывают в браузере или как Telegram Mini App — без установки из App Store, а новые функции доходят до пользователей без проверки магазином.</p>
+      <div class="figs">
+        <div class="fig"><b>40</b><span>мышц на схеме нагрузки</span></div>
+        <div class="fig"><b>2</b><span>платформы: веб и Mini App</span></div>
+        <div class="fig"><b>1</b><span>разработчик — я</span></div>
+      </div>
+    </article>
+  </div>
+</section>
+<section>
+  <div class="head"><h2>Типовые решения</h2><span class="tag">как это может выглядеть</span></div>
+  <article class="example">
+    <div class="ex-top"><span class="ex-label">Типовое решение</span><h3>Приложение для осмотра объектов с фотоотчётом</h3></div>
+    <div class="ex-note">Пример задачи и архитектуры, а не проект из портфолио</div>
+    <dl>
+      <div class="crow"><dt>Задача</dt><dd>Инспекторы осматривают объекты с бумажным чек-листом, а потом вручную переносят пункты и фотографии в отчёт.</dd></div>
+      <div class="crow"><dt>Как собрать</dt><dd>Нативное приложение на Swift для iPhone и iPad: чек-лист осмотра, фото с камеры с привязкой к пункту, работа без связи и синхронизация, когда сеть появляется. Сервер на Laravel собирает акт в PDF и отправляет его по почте, руководитель видит статусы осмотров в веб-кабинете.</dd></div>
+      <div class="crow"><dt>Что получит заказчик</dt><dd>Акт готов сразу после осмотра, фотографии не теряются, а данные не нужно перепечатывать.</dd></div>
+    </dl>
+    <div class="kit">Swift · SwiftUI · Laravel · PostgreSQL</div>
+  </article>
+  <article class="example">
+    <div class="ex-top"><span class="ex-label">Типовое решение</span><h3>Программа лояльности для сети кофеен</h3></div>
+    <div class="ex-note">Пример задачи и архитектуры, а не проект из портфолио</div>
+    <dl>
+      <div class="crow"><dt>Задача</dt><dd>Сеть кофеен раздаёт бумажные карточки «шестой кофе в подарок»: клиенты их теряют, а маркетинг не знает, кто возвращается.</dd></div>
+      <div class="crow"><dt>Как собрать</dt><dd>Приложение на React Native для iPhone и Android: QR-код клиента для кассы, баланс бонусов, история покупок, push-уведомления об акциях. API на Node.js и TypeScript начисляет бонусы по данным кассы, в админке маркетолог запускает акции и рассылки.</dd></div>
+      <div class="crow"><dt>Что получит заказчик</dt><dd>Карта лояльности в телефоне клиента и данные о повторных визитах вместо бумажных карточек.</dd></div>
+    </dl>
+    <div class="kit">React Native · TypeScript · Node.js · PostgreSQL · APNs</div>
+  </article>
+</section>
+<section>
+  <div class="head"><h2>Формат работы и стоимость</h2><span class="tag">по задаче</span></div>
+  <p class="sub">Работаю на проект или этап по договору с ИП, на постоянную доработку или в штат — удалённо, в гибридном формате или в офисе. Цена зависит от числа экранов, выбранного формата — Swift, React Native или PWA — и от того, нужен ли бэкенд. После созвона присылаю оценку по этапам. Часто разумно начать с первой версии на основных сценариях и расширять приложение по результатам.</p>
+</section>
+<section>
+  <div class="head"><h2>Частые вопросы</h2><span class="tag">про iOS</span></div>
+  <div class="faq">
+    <details><summary>Чем занимается iOS-разработчик?</summary>
+      <p>Делает приложения для iPhone и iPad: экраны и навигацию, работу с сетью и данными, push-уведомления и доступ к функциям устройства. Потом собирает приложение, проходит проверку App Store и выпускает обновления под новые версии iOS.</p></details>
+    <details><summary>Можно нанять вас на проект, а не в штат?</summary>
+      <p>Да. Работаю по договору с ИП — на отдельный проект, этап или на постоянную доработку. В штат тоже рассматриваю — удалённо, в гибридном формате или в офисе. На удалёнке рабочий день совпадает с московским.</p></details>
+    <details><summary>Swift или React Native?</summary>
+      <p>Swift — когда нужно только iOS-приложение или важны производительность и глубокая работа с системой: камера, датчики, фоновые задачи, виджеты. React Native — когда нужны iOS и Android сразу и важны сроки и бюджет; отдельные нативные модули к нему дописываются на Swift.</p></details>
+    <details><summary>Кто публикует приложение в App Store?</summary>
+      <p>Я готовлю сборку, тестовую раздачу через TestFlight и материалы для карточки приложения, отправляю на проверку и исправляю замечания. Аккаунт в Apple Developer Program оформляется на заказчика, чтобы приложение принадлежало ему.</p></details>
+    <details><summary>Как принимать оплату в iOS-приложении?</summary>
+      <p>Зависит от того, что продаётся. Цифровой контент и подписки внутри приложения App Store, как правило, требует продавать через встроенные покупки, а физические товары и услуги оплачиваются через платёжного провайдера. Какой вариант допустим для вашего продукта, проверяем по актуальным правилам App Store до начала разработки.</p></details>
+    <details><summary>Можно ли обойтись без приложения в App Store?</summary>
+      <p>Часто да. PWA ставится на экран iPhone из браузера, а Telegram Mini App открывается внутри мессенджера — так работает мой GymAssist. Ограничение PWA на iOS: push-уведомления приходят, только если приложение добавлено на экран «Домой».</p></details>
+  </div>
+</section>
+
+<div class="total">
+  <h2>Нужен iOS-разработчик?</h2>
+  <p>Опишите в Telegram, для кого приложение и что в нём должно быть. Помогу выбрать между Swift, React Native и PWA и отвечу, что войдёт в первую версию. Если ищете разработчика в штат — пришлите вакансию.</p>
+  <div class="contacts">
+    <div><span>Telegram</span><a href="https://t.me/uzver_ge" target="_blank" rel="noopener noreferrer">@uzver_ge</a></div>
+    <div><span>Почта</span><a href="mailto:myworkermailbox2022@gmail.com">myworkermailbox2022@gmail.com</a></div>
+    <div><span>Резюме</span><a href="/">опыт и стек</a></div>
+  </div>
+</div>
+
+<footer>
+  <!-- footmap -->
+  <nav class="footmap" aria-label="Карта сайта">
+    <div><b>Услуги</b><a href="/telegram-mini-app/">Telegram-боты и Mini Apps</a><a href="/boty-max/">Боты для MAX</a><a href="/oplata-v-bote/">Оплата в боте</a><a href="/platezhi/">Интеграция платёжных систем</a><a href="/mobilnye-prilozheniya/">Мобильные приложения</a></div>
+    <div><b>Бэкенд-разработчик</b><a href="/php/">PHP-разработчик</a><a href="/laravel/">Laravel-разработчик</a><a href="/nodejs/">Node.js-разработчик</a><a href="/typescript/">TypeScript-разработчик</a><a href="/python/">Python-разработчик</a><a href="/java/">Java-разработчик</a><a href="/csharp/">C#-разработчик</a><a href="/cpp/">C++-разработчик</a></div>
+    <div><b>Фронтенд и мобильные</b><a href="/react-nextjs/">React-разработчик</a><a href="/vue/">Vue-разработчик</a><a href="/ios/" aria-current="page">iOS-разработчик</a><a href="/android/">Android-разработчик</a></div>
+    <div><b>Кейсы и статьи</b><a href="/cases/podpiski/">Платформа подписок</a><a href="/cases/monitoring/">Мониторинг майнеров</a><a href="/blog/go-ili-python/">Go или Python</a><a href="/blog/react-ili-vue/">React или Vue</a><a href="/blog/php-ili-python/">PHP или Python</a><a href="/blog/react-native-ili-flutter/">React Native или Flutter</a></div>
+  </nav>
+  <!-- /footmap -->
+  <div class="wrap">Комягин Николай · Fullstack-разработчик · веб, мобильные приложения, боты, платежи</div>
+</footer>
+
+</div>
+
+<script src="/assets/site.js"></script>
+</body>
+</html>

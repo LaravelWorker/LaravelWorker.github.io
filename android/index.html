@@ -1,0 +1,342 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<title>Android-разработчик: Kotlin, Java, React Native, Google Play — Николай Комягин</title>
+<meta name="description" content="Android-разработчик: приложения на Kotlin и Java, кроссплатформенно на React Native, push-уведомления, бэкенд и API, публикация в Google Play. На проект или в штат: удалённо, гибрид или офис.">
+<link rel="canonical" href="https://komiagin.dev/android/">
+<meta name="robots" content="index, follow, max-image-preview:large">
+<meta name="theme-color" content="#020604">
+
+<meta property="og:type" content="website">
+<meta property="og:locale" content="ru_RU">
+<meta property="og:site_name" content="komiagin.dev">
+<meta property="og:url" content="https://komiagin.dev/android/">
+<meta property="og:title" content="Android-разработчик — Николай Комягин">
+<meta property="og:description" content="Приложения для Android на Kotlin, Java или React Native вместе с бэкендом, push-уведомлениями и публикацией в Google Play. На проект или в штат: удалённо, гибрид или офис.">
+<meta property="og:image" content="https://komiagin.dev/og.png">
+<meta name="twitter:card" content="summary_large_image">
+
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'><rect width='64' height='64' fill='%23020604'/><text x='32' y='47' font-family='monospace' font-size='46' font-weight='bold' fill='%2300FF6A' text-anchor='middle'>K</text></svg>">
+<link rel="apple-touch-icon" href="/icon-512.png">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700;800&family=Manrope:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/assets/site.css">
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Service",
+      "name": "Android-разработчик на проект",
+      "serviceType": "Разработка приложений для Android на Kotlin, Java и React Native",
+      "url": "https://komiagin.dev/android/",
+      "description": "Android-разработчик: приложения на Kotlin и Java, кроссплатформенно на React Native, push-уведомления, бэкенд и API, публикация в Google Play. На проект или в штат: удалённо, гибрид или офис.",
+      "areaServed": {
+        "@type": "Country",
+        "name": "Россия"
+      },
+      "provider": {
+        "@type": "Person",
+        "name": "Николай Комягин",
+        "jobTitle": "Fullstack-разработчик",
+        "url": "https://komiagin.dev/"
+      }
+    },
+    {
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "Главная",
+          "item": "https://komiagin.dev/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "name": "Услуги и технологии",
+          "item": "https://komiagin.dev/uslugi/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 3,
+          "name": "Android-разработчик",
+          "item": "https://komiagin.dev/android/"
+        }
+      ]
+    },
+    {
+      "@type": "FAQPage",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "Чем занимается Android-разработчик?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Делает приложения для смартфонов, планшетов и других устройств на Android: экраны, работу с сетью и данными, push-уведомления, доступ к камере и геолокации. Затем публикует приложение в Google Play и выпускает обновления под новые версии Android и требования магазина."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Можно нанять вас на проект, а не в штат?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Да. Работаю по договору с ИП — на отдельный проект, этап или на постоянную доработку. В штат тоже рассматриваю — удалённо, в гибридном формате или в офисе. На удалёнке рабочий день совпадает с московским."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Kotlin или Java?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Для нового приложения — Kotlin: Google рекомендует его как основной язык для Android, а современный инструмент для интерфейса Jetpack Compose работает только с Kotlin. Если приложение уже написано на Java, переписывать его целиком не нужно: Kotlin и Java работают в одном проекте, и новый код можно писать на Kotlin рядом со старым."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "React Native или натив?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "React Native — когда нужны Android и iOS сразу и важны сроки и бюджет: одна кодовая база на TypeScript. Нативно на Kotlin — когда приложение нужно только под Android или плотно работает с устройством и системой: сканеры, Bluetooth, фоновые задачи."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Публикуете приложение в Google Play?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Да: готовлю подписанную сборку, карточку приложения и тестирование, отправляю на проверку и выпускаю обновления. Аккаунт в Google Play Console оформляется на заказчика, чтобы приложение принадлежало ему. Требования к публикации отличаются для личных аккаунтов и аккаунтов организаций, поэтому смотрим их заранее."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Бэкенд и push-уведомления тоже делаете?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Да: API на Laravel или Node.js, база, авторизация, оплата и админ-панель. Push-уведомления отправляет сервер через Firebase Cloud Messaging, а рассылки команда запускает сама из админки."
+          }
+        }
+      ]
+    }
+  ]
+}
+</script>
+</head>
+<body>
+
+<div id="rain" aria-hidden="true">
+  <canvas id="rainc"></canvas>
+  <div class="scrim"></div>
+  <div class="scan"></div>
+</div>
+
+<div class="wrap">
+
+<!-- nav -->
+<nav class="topnav" aria-label="Разделы сайта">
+  <a class="brand" href="/">komiagin.dev</a>
+  <a href="/uslugi/" aria-current="page">Услуги и технологии</a>
+  <a href="/#cases">Кейсы</a>
+  <a href="/blog/">Статьи</a>
+</nav>
+<!-- /nav -->
+<header class="sheet">
+  <div class="crumbs"><a href="/">Главная</a> / <a href="/uslugi/">Услуги и технологии</a> / Android-разработчик</div>
+  <div class="stamp tag">Разработчик</div>
+  <h1>Android-разработчик</h1>
+  <div class="role">Kotlin · Java · React Native · Google Play · бэкенд</div>
+
+  <dl class="meta">
+    <div class="mrow"><dt>Опыт</dt><dd>Коммерческая разработка с&nbsp;сентября 2020: бэкенд, API и&nbsp;интерфейсы; для Android — Kotlin, Java и&nbsp;React Native</dd><dd class="num">Fullstack</dd></div>
+    <div class="mrow"><dt>Формат</dt><dd>На проект по договору с&nbsp;ИП или в&nbsp;штат: удалённо, гибрид или офис</dd><dd class="num">Гибко</dd></div>
+    <div class="mrow"><dt>Стек</dt><dd>Kotlin, Java, React Native, TypeScript, Firebase Cloud Messaging, Laravel / Node.js</dd><dd class="num">Android</dd></div>
+    <div class="mrow"><dt>Часовой пояс</dt><dd>Рабочий день совпадает с&nbsp;московским</dd><dd class="num">МСК</dd></div>
+  </dl>
+
+  <p class="pitch">Делаю приложения для Android <strong>нативно на Kotlin и Java или кроссплатформенно на React Native — вместе с сервером, push-уведомлениями, оплатой и админкой.</strong></p>
+  <p class="pitch">Беру и новые приложения, и доработку существующих, в том числе написанных на Java. Публикацию в Google Play и обновления после релиза тоже веду сам.</p>
+  <div class="cta-row">
+    <a class="btn solid" href="https://t.me/uzver_ge" target="_blank" rel="noopener noreferrer">Обсудить проект в Telegram</a>
+    <a class="btn ghost" href="#format">Kotlin, Java или React Native</a>
+  </div>
+</header>
+<section>
+  <div class="head"><h2>Чем занимается Android-разработчик</h2><span class="tag">коротко</span></div>
+  <p class="sub">Android-разработчик делает приложения для смартфонов и планшетов на Android: экраны и навигацию, работу с сетью и локальной базой, push-уведомления, доступ к камере, геолокации и другим функциям устройства. Устройства на Android очень разные — по размеру экрана, версии системы и производителю, поэтому заметная часть работы в том, чтобы приложение одинаково вело себя на всех нужных.</p>
+  <p class="sub">Android — это не только телефоны покупателей. На нём работают складские терминалы со сканером, планшеты для сотрудников и кассовые устройства. Для такого оборудования обычно нужно нативное приложение на Kotlin, которое работает с устройством через его SDK.</p>
+</section>
+<section id="format">
+  <div class="head"><h2>Kotlin, Java или React Native</h2><span class="tag">что выбрать</span></div>
+  <div class="tbl">
+    <table>
+      <thead><tr><th>Вариант</th><th>Когда подходит</th><th>Что учесть</th></tr></thead>
+      <tbody>
+        <tr><td>Kotlin</td><td>Новое нативное приложение для Android</td><td>Основной язык, который Google рекомендует для Android; интерфейс на Jetpack Compose</td></tr>
+        <tr><td>Java</td><td>Приложение уже написано на Java</td><td>Kotlin и Java работают в одном проекте: новый код можно писать на Kotlin без переписывания старого</td></tr>
+        <tr><td>React Native</td><td>Нужны Android и iOS сразу, есть сайт на React</td><td>Одна кодовая база на TypeScript; функции, которых нет в библиотеках, — нативным модулем на Kotlin</td></tr>
+        <tr><td>PWA или Mini App</td><td>Внутренние инструменты, проверка идеи без Google Play</td><td>Ставятся без магазина, но доступ к функциям устройства меньше</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <p class="tbl-note">Как выбрать между кроссплатформой и нативом — в статье «React Native или Flutter».</p>
+  <a class="more" href="/blog/react-native-ili-flutter/">Статья: React Native или Flutter →</a>
+</section>
+<section>
+  <div class="head"><h2>Что делаю для Android</h2><span class="tag">шесть направлений</span></div>
+  <div class="ledger">
+    <div class="item">
+      <span class="idx">01</span>
+      <div>
+        <h3>Нативное приложение на Kotlin</h3>
+        <p>Экраны, навигация, локальная база и работа без сети, доступ к камере, геолокации и фоновым задачам.</p>
+        <div class="kit">Kotlin · Jetpack Compose</div>
+      </div>
+    </div>
+    <div class="item">
+      <span class="idx">02</span>
+      <div>
+        <h3>Доработка приложений на Java</h3>
+        <p>Разбираю существующий код, исправляю ошибки, добавляю функции. Новые модули можно писать на Kotlin рядом со старым кодом — переписывать приложение целиком не нужно.</p>
+        <div class="kit">Java · Kotlin · ревью</div>
+      </div>
+    </div>
+    <div class="item">
+      <span class="idx">03</span>
+      <div>
+        <h3>Кроссплатформенно на React Native</h3>
+        <p>Одно приложение на TypeScript для Android и iOS. Функции, которых нет в библиотеках, дописываю нативным модулем на Kotlin.</p>
+        <div class="kit">React Native · TypeScript · Kotlin</div>
+        <a class="more" href="/typescript/">TypeScript-разработчик →</a>
+      </div>
+    </div>
+    <div class="item">
+      <span class="idx">04</span>
+      <div>
+        <h3>Push-уведомления</h3>
+        <p>Отправка с сервера через Firebase Cloud Messaging: сегменты, расписание, переход из уведомления на нужный экран. Начиная с Android&nbsp;13 приложение должно спросить у пользователя разрешение на уведомления — продумываю, в какой момент это сделать.</p>
+        <div class="kit">FCM · каналы уведомлений · переходы на экраны</div>
+      </div>
+    </div>
+    <div class="item">
+      <span class="idx">05</span>
+      <div>
+        <h3>Бэкенд, оплата и админка</h3>
+        <p>API, авторизация, оплата и админ-панель для команды. Способ оплаты — встроенная платёжная система Google Play или провайдер — выбираем по правилам Google Play для конкретного продукта.</p>
+        <div class="kit">Laravel · Node.js · провайдеры · 54-ФЗ</div>
+        <a class="more" href="/platezhi/">Интеграция платёжных систем →</a>
+      </div>
+    </div>
+    <div class="item">
+      <span class="idx">06</span>
+      <div>
+        <h3>Публикация в Google Play</h3>
+        <p>Подписанная сборка в формате Android App Bundle, карточка приложения, тестирование перед релизом, отправка на проверку. Затем обновления под новые требования Google Play к целевой версии Android.</p>
+        <div class="kit">Google Play Console · AAB · тестовые версии</div>
+      </div>
+    </div>
+  </div>
+</section>
+<section>
+  <div class="head"><h2>Стек</h2><span class="tag">чем работаю</span></div>
+  <div class="stack">
+    <div class="srow"><span class="k">Android</span><div class="chips"><span class="chip">Kotlin</span><span class="chip">Java</span><span class="chip">Jetpack Compose</span><span class="chip">React Native</span></div></div>
+    <div class="srow"><span class="k">Backend</span><div class="chips"><span class="chip">Laravel</span><span class="chip">Node.js</span><span class="chip">Spring</span><span class="chip">REST API</span></div></div>
+    <div class="srow"><span class="k">Данные и push</span><div class="chips"><span class="chip">PostgreSQL</span><span class="chip">Redis</span><span class="chip">Firebase Cloud Messaging</span></div></div>
+    <div class="srow"><span class="k">Без Google Play</span><div class="chips"><span class="chip">PWA</span><span class="chip">Telegram Mini Apps</span></div></div>
+    <div class="srow"><span class="k">Инфраструктура</span><div class="chips"><span class="chip">Docker</span><span class="chip">Nginx</span><span class="chip">Linux</span></div></div>
+  </div>
+  <div class="related"><a class="more" href="/mobilnye-prilozheniya/">Разработка мобильных приложений →</a><a class="more" href="/ios/">iOS-разработчик →</a><a class="more" href="/php/">PHP-разработчик →</a></div>
+</section>
+<section id="gymassist">
+  <div class="head"><h2>Свой продукт без отдельного приложения</h2><span class="tag">веб и Mini App</span></div>
+  <div class="cases">
+    <article class="case">
+      <div class="case-top"><span class="idx">01</span><h3>GymAssist — дневник силовых тренировок</h3><a class="site" href="https://gymassist.space/" target="_blank" rel="noopener noreferrer">gymassist.space</a></div>
+      <div class="case-role">Собственный продукт · в продакшене · разработка и инфраструктура — на мне</div>
+      <p class="sub">Запись подходов в зале, нагрузка по сорока мышцам на анатомической схеме, программы с автоматической прогрессией и режим тренера. На телефоне с Android им пользуются в браузере или в Telegram Mini App — без установки из Google Play, а обновления доходят до всех сразу, без выпуска новой версии в магазине.</p>
+      <div class="figs">
+        <div class="fig"><b>40</b><span>мышц на схеме нагрузки</span></div>
+        <div class="fig"><b>2</b><span>платформы: веб и Mini App</span></div>
+        <div class="fig"><b>1</b><span>разработчик — я</span></div>
+      </div>
+    </article>
+  </div>
+</section>
+<section>
+  <div class="head"><h2>Типовые решения</h2><span class="tag">как это может выглядеть</span></div>
+  <article class="example">
+    <div class="ex-top"><span class="ex-label">Типовое решение</span><h3>Приложение для складских терминалов сбора данных</h3></div>
+    <div class="ex-note">Пример задачи и архитектуры, а не проект из портфолио</div>
+    <dl>
+      <div class="crow"><dt>Задача</dt><dd>Склад принимает и отгружает товар по бумажным накладным, остатки в учётной системе расходятся с тем, что лежит на полках.</dd></div>
+      <div class="crow"><dt>Как собрать</dt><dd>Нативное приложение на Kotlin для терминалов на Android: сканирование штрихкодов встроенным сканером, приёмка, перемещение и инвентаризация, работа без сети с синхронизацией. API на Laravel обменивается данными с учётной системой, кладовщик получает задания на терминал, руководитель видит расхождения в веб-кабинете.</dd></div>
+      <div class="crow"><dt>Что получит заказчик</dt><dd>Остатки в системе совпадают с полками, а приёмка и инвентаризация идут без бумаги и ручного ввода.</dd></div>
+    </dl>
+    <div class="kit">Kotlin · Laravel · PostgreSQL · Vue</div>
+  </article>
+  <article class="example">
+    <div class="ex-top"><span class="ex-label">Типовое решение</span><h3>Приложение доставки для ресторана</h3></div>
+    <div class="ex-note">Пример задачи и архитектуры, а не проект из портфолио</div>
+    <dl>
+      <div class="crow"><dt>Задача</dt><dd>Ресторан принимает заказы на доставку только через агрегаторы и хочет дать постоянным гостям прямой канал заказа.</dd></div>
+      <div class="crow"><dt>Как собрать</dt><dd>Приложение на React Native для Android и iOS: меню, корзина, оплата через платёжного провайдера, статусы заказа в push-уведомлениях через Firebase Cloud Messaging. API на Node.js и TypeScript, кухня видит новые заказы на планшете в веб-интерфейсе.</dd></div>
+      <div class="crow"><dt>Что получит заказчик</dt><dd>Свой канал заказов и база постоянных гостей, которым можно напомнить о себе push-уведомлением.</dd></div>
+    </dl>
+    <div class="kit">React Native · TypeScript · Node.js · PostgreSQL · FCM</div>
+  </article>
+</section>
+<section>
+  <div class="head"><h2>Формат работы и стоимость</h2><span class="tag">по задаче</span></div>
+  <p class="sub">Работаю на проект или этап по договору с ИП, на постоянную доработку или в штат — удалённо, в гибридном формате или в офисе. Цена зависит от числа экранов, выбранного варианта — Kotlin, React Native или PWA, — от работы с оборудованием и от того, нужен ли бэкенд. Если приложение уже есть, сначала смотрю код. После созвона присылаю оценку по этапам.</p>
+</section>
+<section>
+  <div class="head"><h2>Частые вопросы</h2><span class="tag">про Android</span></div>
+  <div class="faq">
+    <details><summary>Чем занимается Android-разработчик?</summary>
+      <p>Делает приложения для смартфонов, планшетов и других устройств на Android: экраны, работу с сетью и данными, push-уведомления, доступ к камере и геолокации. Затем публикует приложение в Google Play и выпускает обновления под новые версии Android и требования магазина.</p></details>
+    <details><summary>Можно нанять вас на проект, а не в штат?</summary>
+      <p>Да. Работаю по договору с ИП — на отдельный проект, этап или на постоянную доработку. В штат тоже рассматриваю — удалённо, в гибридном формате или в офисе. На удалёнке рабочий день совпадает с московским.</p></details>
+    <details><summary>Kotlin или Java?</summary>
+      <p>Для нового приложения — Kotlin: Google рекомендует его как основной язык для Android, а современный инструмент для интерфейса Jetpack Compose работает только с Kotlin. Если приложение уже написано на Java, переписывать его целиком не нужно: Kotlin и Java работают в одном проекте, и новый код можно писать на Kotlin рядом со старым.</p></details>
+    <details><summary>React Native или натив?</summary>
+      <p>React Native — когда нужны Android и iOS сразу и важны сроки и бюджет: одна кодовая база на TypeScript. Нативно на Kotlin — когда приложение нужно только под Android или плотно работает с устройством и системой: сканеры, Bluetooth, фоновые задачи.</p></details>
+    <details><summary>Публикуете приложение в Google Play?</summary>
+      <p>Да: готовлю подписанную сборку, карточку приложения и тестирование, отправляю на проверку и выпускаю обновления. Аккаунт в Google Play Console оформляется на заказчика, чтобы приложение принадлежало ему. Требования к публикации отличаются для личных аккаунтов и аккаунтов организаций, поэтому смотрим их заранее.</p></details>
+    <details><summary>Бэкенд и push-уведомления тоже делаете?</summary>
+      <p>Да: API на Laravel или Node.js, база, авторизация, оплата и админ-панель. Push-уведомления отправляет сервер через Firebase Cloud Messaging, а рассылки команда запускает сама из админки.</p></details>
+  </div>
+</section>
+
+<div class="total">
+  <h2>Нужен Android-разработчик?</h2>
+  <p>Опишите в Telegram, для кого приложение, на каких устройствах оно будет работать и есть ли уже код. Отвечу, на чём его делать и что войдёт в первую версию. Если ищете разработчика в штат — пришлите вакансию.</p>
+  <div class="contacts">
+    <div><span>Telegram</span><a href="https://t.me/uzver_ge" target="_blank" rel="noopener noreferrer">@uzver_ge</a></div>
+    <div><span>Почта</span><a href="mailto:myworkermailbox2022@gmail.com">myworkermailbox2022@gmail.com</a></div>
+    <div><span>Резюме</span><a href="/">опыт и стек</a></div>
+  </div>
+</div>
+
+<footer>
+  <!-- footmap -->
+  <nav class="footmap" aria-label="Карта сайта">
+    <div><b>Услуги</b><a href="/telegram-mini-app/">Telegram-боты и Mini Apps</a><a href="/boty-max/">Боты для MAX</a><a href="/oplata-v-bote/">Оплата в боте</a><a href="/platezhi/">Интеграция платёжных систем</a><a href="/mobilnye-prilozheniya/">Мобильные приложения</a></div>
+    <div><b>Бэкенд-разработчик</b><a href="/php/">PHP-разработчик</a><a href="/laravel/">Laravel-разработчик</a><a href="/nodejs/">Node.js-разработчик</a><a href="/typescript/">TypeScript-разработчик</a><a href="/python/">Python-разработчик</a><a href="/java/">Java-разработчик</a><a href="/csharp/">C#-разработчик</a><a href="/cpp/">C++-разработчик</a></div>
+    <div><b>Фронтенд и мобильные</b><a href="/react-nextjs/">React-разработчик</a><a href="/vue/">Vue-разработчик</a><a href="/ios/">iOS-разработчик</a><a href="/android/" aria-current="page">Android-разработчик</a></div>
+    <div><b>Кейсы и статьи</b><a href="/cases/podpiski/">Платформа подписок</a><a href="/cases/monitoring/">Мониторинг майнеров</a><a href="/blog/go-ili-python/">Go или Python</a><a href="/blog/react-ili-vue/">React или Vue</a><a href="/blog/php-ili-python/">PHP или Python</a><a href="/blog/react-native-ili-flutter/">React Native или Flutter</a></div>
+  </nav>
+  <!-- /footmap -->
+  <div class="wrap">Комягин Николай · Fullstack-разработчик · веб, мобильные приложения, боты, платежи</div>
+</footer>
+
+</div>
+
+<script src="/assets/site.js"></script>
+</body>
+</html>

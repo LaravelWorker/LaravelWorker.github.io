@@ -1,0 +1,331 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<title>Java-разработчик: Spring и Android — Николай Комягин</title>
+<meta name="description" content="Java-разработчик на проект или в штат: бэкенд на Spring Boot, REST API, интеграции и фоновые задачи, Android-приложения на Java. Удалённо, гибрид или офис.">
+<link rel="canonical" href="https://komiagin.dev/java/">
+<meta name="robots" content="index, follow, max-image-preview:large">
+<meta name="theme-color" content="#020604">
+
+<meta property="og:type" content="website">
+<meta property="og:locale" content="ru_RU">
+<meta property="og:site_name" content="komiagin.dev">
+<meta property="og:url" content="https://komiagin.dev/java/">
+<meta property="og:title" content="Java-разработчик — Николай Комягин">
+<meta property="og:description" content="Бэкенд на Spring Boot: REST API, интеграции, фоновые задачи. Android-приложения на Java. На проект или в штат: удалённо, гибрид или офис.">
+<meta property="og:image" content="https://komiagin.dev/og.png">
+<meta name="twitter:card" content="summary_large_image">
+
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'><rect width='64' height='64' fill='%23020604'/><text x='32' y='47' font-family='monospace' font-size='46' font-weight='bold' fill='%2300FF6A' text-anchor='middle'>K</text></svg>">
+<link rel="apple-touch-icon" href="/icon-512.png">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700;800&family=Manrope:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/assets/site.css">
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Service",
+      "name": "Java-разработчик на проект",
+      "serviceType": "Backend-разработка на Java и Spring, Android-приложения на Java",
+      "url": "https://komiagin.dev/java/",
+      "description": "Java-разработчик на проект или в штат: бэкенд на Spring Boot, REST API, интеграции и фоновые задачи, Android-приложения на Java. Удалённо, гибрид или офис.",
+      "areaServed": {
+        "@type": "Country",
+        "name": "Россия"
+      },
+      "provider": {
+        "@type": "Person",
+        "name": "Николай Комягин",
+        "jobTitle": "Fullstack-разработчик",
+        "url": "https://komiagin.dev/"
+      }
+    },
+    {
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "Главная",
+          "item": "https://komiagin.dev/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "name": "Услуги и технологии",
+          "item": "https://komiagin.dev/uslugi/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 3,
+          "name": "Java-разработчик",
+          "item": "https://komiagin.dev/java/"
+        }
+      ]
+    },
+    {
+      "@type": "FAQPage",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "Чем занимается Java-разработчик?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Пишет серверную часть и приложения на Java: API для сайта и мобильного приложения, бизнес-логику, работу с базой данных, интеграции с внешними системами, фоновую обработку. Java выбирают для систем, которые должны долго жить и предсказуемо работать под нагрузкой. Ещё одна большая область — Android: заметная часть приложений написана на Java."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Можно нанять вас на проект, а не в штат?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Да. Работаю по договору с ИП — на отдельный проект, этап или на постоянную доработку. В штат тоже рассматриваю — удалённо, в гибридном формате или в офисе. На удалёнке рабочий день совпадает с московским."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Java или Kotlin для Android?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Для новых Android-приложений Google рекомендует Kotlin: код короче, а часть ошибок с null ловится ещё при компиляции. Java остаётся рабочим вариантом, особенно если приложение уже на ней написано. Оба языка уживаются в одном проекте, поэтому существующий код на Java можно дорабатывать и переводить на Kotlin постепенно."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Spring Boot или Node.js для бэкенда?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Пишу на обоих. Spring Boot хорош для систем со сложной бизнес-логикой и транзакциями, где важны строгие типы и долгий срок жизни кода. Node.js быстрее на старте и удобен для API, ботов и сервисов, которые много общаются с внешними API. Выбор зависит от задачи, нагрузки и того, кто будет поддерживать код."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Можно ли подключиться к готовому проекту на Java?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Да. Разбираю чужой код, исправляю ошибки, расширяю функционал, делаю ревью. Начинаю с того, что поднимаю проект локально и проверяю, как он собирается и тестируется."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Сколько стоит разработка на Java?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Цена зависит от объёма, числа интеграций и того, есть ли уже бэкенд, приложение или дизайн. После короткого созвона присылаю оценку по этапам."
+          }
+        }
+      ]
+    }
+  ]
+}
+</script>
+</head>
+<body>
+
+<div id="rain" aria-hidden="true">
+  <canvas id="rainc"></canvas>
+  <div class="scrim"></div>
+  <div class="scan"></div>
+</div>
+
+<div class="wrap">
+
+<!-- nav -->
+<nav class="topnav" aria-label="Разделы сайта">
+  <a class="brand" href="/">komiagin.dev</a>
+  <a href="/uslugi/" aria-current="page">Услуги и технологии</a>
+  <a href="/#cases">Кейсы</a>
+  <a href="/blog/">Статьи</a>
+</nav>
+<!-- /nav -->
+<header class="sheet">
+  <div class="crumbs"><a href="/">Главная</a> / <a href="/uslugi/">Услуги и технологии</a> / Java-разработчик</div>
+  <div class="stamp tag">Разработчик</div>
+  <h1>Java-разработчик</h1>
+  <div class="role">Бэкенд на Java и Spring · REST API · интеграции · Android</div>
+
+  <dl class="meta">
+    <div class="mrow"><dt>Опыт</dt><dd>Коммерческая разработка с&nbsp;сентября 2020</dd><dd class="num">Fullstack</dd></div>
+    <div class="mrow"><dt>Формат</dt><dd>На проект по договору с&nbsp;ИП или в&nbsp;штат: удалённо, гибрид или офис</dd><dd class="num">Гибко</dd></div>
+    <div class="mrow"><dt>Стек</dt><dd>Java, Spring Boot, Spring Data JPA, PostgreSQL, Redis, Android SDK, Docker</dd><dd class="num">Backend · Android</dd></div>
+    <div class="mrow"><dt>Часовой пояс</dt><dd>Рабочий день совпадает с&nbsp;московским</dd><dd class="num">МСК</dd></div>
+  </dl>
+
+  <p class="pitch">Пишу на Java <strong>бэкенд на Spring Boot — REST API, интеграции с внешними сервисами, фоновые задачи — и Android-приложения.</strong></p>
+  <p class="pitch">Мои крупные кейсы сделаны на PHP/Laravel и Node.js, но задачи в них те же, ради которых обычно нанимают Java-разработчика: платежи и подписки, интеграции с внешними API, мониторинг тысяч устройств. Подход к надёжности и данным от языка не зависит.</p>
+  <div class="cta-row">
+    <a class="btn solid" href="https://t.me/uzver_ge" target="_blank" rel="noopener noreferrer">Обсудить проект в Telegram</a>
+    <a class="btn ghost" href="#cases">Кейсы и опыт</a>
+  </div>
+</header>
+<section>
+  <div class="head"><h2>Чем занимается Java-разработчик</h2><span class="tag">коротко</span></div>
+  <p class="sub">Java-разработчик пишет серверную часть и приложения на Java: API для сайтов и мобильных приложений, бизнес-логику, работу с базой данных, интеграции с внешними системами и фоновую обработку. Java выбирают там, где код должен жить долго и предсказуемо работать под нагрузкой: финтех, логистика, крупные внутренние системы компаний. Отдельная большая область — Android: заметная часть приложений и библиотек написана на Java, и их поддерживают наравне с кодом на Kotlin.</p>
+  <p class="sub">Как разработчик на Java я делаю бэкенд на Spring и Android-приложения. В работе это чаще всего API, интеграции и данные — и вопросы вокруг них: что будет, если внешний сервис ответил ошибкой, как не списать деньги дважды, как не потерять событие при перезапуске.</p>
+</section>
+<section>
+  <div class="head"><h2>Что делаю на Java</h2><span class="tag">пять направлений</span></div>
+  <div class="ledger">
+    <div class="item">
+      <span class="idx">01</span>
+      <div>
+        <h3>REST API на Spring Boot</h3>
+        <p>API для веб-интерфейса, мобильного приложения и внешних систем: авторизация и роли через Spring Security, валидация, понятные ошибки, документация OpenAPI.</p>
+        <div class="kit">Java · Spring Boot · Spring Security · OpenAPI</div>
+      </div>
+    </div>
+    <div class="item">
+      <span class="idx">02</span>
+      <div>
+        <h3>Работа с данными</h3>
+        <p>Схема базы и миграции, запросы через Spring Data JPA, а где ORM мешает — SQL вручную. Транзакции и блокировки там, где речь о деньгах и остатках.</p>
+        <div class="kit">PostgreSQL · Spring Data JPA · миграции</div>
+      </div>
+    </div>
+    <div class="item">
+      <span class="idx">03</span>
+      <div>
+        <h3>Интеграции и фоновые задачи</h3>
+        <p>Платёжные провайдеры, внешние API, вебхуки. Повторы, идемпотентность, очереди и задачи по расписанию — чтобы сбой внешнего сервиса не превращался в потерянный платёж.</p>
+        <div class="kit">REST-клиенты · вебхуки · очереди · Redis</div>
+        <a class="more" href="/platezhi/">Интеграция платёжных систем →</a>
+      </div>
+    </div>
+    <div class="item">
+      <span class="idx">04</span>
+      <div>
+        <h3>Android-приложения на Java</h3>
+        <p>Приложение под Android: экраны, работа с API бэкенда, локальное хранение, push-уведомления. Доработка и сопровождение существующих приложений на Java, а если проекту это нужно — постепенный перевод на Kotlin.</p>
+        <div class="kit">Java · Android SDK · Kotlin</div>
+        <a class="more" href="/mobilnye-prilozheniya/">Мобильные приложения →</a>
+      </div>
+    </div>
+    <div class="item">
+      <span class="idx">05</span>
+      <div>
+        <h3>Тесты и сопровождение</h3>
+        <p>Логику, где ошибка стоит денег, закрываю автотестами на JUnit. Подключаюсь к готовым проектам: разбираю чужой код, исправляю ошибки и расширяю функционал.</p>
+        <div class="kit">JUnit · Docker · ревью кода</div>
+      </div>
+    </div>
+  </div>
+</section>
+<section>
+  <div class="head"><h2>Стек</h2><span class="tag">чем работаю</span></div>
+  <div class="stack">
+    <div class="srow"><span class="k">Backend</span><div class="chips"><span class="chip">Java</span><span class="chip">Spring Boot</span><span class="chip">Spring Data JPA</span><span class="chip">Spring Security</span><span class="chip">REST API</span></div></div>
+    <div class="srow"><span class="k">Android</span><div class="chips"><span class="chip">Java</span><span class="chip">Android SDK</span><span class="chip">Kotlin</span></div></div>
+    <div class="srow"><span class="k">Данные</span><div class="chips"><span class="chip">PostgreSQL</span><span class="chip">Redis</span></div></div>
+    <div class="srow"><span class="k">Тесты</span><div class="chips"><span class="chip">JUnit</span></div></div>
+    <div class="srow"><span class="k">Инфраструктура</span><div class="chips"><span class="chip">Docker</span><span class="chip">Nginx</span><span class="chip">Linux</span></div></div>
+  </div>
+  <div class="related"><a class="more" href="/android/">Android-разработчик →</a><a class="more" href="/csharp/">C#-разработчик →</a><a class="more" href="/nodejs/">Node.js-разработчик →</a></div>
+</section>
+<section id="cases">
+  <div class="head"><h2>Опыт, который переносится</h2><span class="tag">кейсы на PHP и Node.js</span></div>
+  <p class="sub">Кейсы ниже сделаны не на Java — на PHP/Laravel и Node.js. Привожу их, потому что задачи в них те же, что обычно решает Java-разработчик: деньги, интеграции с чужими API, большие объёмы данных и работа без ручного присмотра.</p>
+  <p class="sub">До ИП — ilink (Томск), сентябрь&nbsp;2020 — июнь&nbsp;2022: backend на PHP/Laravel и Node.js, наставник четырёх junior-разработчиков. С июня&nbsp;2022 работаю как&nbsp;ИП.</p>
+  <div class="cases">
+    <article class="case">
+      <div class="case-top"><span class="idx">01</span><h3>Платформа подписок с регулярными списаниями</h3></div>
+      <div class="case-role">Сделано на PHP и Laravel · единственный разработчик · полный цикл</div>
+      <p class="sub">Админ-панель на Vue 3, боты в Telegram и MAX на общем бэкенде, две платёжные интеграции с рекуррентными списаниями и вебхуками. Идемпотентность по идентификатору платежа у провайдера — двойные списания и дубли подписок исключены на уровне модели. Около 6&nbsp;000 подписчиков и ~3&nbsp;млн&nbsp;₽ оборота в месяц. На Spring это те же вебхуки, транзакции и уникальные ключи.</p>
+      <div class="kit">PHP · Laravel · PostgreSQL · Vue 3 · Telegram Bot API · MAX API</div>
+      <a class="more" href="/cases/podpiski/">Подробный разбор кейса →</a>
+    </article>
+    <article class="case">
+      <div class="case-top"><span class="idx">02</span><h3>Бэкенд сервиса торговых ботов для Bybit</h3><span class="site dead">tradingforce.io · проект закрыт</span></div>
+      <div class="case-role">Сделано на Node.js и TypeScript · единственный backend-разработчик в команде из четырёх</div>
+      <p class="sub">Интеграция с торговым API Bybit, REST API для фронтенда, автоматические stop-loss и take-profit. Котировки поставлял отдельный Python-сервис через Redis, на стороне бэкенда — дедупликация запросов и кеширование ответов. Торговая логика закрыта автотестами. Продукт закрылся, но серверная часть была собрана целиком и работала.</p>
+      <div class="kit">Node.js · TypeScript · Python · Redis · PostgreSQL · Bybit API</div>
+      <a class="more" href="/#cases">Все кейсы в резюме →</a>
+    </article>
+    <article class="case">
+      <div class="case-top"><span class="idx">03</span><h3>Мониторинг парка майнингового оборудования</h3></div>
+      <div class="case-role">Сделано на PHP и Laravel · полный цикл · заказчик под NDA</div>
+      <p class="sub">Сбор телеметрии по API нескольких сервисов и пулов — до 10&nbsp;000 устройств с опросом раз в минуту. Оперативные метрики в Redis, суточные агрегаты в PostgreSQL, уведомления в Telegram и на почту. Простой машины виден через 3&nbsp;минуты вместо недель.</p>
+      <div class="kit">PHP · Laravel · Redis · PostgreSQL · Vue 3</div>
+      <a class="more" href="/cases/monitoring/">Подробный разбор кейса →</a>
+    </article>
+  </div>
+</section>
+<section>
+  <div class="head"><h2>Типовые решения</h2><span class="tag">как это может выглядеть</span></div>
+  <article class="example">
+    <div class="ex-top"><span class="ex-label">Типовое решение</span><h3>Бэкенд и Android-приложение для курьерской службы</h3></div>
+    <div class="ex-note">Пример задачи и архитектуры, а не проект из портфолио</div>
+    <dl>
+      <div class="crow"><dt>Задача</dt><dd>Диспетчер раздаёт заказы курьерам по телефону, а статусы доставки узнаёт из переписки.</dd></div>
+      <div class="crow"><dt>Как собрать</dt><dd>Бэкенд на Spring Boot: заказы, курьеры, статусы, REST API с авторизацией по токенам. Android-приложение курьера на Java: список заказов, смена статуса, фото при доставке, push-уведомление о новом заказе. Если связь пропала, статусы копятся в приложении и уходят на сервер, когда сеть вернётся.</dd></div>
+      <div class="crow"><dt>Что получит заказчик</dt><dd>Диспетчер видит статус каждого заказа без звонков, курьер получает заказы в приложении.</dd></div>
+    </dl>
+    <div class="kit">Java · Spring Boot · PostgreSQL · Android · Firebase Cloud Messaging</div>
+  </article>
+  <article class="example">
+    <div class="ex-top"><span class="ex-label">Типовое решение</span><h3>Сервис сверки оплат с учётной системой</h3></div>
+    <div class="ex-note">Пример задачи и архитектуры, а не проект из портфолио</div>
+    <dl>
+      <div class="crow"><dt>Задача</dt><dd>Компания принимает оплату онлайн, а бухгалтерия сверяет платежи с заказами вручную в конце месяца.</dd></div>
+      <div class="crow"><dt>Как собрать</dt><dd>Сервис на Spring Boot принимает вебхуки платёжного провайдера, проверяет подпись и сохраняет событие с уникальным ключом — повторный вебхук не создаёт дубль. Фоновая задача обновляет статус заказа в учётной системе через её API, при ошибке повторяет с паузой. Раз в день — сверка с отчётом провайдера, расхождения приходят в Telegram.</dd></div>
+      <div class="crow"><dt>Что получит заказчик</dt><dd>Оплаченные заказы закрываются сами, расхождения видны в тот же день, а не в конце месяца.</dd></div>
+    </dl>
+    <div class="kit">Java · Spring Boot · PostgreSQL · Redis · вебхуки</div>
+  </article>
+</section>
+<section>
+  <div class="head"><h2>Формат работы и стоимость</h2><span class="tag">по задаче</span></div>
+  <p class="sub">Работаю на проект или этап по договору с ИП, на постоянную доработку или в штат — удалённо, гибрид или офис. Цена зависит от объёма, числа интеграций и того, есть ли уже бэкенд, приложение или дизайн. После короткого созвона присылаю оценку по этапам.</p>
+</section>
+<section>
+  <div class="head"><h2>Частые вопросы</h2><span class="tag">про Java</span></div>
+  <div class="faq">
+    <details><summary>Чем занимается Java-разработчик?</summary>
+      <p>Пишет серверную часть и приложения на Java: API для сайта и мобильного приложения, бизнес-логику, работу с базой данных, интеграции с внешними системами, фоновую обработку. Java выбирают для систем, которые должны долго жить и предсказуемо работать под нагрузкой. Ещё одна большая область — Android: заметная часть приложений написана на Java.</p></details>
+    <details><summary>Можно нанять вас на проект, а не в штат?</summary>
+      <p>Да. Работаю по договору с ИП — на отдельный проект, этап или на постоянную доработку. В штат тоже рассматриваю — удалённо, в гибридном формате или в офисе. На удалёнке рабочий день совпадает с московским.</p></details>
+    <details><summary>Java или Kotlin для Android?</summary>
+      <p>Для новых Android-приложений Google рекомендует Kotlin: код короче, а часть ошибок с null ловится ещё при компиляции. Java остаётся рабочим вариантом, особенно если приложение уже на ней написано. Оба языка уживаются в одном проекте, поэтому существующий код на Java можно дорабатывать и переводить на Kotlin постепенно.</p></details>
+    <details><summary>Spring Boot или Node.js для бэкенда?</summary>
+      <p>Пишу на обоих. Spring Boot хорош для систем со сложной бизнес-логикой и транзакциями, где важны строгие типы и долгий срок жизни кода. Node.js быстрее на старте и удобен для API, ботов и сервисов, которые много общаются с внешними API. Выбор зависит от задачи, нагрузки и того, кто будет поддерживать код.</p></details>
+    <details><summary>Можно ли подключиться к готовому проекту на Java?</summary>
+      <p>Да. Разбираю чужой код, исправляю ошибки, расширяю функционал, делаю ревью. Начинаю с того, что поднимаю проект локально и проверяю, как он собирается и тестируется.</p></details>
+    <details><summary>Сколько стоит разработка на Java?</summary>
+      <p>Цена зависит от объёма, числа интеграций и того, есть ли уже бэкенд, приложение или дизайн. После короткого созвона присылаю оценку по этапам.</p></details>
+  </div>
+</section>
+
+<div class="total">
+  <h2>Нужен Java-разработчик?</h2>
+  <p>Опишите задачу в Telegram: бэкенд, Android-приложение или доработка существующего кода на Java и с какими системами нужно связаться. Если ищете разработчика в штат — пришлите вакансию.</p>
+  <div class="contacts">
+    <div><span>Telegram</span><a href="https://t.me/uzver_ge" target="_blank" rel="noopener noreferrer">@uzver_ge</a></div>
+    <div><span>Почта</span><a href="mailto:myworkermailbox2022@gmail.com">myworkermailbox2022@gmail.com</a></div>
+    <div><span>Резюме</span><a href="/">опыт и стек</a></div>
+  </div>
+</div>
+
+<footer>
+  <!-- footmap -->
+  <nav class="footmap" aria-label="Карта сайта">
+    <div><b>Услуги</b><a href="/telegram-mini-app/">Telegram-боты и Mini Apps</a><a href="/boty-max/">Боты для MAX</a><a href="/oplata-v-bote/">Оплата в боте</a><a href="/platezhi/">Интеграция платёжных систем</a><a href="/mobilnye-prilozheniya/">Мобильные приложения</a></div>
+    <div><b>Бэкенд-разработчик</b><a href="/php/">PHP-разработчик</a><a href="/laravel/">Laravel-разработчик</a><a href="/nodejs/">Node.js-разработчик</a><a href="/typescript/">TypeScript-разработчик</a><a href="/python/">Python-разработчик</a><a href="/java/" aria-current="page">Java-разработчик</a><a href="/csharp/">C#-разработчик</a><a href="/cpp/">C++-разработчик</a></div>
+    <div><b>Фронтенд и мобильные</b><a href="/react-nextjs/">React-разработчик</a><a href="/vue/">Vue-разработчик</a><a href="/ios/">iOS-разработчик</a><a href="/android/">Android-разработчик</a></div>
+    <div><b>Кейсы и статьи</b><a href="/cases/podpiski/">Платформа подписок</a><a href="/cases/monitoring/">Мониторинг майнеров</a><a href="/blog/go-ili-python/">Go или Python</a><a href="/blog/react-ili-vue/">React или Vue</a><a href="/blog/php-ili-python/">PHP или Python</a><a href="/blog/react-native-ili-flutter/">React Native или Flutter</a></div>
+  </nav>
+  <!-- /footmap -->
+  <div class="wrap">Комягин Николай · Fullstack-разработчик · веб, мобильные приложения, боты, платежи</div>
+</footer>
+
+</div>
+
+<script src="/assets/site.js"></script>
+</body>
+</html>
